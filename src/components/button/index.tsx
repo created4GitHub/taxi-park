@@ -1,11 +1,11 @@
 import React, {MouseEventHandler} from "react";
 
-import './Button.style.css';
+import './style.scss';
 
 type Props = {
   className: string,
   disabled : boolean | undefined,
-  btnText: string
+  btnText: string,
   onClick: void | MouseEventHandler<HTMLButtonElement> | undefined,
 };
 
