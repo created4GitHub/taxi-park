@@ -8,8 +8,8 @@ ReactDOM.render(
     <div className="header"></div>
     <div className="content">
       <div className="content__options">
-        <div className="content__item-options-buttons"></div>
-        <div className="content__item-options-filter"></div>
+        <div className="content__options-button"></div>
+        <div className="content__options-filter"></div>
       </div>
       <div className="content__items-information"></div>
     </div>
