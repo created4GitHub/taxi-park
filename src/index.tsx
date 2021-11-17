@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
 
+import App from "./App"
+import './index.scss';
 
 // const api_url = 'https://edu.evgeniychvertkov.com/';
 // const api_key =  'api5613e3024e96f2eee62f63bd1d9196d624f4de63384d5dd35c515933e944d18a';
