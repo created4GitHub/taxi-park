@@ -1,28 +1,23 @@
-import React from "react";
 
-import FormItem from "./formItem/FormItem"
-
-import { infoType } from "./testMass";
 import massObj from "./testMass";
-
+import FormSection from "./formSection/FormSection";
 import "./formDriver.min.scss";
+import { Context } from "./context";
 
 const Form = () => {
-
-    // function handleClick(event: any) {
-    //     console.log(event.target)
-    //     setElement(!element);
-    // }
-    // const [element, setElement] = useState(true);
-
-
-    return (
-        <div className="table">
-{            massObj.map((item, index) => {
-                < FormItem {...item}/>
-            })}
-        </div>
-    );
+  return (
+    <div className="table">
+      {massObj.map((item, index) => {
+        return (
+          <Context.Provider value={item} key={index}>
+            <div key={index}>
+              <FormSection {...item} />;
+            </div>
+          </Context.Provider>
+        );
+      })}
+    </div>
+  );
 };
 
 export default Form;

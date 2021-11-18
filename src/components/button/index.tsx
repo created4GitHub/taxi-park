@@ -1,15 +1,15 @@
-import React, {MouseEventHandler} from "react";
+import React, { MouseEventHandler } from "react";
 
-import './style.scss';
+import "./style.scss";
 
 type Props = {
-  className: string,
-  disabled : boolean | undefined,
-  btnText: string,
-  onClick: void | MouseEventHandler<HTMLButtonElement> | undefined,
+  className: string;
+  disabled: boolean | undefined;
+  btnText: string;
+  onClick: MouseEventHandler<HTMLButtonElement> | undefined;
 };
 
-export const Button : React.FC<Props> = (props) => {
+export const Button: React.FC<Props> = (props) => {
   return (
     <button
       onClick={props.onClick}
@@ -18,5 +18,5 @@ export const Button : React.FC<Props> = (props) => {
     >
       {props.btnText}
     </button>
-  )
-}
+  );
+};
