@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import FormDrivers from './components/form/formDriver';
+import FormDrivers from '../form/formDriver';
 
 import massObj from './testMass'
 

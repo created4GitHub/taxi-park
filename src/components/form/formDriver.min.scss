@@ -17,15 +17,15 @@
 // }
 
 
-@keyframes ani {
-    0% {transform: translateX(-150%);}
-    50%{transform: translateX(-100%)}
-    100% {transform: translateY(0);}
-}
-.table_input {
-    transform: translateX(-150%);
-    animation: ani 3s forwards;
-  }
+// @keyframes ani {
+//     0% {transform: translateX(-150%);}
+//     50%{transform: translateX(-100%)}
+//     100% {transform: translateY(0);}
+// }
+// .table_input {
+//     transform: translateX(-150%);
+//     animation: ani 3s forwards;
+//   }
 
 .table{
     width: 800px;
