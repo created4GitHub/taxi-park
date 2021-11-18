@@ -6,7 +6,7 @@ type Props = {
   className: string,
   disabled : boolean | undefined,
   btnText: string,
-  onClick: void | MouseEventHandler<HTMLButtonElement> | undefined,
+  onClick: MouseEventHandler<HTMLButtonElement> | undefined,
 };
 
 export const Button : React.FC<Props> = (props) => {

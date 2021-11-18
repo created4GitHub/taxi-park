@@ -1,7 +1,8 @@
 import React from 'react';
 
-import {Button} from "./components/button/index";
-import {Input} from "./components/input/index";
+import Filters from './components/filters/filters';
+import { Button } from "./components/button/index";
+import Input from "./components/input/index";
 
 import "./app.scss"
 
@@ -25,8 +26,9 @@ const App: React.FC = () => {
             <div className="content">
                 <div className="content__options">
                     <div className="content__options-buttons">
-                    {optionsButtons.map(item => {
+                    {optionsButtons.map((item, i) => {
                         return <Button
+                        key = {i}
                         className = {item.className}
                         btnText = {item.btnText}
                         disabled = {item.disabled}
@@ -34,7 +36,9 @@ const App: React.FC = () => {
                         />
                     })}
                     </div>
-                    <div className="content__options-filter"></div>
+                    <div className="content__options-filter">
+                        <Filters />
+                    </div>
                 </div>
                 <div className="content__items-information"></div>
             </div>
