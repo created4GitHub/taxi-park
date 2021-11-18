@@ -1,6 +1,15 @@
-import React from 'react'
+import React, {MouseEventHandler} from 'react'
 
-const massObj: any = [{
+export interface infoType {
+    id?: number;
+    first_name?: string;
+    last_name?: string;
+    date_birth?: string;
+    status?: {[key : string] : string};
+    onClick? : MouseEventHandler;
+
+}
+const massObj: infoType[] = [{
     id: 12341234,
     first_name: 'Vasia',
     last_name: 'Pupu',
@@ -10,7 +19,7 @@ const massObj: any = [{
         code: "active"
     }},{
     id: 12341234,
-    first_name: 'Vasia',
+    first_name: 'Vlad',
     last_name: 'Pupu',
     date_birth: '16.02.2000',
     status: {
@@ -18,7 +27,7 @@ const massObj: any = [{
         code: "active"
     }},{
     id: 12341234,
-    first_name: 'Vasia',
+    first_name: 'Max',
     last_name: 'Pupu',
     date_birth: '16.02.2000',
     status: {
@@ -26,7 +35,7 @@ const massObj: any = [{
         code: "active"
     }},{
     id: 12341234,
-    first_name: 'Vasia',
+    first_name: 'Alex',
     last_name: 'Pupu',
     date_birth: '16.02.2000',
     status: {
@@ -34,7 +43,7 @@ const massObj: any = [{
         code: "active"
     }},{
     id: 12341234,
-    first_name: 'Vasia',
+    first_name: 'Vasya',
     last_name: 'Pupu',
     date_birth: '16.02.2000',
     status: {
@@ -42,5 +51,4 @@ const massObj: any = [{
         code: "active"
     },
 }]
-
 export default massObj
