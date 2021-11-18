@@ -1,48 +1,42 @@
-import React from 'react';
+import React, { useState, SetStateAction, Dispatch } from 'react';
 
 import Filters from './components/filters/filters';
-import { Button } from "./components/button/index";
-import Input from "./components/input/index";
+import Test from './module/render';
 
+import driversPNG from './img/drivers.png'
+import carsPNG from './img/cars.png'
 import "./app.scss"
 
 const App: React.FC = () => {
+    const [activeButton, setActiveButton]: [string, Dispatch<SetStateAction<string>>] = useState('');
 
-    const optionsButtons = [
-        {  className: "options-buttons",
-            disabled : false,
-            btnText: "Drivers",
-            onClick: () => console.log("test"),
-    },
-    {  className: "options-buttons",
-        disabled : false,
-        btnText: "Cars",
-        onClick: console.log("test"),
-    }
-    ]
     return (
+        <>
+        <header className="header"></header>
         <div className="container">
-            <div className="header"></div>
             <div className="content">
                 <div className="content__options">
-                    <div className="content__options-buttons">
-                    {optionsButtons.map((item, i) => {
-                        return <Button
-                        key = {i}
-                        className = {item.className}
-                        btnText = {item.btnText}
-                        disabled = {item.disabled}
-                        onClick = {() => console.log("test")}
-                        />
-                    })}
+                    <div className="content__options-paragraph">
+
+                    <p className={activeButton !== 'Drivers' ? "options-paragraph" : "options-paragraph active"} onClick={() => {setActiveButton('Drivers')}}>
+                        <img className='options-img' src={driversPNG} alt="alt" /> 
+                    Drivers</p>
+
+                    <p className={activeButton !== 'Cars' ? "options-paragraph" : "options-paragraph active"} onClick={() => {setActiveButton('Cars')}}>
+                        <img className='options-img' src={carsPNG} alt="alt" /> 
+                    Cars</p>
+
                     </div>
                     <div className="content__options-filter">
                         <Filters />
                     </div>
                 </div>
-                <div className="content__items-information"></div>
+                <div className="content__inform">
+                    <Test/>
+                </div>
             </div>
         </div>
+        </>
     )
 }
 

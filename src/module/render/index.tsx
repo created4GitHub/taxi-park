@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 
-import FormDrivers from '../form/formDriver';
+import FormDrivers from '../../components/form/formDriver';
+import massObj from '../../components/testComponents/testMass';
 
-import massObj from './testMass'
+import './index.style.scss'
 
-const Test = () => {
-    const [eve, setEve]: any = useState(true)
-
+const RenderCards = () => {
     const renderForm = () => {
         return massObj.map((item: any, index: any) => {
             return(
@@ -25,12 +24,18 @@ const Test = () => {
     }
 
     return(
-        <div>
-            {eve ? renderForm() : ''}
-            <button onClick={() => setEve(true)}>true</button>
-            <button onClick={() => setEve(false)}>false</button>
+        <div className='render_cards'>
+            {<FormDrivers 
+                    id='id' 
+                    code='code'
+                    title='title'
+                    last_name='Last name'
+                    date_birth='Date birth'
+                    first_name='First name'
+                />}
+            {renderForm()}
         </div>
     )
 }
 
-export default Test
+export default RenderCards
