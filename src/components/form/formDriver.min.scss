@@ -1,0 +1,54 @@
+@keyframes showDiv {
+    0% {
+        height: 0px;
+    }
+    25% {
+        height: 5px;
+    }
+    50% {
+        height: 10px;
+    }
+    75% {
+        height: 15px;
+    }
+    100% {
+        height: 20px;
+    }
+}
+
+// @keyframes ani {
+//     0% {transform: translateX(-150%);}
+//     50%{transform: translateX(-100%)}
+//     100% {transform: translateY(0);}
+// }
+// .table_input {
+//     transform: translateX(-150%);
+//     animation: ani 3s forwards;
+//   }
+
+.table {
+    width: 800px;
+    height: 50px;
+    display: flex;
+    border: solid silver 2px;
+    align-items: center;
+    .table_div {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        border: solid silver 1px;
+        justify-content: center;
+        align-items: center;
+    }
+    .table_input {
+        width: 90%;
+        height: 20px;
+        display: flex;
+        border: solid silver 1px;
+        border-radius: 8px;
+        animation: showDiv 0.05s forwards;
+        outline: none;
+        justify-content: center;
+        align-items: center;
+    }
+}
