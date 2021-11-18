@@ -2,7 +2,8 @@ import React from 'react';
 
 import Filters from './components/filters/filters';
 import { Button } from "./components/button/index";
-import Input from "./components/input/index";
+// import Input from "./components/input/index";
+import Header from './components/header/header';
 
 import "./app.scss"
 
@@ -22,7 +23,9 @@ const App: React.FC = () => {
     ]
     return (
         <div className="container">
-            <div className="header"></div>
+            <div className="header">
+                <Header />
+            </div>
             <div className="content">
                 <div className="content__options">
                     <div className="content__options-buttons">

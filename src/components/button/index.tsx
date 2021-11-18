@@ -3,10 +3,10 @@ import React, {MouseEventHandler} from "react";
 import './style.scss';
 
 type Props = {
-  className: string,
-  disabled : boolean | undefined,
-  btnText: string,
-  onClick: MouseEventHandler<HTMLButtonElement> | undefined,
+  className?: string,
+  disabled?: boolean | undefined,
+  btnText?: string,
+  onClick?: MouseEventHandler<HTMLButtonElement> | undefined,
 };
 
 export const Button : React.FC<Props> = (props) => {
