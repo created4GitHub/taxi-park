@@ -3,11 +3,10 @@ import React from "react";
 import logo from '../../img/taxi.png';
 import icon from '../../img/IconsRow.png';
 import iconUser from '../../img/IconsUser.png';
-import iconVectorDown from '../../img/IconsVectorDown.png'
-import './header.scss'
+import iconVectorDown from '../../img/IconsVectorDown.png';
+import './header.scss';
 
 const Header = () => {
-    
     return(
         <div className='header__content'>
             <div className='header__content leftSide'>

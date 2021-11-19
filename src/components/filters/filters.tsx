@@ -4,6 +4,9 @@ import { Button } from "../button";
 import Input from "../input";
 import massObj from "../testComponents/testMass";
 import FormDrivers from "../form/formDriver";
+import DayForm from '../formData/dataDay/day';
+import MontForm from '../formData/dataMont/mont';
+import YearForm from '../formData/dataYear/year';
 
 import driversPNG from '../../img/drivers.png';
 import carsPNG from '../../img/cars.png';
@@ -13,19 +16,9 @@ import './filters.style.scss'
 const Filters = () => {
     const [ inputValueName, setInputValueName ] = useState('');
     const [ inputValueSername, setInputValueSername ] = useState('');
-    // const [startDate, setStartDate] = useState(new Date());
     const [activeButton, setActiveButton]: [string, Dispatch<SetStateAction<string>>] = useState('');
 
-
-    // const [ inputValueActive, setInputValueActive ] = useState(true);
-    // const [ inputValueInActive, setInputValueInActive ] = useState(true);
-    
-    const inp = (e: any) => {
-        setInputValueName(e.target.value);
-    }
-
-    function dataConvert(milliseconds: number): any {
-
+    const dataConvert = (milliseconds: number): any => {
         let date = new Date(milliseconds);
         let year = date.getFullYear()
         let mounth: number | string = date.getMonth() + 1;
@@ -36,7 +29,7 @@ const Filters = () => {
         return console.log([day, mounth, year].join('.'));
     }
 
-    function toDay(milliseconds: number): any {
+    const toDay = (milliseconds: number): any => {
 
         let date = new Date(milliseconds);
         let day: number | string = date.getDate();
@@ -44,7 +37,7 @@ const Filters = () => {
         return console.log(day);
     }
     
-    function toMounth(milliseconds: number): any {
+    const toMounth = (milliseconds: number): any => {
 
         let date = new Date(milliseconds);
         let mounth: number | string = date.getMonth() + 1;
@@ -52,15 +45,13 @@ const Filters = () => {
         return console.log(mounth);
     }
  
-    function toYear(milliseconds: number): any {
+    const toYear = (milliseconds: number): any => {
 
         let date = new Date(milliseconds);
         let year = date.getFullYear();
 
         return console.log(year);
     }
-
-
 
     const renderCheckbox = () => {
         let mass: string[] = []
@@ -142,6 +133,11 @@ const Filters = () => {
                     <div className='content__options-search'>
                         <Input className='content__options-input' placeholder='Поиск по ФИО' value={inputValueName} onChange={(event) => setInputValueName(event.target.value)} />
                         <Input className='content__options-input' placeholder='Поиск по ID' value={inputValueSername} onChange={(event) => setInputValueSername(event.target.value)} />
+                    </div>
+                    <div className="content__options_formData">
+                        <DayForm />
+                        <MontForm />
+                        <YearForm />
                     </div>
                     <form className="content__options-form">
                         {renderCheckbox()}

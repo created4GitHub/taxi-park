@@ -6,7 +6,7 @@ import './year.style.scss'
 
 const YearForm = () => {
     const [moldOpening, setMoldOpening]: any = useState();
-    const [buttonTextYear, setButtonTextYear]: any = useState();
+    const [buttonTextYear, setButtonTextYear]: any = useState('Год');
 
     const renderYears = () => {
         let massYears = [];
