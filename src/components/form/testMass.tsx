@@ -1,5 +1,3 @@
-import React, { MouseEventHandler } from "react";
-
 // export interface infoType {
 //     key: number
 //     id?: number;
