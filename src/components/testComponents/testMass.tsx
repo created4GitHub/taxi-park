@@ -59,4 +59,4 @@ const massObj: any = [{
     }
 }]
 
-export default massObj
+export default massObj;

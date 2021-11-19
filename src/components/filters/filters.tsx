@@ -2,8 +2,10 @@ import React, { useState, SetStateAction, Dispatch } from 'react';
 
 import { Button } from "../button";
 import Input from "../input";
-import massObj from "../testComponents/testMass";
 import FormDrivers from "../form/formDriver";
+import massObj from '../testComponents/testMass';
+import RenderCards from '../../module/render';
+
 
 import driversPNG from '../../img/drivers.png';
 import carsPNG from '../../img/cars.png';
@@ -13,53 +15,67 @@ import './filters.style.scss'
 const Filters = () => {
     const [ inputValueName, setInputValueName ] = useState('');
     const [ inputValueSername, setInputValueSername ] = useState('');
-    // const [startDate, setStartDate] = useState(new Date());
-    const [activeButton, setActiveButton]: [string, Dispatch<SetStateAction<string>>] = useState('');
-
-
-    // const [ inputValueActive, setInputValueActive ] = useState(true);
-    // const [ inputValueInActive, setInputValueInActive ] = useState(true);
+    const [ activeButton, setActiveButton ]: [string, Dispatch<SetStateAction<string>>] = useState('');
+    const [ addDriver, setAddDriver ] = useState(massObj);
     
-    const inp = (e: any) => {
-        setInputValueName(e.target.value);
-    }
+    // const inp = (e: any) => {
+    //     setInputValueName(e.target.value);
+    // }
 
-    function dataConvert(milliseconds: number): any {
 
-        let date = new Date(milliseconds);
-        let year = date.getFullYear()
-        let mounth: number | string = date.getMonth() + 1;
-        let day: number | string = date.getDate();
-        mounth = (mounth < 10) ? '0' + mounth : mounth;
-        day = (day < 10) ? '0' + day : day;
+    // function dataConvert(milliseconds: number): any {
+
+    //     let date = new Date(milliseconds);
+    //     let year = date.getFullYear()
+    //     let mounth: number | string = date.getMonth() + 1;
+    //     let day: number | string = date.getDate();
+    //     mounth = (mounth < 10) ? '0' + mounth : mounth;
+    //     day = (day < 10) ? '0' + day : day;
         
-        return console.log([day, mounth, year].join('.'));
-    }
+    //     return console.log([day, mounth, year].join('.'));
+    // }
 
-    function toDay(milliseconds: number): any {
+    // function toDay(milliseconds: number): any {
 
-        let date = new Date(milliseconds);
-        let day: number | string = date.getDate();
+    //     let date = new Date(milliseconds);
+    //     let day: number | string = date.getDate();
 
-        return console.log(day);
-    }
+    //     return console.log(day);
+    // }
     
-    function toMounth(milliseconds: number): any {
+    // function toMounth(milliseconds: number): any {
 
-        let date = new Date(milliseconds);
-        let mounth: number | string = date.getMonth() + 1;
+    //     let date = new Date(milliseconds);
+    //     let mounth: number | string = date.getMonth() + 1;
 
-        return console.log(mounth);
-    }
+    //     return console.log(mounth);
+    // }
  
-    function toYear(milliseconds: number): any {
+    // function toYear(milliseconds: number): any {
 
-        let date = new Date(milliseconds);
-        let year = date.getFullYear();
+    //     let date = new Date(milliseconds);
+    //     let year = date.getFullYear();
 
-        return console.log(year);
+    //     return console.log(year);
+    // }
+
+
+    const addNewDriver = () => {
+        let empty = {
+            id: '',
+            first_name: '',
+            last_name: '',
+            date_birth: '',
+            status: {
+                title: '', 
+                code: ''
+            }
+        };
+
+        setAddDriver([empty, ...massObj])
+        massObj.unshift(empty)
+        return massObj && console.log(massObj);
     }
-
 
 
     const renderCheckbox = () => {
@@ -78,9 +94,8 @@ const Filters = () => {
                         type="radio" 
                         className="content__options-radio" 
                         value={item} 
-                        name="fooby[2][]" 
                         onClick={() => {
-                            renderCards(item)
+                            RenderCards(item)
                         }}
                     />
                 {item}</label>
@@ -88,7 +103,7 @@ const Filters = () => {
         })
     }
 
-    const renderCards = (param: any) => {
+    const RenderCards = (param: any) => {
         return massObj.map((item: any, index: number) => {
             if(item.status.code === param){
                 console.log(item)
@@ -120,6 +135,7 @@ const Filters = () => {
                             Drivers </p>}
                     />
                     <Button
+                        onClick ={addNewDriver}
                         className='add driver'
                         btnText='+'
                     />
@@ -138,22 +154,6 @@ const Filters = () => {
                 </div>
             </div>
             <div className="content__options-filter">
-                <div className='content__options-filter input'>
-                    <Input value={inputValueName} onChange={inp} />
-                    <Input value={inputValueSername} onChange={(e) => setInputValueSername(e.target.value)} />
-                </div>
-                <Button onClick={dataConvert(1637147585649)}
-                    btnText='data'
-                />
-                <Button onClick={toDay(1637147585649)}
-                    btnText='day'
-                />
-                <Button onClick={toMounth(1637147585649)}
-                    btnText='mounth'
-                />
-                <Button onClick={toYear(1637147585649)}
-                    btnText='year'
-                />
                 <div className='content__options-filter date'>
                     <div className='content__options-search'>
                         <Input className='content__options-input' placeholder='Поиск по ФИО' value={inputValueName} onChange={(event) => setInputValueName(event.target.value)} />
