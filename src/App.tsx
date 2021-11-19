@@ -9,9 +9,6 @@ import RenderCards from './module/render';
 import "./app.scss";
 
 const App: React.FC = () => {
-    const [exact, setExact] = useState<exact>([{
-        
-    }])
 
     return (
         <>
