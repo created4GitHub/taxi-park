@@ -5,6 +5,8 @@ import massObj from '../../components/testComponents/testMass';
 
 import './index.style.scss'
 
+
+
 const RenderCards = () => {
     const renderForm = () => {
         return massObj.map((item: any, index: any) => {
@@ -38,4 +40,5 @@ const RenderCards = () => {
     )
 }
 
-export default RenderCards
+export default RenderCards;
+

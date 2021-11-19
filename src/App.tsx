@@ -1,15 +1,16 @@
-import React, { useState, SetStateAction, Dispatch } from 'react';
+import React, { useState } from 'react';
+// import { Link } from 'react-router-dom';
 
 import Filters from './components/filters/filters';
-import Test from './module/render';
+// import { Button } from "./components/button/index";
 import Header from './components/header/header';
 
-import driversPNG from './img/drivers.png';
-import carsPNG from './img/cars.png';
+import RenderCards from './module/render';
 import "./app.scss";
 
 const App: React.FC = () => {
-    const [activeButton, setActiveButton]: [string, Dispatch<SetStateAction<string>>] = useState('');
+    // const [exact, setExact] = useState<exact>([{
+    // }])
 
     return (
         <>
@@ -18,24 +19,9 @@ const App: React.FC = () => {
         </header>
         <div className="container">
             <div className="content">
-                <div className="content__options">
-                    <div className="content__options-paragraph">
-
-                    <p className={activeButton !== 'Drivers' ? "options-paragraph" : "options-paragraph active"} onClick={() => {setActiveButton('Drivers')}}>
-                        <img className='options-img' src={driversPNG} alt="alt" /> 
-                    Drivers</p>
-
-                    <p className={activeButton !== 'Cars' ? "options-paragraph" : "options-paragraph active"} onClick={() => {setActiveButton('Cars')}}>
-                        <img className='options-img' src={carsPNG} alt="alt" /> 
-                    Cars</p>
-
-                    </div>
-                    <div className="content__options-filter">
-                        <Filters />
-                    </div>
-                </div>
+                <Filters/>
                 <div className="content__inform">
-                    <Test/>
+                    <RenderCards />
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 import React from "react";
 
 import logo from '../../img/taxi.png';
-import icon from '../../img/Icons.png';
+import icon from '../../img/IconsRow.png';
 import iconUser from '../../img/IconsUser.png';
 import iconVectorDown from '../../img/IconsVectorDown.png'
 import './header.scss'
