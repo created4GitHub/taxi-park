@@ -1,6 +1,6 @@
 .header {
-    border: 1px solid black;
-    min-width: 1000px;
+    background-color: white;
+    width: auto;
     height: 50px;
 }
 .container {
@@ -9,7 +9,6 @@
 
     .content {
         display: flex;
-        border: 1px solid black;
         height: 75%;
         padding: 30px;
         flex-direction: row;

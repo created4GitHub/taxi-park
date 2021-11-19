@@ -2,17 +2,20 @@ import React, { useState, SetStateAction, Dispatch } from 'react';
 
 import Filters from './components/filters/filters';
 import Test from './module/render';
+import Header from './components/header/header';
 
-import driversPNG from './img/drivers.png'
-import carsPNG from './img/cars.png'
-import "./app.scss"
+import driversPNG from './img/drivers.png';
+import carsPNG from './img/cars.png';
+import "./app.scss";
 
 const App: React.FC = () => {
     const [activeButton, setActiveButton]: [string, Dispatch<SetStateAction<string>>] = useState('');
 
     return (
         <>
-        <header className="header"></header>
+        <header className="header">
+            <Header/>
+        </header>
         <div className="container">
             <div className="content">
                 <div className="content__options">
