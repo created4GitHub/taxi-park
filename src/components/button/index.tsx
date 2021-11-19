@@ -5,7 +5,7 @@ import './style.scss';
 type Props = {
   className?: string,
   disabled?: boolean | undefined,
-  btnText?: string,
+  btnText?: any,
   onClick?: MouseEventHandler<HTMLButtonElement> | undefined,
 };
 

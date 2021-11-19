@@ -1,36 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, SetStateAction, Dispatch } from 'react';
 
-// import DatePicker from 'react-datepicker'
-// import "react-datepicker/dist/react-datepicker.css";
 import { Button } from "../button";
 import Input from "../input";
+import massObj from "../testComponents/testMass";
+import FormDrivers from "../form/formDriver";
+
+import driversPNG from '../../img/drivers.png';
+import carsPNG from '../../img/cars.png';
+
+import './filters.style.scss'
 
 const Filters = () => {
     const [ inputValueName, setInputValueName ] = useState('');
     const [ inputValueSername, setInputValueSername ] = useState('');
-    const [startDate, setStartDate] = useState(new Date());
+    // const [startDate, setStartDate] = useState(new Date());
+    const [activeButton, setActiveButton]: [string, Dispatch<SetStateAction<string>>] = useState('');
+
 
     // const [ inputValueActive, setInputValueActive ] = useState(true);
     // const [ inputValueInActive, setInputValueInActive ] = useState(true);
-    
-    let url = "https://edu.evgeniychvertkov.com/v1/driver/";
-
-    fetch(url, {
-    method: "GET",
-    headers: {
-        "Accept" : "application/json",
-        "X-Authorization": "api13ea3305989c1bbf4aa08d52b09fb239dbd0c27bd13daa1227861f55af160b34",
-        "Content-Type": "application/json"
-    },
-    // body: JSON.stringify({
-    //   first_name: "Vlad",
-    //    last_name: "Koretskiy",
-    //    date_birth: 1637147585649,
-    //    status: {title: "Активный", code: "active"},
-    // })
-    })
-    .then(resp => resp.json())
-    .then(data => console.log(data))
     
     const inp = (e: any) => {
         setInputValueName(e.target.value);
@@ -74,51 +62,108 @@ const Filters = () => {
 
 
 
-    return(
-        <div>
-            <div className='content__options-filter input'>
-                <Input value={inputValueName} onChange={inp}/>
-                <Input value={inputValueSername} onChange={(e) => setInputValueSername(e.target.value)}/>
-            </div>
-            <Button  onClick={dataConvert(1637147585649)}
-                btnText='data'
-            />
-            <Button  onClick={toDay(1637147585649)}
-                btnText='day'
-            />
-            <Button  onClick={toMounth(1637147585649)}
-                btnText='mounth'
-            />
-            <Button  onClick={toYear(1637147585649)}
-                btnText='year'
-            />
+    const renderCheckbox = () => {
+        let mass: string[] = []
 
-            {/* <div className='content__options-filter date'>
-                <select name="#" id="">
-                    <option disabled>Choose year</option>
-                    <option value=''>Years</option>
-                </select>
-                <select name="#" id="">
-                    <option disabled>Choose mounth</option>
-                    <option value=''>Mounth</option>
-                </select>
-                <select name="#" id="">
-                    <option disabled>Choose day</option>
-                    <option value=''>Days</option>
-                    <option value=''></option>  
-                </select>
-            </div> */}
+        massObj.forEach((element: any) => {
+            mass.push(element.status.code)
+        });
 
-            {/* <div className='content__options-filter date'>
-                <Input type='date' value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
-                <Input type='date' value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
+        mass = [...new Set(mass) as any];
+
+        return mass.map((item: string, index: number) => {
+            return (
+                <label key={index} >
+                    <input 
+                        type="radio" 
+                        className="content__options-radio" 
+                        value={item} 
+                        name="fooby[2][]" 
+                        onClick={() => {
+                            renderCards(item)
+                        }}
+                    />
+                {item}</label>
+            )
+        })
+    }
+
+    const renderCards = (param: any) => {
+        return massObj.map((item: any, index: number) => {
+            if(item.status.code === param){
+                console.log(item)
+                return(
+                    <FormDrivers 
+                        key={index}
+                        id={item.id} 
+                        index={index}
+                        code={item.status.code}
+                        title={item.status.title}
+                        last_name={item.last_name} 
+                        date_birth={item.date_birth}
+                        first_name={item.first_name} 
+                    />
+                )
+            }
+        })
+    }
+
+    return (
+        <div className="content__options">
+            <div className="content__options-paragraph">
+
+                <div className='elem'>
+                    <Button
+                        className={activeButton !== 'Drivers' ? "but up" : "but up active"}
+                        onClick={() => { setActiveButton('Drivers') }}
+                        btnText={<p className='options-paragraph'><img className='options-img' src={driversPNG} alt="alt" />
+                            Drivers </p>}
+                    />
+                    <Button
+                        className='add driver'
+                        btnText='+'
+                    />
+                </div>
+                <div className='elem'>
+                    <Button
+                        className={activeButton !== 'Cars' ? "but" : "but active"}
+                        onClick={() => { setActiveButton('Cars') }}
+                        btnText={<p className='options-paragraph'><img className='options-img' src={carsPNG} alt="alt" />
+                            Cars</p>}
+                    />
+                    <Button
+                        className='add car'
+                        btnText='+'
+                    />
+                </div>
             </div>
-            <div className='content__options-filter checkbox'>
-                <Input type='checkbox' value={inputValueActive} onChange={(e) => setInputValueActive(e.target.value)}/>
-                <Input type='checkbox' value={inputValueInActive} onChange={(e) => setInputValueInActive(e.target.value)}/>
-                <Input type='checkbox' value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
-                <Input type='checkbox' value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
-            </div> */}
+            <div className="content__options-filter">
+                <div className='content__options-filter input'>
+                    <Input value={inputValueName} onChange={inp} />
+                    <Input value={inputValueSername} onChange={(e) => setInputValueSername(e.target.value)} />
+                </div>
+                <Button onClick={dataConvert(1637147585649)}
+                    btnText='data'
+                />
+                <Button onClick={toDay(1637147585649)}
+                    btnText='day'
+                />
+                <Button onClick={toMounth(1637147585649)}
+                    btnText='mounth'
+                />
+                <Button onClick={toYear(1637147585649)}
+                    btnText='year'
+                />
+                <div className='content__options-filter date'>
+                    <div className='content__options-search'>
+                        <Input className='content__options-input' placeholder='Поиск по ФИО' value={inputValueName} onChange={(event) => setInputValueName(event.target.value)} />
+                        <Input className='content__options-input' placeholder='Поиск по ID' value={inputValueSername} onChange={(event) => setInputValueSername(event.target.value)} />
+                    </div>
+                    <form className="content__options-form">
+                        {renderCheckbox()}
+                    </form>
+                </div>
+            </div>
         </div>
     )
 }
