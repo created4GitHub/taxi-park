@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { DatePicker } from 'react-datepicker'
+
+// import DatePicker from 'react-datepicker'
+// import "react-datepicker/dist/react-datepicker.css";
 import { Button } from "../button";
 import Input from "../input";
 
@@ -90,12 +92,7 @@ const Filters = () => {
             <Button  onClick={toYear(1637147585649)}
                 btnText='year'
             />
-            <DatePicker
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
-                isClearable
-                placeholderText="I have been cleared!"
-            />
+
             {/* <div className='content__options-filter date'>
                 <select name="#" id="">
                     <option disabled>Choose year</option>
