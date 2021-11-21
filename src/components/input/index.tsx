@@ -1,15 +1,16 @@
-import React, {ChangeEventHandler} from "react";
+import React, { ChangeEventHandler } from "react";
+
 
 type Props = {
-  className: string,
-  name : string,
-  type: string,
-  placeholder: string,
-  value: string,
-  onChange: ChangeEventHandler<HTMLInputElement> | undefined
+  className?: string,
+  name?: string,
+  type?: string,
+  placeholder?: string,
+  value?: string,
+  onChange?: ChangeEventHandler<HTMLInputElement> | undefined
 };
 
-export const Input : React.FC<Props> = (props) => {
+const Input : React.FC<Props> = (props) => {
   return (
     <input
       className={props.className}
@@ -21,3 +22,5 @@ export const Input : React.FC<Props> = (props) => {
     />
   )
 }
+
+export default Input;
