@@ -8,7 +8,7 @@ import './mont.style.scss'
 
 const MontForm = () => {
     const [moldOpening, setMoldOpening]: any = useState();
-    const [buttonTextMont, setButtonTextNomt]: any = useState();
+    const [buttonTextMont, setButtonTextNomt]: any = useState('Месяц');
 
     const renderMonts = () => {
         return monthsRu.map((item: Mont, index: number) => {
@@ -17,7 +17,7 @@ const MontForm = () => {
                     id={item.mont}
                     name={item.numberMont}
                     key={index} 
-                    className='data_mont-button' 
+                    className='data_mont-block_button' 
                     btnText={item.mont}
                 />
             )
@@ -27,6 +27,7 @@ const MontForm = () => {
 
     const onBlur = (event: any) => {
         setMoldOpening(false);
+        
         if(event.relatedTarget !== null && event.relatedTarget.id){
             // console.log(event.relatedTarget.name)
             setButtonTextNomt(event.relatedTarget.id);
