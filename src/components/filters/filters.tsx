@@ -1,4 +1,6 @@
-import React, { useState, SetStateAction, Dispatch } from 'react';
+import React, { useState, SetStateAction, Dispatch, useContext } from 'react';
+
+import { Context } from '../../context';
 
 import { Button } from "../button";
 import Input from "../input";
@@ -124,7 +126,10 @@ const Filters = () => {
     //             )
     //         }
     //     })
-    // }
+    // } 
+    
+    const [context, setContext] = useContext(Context);
+
 
     return (
         <div className="content__options">
@@ -138,7 +143,8 @@ const Filters = () => {
                     />
                     <Button
                         onClick ={() => {
-                          console.log('добавление водителя')
+                            setContext(true)
+                            console.log('добавление водителя')
                         }}
                         className='add driver'
                         btnText='+'

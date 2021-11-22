@@ -1,6 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
+import { Context } from "../../context";
 
+import AddForm from '../addformComponent/addForm'
 import FormSection from "../formSection/FormSection";
+
 import "./form.scss";
 
 const getStatuses = fetch(
@@ -44,6 +47,7 @@ const Form = () => {
   const statuses = useRef([]);
   const info = useRef([]);
   const [isReceived, setIsReceived] = useState(false);
+  const [context, setContext] = useContext(Context);
 
   useEffect(() => {
     getStatuses.then((resp) => {
@@ -58,6 +62,7 @@ const Form = () => {
     <>
       {isReceived ? (
         <div className="table">
+          {context ? <AddForm /> : ''}
           {info.current.map((item, index) => {
             return (
               <FormSection key={index} {...{ info: item, statuses: statuses.current }} />

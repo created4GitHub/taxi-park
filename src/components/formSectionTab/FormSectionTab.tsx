@@ -74,6 +74,7 @@ const FormSectionTab = (props: any) => {
     patchItem(itemInfo.id, { status: newStatus });
   };
 
+
   return (
     <div className="table-section-tab">
       {item[0] !== "status" ? (
