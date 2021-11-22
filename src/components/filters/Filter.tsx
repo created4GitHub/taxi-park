@@ -1,4 +1,6 @@
 import React, { useState, SetStateAction, Dispatch } from 'react';
+import { Routes, Route, Link } from "react-router-dom";
+
 
 import { Button } from "../button";
 import Input from "../input";
@@ -132,7 +134,7 @@ const Filters = () => {
                         className={activeButton !== 'Drivers' ? "but up" : "but up active"}
                         onClick={() => { setActiveButton('Drivers') }}
                         btnText={<p className='options-paragraph'><img className='options-img' src={drivers} alt="alt" />
-                            Drivers </p>}
+                            <Link to="/drivers">Drivers</Link> </p>}
                     />
                     <Button
                         onClick ={addNewDriver}
@@ -145,7 +147,7 @@ const Filters = () => {
                         className={activeButton !== 'Cars' ? "but" : "but active"}
                         onClick={() => { setActiveButton('Cars') }}
                         btnText={<p className='options-paragraph'><img className='options-img' src={cars} alt="alt" />
-                            Cars</p>}
+                            <Link to="/cars">Cars</Link></p>}
                     />
                     <Button
                         className='add car'

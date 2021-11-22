@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import "./formsectionTab.style.scss";
+import "./style.scss";
 
 import { PATCH } from "../../requests/requests"; 
 
@@ -89,9 +89,10 @@ const FormSectionTab = (props: any) => {
           />
         )
       ) : (
-        <select defaultValue={item[1].title} onChange={saveStatus}>
+        <select onChange={saveStatus}>
           {statuses.length ? (
             statuses.map((status: any, index: any) => {
+
               return <option key={index}>{status.title}</option>;
             })
           ) : (

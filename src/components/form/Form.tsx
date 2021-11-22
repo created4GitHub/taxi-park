@@ -1,15 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 
 import FormSection from "../formSection/FormSection";
 import "./form.scss";
-
-import { GET } from "../../requests/requests"; 
-
-const getStatuses = GET("driver-status");
-
-const getInfo = GET("driver");
-
-export const Statuses = React.createContext(null);
 
 type infoType = {
   id: number;
@@ -23,37 +15,17 @@ type infoType = {
   };
 };
 
-const Form = () => {
-  const statuses = useRef([]);
-  const info = useRef([]);
-  const [isInfoReceived, setisInfoReceived] = useState(false);
-  const [isStatusesReceived, setisStatusesReceived] = useState(false);
-
-  useEffect(() => {
-    getStatuses.then((resp) => {
-      statuses.current = resp.data;
-      setisStatusesReceived(!isStatusesReceived);
-    });
-    getInfo.then((resp) => {
-      info.current = resp.data;
-      setisInfoReceived(!isInfoReceived);
-    });
-  }, []);
+const Form = (props:any) => {
+  console.log(props)
   return (
-    <>
-      {isInfoReceived &&  isStatusesReceived ? (
-        <div className="table">
-          {info.current.map((item, index) => {
+<div className="table">
+          {props.info.map((item : any, index : any) => {
             return (
-              <FormSection key={index} {...{ info: item, statuses: statuses.current }} />
+              <FormSection key={index} {...{ info: item, statuses: props.statuses }} />
             );
           })}
         </div>
-      ) : (
-        <div>Загрузка</div>
-      )}
-    </>
-  );
-};
+      ) 
+        }
 
 export default Form;
