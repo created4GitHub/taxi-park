@@ -160,7 +160,7 @@
 //     )
 // }
 
-const Filters = () => {
+const Filters = (): any => {
   return <div>hey</div>;
 };
 export default Filters;
