@@ -2,20 +2,9 @@ import React, { useState } from "react";
 
 import "./formsectionTab.style.scss";
 
-let url = "https://edu.evgeniychvertkov.com/v1/driver/";
+import { PATCH } from "../../requests/requests"; 
 
-const patchItem = (id: any, info: any) => {
-  fetch(url + id + "/", {
-    method: "PATCH",
-    headers: {
-      Accept: "application/json",
-      "X-Authorization":
-        "api13ea3305989c1bbf4aa08d52b09fb239dbd0c27bd13daa1227861f55af160b34",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(info),
-  });
-};
+let url = "https://edu.evgeniychvertkov.com/v1/driver/";
 
 const FormSectionTab = (props: any) => {
   let item = props.item;
@@ -48,7 +37,7 @@ const FormSectionTab = (props: any) => {
   const saveNewInfo = (key: any, info: any) => {
     itemInfo[key] = info;
     setIsDiv(!isDiv);
-    patchItem(itemInfo.id, { [key]: info });
+    PATCH("url", itemInfo.id, { [key]: info });
   };
 
   let statuses = Object.values(props.statuses);
@@ -71,7 +60,7 @@ const FormSectionTab = (props: any) => {
       }
     }
     itemInfo.status = newStatus;
-    patchItem(itemInfo.id, { status: newStatus });
+    PATCH("url", itemInfo.id, { status: newStatus });
   };
 
   return (

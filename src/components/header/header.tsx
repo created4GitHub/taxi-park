@@ -1,6 +1,5 @@
 import React from "react";
 
-import { Button } from "../button";
 import logo from '../../img/taxi.png';
 import icon from '../../img/IconsRow.svg';
 import iconUser from '../../img/IconsUser.svg';
@@ -13,9 +12,6 @@ const Header = () => {
         <div className='header__content'>
             <div className='header__content leftSide'>
                 <div className='header__content divForButton'>
-                    <Button 
-                        
-                    />
                     <button className='header__content button'>
                         <img className='button__img' src={icon} alt="" />
                     </button>
