@@ -15,75 +15,74 @@ import './filters.style.scss'
 const TEST = ['active', 'no Active', 'что-то еще', 'и еще']
 
 
-
-
 const Filters = () => {
     const [ inputValueName, setInputValueName ] = useState('');
     const [ inputValueSername, setInputValueSername ] = useState('');
     const [ activeButton, setActiveButton ]: [string, Dispatch<SetStateAction<string>>] = useState('');
 
+    const inp = (e: any) => {
+        setInputValueName(e.target.value);
+    }
 
-//     // function dataConvert(milliseconds: number): any {
+    function dataConvert(milliseconds: number): any {
 
-//     //     let date = new Date(milliseconds);
-//     //     let year = date.getFullYear()
-//     //     let mounth: number | string = date.getMonth() + 1;
-//     //     let day: number | string = date.getDate();
-//     //     mounth = (mounth < 10) ? '0' + mounth : mounth;
-//     //     day = (day < 10) ? '0' + day : day;
-        
-//     //     return console.log([day, mounth, year].join('.'));
-//     // }
+        let date = new Date(milliseconds);
+        let year = date.getFullYear()
+        let mounth: number | string = date.getMonth() + 1;
+        let day: number | string = date.getDate();
+        mounth = (mounth < 10) ? '0' + mounth : mounth;
+        day = (day < 10) ? '0' + day : day;
 
-//     // function toDay(milliseconds: number): any {
+        return console.log([day, mounth, year].join('.'));
+    }
 
-//     //     let date = new Date(milliseconds);
-//     //     let day: number | string = date.getDate();
+    function toDay(milliseconds: number): any {
 
-//     //     return console.log(day);
-//     // }
-    
-//     // function toMounth(milliseconds: number): any {
+        let date = new Date(milliseconds);
+        let day: number | string = date.getDate();
 
-//     //     let date = new Date(milliseconds);
-//     //     let mounth: number | string = date.getMonth() + 1;
+        return console.log(day);
+    }
 
-//     //     return console.log(mounth);
-//     // }
- 
-//     // function toYear(milliseconds: number): any {
+    function toMounth(milliseconds: number): any {
 
-//     //     let date = new Date(milliseconds);
-//     //     let year = date.getFullYear();
+        let date = new Date(milliseconds);
+        let mounth: number | string = date.getMonth() + 1;
 
-//     //     return console.log(year);
-//     // }
+        return console.log(mounth);
+    }
 
+    function toYear(milliseconds: number): any {
 
-    // const addNewDriver = () => {
-    //     let empty = {
-    //         id: '',
-    //         first_name: '',
-    //         last_name: '',
-    //         date_birth: '',
-    //         status: {
-    //             title: '',
-    //             code: ''
-    //         }
-    //     };
+        let date = new Date(milliseconds);
+        let year = date.getFullYear();
 
-    //     setAddDriver([empty, ...massObj])
-    //     massObj.unshift(empty)
-    //     return massObj && console.log(massObj);
-    // }
+        return console.log(year);
+    }
+
+    const addNewDriver = () => {
+        let empty = {
+            id: '',
+            first_name: '',
+            last_name: '',
+            date_birth: '',
+            status: {
+                title: '',
+                code: ''
+            }
+        };
+
+        // setAddDriver([empty, ...massObj])
+        // massObj.unshift(empty)
+        // return massObj && console.log(massObj);
+    }
 
     const renderCheckbox = () => {
         let mass: string[] = []
 
-
-        TEST.forEach((element: any) => {
-            mass.push(element)
-        });
+        // massObj.forEach((element: any) => {
+        //     mass.push(element.status.code)
+        // });
 
         mass = [...new Set(mass) as any];
 
@@ -95,8 +94,7 @@ const Filters = () => {
                         className="content__options-radio"
                         value={item}
                         onClick={() => {
-                          console.log('запрос на сервак')
-                            // RenderCards(item)
+                            RenderCards(item)
                         }}
                     />
                 {item}</label>
@@ -104,29 +102,31 @@ const Filters = () => {
         })
     }
 
-    // const RenderCards = (param: any) => {
-    //     return TEST.map((item: any, index: number) => {
-    //         if(item.status.code === param){
-    //             console.log(item)
-    //             return(
-    //                 <FormDrivers
-    //                     key={index}
-    //                     id={item.id}
-    //                     index={index}
-    //                     code={item.status.code}
-    //                     title={item.status.title}
-    //                     last_name={item.last_name}
-    //                     date_birth={item.date_birth}
-    //                     first_name={item.first_name}
-    //                 />
-    //             )
-    //         }
-    //     })
-    // }
+    const RenderCards = (param: any) => {
+      <div>Check</div>
+        // return massObj.map((item: any, index: number) => {
+        //     if(item.status.code === param){
+        //         console.log(item)
+        //         return(
+        //             <FormDrivers
+        //                 key={index}
+        //                 id={item.id}
+        //                 index={index}
+        //                 code={item.status.code}
+        //                 title={item.status.title}
+        //                 last_name={item.last_name}
+        //                 date_birth={item.date_birth}
+        //                 first_name={item.first_name}
+        //             />
+        //         )
+        //     }
+        // })
+    }
 
     return (
         <div className="content__options">
             <div className="content__options-paragraph">
+
                 <div className='elem'>
                     <Button
                         className={activeButton !== 'Drivers' ? "but up" : "but up active"}
@@ -135,9 +135,7 @@ const Filters = () => {
                             Drivers </p>}
                     />
                     <Button
-                        onClick ={() => {
-                          console.log('добавление водителя')
-                        }}
+                        onClick ={addNewDriver}
                         className='add driver'
                         btnText='+'
                     />
@@ -161,11 +159,6 @@ const Filters = () => {
                         <Input className='content__options-input' placeholder='Поиск по ФИО' value={inputValueName} onChange={(event) => setInputValueName(event.target.value)} />
                         <Input className='content__options-input' placeholder='Поиск по ID' value={inputValueSername} onChange={(event) => setInputValueSername(event.target.value)} />
                     </div>
-                    <div className="content__options_formData">
-                        <DayForm />
-                        <MontForm />
-                        <YearForm />
-                    </div>
                     <form className="content__options-form">
                         {renderCheckbox()}
                     </form>
@@ -176,3 +169,9 @@ const Filters = () => {
 }
 
 export default Filters;
+
+// const Filters = () => {
+//   return <div>hey</div>;
+// }
+
+// export default Filters

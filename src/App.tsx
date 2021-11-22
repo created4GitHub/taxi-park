@@ -1,6 +1,6 @@
 import React from "react";
 
-import Filters from "./components/filters/filters";
+import Filters from "./components/filters/Filter";
 import Header from "./components/header/header";
 
 import Form from "./components/form/Form";
