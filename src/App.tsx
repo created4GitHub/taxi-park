@@ -10,7 +10,7 @@ import "./app.scss";
 
 const App: React.FC = () => {
 
-  const [context, setContext] = useState(true);
+  const [context, setContext] = useState(false);
 
   return (
     <Context.Provider value={[context, setContext]}> 

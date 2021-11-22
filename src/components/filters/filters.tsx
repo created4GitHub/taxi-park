@@ -1,5 +1,4 @@
 import React, { useState, SetStateAction, Dispatch, useContext } from 'react';
-
 import { Context } from '../../context';
 
 import { Button } from "../button";
@@ -13,77 +12,16 @@ import cars from '../../img/cars.svg';
 
 import './filters.style.scss'
 
-
-const TEST = ['active', 'no Active', 'что-то еще', 'и еще']
-
-
-
-
 const Filters = () => {
     const [ inputValueName, setInputValueName ] = useState('');
     const [ inputValueSername, setInputValueSername ] = useState('');
     const [ activeButton, setActiveButton ]: [string, Dispatch<SetStateAction<string>>] = useState('');
-
-    // const inp = (e: any) => {
-    //     setInputValueName(e.target.value);
-    // }
-
-    // function dataConvert(milliseconds: number): any {
-
-    //     let date = new Date(milliseconds);
-    //     let year = date.getFullYear()
-    //     let mounth: number | string = date.getMonth() + 1;
-    //     let day: number | string = date.getDate();
-    //     mounth = (mounth < 10) ? '0' + mounth : mounth;
-    //     day = (day < 10) ? '0' + day : day;
-
-    //     return console.log([day, mounth, year].join('.'));
-    // }
-
-    // function toDay(milliseconds: number): any {
-
-    //     let date = new Date(milliseconds);
-    //     let day: number | string = date.getDate();
-
-    //     return console.log(day);
-    // }
-
-    // function toMounth(milliseconds: number): any {
-
-    //     let date = new Date(milliseconds);
-    //     let mounth: number | string = date.getMonth() + 1;
-
-    //     return console.log(mounth);
-    // }
-
-    // function toYear(milliseconds: number): any {
-
-    //     let date = new Date(milliseconds);
-    //     let year = date.getFullYear();
-
-    //     return console.log(year);
-    // }
-
-    // const addNewDriver = () => {
-    //     let empty = {
-    //         id: '',
-    //         first_name: '',
-    //         last_name: '',
-    //         date_birth: '',
-    //         status: {
-    //             title: '',
-    //             code: ''
-    //         }
-    //     };
-
-    //     setAddDriver([empty, ...massObj])
-    //     massObj.unshift(empty)
-    //     return massObj && console.log(massObj);
-    // }
+    const [context, setContext]: any = useContext(Context);
 
     const renderCheckbox = () => {
         let mass: string[] = []
 
+        const TEST = ['active', 'no Active', 'что-то еще', 'и еще']
 
         TEST.forEach((element: any) => {
             mass.push(element)
@@ -100,36 +38,12 @@ const Filters = () => {
                         value={item}
                         onClick={() => {
                           console.log('запрос на сервак')
-                            // RenderCards(item)
                         }}
                     />
                 {item}</label>
             )
         })
     }
-
-    // const RenderCards = (param: any) => {
-    //     return TEST.map((item: any, index: number) => {
-    //         if(item.status.code === param){
-    //             console.log(item)
-    //             return(
-    //                 <FormDrivers
-    //                     key={index}
-    //                     id={item.id}
-    //                     index={index}
-    //                     code={item.status.code}
-    //                     title={item.status.title}
-    //                     last_name={item.last_name}
-    //                     date_birth={item.date_birth}
-    //                     first_name={item.first_name}
-    //                 />
-    //             )
-    //         }
-    //     })
-    // } 
-    
-    const [context, setContext] = useContext(Context);
-
 
     return (
         <div className="content__options">
@@ -142,10 +56,7 @@ const Filters = () => {
                             Drivers </p>}
                     />
                     <Button
-                        onClick ={() => {
-                            setContext(true)
-                            console.log('добавление водителя')
-                        }}
+                        onClick ={() => {setContext(true)}}
                         className='add driver'
                         btnText='+'
                     />
