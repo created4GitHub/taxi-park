@@ -2,11 +2,20 @@
 
 // import { Button } from "../button";
 // import Input from "../input";
+// import DayForm from '../formData/dataDay/day';
+// import MontForm from '../formData/dataMont/mont';
+// import YearForm from '../formData/dataYear/year';
 
-// import driversPNG from '../../img/drivers.png';
-// import carsPNG from '../../img/cars.png';
+// import drivers from '../../img/drivers.svg';
+// import cars from '../../img/cars.svg';
 
 // import './filters.style.scss'
+
+
+// const TEST = ['active', 'no Active', 'что-то еще', 'и еще']
+
+
+
 
 // const Filters = () => {
 //     const [ inputValueName, setInputValueName ] = useState('');
@@ -165,5 +174,6 @@
 
 const Filters = () => {
   return <div>hey</div>;
-};
-export default Filters;
+}
+
+export default Filters

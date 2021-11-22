@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import "./style.scss";
+import "./formsectionTab.style.scss";
 
 import { PATCH } from "../../requests/requests"; 
 
