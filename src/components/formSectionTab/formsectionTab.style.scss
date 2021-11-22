@@ -1,0 +1,10 @@
+.table-section-tab {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+}
+.table-section-tab:first-child {
+    width: 45%;
+}
