@@ -3,28 +3,11 @@ import React, { useEffect, useState, useRef } from "react";
 import FormSection from "../formSection/FormSection";
 import "./form.scss";
 
-const getStatuses = fetch(
-  "https://edu.evgeniychvertkov.com/v1/driver-status/",
-  {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "X-Authorization":
-        "api13ea3305989c1bbf4aa08d52b09fb239dbd0c27bd13daa1227861f55af160b34",
-      "Content-Type": "application/json",
-    },
-  }
-).then((resp) => resp.json());
+import { GET } from "../../requests/requests"; 
 
-const getInfo = fetch("https://edu.evgeniychvertkov.com/v1/driver/", {
-  method: "GET",
-  headers: {
-    Accept: "application/json",
-    "X-Authorization":
-      "api13ea3305989c1bbf4aa08d52b09fb239dbd0c27bd13daa1227861f55af160b34",
-    "Content-Type": "application/json",
-  },
-}).then((resp) => resp.json());
+const getStatuses = GET("driver-status");
+
+const getInfo = GET("driver");
 
 export const Statuses = React.createContext(null);
 
@@ -43,20 +26,22 @@ type infoType = {
 const Form = () => {
   const statuses = useRef([]);
   const info = useRef([]);
-  const [isReceived, setIsReceived] = useState(false);
+  const [isInfoReceived, setisInfoReceived] = useState(false);
+  const [isStatusesReceived, setisStatusesReceived] = useState(false);
 
   useEffect(() => {
     getStatuses.then((resp) => {
       statuses.current = resp.data;
+      setisStatusesReceived(!isStatusesReceived);
     });
     getInfo.then((resp) => {
       info.current = resp.data;
-      setIsReceived(!isReceived);
+      setisInfoReceived(!isInfoReceived);
     });
   }, []);
   return (
     <>
-      {isReceived ? (
+      {isInfoReceived &&  isStatusesReceived ? (
         <div className="table">
           {info.current.map((item, index) => {
             return (

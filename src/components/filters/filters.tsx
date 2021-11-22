@@ -13,45 +13,45 @@
 //     const [ inputValueSername, setInputValueSername ] = useState('');
 //     const [ activeButton, setActiveButton ]: [string, Dispatch<SetStateAction<string>>] = useState('');
 
-    // const inp = (e: any) => {
-    //     setInputValueName(e.target.value);
-    // }
+//     const inp = (e: any) => {
+//         setInputValueName(e.target.value);
+//     }
 
-    // function dataConvert(milliseconds: number): any {
+//     function dataConvert(milliseconds: number): any {
 
-    //     let date = new Date(milliseconds);
-    //     let year = date.getFullYear()
-    //     let mounth: number | string = date.getMonth() + 1;
-    //     let day: number | string = date.getDate();
-    //     mounth = (mounth < 10) ? '0' + mounth : mounth;
-    //     day = (day < 10) ? '0' + day : day;
+//         let date = new Date(milliseconds);
+//         let year = date.getFullYear()
+//         let mounth: number | string = date.getMonth() + 1;
+//         let day: number | string = date.getDate();
+//         mounth = (mounth < 10) ? '0' + mounth : mounth;
+//         day = (day < 10) ? '0' + day : day;
 
-    //     return console.log([day, mounth, year].join('.'));
-    // }
+//         return console.log([day, mounth, year].join('.'));
+//     }
 
-    // function toDay(milliseconds: number): any {
+//     function toDay(milliseconds: number): any {
 
-    //     let date = new Date(milliseconds);
-    //     let day: number | string = date.getDate();
+//         let date = new Date(milliseconds);
+//         let day: number | string = date.getDate();
 
-    //     return console.log(day);
-    // }
+//         return console.log(day);
+//     }
 
-    // function toMounth(milliseconds: number): any {
+//     function toMounth(milliseconds: number): any {
 
-    //     let date = new Date(milliseconds);
-    //     let mounth: number | string = date.getMonth() + 1;
+//         let date = new Date(milliseconds);
+//         let mounth: number | string = date.getMonth() + 1;
 
-    //     return console.log(mounth);
-    // }
+//         return console.log(mounth);
+//     }
 
-    // function toYear(milliseconds: number): any {
+//     function toYear(milliseconds: number): any {
 
-    //     let date = new Date(milliseconds);
-    //     let year = date.getFullYear();
+//         let date = new Date(milliseconds);
+//         let year = date.getFullYear();
 
-    //     return console.log(year);
-    // }
+//         return console.log(year);
+//     }
 
 //     const addNewDriver = () => {
 //         let empty = {
@@ -65,17 +65,17 @@
 //             }
 //         };
 
-//         setAddDriver([empty, ...massObj])
-//         massObj.unshift(empty)
-//         return massObj && console.log(massObj);
+//         // setAddDriver([empty, ...massObj])
+//         // massObj.unshift(empty)
+//         // return massObj && console.log(massObj);
 //     }
 
 //     const renderCheckbox = () => {
 //         let mass: string[] = []
 
-//         massObj.forEach((element: any) => {
-//             mass.push(element.status.code)
-//         });
+//         // massObj.forEach((element: any) => {
+//         //     mass.push(element.status.code)
+//         // });
 
 //         mass = [...new Set(mass) as any];
 
@@ -96,23 +96,24 @@
 //     }
 
 //     const RenderCards = (param: any) => {
-//         return massObj.map((item: any, index: number) => {
-//             if(item.status.code === param){
-//                 console.log(item)
-//                 return(
-//                     <FormDrivers
-//                         key={index}
-//                         id={item.id}
-//                         index={index}
-//                         code={item.status.code}
-//                         title={item.status.title}
-//                         last_name={item.last_name}
-//                         date_birth={item.date_birth}
-//                         first_name={item.first_name}
-//                     />
-//                 )
-//             }
-//         })
+//       <div>Check</div>
+//         // return massObj.map((item: any, index: number) => {
+//         //     if(item.status.code === param){
+//         //         console.log(item)
+//         //         return(
+//         //             <FormDrivers
+//         //                 key={index}
+//         //                 id={item.id}
+//         //                 index={index}
+//         //                 code={item.status.code}
+//         //                 title={item.status.title}
+//         //                 last_name={item.last_name}
+//         //                 date_birth={item.date_birth}
+//         //                 first_name={item.first_name}
+//         //             />
+//         //         )
+//         //     }
+//         // })
 //     }
 
 //     return (
@@ -159,6 +160,8 @@
 //         </div>
 //     )
 // }
+
+// export default Filters;
 
 const Filters = () => {
   return <div>hey</div>;
