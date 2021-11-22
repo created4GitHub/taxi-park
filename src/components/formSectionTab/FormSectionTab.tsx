@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import "./style.scss";
+import "./formsectionTab.style.scss";
 
 let url = "https://edu.evgeniychvertkov.com/v1/driver/";
 
@@ -18,9 +18,10 @@ const patchItem = (id: any, info: any) => {
 };
 
 const FormSectionTab = (props: any) => {
+  let [isDiv, setIsDiv] = useState(true);
+
   let item = props.item;
   let itemInfo = props.info;
-  let [isDiv, setIsDiv] = useState(true);
 
   function changeElement(event: any) {
     if (event.target.id !== "id" && event.target.id !== "date_birth") {
@@ -57,18 +58,22 @@ const FormSectionTab = (props: any) => {
       title: string;
       code: string;
     };
+
     let newStatus: statusType = {
       title: "",
       code: "",
     };
+
     for (let index: number = 0; index < statuses.length; index++) {
       let status = statuses[index] as statusType;
       if (status.title === event.target.value) {
         newStatus.title = status.title;
         newStatus.code = status.code;
+        
         break;
       }
     }
+    
     itemInfo.status = newStatus;
     patchItem(itemInfo.id, { status: newStatus });
   };
