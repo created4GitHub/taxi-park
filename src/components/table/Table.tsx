@@ -18,26 +18,29 @@ type infoType = {
 
 const Table = (props : any) => {
 
-  const statuses = useRef([]);
-  const info = useRef([]);
-  const [isInfoReceived, setisInfoReceived] = useState(false);
-  const [isStatusesReceived, setisStatusesReceived] = useState(false);
+  const [statuses, setStatuses] = useState([]);
+  const [info, setInfo] = useState([]);
 
   useEffect(() => {
     GET(props.status).then((resp) => {
-      statuses.current = resp.data;
-      
-      setisStatusesReceived(!isStatusesReceived);
+      setStatuses(resp.data);
     });
     GET(props.title).then((resp) => {
-      info.current = resp.data;
-      setisInfoReceived(!isInfoReceived);
+      if(props.title === "driver"){
+        resp.data = resp.data.map((item : any) => {
+          item.date_birth = new Date(item.date_birth).toLocaleDateString();
+          item.date_created = new Date(item.date_created).toLocaleDateString();
+          return item;
+        })
+        setInfo(resp.data); 
+      }
+      setInfo(resp.data); 
     });
   }, []);
 
   return (
     <>
-      {isInfoReceived &&  isStatusesReceived ? <Form {...{statuses : statuses.current, info: info.current}} /> : (
+      {statuses.length &&  info.length ? <Form {...{statuses : statuses, info: info}} /> : (
         <div>Загрузка</div>
       )}
     </>

@@ -14,10 +14,14 @@ const App: React.FC = () => {
       <header className="header">
         <Header />
       </header>
+
       <div className="container">
         <div className="content">
+
           <Filters />
+
           <div className="content__inform">
+            
           <Routes>
         < Route path="/drivers" element={< Drivers/>}/>
         < Route path="/cars" element={< Cars/>}/>

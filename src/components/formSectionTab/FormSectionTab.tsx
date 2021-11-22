@@ -62,15 +62,15 @@ const FormSectionTab = (props: any) => {
     itemInfo.status = newStatus;
     PATCH("url", itemInfo.id, { status: newStatus });
   };
-
+  // (item[0].includes("date") ?
+  // new Date(itemInfo[item[0]]).toLocaleDateString()
+  // : 
   return (
     <div className="table-section-tab">
       {item[0] !== "status" ? (
         isDiv ? (
           <p className="table_paragraph" id={item[0]} onClick={changeElement}>
-            {typeof item[1] !== "object" ? (item[0].includes("date") ?
-            new Date(itemInfo[item[0]]).toLocaleDateString()
-            : itemInfo[item[0]] ) 
+            {typeof item[1] !== "object" ? itemInfo[item[0]] 
             : item[1].title}
           </p>
         ) : (
