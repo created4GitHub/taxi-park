@@ -1,5 +1,6 @@
 import React, { useState, SetStateAction, Dispatch, useContext } from 'react';
 import { Context } from '../../context';
+import { Routes, Route, Link } from "react-router-dom";
 
 import { Button } from "../button";
 import Input from "../input";
@@ -48,12 +49,13 @@ const Filters = () => {
     return (
         <div className="content__options">
             <div className="content__options-paragraph">
+
                 <div className='elem'>
                     <Button
                         className={activeButton !== 'Drivers' ? "but up" : "but up active"}
                         onClick={() => { setActiveButton('Drivers') }}
                         btnText={<p className='options-paragraph'><img className='options-img' src={drivers} alt="alt" />
-                            Drivers </p>}
+                            <Link to="/drivers">Drivers</Link> </p>}
                     />
                     <Button
                         onClick ={() => {setContext(true)}}
@@ -66,7 +68,7 @@ const Filters = () => {
                         className={activeButton !== 'Cars' ? "but" : "but active"}
                         onClick={() => { setActiveButton('Cars') }}
                         btnText={<p className='options-paragraph'><img className='options-img' src={cars} alt="alt" />
-                            Cars</p>}
+                            <Link to="/cars">Cars</Link></p>}
                     />
                     <Button
                         className='add car'
@@ -79,11 +81,6 @@ const Filters = () => {
                     <div className='content__options-search'>
                         <Input className='content__options-input' placeholder='Поиск по ФИО' value={inputValueName} onChange={(event) => setInputValueName(event.target.value)} />
                         <Input className='content__options-input' placeholder='Поиск по ID' value={inputValueSername} onChange={(event) => setInputValueSername(event.target.value)} />
-                    </div>
-                    <div className="content__options_formData">
-                        <DayForm />
-                        <MontForm />
-                        <YearForm />
                     </div>
                     <form className="content__options-form">
                         {renderCheckbox()}
