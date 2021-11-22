@@ -8,8 +8,8 @@ import DayForm from '../formData/dataDay/day';
 import MontForm from '../formData/dataMont/mont';
 import YearForm from '../formData/dataYear/year';
 
-import driversPNG from '../../img/drivers.png';
-import carsPNG from '../../img/cars.png';
+import drivers from '../../img/drivers.svg';
+import cars from '../../img/cars.svg';
 
 import './filters.style.scss'
 
@@ -102,12 +102,11 @@ const Filters = () => {
     return (
         <div className="content__options">
             <div className="content__options-paragraph">
-
                 <div className='elem'>
                     <Button
                         className={activeButton !== 'Drivers' ? "but up" : "but up active"}
                         onClick={() => { setActiveButton('Drivers') }}
-                        btnText={<p className='options-paragraph'><img className='options-img' src={driversPNG} alt="alt" />
+                        btnText={<p className='options-paragraph'><img className='options-img' src={drivers} alt="alt" />
                             Drivers </p>}
                     />
                     <Button
@@ -119,7 +118,7 @@ const Filters = () => {
                     <Button
                         className={activeButton !== 'Cars' ? "but" : "but active"}
                         onClick={() => { setActiveButton('Cars') }}
-                        btnText={<p className='options-paragraph'><img className='options-img' src={carsPNG} alt="alt" />
+                        btnText={<p className='options-paragraph'><img className='options-img' src={cars} alt="alt" />
                             Cars</p>}
                     />
                     <Button

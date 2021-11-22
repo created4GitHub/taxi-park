@@ -1,9 +1,10 @@
 import React from "react";
 
 import logo from '../../img/taxi.png';
-import icon from '../../img/IconsRow.png';
-import iconUser from '../../img/IconsUser.png';
-import iconVectorDown from '../../img/IconsVectorDown.png';
+import icon from '../../img/IconsRow.svg';
+import iconUser from '../../img/IconsUser.svg';
+import iconVectorDown from '../../img/IconsVectorDown.svg';
+
 import './header.scss';
 
 const Header = () => {
