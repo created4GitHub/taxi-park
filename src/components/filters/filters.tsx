@@ -2,6 +2,10 @@
 
 // import { Button } from "../button";
 // import Input from "../input";
+// import FormDrivers from "../form/formDriver";
+// import massObj from '../testComponents/testMass';
+// import RenderCards from '../../module/render';
+
 
 // import driversPNG from '../../img/drivers.png';
 // import carsPNG from '../../img/cars.png';
@@ -12,46 +16,49 @@
 //     const [ inputValueName, setInputValueName ] = useState('');
 //     const [ inputValueSername, setInputValueSername ] = useState('');
 //     const [ activeButton, setActiveButton ]: [string, Dispatch<SetStateAction<string>>] = useState('');
+//     const [ addDriver, setAddDriver ] = useState(massObj);
+    
+//     // const inp = (e: any) => {
+//     //     setInputValueName(e.target.value);
+//     // }
 
-    // const inp = (e: any) => {
-    //     setInputValueName(e.target.value);
-    // }
 
-    // function dataConvert(milliseconds: number): any {
+//     // function dataConvert(milliseconds: number): any {
 
-    //     let date = new Date(milliseconds);
-    //     let year = date.getFullYear()
-    //     let mounth: number | string = date.getMonth() + 1;
-    //     let day: number | string = date.getDate();
-    //     mounth = (mounth < 10) ? '0' + mounth : mounth;
-    //     day = (day < 10) ? '0' + day : day;
+//     //     let date = new Date(milliseconds);
+//     //     let year = date.getFullYear()
+//     //     let mounth: number | string = date.getMonth() + 1;
+//     //     let day: number | string = date.getDate();
+//     //     mounth = (mounth < 10) ? '0' + mounth : mounth;
+//     //     day = (day < 10) ? '0' + day : day;
+        
+//     //     return console.log([day, mounth, year].join('.'));
+//     // }
 
-    //     return console.log([day, mounth, year].join('.'));
-    // }
+//     // function toDay(milliseconds: number): any {
 
-    // function toDay(milliseconds: number): any {
+//     //     let date = new Date(milliseconds);
+//     //     let day: number | string = date.getDate();
 
-    //     let date = new Date(milliseconds);
-    //     let day: number | string = date.getDate();
+//     //     return console.log(day);
+//     // }
+    
+//     // function toMounth(milliseconds: number): any {
 
-    //     return console.log(day);
-    // }
+//     //     let date = new Date(milliseconds);
+//     //     let mounth: number | string = date.getMonth() + 1;
 
-    // function toMounth(milliseconds: number): any {
+//     //     return console.log(mounth);
+//     // }
+ 
+//     // function toYear(milliseconds: number): any {
 
-    //     let date = new Date(milliseconds);
-    //     let mounth: number | string = date.getMonth() + 1;
+//     //     let date = new Date(milliseconds);
+//     //     let year = date.getFullYear();
 
-    //     return console.log(mounth);
-    // }
+//     //     return console.log(year);
+//     // }
 
-    // function toYear(milliseconds: number): any {
-
-    //     let date = new Date(milliseconds);
-    //     let year = date.getFullYear();
-
-    //     return console.log(year);
-    // }
 
 //     const addNewDriver = () => {
 //         let empty = {
@@ -60,7 +67,7 @@
 //             last_name: '',
 //             date_birth: '',
 //             status: {
-//                 title: '',
+//                 title: '', 
 //                 code: ''
 //             }
 //         };
@@ -69,6 +76,7 @@
 //         massObj.unshift(empty)
 //         return massObj && console.log(massObj);
 //     }
+
 
 //     const renderCheckbox = () => {
 //         let mass: string[] = []
@@ -82,10 +90,10 @@
 //         return mass.map((item: string, index: number) => {
 //             return (
 //                 <label key={index} >
-//                     <input
-//                         type="radio"
-//                         className="content__options-radio"
-//                         value={item}
+//                     <input 
+//                         type="radio" 
+//                         className="content__options-radio" 
+//                         value={item} 
 //                         onClick={() => {
 //                             RenderCards(item)
 //                         }}
@@ -100,15 +108,15 @@
 //             if(item.status.code === param){
 //                 console.log(item)
 //                 return(
-//                     <FormDrivers
+//                     <FormDrivers 
 //                         key={index}
-//                         id={item.id}
+//                         id={item.id} 
 //                         index={index}
 //                         code={item.status.code}
 //                         title={item.status.title}
-//                         last_name={item.last_name}
+//                         last_name={item.last_name} 
 //                         date_birth={item.date_birth}
-//                         first_name={item.first_name}
+//                         first_name={item.first_name} 
 //                     />
 //                 )
 //             }
@@ -161,6 +169,9 @@
 // }
 
 const Filters = () => {
-  return <div>hey</div>;
-};
-export default Filters;
+    return (
+        <div>hey</div>
+    )
+}
+
+export default Filters
