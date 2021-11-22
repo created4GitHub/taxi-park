@@ -23,7 +23,8 @@ const FormSectionTab = (props: any) => {
   let [isDiv, setIsDiv] = useState(true);
 
   function changeElement(event: any) {
-    if (event.target.id !== "id" && event.target.id !== "date_birth") {
+    let element = event.target.id;
+    if (element !== "id" && element !== "date_birth" && element !== "date_created") {
       setIsDiv(!isDiv);
     }
   }
@@ -72,13 +73,16 @@ const FormSectionTab = (props: any) => {
     itemInfo.status = newStatus;
     patchItem(itemInfo.id, { status: newStatus });
   };
-
+console.log(item  )
   return (
     <div className="table-section-tab">
       {item[0] !== "status" ? (
         isDiv ? (
           <p className="table_paragraph" id={item[0]} onClick={changeElement}>
-            {typeof item[1] !== "object" ? itemInfo[item[0]] : item[1].title}
+            {typeof item[1] !== "object" ? (item[0].includes("date") ?
+            new Date(itemInfo[item[0]]).toLocaleDateString()
+            : itemInfo[item[0]] ) 
+            : item[1].title}
           </p>
         ) : (
           <input
