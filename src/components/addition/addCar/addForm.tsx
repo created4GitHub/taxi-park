@@ -7,9 +7,6 @@ import { Button } from "../../button";
 import { GET } from "../../../requests";
 import { POST } from "../../../requests";
 
-import addObj from '../../img/addObj.svg'
-import deleteObj from '../../img/deleteObj.svg'
-
 import './addForm.style.scss'
 
 const AddForm = () => {

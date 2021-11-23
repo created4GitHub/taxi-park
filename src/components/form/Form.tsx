@@ -1,10 +1,12 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useRef } from 'react';
 import { Context } from "../../context";
 
 
 import AddForm from '../addition/addDrivers/addForm'
 import { GET } from "../../requests"; 
+
 import FormSection from "./formSection/FormSection";
+import FormDrivers from '../titles/Titles';
 
 import "./form.scss";
 
@@ -42,12 +44,10 @@ const Form = (props : any) => {
     });
   }, []);
 
-  console.log(props);
-
   return (
     <div className="table">
           {context ? <AddForm /> : ''}
-          {statuses.length &&  info.length ? info.map((item : any, index : any) => {
+          {statuses.length && info.length ? info.map((item : any, index : any) => {
             return (
               <FormSection key={index} {...{ info: item, statuses: statuses }} />
             );

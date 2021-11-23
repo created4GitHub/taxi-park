@@ -1,5 +1,5 @@
 import './titles.style.scss'
-const FormNames = () => {
+const FormDrivers = () => {
 
     return (
         <div className='title-section'>
@@ -9,9 +9,11 @@ const FormNames = () => {
             <div className='title-section-title'>bithday</div>
             <div className='title-section-title'>create</div>
             <div className='title-section-title'>status</div>
+            <div className='title-section-title'>info</div>
+            <div className='title-section-title'>Delete</div>
         </div>
     )
 }
 
-export default FormNames;
+export default FormDrivers;
 

@@ -12,7 +12,7 @@ import { Context } from "./context";
 import "./app.scss";
 
 const App: React.FC = () => {
-
+  
   const [context, setContext] = useState(false);
 
   return (
