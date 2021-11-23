@@ -28,7 +28,7 @@ const Form = () => {
   const info = useRef([]);
   const [isInfoReceived, setisInfoReceived] = useState(false);
   const [isStatusesReceived, setisStatusesReceived] = useState(false);
-
+  
   useEffect(() => {
     getStatuses.then((resp) => {
       statuses.current = resp.data;
@@ -39,9 +39,10 @@ const Form = () => {
       setisInfoReceived(!isInfoReceived);
     });
   }, []);
+  
   return (
     <>
-      {isInfoReceived &&  isStatusesReceived ? (
+      {isInfoReceived && isStatusesReceived ? (
         <div className="table">
           {info.current.map((item, index) => {
             return (

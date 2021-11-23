@@ -4,8 +4,6 @@ import "./formsectionTab.style.scss";
 
 import { PATCH } from "../../requests/requests"; 
 
-let url = "https://edu.evgeniychvertkov.com/v1/driver/";
-
 const FormSectionTab = (props: any) => {
   let item = props.item;
   let itemInfo = props.info;
