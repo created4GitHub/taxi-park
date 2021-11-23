@@ -62,10 +62,6 @@ const FormSectionTab = (props: any) => {
     itemInfo.status = newStatus;
     PATCH("url", itemInfo.id, { status: newStatus });
   };
-<<<<<<< HEAD
-=======
-
->>>>>>> 478428667a30764428699b17644c8fe645acec49
   return (
     <div className="table-section-tab">
       {item[0] !== "status" ? (
