@@ -1,11 +1,13 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useRef } from 'react';
 import { Context } from "../../context";
 import { Routes, Route } from "react-router-dom";
 
 import AddDrivers from '../addition/addDrivers/addForm'
 import AddCar from '../addition/addCar/addForm'
 import { GET } from "../../requests"; 
+
 import FormSection from "./formSection/FormSection";
+import FormDrivers from '../titles/Titles';
 
 import "./form.scss";
 
@@ -45,13 +47,10 @@ const Form = (props : any) => {
 
   return (
     <>
-              
-          {/* {context ? <AddDrivers /> : ''} */}
-          {/* {context ? <AddCar /> : ''} */}
-          {statuses.length &&  info.length ? info.map((item : any, index : any) => {
-            return (
-              <FormSection key={index} {...{ info: item, statuses: statuses }} />
-            );
+      {statuses.length &&  info.length ? info.map((item : any, index : any) => {
+        return (
+          <FormSection key={index} {...{ info: item, statuses: statuses }} />
+        );
       }) : <div>Загрузка</div>}
     </>
   );

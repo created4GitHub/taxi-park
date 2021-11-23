@@ -2,7 +2,6 @@ import React, { useState, SetStateAction, Dispatch, useContext } from 'react';
 import { Context } from '../../context';
 import { Routes, Route, Link } from "react-router-dom";
 
-
 import { Button } from "../button";
 import Input from "../input";
 import DayForm from '../formData/dataDay/day';
