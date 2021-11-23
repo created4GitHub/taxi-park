@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
 import { Context } from "../../context";
 
-import AddForm from '../addformComponent/addForm'
+import AddForm from '../addDrivers/addForm'
 import FormSection from "../formSection/FormSection";
 
 import "./form.scss";
@@ -19,9 +19,6 @@ type infoType = {
 };
 
 const Form = (props: any) => {
-  const statuses = useRef([]);
-  const info = useRef([]);
-  const [isReceived, setIsReceived] = useState(false);
   const [context, setContext] = useContext(Context);
 
   return (

@@ -20,63 +20,6 @@ const Filters = () => {
     const [ activeButton, setActiveButton ]: [string, Dispatch<SetStateAction<string>>] = useState('');
     const [context, setContext]: any = useContext(Context);
 
-    // const inp = (e: any) => {
-    //     setInputValueName(e.target.value);
-    // }
-
-    // function dataConvert(milliseconds: number): any {
-
-    //     let date = new Date(milliseconds);
-    //     let year = date.getFullYear()
-    //     let mounth: number | string = date.getMonth() + 1;
-    //     let day: number | string = date.getDate();
-    //     mounth = (mounth < 10) ? '0' + mounth : mounth;
-    //     day = (day < 10) ? '0' + day : day;
-
-    //     return console.log([day, mounth, year].join('.'));
-    // }
-
-    // function toDay(milliseconds: number): any {
-
-    //     let date = new Date(milliseconds);
-    //     let day: number | string = date.getDate();
-
-    //     return console.log(day);
-    // }
-
-    // function toMounth(milliseconds: number): any {
-
-    //     let date = new Date(milliseconds);
-    //     let mounth: number | string = date.getMonth() + 1;
-
-    //     return console.log(mounth);
-    // }
-
-    // function toYear(milliseconds: number): any {
-
-    //     let date = new Date(milliseconds);
-    //     let year = date.getFullYear();
-
-    //     return console.log(year);
-    // }
-
-    // const addNewDriver = () => {
-    //     let empty = {
-    //         id: '',
-    //         first_name: '',
-    //         last_name: '',
-    //         date_birth: '',
-    //         status: {
-    //             title: '',
-    //             code: ''
-    //         }
-    //     };
-
-    //     // setAddDriver([empty, ...massObj])
-    //     // massObj.unshift(empty)
-    //     // return massObj && console.log(massObj);
-    // }
-
     const renderCheckbox = () => {
         let mass: string[] = []
 
@@ -85,9 +28,6 @@ const Filters = () => {
         TEST.forEach((element: any) => {
             mass.push(element)
         });
-        // massObj.forEach((element: any) => {
-        //     mass.push(element.status.code)
-        // });
 
         mass = [...new Set(mass) as any];
 
@@ -112,11 +52,12 @@ const Filters = () => {
             <div className="content__options-paragraph">
 
                 <div className='elem'>
-                    <Button
+                    <Button 
                         className={activeButton !== 'Drivers' ? "but up" : "but up active"}
-                        onClick={() => { setActiveButton('Drivers') }}
-                        btnText={<p className='options-paragraph'><img className='options-img' src={drivers} alt="alt" />
-                            <Link to="/drivers">Drivers</Link> </p>}
+                        onClick={() => { setActiveButton('Drivers')}}
+                        btnText={<p className='options-paragraph'>
+                            <img className='options-img' src={drivers} alt="alt" />
+                            <Link to="/drivers">Drivers</Link></p>}
                     />
                     <Button
                         onClick ={() => {setContext(true)}}
