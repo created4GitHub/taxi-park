@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "./style.scss";
 
-import { PATCH } from "../../requests/requests"; 
+import { PATCH } from "../../../../requests"; 
 
 const FormSectionTab = (props: any) => {
   let item = props.item;
@@ -60,7 +60,6 @@ const FormSectionTab = (props: any) => {
     itemInfo.status = newStatus;
     PATCH("url", itemInfo.id, { status: newStatus });
   };
-
   return (
     <div className="table-section-tab">
       {item[0] !== "status" ? (

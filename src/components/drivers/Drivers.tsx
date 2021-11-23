@@ -1,7 +1,8 @@
-import Table from '../table/Table';
+import Form from "../form/Form";
 
 const Drivers = () => {
-  return <Table {...{title: "driver", status: "driver-status"}}/>
+
+  return <Form {...{title: "driver", status: "driver-status"}}/>
 };
 
 export default Drivers;
