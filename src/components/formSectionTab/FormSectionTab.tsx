@@ -1,21 +1,10 @@
 import React, { useState } from "react";
 
-import "./formsectionTab.style.scss";
+import "./style.scss";
+
+import { PATCH } from "../../requests/requests"; 
 
 let url = "https://edu.evgeniychvertkov.com/v1/driver/";
-
-const patchItem = (id: any, info: any) => {
-  fetch(url + id + "/", {
-    method: "PATCH",
-    headers: {
-      Accept: "application/json",
-      "X-Authorization":
-        "api13ea3305989c1bbf4aa08d52b09fb239dbd0c27bd13daa1227861f55af160b34",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(info),
-  });
-};
 
 const FormSectionTab = (props: any) => {
   let item = props.item;
@@ -48,7 +37,7 @@ const FormSectionTab = (props: any) => {
   const saveNewInfo = (key: any, info: any) => {
     itemInfo[key] = info;
     setIsDiv(!isDiv);
-    patchItem(itemInfo.id, { [key]: info });
+    PATCH("url", itemInfo.id, { [key]: info });
   };
 
   let statuses = Object.values(props.statuses);
@@ -71,18 +60,15 @@ const FormSectionTab = (props: any) => {
       }
     }
     itemInfo.status = newStatus;
-    patchItem(itemInfo.id, { status: newStatus });
+    PATCH("url", itemInfo.id, { status: newStatus });
   };
-
 
   return (
     <div className="table-section-tab">
       {item[0] !== "status" ? (
         isDiv ? (
           <p className="table_paragraph" id={item[0]} onClick={changeElement}>
-            {typeof item[1] !== "object" ? (item[0].includes("date") ?
-            new Date(itemInfo[item[0]]).toLocaleDateString()
-            : itemInfo[item[0]] ) 
+            {typeof item[1] !== "object" ? itemInfo[item[0]] 
             : item[1].title}
           </p>
         ) : (
@@ -101,9 +87,10 @@ const FormSectionTab = (props: any) => {
           />
         )
       ) : (
-        <select defaultValue={item[1].title} onChange={saveStatus}>
+        <select onChange={saveStatus}>
           {statuses.length ? (
             statuses.map((status: any, index: any) => {
+
               return <option key={index}>{status.title}</option>;
             })
           ) : (

@@ -1,5 +1,7 @@
 import React, { useState, SetStateAction, Dispatch, useContext } from 'react';
 import { Context } from '../../context';
+import { Routes, Route, Link } from "react-router-dom";
+
 
 import { Button } from "../button";
 import Input from "../input";
@@ -18,6 +20,63 @@ const Filters = () => {
     const [ activeButton, setActiveButton ]: [string, Dispatch<SetStateAction<string>>] = useState('');
     const [context, setContext]: any = useContext(Context);
 
+    // const inp = (e: any) => {
+    //     setInputValueName(e.target.value);
+    // }
+
+    // function dataConvert(milliseconds: number): any {
+
+    //     let date = new Date(milliseconds);
+    //     let year = date.getFullYear()
+    //     let mounth: number | string = date.getMonth() + 1;
+    //     let day: number | string = date.getDate();
+    //     mounth = (mounth < 10) ? '0' + mounth : mounth;
+    //     day = (day < 10) ? '0' + day : day;
+
+    //     return console.log([day, mounth, year].join('.'));
+    // }
+
+    // function toDay(milliseconds: number): any {
+
+    //     let date = new Date(milliseconds);
+    //     let day: number | string = date.getDate();
+
+    //     return console.log(day);
+    // }
+
+    // function toMounth(milliseconds: number): any {
+
+    //     let date = new Date(milliseconds);
+    //     let mounth: number | string = date.getMonth() + 1;
+
+    //     return console.log(mounth);
+    // }
+
+    // function toYear(milliseconds: number): any {
+
+    //     let date = new Date(milliseconds);
+    //     let year = date.getFullYear();
+
+    //     return console.log(year);
+    // }
+
+    // const addNewDriver = () => {
+    //     let empty = {
+    //         id: '',
+    //         first_name: '',
+    //         last_name: '',
+    //         date_birth: '',
+    //         status: {
+    //             title: '',
+    //             code: ''
+    //         }
+    //     };
+
+    //     // setAddDriver([empty, ...massObj])
+    //     // massObj.unshift(empty)
+    //     // return massObj && console.log(massObj);
+    // }
+
     const renderCheckbox = () => {
         let mass: string[] = []
 
@@ -26,6 +85,9 @@ const Filters = () => {
         TEST.forEach((element: any) => {
             mass.push(element)
         });
+        // massObj.forEach((element: any) => {
+        //     mass.push(element.status.code)
+        // });
 
         mass = [...new Set(mass) as any];
 
@@ -44,19 +106,21 @@ const Filters = () => {
             )
         })
     }
-
+    
     return (
         <div className="content__options">
             <div className="content__options-paragraph">
+
                 <div className='elem'>
                     <Button
                         className={activeButton !== 'Drivers' ? "but up" : "but up active"}
                         onClick={() => { setActiveButton('Drivers') }}
                         btnText={<p className='options-paragraph'><img className='options-img' src={drivers} alt="alt" />
-                            Drivers </p>}
+                            <Link to="/drivers">Drivers</Link> </p>}
                     />
                     <Button
                         onClick ={() => {setContext(true)}}
+                        // onClick ={addNewDriver}
                         className='add driver'
                         btnText='+'
                     />
@@ -66,7 +130,7 @@ const Filters = () => {
                         className={activeButton !== 'Cars' ? "but" : "but active"}
                         onClick={() => { setActiveButton('Cars') }}
                         btnText={<p className='options-paragraph'><img className='options-img' src={cars} alt="alt" />
-                            Cars</p>}
+                            <Link to="/cars">Cars</Link></p>}
                     />
                     <Button
                         className='add car'
@@ -79,11 +143,6 @@ const Filters = () => {
                     <div className='content__options-search'>
                         <Input className='content__options-input' placeholder='Поиск по ФИО' value={inputValueName} onChange={(event) => setInputValueName(event.target.value)} />
                         <Input className='content__options-input' placeholder='Поиск по ID' value={inputValueSername} onChange={(event) => setInputValueSername(event.target.value)} />
-                    </div>
-                    <div className="content__options_formData">
-                        <DayForm />
-                        <MontForm />
-                        <YearForm />
                     </div>
                     <form className="content__options-form">
                         {renderCheckbox()}
