@@ -35,9 +35,13 @@ const DayForm = () => {
         }
     }
 
-    return(
+    return( 
         <div className='search__data_day'>
-            <Button className='data_day-button' btnText={buttonTextDay} onClick={() => setMoldOpening((prevState: any) => !prevState)} onBlur={onBlur}/>
+            <Button 
+            className='data_day-button' 
+            btnText={buttonTextDay} 
+            onClick={() => setMoldOpening((prevState: any) => !prevState)} 
+            onBlur={onBlur}/>
             {moldOpening ? <div className='data_day-block'>{renderDeys()}</div> : ''}
         </div>
     );

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Context } from "../../context";
-
+import {Route, Routes} from "react-router-dom";
 
 import AddForm from '../addition/addDrivers/addForm'
 import { GET } from "../../requests"; 
@@ -19,6 +19,8 @@ type infoType = {
     code: string;
   };
 };
+
+const infoContext = React.createContext(null);
 
 const Form = (props : any) => {
   const [context, setContext] = useContext(Context);
@@ -41,16 +43,14 @@ const Form = (props : any) => {
       setInfo(resp.data); 
     });
   }, []);
-
   return (
-    <div className="table">
-          {context ? <AddForm /> : ''}
+    <>
           {statuses.length &&  info.length ? info.map((item : any, index : any) => {
             return (
-              <FormSection key={index} {...{ info: item, statuses: statuses }} />
+              <FormSection key={index} {...{ info: item, statuses: statuses, title: props.title }} />
             );
           }) : <div>Загрузка</div>}
-        </div>
+        </>
   );
 };
 

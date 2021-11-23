@@ -18,7 +18,7 @@ const AddForm = () => {
     const [addRequest, setAddRequest]: any = useState({
         model: '',
         mark: '',
-        number: '', // - 8 chars
+        number: '', 
         year: null,
         driver_id: null,
         status: {

@@ -36,8 +36,13 @@ const YearForm = () => {
 
     return(
         <div className='search__data_year'>
-            <Button className='data_year-button' btnText={buttonTextYear} onClick={() => setMoldOpening((prevState: any) => !prevState)} onBlur={onBlur}/>
-            { moldOpening ? <div className='data_year-block'> 
+            <Button 
+            className='data_year-button' 
+            btnText={buttonTextYear} 
+            onClick={() => setMoldOpening((prevState: any) => !prevState)} 
+            onBlur={onBlur}/>
+            { moldOpening ? <div 
+            className='data_year-block'> 
                 {renderYears()}
             </div> : ''} 
         </div>

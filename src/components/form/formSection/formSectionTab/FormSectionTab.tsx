@@ -37,7 +37,7 @@ const FormSectionTab = (props: any) => {
   const saveNewInfo = (key: any, info: any) => {
     itemInfo[key] = info;
     setIsDiv(!isDiv);
-    PATCH("url", itemInfo.id, { [key]: info });
+    PATCH(props.title, itemInfo.id, { [key]: info });
   };
 
   let statuses = Object.values(props.statuses);
@@ -60,8 +60,9 @@ const FormSectionTab = (props: any) => {
       }
     }
     itemInfo.status = newStatus;
-    PATCH("url", itemInfo.id, { status: newStatus });
+    PATCH(props.title, itemInfo.id, { status: newStatus });
   };
+
   return (
     <div className="table-section-tab">
       {item[0] !== "status" ? (
@@ -86,10 +87,9 @@ const FormSectionTab = (props: any) => {
           />
         )
       ) : (
-        <select onChange={saveStatus}>
+        <select defaultValue={item[1].title} onChange={saveStatus}>
           {statuses.length ? (
             statuses.map((status: any, index: any) => {
-
               return <option key={index}>{status.title}</option>;
             })
           ) : (
