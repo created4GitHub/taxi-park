@@ -4,6 +4,7 @@ import { Context } from "../../context";
 
 import Input from "../input";
 import { Button } from "../button";
+import { GET } from "../../requests/requests";
 
 import addObj from '../../img/addObj.svg'
 import deleteObj from '../../img/deleteObj.svg'
@@ -24,19 +25,6 @@ const add = (param: any) => {
   .then(data => console.log(data))
 }
 
-const getStatuses: any = fetch(
-    "https://edu.evgeniychvertkov.com/v1/driver-status/",
-    {
-        method: "GET",
-        headers: {
-            Accept: "application/json",
-            "X-Authorization":
-            "api13ea3305989c1bbf4aa08d52b09fb239dbd0c27bd13daa1227861f55af160b34",
-            "Content-Type": "application/json",
-        },
-    }
-).then((resp) => resp.json())
-
 const AddForm = () => {
     const [statuses, setStatuses]: any = useState();
     const [context, setContext] = useContext(Context);
@@ -51,6 +39,7 @@ const AddForm = () => {
     })
 
     useEffect(() => {
+        const getStatuses = GET('driver-status');
         getStatuses.then((resp: any) => {
             setStatuses(resp.data);
         });

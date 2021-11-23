@@ -1,6 +1,10 @@
 import React, { useState, SetStateAction, Dispatch, useContext } from 'react';
 import { Context } from '../../context';
 import { Routes, Route, Link } from "react-router-dom";
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/git-status
 
 import { Button } from "../button";
 import Input from "../input";
@@ -45,20 +49,29 @@ const Filters = () => {
             )
         })
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> origin/git-status
     return (
         <div className="content__options">
             <div className="content__options-paragraph">
 
                 <div className='elem'>
-                    <Button
+                    <Button 
                         className={activeButton !== 'Drivers' ? "but up" : "but up active"}
-                        onClick={() => { setActiveButton('Drivers') }}
-                        btnText={<p className='options-paragraph'><img className='options-img' src={drivers} alt="alt" />
-                            <Link to="/drivers">Drivers</Link> </p>}
+                        onClick={() => { setActiveButton('Drivers')}}
+                        btnText={<p className='options-paragraph'>
+                            <img className='options-img' src={drivers} alt="alt" />
+                            <Link to="/drivers">Drivers</Link></p>}
                     />
                     <Button
                         onClick ={() => {setContext(true)}}
+<<<<<<< HEAD
+=======
+                        // onClick ={addNewDriver}
+>>>>>>> origin/git-status
                         className='add driver'
                         btnText='+'
                     />
