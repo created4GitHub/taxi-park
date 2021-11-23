@@ -62,9 +62,6 @@ const FormSectionTab = (props: any) => {
     itemInfo.status = newStatus;
     PATCH("url", itemInfo.id, { status: newStatus });
   };
-  // (item[0].includes("date") ?
-  // new Date(itemInfo[item[0]]).toLocaleDateString()
-  // : 
   return (
     <div className="table-section-tab">
       {item[0] !== "status" ? (
