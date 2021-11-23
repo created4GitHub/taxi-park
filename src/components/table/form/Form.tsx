@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
-import { Context } from "../../context";
+import { Context } from "../../../context";
 
-import AddForm from '../addDrivers/addForm'
-import FormSection from "../formSection/FormSection";
+import AddForm from '../../addition/addDrivers/addForm'
+import FormSection from "./formSection/FormSection";
 
 import "./form.scss";
 

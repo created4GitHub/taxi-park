@@ -1,4 +1,4 @@
-import FormSectionTab from "../formSectionTab/FormSectionTab";
+import FormSectionTab from "./formSectionTab/FormSectionTab";
 
 import './formSection.style.scss'
 

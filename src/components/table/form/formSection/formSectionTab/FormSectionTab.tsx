@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "./style.scss";
 
-import { PATCH } from "../../requests/requests"; 
+import { PATCH } from "../../../../../requests/requests"; 
 
 let url = "https://edu.evgeniychvertkov.com/v1/driver/";
 

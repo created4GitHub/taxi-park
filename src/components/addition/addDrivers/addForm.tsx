@@ -1,29 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
 
-import { Context } from "../../context";
+import { Context } from "../../../context";
 
-import Input from "../input";
-import { Button } from "../button";
-import { GET } from "../../requests/requests";
+import Input from "../../input";
+import { Button } from "../../button";
+import { GET } from "../../../requests/requests";
+import { POST } from "../../../requests/requests";
 
-import addObj from '../../img/addObj.svg'
-import deleteObj from '../../img/deleteObj.svg'
+import addObj from '../../../img/addObj.svg'
+import deleteObj from '../../../img/deleteObj.svg'
 
 import './addForm.style.scss'
-
-const add = (param: any) => {
-    fetch("https://edu.evgeniychvertkov.com/v1/driver/", { 
-  method: "POST", 
-  headers: { 
-    "Accept" : "application/json", 
-    "X-Authorization": "api13ea3305989c1bbf4aa08d52b09fb239dbd0c27bd13daa1227861f55af160b34", 
-    "Content-Type": "application/json" 
-  }, 
-  body: JSON.stringify(param) 
-}) 
-  .then(resp => resp.json()) 
-  .then(data => console.log(data))
-}
 
 const AddForm = () => {
     const [statuses, setStatuses]: any = useState();
@@ -72,7 +59,7 @@ const AddForm = () => {
             }
         } 
 
-        add(addRequest)
+        POST('driver', addRequest)
     }
 
     const chendeSelect = (event: any) => {
