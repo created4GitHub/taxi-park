@@ -1,10 +1,6 @@
 import React, { useState, SetStateAction, Dispatch, useContext } from 'react';
 import { Context } from '../../context';
 import { Routes, Route, Link } from "react-router-dom";
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/git-status
 
 import { Button } from "../button";
 import Input from "../input";
@@ -49,11 +45,7 @@ const Filters = () => {
             )
         })
     }
-<<<<<<< HEAD
-
-=======
     
->>>>>>> origin/git-status
     return (
         <div className="content__options">
             <div className="content__options-paragraph">
@@ -68,10 +60,7 @@ const Filters = () => {
                     />
                     <Button
                         onClick ={() => {setContext(true)}}
-<<<<<<< HEAD
-=======
                         // onClick ={addNewDriver}
->>>>>>> origin/git-status
                         className='add driver'
                         btnText='+'
                     />

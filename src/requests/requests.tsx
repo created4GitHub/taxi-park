@@ -13,13 +13,8 @@ export const GET = (param: string) => {
   ).then((resp) => resp.json());
 }
 
-<<<<<<< HEAD
-export const POST = (param: string, id: number, info: any) => {
-  return fetch(`https://edu.evgeniychvertkov.com/v1/${param}/` + id + "/", {
-=======
 export const POST = (param: string, info: any) => {
   return fetch(`https://edu.evgeniychvertkov.com/v1/${param}/`, {
->>>>>>> origin/git-status
     method: "POST",
     headers: {
       "X-Authorization":
@@ -43,7 +38,6 @@ export const PATCH = (param: string, id: number, info: any) => {
   });
 }
 
-<<<<<<< HEAD
 export const REMOVE = (param : string, id: number) => {
     return fetch(`https://edu.evgeniychvertkov.com/v1/${param}/` + id + "/", {
         method: "DELETE",
@@ -55,16 +49,3 @@ export const REMOVE = (param : string, id: number) => {
         // body: JSON.stringify(info)
       });
 }
-=======
-export const REMOVE = (param: string, id: number, info: any) => {
-  return fetch(`https://edu.evgeniychvertkov.com/v1/${param}/` + id + "/", {
-    method: "DELETE",
-    headers: {
-      "X-Authorization":
-        "api13ea3305989c1bbf4aa08d52b09fb239dbd0c27bd13daa1227861f55af160b34",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(info)
-  });
-}
->>>>>>> origin/git-status
