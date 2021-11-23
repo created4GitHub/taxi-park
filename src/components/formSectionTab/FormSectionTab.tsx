@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import "./formsectionTab.style.scss";
+import "./style.scss";
 
 import { PATCH } from "../../requests/requests"; 
 
@@ -66,9 +66,7 @@ const FormSectionTab = (props: any) => {
       {item[0] !== "status" ? (
         isDiv ? (
           <p className="table_paragraph" id={item[0]} onClick={changeElement}>
-            {typeof item[1] !== "object" ? (item[0].includes("date") ?
-            new Date(itemInfo[item[0]]).toLocaleDateString()
-            : itemInfo[item[0]] ) 
+            {typeof item[1] !== "object" ? itemInfo[item[0]] 
             : item[1].title}
           </p>
         ) : (
@@ -87,9 +85,10 @@ const FormSectionTab = (props: any) => {
           />
         )
       ) : (
-        <select defaultValue={item[1].title} onChange={saveStatus}>
+        <select onChange={saveStatus}>
           {statuses.length ? (
             statuses.map((status: any, index: any) => {
+
               return <option key={index}>{status.title}</option>;
             })
           ) : (

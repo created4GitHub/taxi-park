@@ -1,4 +1,6 @@
-import React, { useState, SetStateAction, Dispatch } from 'react';
+import React, { useState, SetStateAction, Dispatch, useContext } from 'react';
+import { Context } from '../../context';
+import { Routes, Route, Link } from "react-router-dom";
 
 import { Button } from "../button";
 import Input from "../input";
@@ -11,78 +13,20 @@ import cars from '../../img/cars.svg';
 
 import './filters.style.scss'
 
-
-const TEST = ['active', 'no Active', 'что-то еще', 'и еще']
-
-
 const Filters = () => {
     const [ inputValueName, setInputValueName ] = useState('');
     const [ inputValueSername, setInputValueSername ] = useState('');
     const [ activeButton, setActiveButton ]: [string, Dispatch<SetStateAction<string>>] = useState('');
-
-    const inp = (e: any) => {
-        setInputValueName(e.target.value);
-    }
-
-    function dataConvert(milliseconds: number): any {
-
-        let date = new Date(milliseconds);
-        let year = date.getFullYear()
-        let mounth: number | string = date.getMonth() + 1;
-        let day: number | string = date.getDate();
-        mounth = (mounth < 10) ? '0' + mounth : mounth;
-        day = (day < 10) ? '0' + day : day;
-
-        return console.log([day, mounth, year].join('.'));
-    }
-
-    function toDay(milliseconds: number): any {
-
-        let date = new Date(milliseconds);
-        let day: number | string = date.getDate();
-
-        return console.log(day);
-    }
-
-    function toMounth(milliseconds: number): any {
-
-        let date = new Date(milliseconds);
-        let mounth: number | string = date.getMonth() + 1;
-
-        return console.log(mounth);
-    }
-
-    function toYear(milliseconds: number): any {
-
-        let date = new Date(milliseconds);
-        let year = date.getFullYear();
-
-        return console.log(year);
-    }
-
-    const addNewDriver = () => {
-        let empty = {
-            id: '',
-            first_name: '',
-            last_name: '',
-            date_birth: '',
-            status: {
-                title: '',
-                code: ''
-            }
-        };
-
-        // setAddDriver([empty, ...massObj])
-        // massObj.unshift(empty)
-        // return massObj && console.log(massObj);
-    }
+    const [context, setContext]: any = useContext(Context);
 
     const renderCheckbox = () => {
         let mass: string[] = []
 
-        // massObj.forEach((element: any) => {
-        //     mass.push(element.status.code)
-        // });
+        const TEST = ['active', 'no Active', 'что-то еще', 'и еще']
+
+        TEST.forEach((element: any) => {
+            mass.push(element)
+        });
 
         mass = [...new Set(mass) as any];
 
@@ -94,33 +38,12 @@ const Filters = () => {
                         className="content__options-radio"
                         value={item}
                         onClick={() => {
-                            RenderCards(item)
+                          console.log('запрос на сервак')
                         }}
                     />
                 {item}</label>
             )
         })
-    }
-
-    const RenderCards = (param: any) => {
-      <div>Check</div>
-        // return massObj.map((item: any, index: number) => {
-        //     if(item.status.code === param){
-        //         console.log(item)
-        //         return(
-        //             <FormDrivers
-        //                 key={index}
-        //                 id={item.id}
-        //                 index={index}
-        //                 code={item.status.code}
-        //                 title={item.status.title}
-        //                 last_name={item.last_name}
-        //                 date_birth={item.date_birth}
-        //                 first_name={item.first_name}
-        //             />
-        //         )
-        //     }
-        // })
     }
 
     return (
@@ -132,10 +55,10 @@ const Filters = () => {
                         className={activeButton !== 'Drivers' ? "but up" : "but up active"}
                         onClick={() => { setActiveButton('Drivers') }}
                         btnText={<p className='options-paragraph'><img className='options-img' src={drivers} alt="alt" />
-                            Drivers </p>}
+                            <Link to="/drivers">Drivers</Link> </p>}
                     />
                     <Button
-                        onClick ={addNewDriver}
+                        onClick ={() => {setContext(true)}}
                         className='add driver'
                         btnText='+'
                     />
@@ -145,7 +68,7 @@ const Filters = () => {
                         className={activeButton !== 'Cars' ? "but" : "but active"}
                         onClick={() => { setActiveButton('Cars') }}
                         btnText={<p className='options-paragraph'><img className='options-img' src={cars} alt="alt" />
-                            Cars</p>}
+                            <Link to="/cars">Cars</Link></p>}
                     />
                     <Button
                         className='add car'
@@ -169,9 +92,3 @@ const Filters = () => {
 }
 
 export default Filters;
-
-// const Filters = () => {
-//   return <div>hey</div>;
-// }
-
-// export default Filters
