@@ -13,8 +13,8 @@ export const GET = (param : string) => {
       ).then((resp) => resp.json());
 }
 
-export const POST = (param : string, id: number, info: any) => {
-    return fetch(`https://edu.evgeniychvertkov.com/v1/${param}/` + id + "/", {
+export const POST = (param : string, info: any) => {
+    return fetch(`https://edu.evgeniychvertkov.com/v1/${param}/`, {
         method: "POST",
         headers: {
           "X-Authorization":

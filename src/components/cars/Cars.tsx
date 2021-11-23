@@ -1,8 +1,8 @@
-import Table from '../table/Table';
+import Form from "../form/Form";
 
 const Cars = () => {
 
-  return <Table {...{title: "car", status: "car-status"}}/>
+  return <Form {...{title: "car", status: "car-status"}}/>
 };
 
 export default Cars;
