@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
 
 import Filters from "./components/filters/Filter";
 import Header from "./components/header/header";
-import Drivers from "./components/drivers/Drivers";
-import Cars from "./components/cars/Cars";
 
 import { Context } from "./context";
 
