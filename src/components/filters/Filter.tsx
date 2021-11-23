@@ -52,34 +52,32 @@ const Filters = () => {
             <div className="content__options-paragraph">
 
                 <div className='elem'>
-                <Link to="/drivers">
-                    <Button
-                        className={activeButton !== 'Drivers' ? "but up" : "but up active"}
-                        onClick={() => { setActiveButton('Drivers') }}
-                        btnText={<p className='options-paragraph'><img className='options-img' src={drivers} alt="alt" />
-                        Drivers</p>}
-                    />
+                    <Link to="/drivers">
+                        <Button
+                            className={activeButton !== 'Drivers' ? "but up" : "but up active"}
+                            onClick={() => { setActiveButton('Drivers'); setContext(false) }}
+                            btnText={<p className='options-paragraph'><img className='options-img' src={drivers} alt="alt" />Drivers</p>}
+                        />
+                        <Button
+                            onClick ={() => { setActiveButton('Drivers'); setContext(true) }}
+                            className='add driver'
+                            btnText='+'
+                            />
                     </Link> 
-                    <Button
-                        onClick ={() => {setContext(true)}}
-                        // onClick ={addNewDriver}
-                        className='add driver'
-                        btnText='+'
-                    />
                 </div>
                 <div className='elem'>
-                <Link to="/cars">
-                    <Button
-                        className={activeButton !== 'Cars' ? "but" : "but active"}
-                        onClick={() => { setActiveButton('Cars') }}
-                        btnText={<p className='options-paragraph'><img className='options-img' src={cars} alt="alt" />
-                            Cars</p>}
-                    />
+                    <Link to="/cars">
+                        <Button
+                            className={activeButton !== 'Cars' ? "but" : "but active"}
+                            onClick={() => { setActiveButton('Cars'); setContext(false) }}
+                            btnText={<p className='options-paragraph'><img className='options-img' src={cars} alt="alt" />Cars</p>}
+                        />
+                        <Button
+                            onClick ={() => { setActiveButton('Cars'); setContext(true) }}
+                            className='add car'
+                            btnText='+'
+                        />
                     </Link>
-                    <Button
-                        className='add car'
-                        btnText='+'
-                    />
                 </div>
             </div>
             <div className="content__options-filter">

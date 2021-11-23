@@ -12,7 +12,8 @@ import deleteObj from '../../../img/deleteObj.svg'
 
 import './addForm.style.scss'
 
-const AddForm = () => {
+const AddDrivers = () => {
+    console.log("check")
     const [statuses, setStatuses]: any = useState();
     const [context, setContext] = useContext(Context);
     const [addRequest, setAddRequest]: any = useState({
@@ -89,4 +90,4 @@ const AddForm = () => {
     )
 }
 
-export default AddForm
+export default AddDrivers

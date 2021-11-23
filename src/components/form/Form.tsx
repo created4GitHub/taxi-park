@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Context } from "../../context";
+import { Routes, Route } from "react-router-dom";
 
-
-import AddForm from '../addition/addDrivers/addForm'
+import AddDrivers from '../addition/addDrivers/addForm'
+import AddCar from '../addition/addCar/addForm'
 import { GET } from "../../requests"; 
 import FormSection from "./formSection/FormSection";
 
@@ -43,14 +44,16 @@ const Form = (props : any) => {
   }, []);
 
   return (
-    <div className="table">
-          {context ? <AddForm /> : ''}
+    <>
+              
+          {/* {context ? <AddDrivers /> : ''} */}
+          {/* {context ? <AddCar /> : ''} */}
           {statuses.length &&  info.length ? info.map((item : any, index : any) => {
             return (
               <FormSection key={index} {...{ info: item, statuses: statuses }} />
             );
-          }) : <div>Загрузка</div>}
-        </div>
+      }) : <div>Загрузка</div>}
+    </>
   );
 };
 

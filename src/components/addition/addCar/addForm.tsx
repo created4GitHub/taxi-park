@@ -1,14 +1,14 @@
 import React, { useState, useContext, useEffect } from "react";
-
 import { Context } from "../../../context";
 
+import YearForm from "../../formData/dataYear/year";
 import Input from "../../input";
 import { Button } from "../../button";
 import { GET } from "../../../requests";
 import { POST } from "../../../requests";
 
-import addObj from '../../img/addObj.svg'
-import deleteObj from '../../img/deleteObj.svg'
+import addObj from '../../../img/addObj.svg'
+import deleteObj from '../../../img/deleteObj.svg'
 
 import './addForm.style.scss'
 
@@ -20,18 +20,15 @@ const AddForm = () => {
         mark: '',
         number: '', // - 8 chars
         year: null,
-        driver_id: null,
+        driver_id: 60,
         status: {
             title: '', 
             code: ''
         }
-        
     })
 
-
-
     useEffect(() => {
-        const getStatuses = GET('driver-status');
+        const getStatuses = GET('car-status');
         getStatuses.then((resp: any) => {
             setStatuses(resp.data);
         });
@@ -64,7 +61,7 @@ const AddForm = () => {
             }
         } 
 
-        POST('driver', addRequest)
+        POST('car', addRequest)
     }
 
     const chendeSelect = (event: any) => {
@@ -74,7 +71,25 @@ const AddForm = () => {
 
     return (
         <div className='table_section_add'>
- 
+            <div className='table_section-block-input'>
+                <Input className='table_section-input' onChange={(event) => addRequest.mark = event.target.value} placeholder='Brand'/>
+            </div>
+            <div className='table_section-block-input'>
+                <Input className='table_section-input' onChange={(event) => addRequest.model = event.target.value} placeholder='Modal'/>
+            </div>
+            <div className='table_section-block-input'>
+                <Input className='table_section-input' onChange={(event) => addRequest.number = event.target.value} placeholder='Number car'/>
+            </div>
+            <div className='table_section-block-input'>
+                <YearForm onChange={(event: any) => addRequest.year = event}/>
+            </div>
+            <select className='table_section_add-select' onChange={chendeSelect} >
+                {renderCheckbox()}
+            </select>
+            <div className='table_section_buttons' >
+                <Button className='table_section-button' onClick={() => check()} btnText={ <img src={addObj} alt="alt"/> }/>
+                <Button className='table_section-button' onClick={ () => setContext(false)} btnText={<img src={deleteObj} alt="alt"/> }/>
+            </div>   
         </div>
     )
 }

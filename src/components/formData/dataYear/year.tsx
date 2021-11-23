@@ -4,9 +4,10 @@ import { Button } from '../../button';
 
 import './year.style.scss'
 
-const YearForm = () => {
+const YearForm = (props: any) => {
     const [moldOpening, setMoldOpening]: any = useState();
     const [buttonTextYear, setButtonTextYear]: any = useState('Год');
+    const [result, setResult]: any = useState();
 
     const renderYears = () => {
         let massYears = [];
@@ -27,14 +28,17 @@ const YearForm = () => {
         })
     }
 
+    props.onChange(result)
+
     const onBlur = (event: any) => {
         setMoldOpening(false);
         if(event.relatedTarget !== null && event.relatedTarget.id){
             setButtonTextYear(event.relatedTarget.id);
+            setResult(event.relatedTarget.id)
         }
     }
 
-    return(
+    return (
         <div className='search__data_year'>
             <Button className='data_year-button' btnText={buttonTextYear} onClick={() => setMoldOpening((prevState: any) => !prevState)} onBlur={onBlur}/>
             { moldOpening ? <div className='data_year-block'> 
