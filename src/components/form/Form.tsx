@@ -1,9 +1,12 @@
-import FormSection from "./formSection/FormSection";
-import "./form.scss";
+import React, { useEffect, useState, useContext } from 'react';
+import { Context } from "../../context";
 
-import React, { useEffect, useState } from 'react';
 
+import AddForm from '../addition/addDrivers/addForm'
 import { GET } from "../../requests"; 
+import FormSection from "./formSection/FormSection";
+
+import "./form.scss";
 
 type infoType = {
   id: number;
@@ -18,7 +21,7 @@ type infoType = {
 };
 
 const Form = (props : any) => {
-
+  const [context, setContext] = useContext(Context);
   const [statuses, setStatuses] = useState([]);
   const [info, setInfo] = useState([]);
 
@@ -41,6 +44,7 @@ const Form = (props : any) => {
 
   return (
     <div className="table">
+          {context ? <AddForm /> : ''}
           {statuses.length &&  info.length ? info.map((item : any, index : any) => {
             return (
               <FormSection key={index} {...{ info: item, statuses: statuses }} />
@@ -51,3 +55,4 @@ const Form = (props : any) => {
 };
 
 export default Form;
+
