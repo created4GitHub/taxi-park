@@ -13,7 +13,6 @@ import deleteObj from '../../../img/deleteObj.svg'
 import './addForm.style.scss'
 
 const AddDrivers = () => {
-    console.log("check")
     const [statuses, setStatuses]: any = useState();
     const [context, setContext] = useContext(Context);
     const [addRequest, setAddRequest]: any = useState({

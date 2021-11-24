@@ -43,7 +43,6 @@ const Form = (props : any) => {
     })
   }, [context, isDeleted]);
 
-console.log("check", isDeleted)
   return (
     <>
       {statuses.length &&  info.length ? info.map((item : any, index : any) => {

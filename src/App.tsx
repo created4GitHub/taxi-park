@@ -15,7 +15,7 @@ import "./app.scss";
 
 const App: React.FC = () => {
   
-  const [context, setContext] = useState(false);
+  const [context, setContext] = useState(true);
 
   return (
     <>

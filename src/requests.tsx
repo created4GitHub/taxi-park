@@ -49,3 +49,17 @@ export const REMOVE = (param : string, id: number) => {
         // body: JSON.stringify(info)
       });
 }
+
+export const GETCAR = (id: string) => {
+  return fetch("https://edu.evgeniychvertkov.com/v1/car/", {
+    method: "GET",
+    headers: {
+      "Accept": "application/json",
+      "X-Authorization": "api13ea3305989c1bbf4aa08d52b09fb239dbd0c27bd13daa1227861f55af160b34",
+      "Content-Type": "application/json",
+      "E-Driver-Id": id
+    }
+  })
+    // .then(resp => resp.json())
+    // .then(data => console.log(data))
+} 
