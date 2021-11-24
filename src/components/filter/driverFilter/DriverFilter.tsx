@@ -6,7 +6,6 @@ import YearForm from '../../formData/dataYear/year';
 import Input from '../../input';
 
 export default function DriverFilter(props : any) {
-    console.log(props)
     const options: { [key: string]: { type: string, placeholder?: string } } = {
         id: {
             type: "input",
@@ -21,34 +20,35 @@ export default function DriverFilter(props : any) {
         },
 
     }
-    return (
-        <>
-            {Object.keys(options).map((key: string, index: number) => {
-                if (options[key].type === "input") {
-                    return <Input {
-                        ...{
-                            className: options[key].type + "_" + key,
-                            type: "text",
-                            name: key,
-                            placeholder: "Search for " + options[key].placeholder,
-                            onChange: () => console.log("hey")
-                        }
-                    }
-                    />
-                }
-                else if(options[key].type === "date"){
-                    return (
-                        <div>
-                    <DayForm/>
-                    <MontForm/>
-                    <YearForm/>
-                    </div>
-                    )
-                }
+    return <div>Cars</div>
+    // return (
+    //     <>
+    //         {Object.keys(options).map((key: string, index: number) => {
+    //             if (options[key].type === "input") {
+    //                 return <Input {
+    //                     ...{
+    //                         className: options[key].type + "_" + key,
+    //                         type: "text",
+    //                         name: key,
+    //                         placeholder: "Search for " + options[key].placeholder,
+    //                         onChange: () => console.log("hey")
+    //                     }
+    //                 }
+    //                 />
+    //             }
+    //             else if(options[key].type === "date"){
+    //                 return (
+    //                     <div>
+    //                 <DayForm/>
+    //                 <MontForm/>
+    //                 <YearForm onChange={(e: any) => console.log(e)}/>
+    //                 </div>
+    //                 )
+    //             }
 
-            })}
-        </>
-    )
+    //         })}
+    //     </>
+    // )
 }
 
 

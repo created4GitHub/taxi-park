@@ -27,7 +27,7 @@ const YearForm = (props: any) => {
             )
         })
     }
-
+console.log(props)
     props.onChange(result)
 
     const onBlur = (event: any) => {

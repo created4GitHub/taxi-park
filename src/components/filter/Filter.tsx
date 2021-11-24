@@ -16,7 +16,6 @@ const Filter = (props : any) => {
     useEffect(() => {
         const info = GET(props.title);
     }, [])
-    console.log(useContext(infoContext))
             return (
                 <div className="content__options-filter">
                 {props.title === "driver" ? <DriverFilter /> : <CarFilter />}

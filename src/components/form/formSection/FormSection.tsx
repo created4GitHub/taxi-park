@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
+
+import { deletedContext } from "../../../context";
 
 import FormSectionTab from "./formSectionTab/FormSectionTab";
 import { REMOVE } from '../../../requests';
@@ -10,12 +12,17 @@ import './formSection.style.scss';
 const FormSection = (props: any) => {
   let itemInfo = props.info;
   const [isOpen, setIsopen]: any = useState(false) 
+  const [isDeleted, setIsDeleted] = useContext(deletedContext);
 
-  const del = (event: any) => {
-    event.target.parentNode.remove();
-  }
 
   let infoEntries = Object.entries(props.info) as any;  
+
+  const deleteEl = (event: any) => {
+    REMOVE(props.title, itemInfo.id)
+    .then((data: any) => {
+      setIsDeleted((isDeleted : any) => !isDeleted);
+    })
+  }
 
   return (
     <>
@@ -29,12 +36,7 @@ const FormSection = (props: any) => {
           btnText = 'show'
         />
         <Button 
-          onClick = {(event: any) => {
-            del(event);
-            // REMOVE('driver', itemInfo.id)
-            // console.log(delet)
-            REMOVE(props.nameDelete, itemInfo.id)
-          }}
+          onClick = {deleteEl}
           className = 'table_section-deleteButton'
           btnText = 'delete'
         />

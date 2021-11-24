@@ -1,15 +1,9 @@
-import React, { useEffect, useState, useContext, useRef } from 'react';
-import { Context } from "../../context";
+import React, { useEffect, useState, useContext } from 'react';
+import { Context, deletedContext } from "../../context";
 
-import AddForm from '../addition/addDrivers/addForm'
-import { Routes, Route } from "react-router-dom";
-
-import AddDrivers from '../addition/addDrivers/addForm'
-import AddCar from '../addition/addCar/addForm'
 import { GET } from "../../requests"; 
 
 import FormSection from "./formSection/FormSection";
-import FormDrivers from '../titles/Titles';
 
 import "./form.scss";
 
@@ -31,6 +25,7 @@ const Form = (props : any) => {
   const [context, setContext] = useContext(Context);
   const [statuses, setStatuses] = useState([]);
   const [info, setInfo] = useState([]);
+  const [isDeleted, setIsDeleted] = useState(true);
 
   useEffect(() => {
     GET(props.status).then((resp) => {
@@ -42,23 +37,20 @@ const Form = (props : any) => {
           item.date_birth = new Date(item.date_birth).toLocaleDateString();
           item.date_created = new Date(item.date_created).toLocaleDateString();
           return item;
-        })
-
-        setInfo(resp.data); 
-      }
-      
+        });
+      }      
       setInfo(resp.data); 
-    });
-  }, [context]);
+    })
+  }, [context, isDeleted]);
 
-  // sudo apt install htop -y
-
-
+console.log("check", isDeleted)
   return (
     <>
       {statuses.length &&  info.length ? info.map((item : any, index : any) => {
         return (
-          <FormSection nameDelete={props.title} key={index} {...{ info: item, statuses: statuses }} />
+          <deletedContext.Provider key={index} value={[isDeleted, setIsDeleted]}>
+          <FormSection key={index} title={props.title} info={item}  statuses={statuses}/>
+          </deletedContext.Provider>
         );
       }) : <div>Загрузка</div>}
     </>
@@ -66,4 +58,8 @@ const Form = (props : any) => {
 };
 
 export default Form;
+
+function debounce(arg0: Promise<void>) {
+  throw new Error('Function not implemented.');
+}
 
