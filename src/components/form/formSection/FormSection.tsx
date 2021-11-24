@@ -9,11 +9,9 @@ import './formSection.style.scss';
 
 const FormSection = (props: any) => {
   let itemInfo = props.info;
-  const [deletes, setDeletes] = useState(itemInfo.id);
   const [isOpen, setIsopen]: any = useState(false) 
 
   const del = (event: any) => {
-    setDeletes(REMOVE('driver', deletes));
     event.target.parentNode.remove();
   }
 
@@ -31,43 +29,50 @@ const FormSection = (props: any) => {
           btnText = 'show'
         />
         <Button 
-          onClick = {del}
+          onClick = {(event: any) => {
+            del(event);
+            // REMOVE('driver', itemInfo.id)
+            // console.log(delet)
+            REMOVE(props.nameDelete, itemInfo.id)
+          }}
           className = 'table_section-deleteButton'
           btnText = 'delete'
         />
       </div>
         { isOpen ? <div className='table_section_isActive'>
-          <div className='table_section_isActive-cap block'>
-            <p>id <img src={icons} alt="alt" /></p> 
-            <p>model <img src={icons} alt="alt" /></p> 
-            <p>mark <img src={icons} alt="alt" /></p>
-            <p>number car <img src={icons} alt="alt" /></p>
-            <p>year <img src={icons} alt="alt" /></p>
-            <p>class <img src={icons} alt="alt" /></p>
-          </div>
-          <div className='table_section_isActive-cars block'>
-            <p>23462664</p> 
-            <p>Ford</p> 
-            <p>Fusion</p>
-            <p>AX6475HA</p>
-            <p>2020</p>
-            <p>Эко</p>
-          </div>
-          <div className='table_section_isActive-cars block'>
-            <p>23462664</p> 
-            <p>Ford</p> 
-            <p>Fusion</p>
-            <p>AX6475HA</p>
-            <p>2020</p>
-            <p>Эко</p>
-          </div>
-          <div className='table_section_isActive-cars block'>
-            <p>23462664</p> 
-            <p>Ford</p> 
-            <p>Fusion</p>
-            <p>AX6475HA</p>
-            <p>2020</p>
-            <p>Эко</p>
+          <div className='table_section_isActive-style'>
+            <div className='table_section_isActive-cap block'>
+              <p>id <img src={icons} alt="alt" /></p> 
+              <p>model <img src={icons} alt="alt" /></p> 
+              <p>mark <img src={icons} alt="alt" /></p>
+              <p>number <img src={icons} alt="alt" /></p>
+              <p>year <img src={icons} alt="alt" /></p>
+              <p>class <img src={icons} alt="alt" /></p>
+            </div>
+            <div className='table_section_isActive-cars block'>
+              <p>23462664</p> 
+              <p>Ford</p> 
+              <p>Fusion</p>
+              <p>AX6475HA</p>
+              <p>2020</p>
+              <p>Эко</p>
+            </div>
+            <div className='table_section_isActive-cars block'>
+              <p>23462664</p> 
+              <p>Ford</p> 
+              <p>Fusion</p>
+              <p>AX6475HA</p>
+              <p>2020</p>
+              <p>Эко</p>
+            </div>
+            <div className='table_section_isActive-cars block'>
+              <p>23462664</p> 
+              <p>Ford</p> 
+              <p>Fusion</p>
+              <p>AX6475HA</p>
+              <p>2020</p>
+              <p>Эко</p>
+            </div>
           </div>
         </div> : '' } 
     </>

@@ -60,7 +60,13 @@ const AddDrivers = () => {
             }
         } 
 
-        POST('driver', addRequest)
+        POST('driver', addRequest);
+        setContext(false);
+        addRequest.first_name = '';
+        addRequest.last_name = '';
+        addRequest.date_birth = 0; 
+        addRequest.status.title = '';
+        addRequest.status.code = '';
     }
 
     const chendeSelect = (event: any) => {

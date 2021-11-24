@@ -60,8 +60,15 @@ const AddForm = () => {
                 return
             }
         } 
-
+        setContext(false)
         POST('car', addRequest)
+        addRequest.model = ''
+        addRequest.mark = ''
+        addRequest.number = '' 
+        addRequest.year = null
+        addRequest.driver_id = 60
+        addRequest.status.title = ''
+        addRequest.status.code = ''
     }
 
     const chendeSelect = (event: any) => {
@@ -78,7 +85,7 @@ const AddForm = () => {
                 <Input className='table_section-input' onChange={(event) => addRequest.model = event.target.value} placeholder='Modal'/>
             </div>
             <div className='table_section-block-input'>
-                <Input className='table_section-input' onChange={(event) => addRequest.number = event.target.value} placeholder='Number car'/>
+                <Input className='table_section-input' maxLength='8' onChange={(event) => addRequest.number = event.target.value} placeholder='Number car'/>
             </div>
             <div className='table_section-block-input'>
                 <YearForm onChange={(event: any) => addRequest.year = event}/>

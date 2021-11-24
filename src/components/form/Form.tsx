@@ -39,17 +39,22 @@ const Form = (props : any) => {
           item.date_created = new Date(item.date_created).toLocaleDateString();
           return item;
         })
+
         setInfo(resp.data); 
       }
+      
       setInfo(resp.data); 
     });
-  }, []);
+  }, [context]);
+
+  // sudo apt install htop -y
+
 
   return (
     <>
       {statuses.length &&  info.length ? info.map((item : any, index : any) => {
         return (
-          <FormSection key={index} {...{ info: item, statuses: statuses }} />
+          <FormSection nameDelete={props.title} key={index} {...{ info: item, statuses: statuses }} />
         );
       }) : <div>Загрузка</div>}
     </>
