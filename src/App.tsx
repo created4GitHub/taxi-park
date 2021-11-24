@@ -9,25 +9,23 @@ import Cars from "./components/cars/Cars";
 import AddCar from './components/addition/addCar/addForm'
 import AddDrivers from "./components/addition/addDrivers/addForm";
 
-import { Context } from "./context";
+import { Context, getContext } from "./context";
 
 import "./app.scss";
 
 const App: React.FC = () => {
   
   const [context, setContext] = useState(false);
-
+  const [get, setGet] = useState({});
+  
   return (
     <>
       <Context.Provider value={[context, setContext]}> 
-        <header className="header">
+      <getContext.Provider value={[get, setGet]}>
           <Header />
-        </header>
         <div className="container">
           <div className="content">
-          <div className="content__options">
           <OptionTitles />
-          </div>
             <div className="content__inform">
               <div className="table">
                 <Routes>
@@ -42,6 +40,7 @@ const App: React.FC = () => {
             </div>
           </div>
         </div>
+        </getContext.Provider>
       </Context.Provider>
     </>
   );
