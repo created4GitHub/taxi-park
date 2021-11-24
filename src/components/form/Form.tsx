@@ -1,10 +1,15 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useRef } from 'react';
 import { Context } from "../../context";
-import {Route, Routes} from "react-router-dom";
 
 import AddForm from '../addition/addDrivers/addForm'
+import { Routes, Route } from "react-router-dom";
+
+import AddDrivers from '../addition/addDrivers/addForm'
+import AddCar from '../addition/addCar/addForm'
 import { GET } from "../../requests"; 
+
 import FormSection from "./formSection/FormSection";
+import FormDrivers from '../titles/Titles';
 
 import "./form.scss";
 
@@ -38,19 +43,25 @@ const Form = (props : any) => {
           item.date_created = new Date(item.date_created).toLocaleDateString();
           return item;
         })
+
         setInfo(resp.data); 
       }
+      
       setInfo(resp.data); 
     });
-  }, []);
+  }, [context]);
+
+  // sudo apt install htop -y
+
+
   return (
     <>
-          {statuses.length &&  info.length ? info.map((item : any, index : any) => {
-            return (
-              <FormSection key={index} {...{ info: item, statuses: statuses, title: props.title }} />
-            );
-          }) : <div>Загрузка</div>}
-        </>
+      {statuses.length &&  info.length ? info.map((item : any, index : any) => {
+        return (
+          <FormSection nameDelete={props.title} key={index} {...{ info: item, statuses: statuses }} />
+        );
+      }) : <div>Загрузка</div>}
+    </>
   );
 };
 

@@ -7,9 +7,10 @@
         width: 100px;
         height: 30px;
         cursor: pointer;
-        background: #dfe0e485;
+        background: white;
         border-radius: 8px;
-        border: solid #b26d6d5c 1px;
+        border: solid silver 1px;
+        color: #8a8a8a;
     }
     .data_year-block{
         position: absolute;
@@ -32,7 +33,7 @@
             line-height: 16px;
             border-radius: 8px;
             background-color: white;
-            border: solid #b26d6d5c 1px;
+            border: solid silver 1px;
             cursor: pointer;
             display: flex;
             justify-content: center;
