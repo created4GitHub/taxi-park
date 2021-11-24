@@ -4,4 +4,6 @@ export const Context = React.createContext();
 
 export const deletedContext = React.createContext();
 
-export const getContext = React.createContext()
+export const receivedDataContext = React.createContext();
+
+export const filteredDataContext = React.createContext()

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "./style.scss";
 
-import { PATCH } from "../../../../requests"; 
+import { PATCH } from "../../../../requests";
 
 const FormSectionTab = (props: any) => {
   let item = props.item;
@@ -11,7 +11,11 @@ const FormSectionTab = (props: any) => {
 
   function changeElement(event: any) {
     let element = event.target.id;
-    if (element !== "id" && element !== "date_birth" && element !== "date_created") {
+    if (
+      element !== "id" &&
+      element !== "date_birth" &&
+      element !== "date_created"
+    ) {
       setIsDiv(!isDiv);
     }
   }
@@ -38,8 +42,6 @@ const FormSectionTab = (props: any) => {
     PATCH(props.title, itemInfo.id, { [key]: info });
   };
 
-  let statuses = Object.values(props.statuses);
-
   const saveStatus = (event: any) => {
     type statusType = {
       title: string;
@@ -61,14 +63,15 @@ const FormSectionTab = (props: any) => {
     PATCH(props.title, itemInfo.id, { status: newStatus });
   };
 
+  let statuses = Object.values(props.statuses);
+  console.log(item[1].title);
   return (
     <>
       <div className="table-section-tab">
         {item[0] !== "status" ? (
           isDiv ? (
             <p className="table_paragraph" id={item[0]} onClick={changeElement}>
-              {typeof item[1] !== "object" ? itemInfo[item[0]] 
-              : item[1].title}
+              {typeof item[1] !== "object" ? itemInfo[item[0]] : item[1].title}
             </p>
           ) : (
             <input
@@ -86,17 +89,20 @@ const FormSectionTab = (props: any) => {
             />
           )
         ) : (
-          <select defaultValue={item[1].title} onChange={saveStatus} className="table-section-tab-select" >
+          <select
+            defaultValue={item[1].title}
+            onChange={saveStatus}
+            className="table-section-tab-select"
+          >
             {statuses.length ? (
-              statuses.map((status: any, index: any) => { 
-
+              statuses.map((status: any, index: any) => {
                 return <option key={index}>{status.title}</option>;
               })
             ) : (
               <option>Загрузка</option>
             )}
           </select>
-        )}  
+        )}
       </div>
     </>
   );
