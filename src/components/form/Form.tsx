@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Context, deletedContext } from "../../context";
+import { Context, deletedContext, getContext } from "../../context";
 
 import { GET } from "../../requests"; 
 
@@ -23,14 +23,10 @@ const infoContext = React.createContext(null);
 
 const Form = (props : any) => {
   const [context, setContext] = useContext(Context);
-  const [statuses, setStatuses] = useState([]);
-  const [info, setInfo] = useState([]);
+  const [get, setGet] = useContext(getContext);
   const [isDeleted, setIsDeleted] = useState(true);
 
   useEffect(() => {
-    GET(props.status).then((resp) => {
-      setStatuses(resp.data);
-    });
     GET(props.title).then((resp) => {
       if(props.title === "driver"){
         resp.data = resp.data.map((item : any) => {
@@ -38,18 +34,19 @@ const Form = (props : any) => {
           item.date_created = new Date(item.date_created).toLocaleDateString();
           return item;
         });
-      }      
-      setInfo(resp.data); 
+      }
+      GET(props.status).then((statuses) => {
+        setGet({info: resp.data, statuses: statuses.data});
+      });
     })
   }, [context, isDeleted]);
 
-console.log("check", isDeleted)
   return (
     <>
-      {statuses.length &&  info.length ? info.map((item : any, index : any) => {
+      {get.statuses &&  get.info ? get.info.map((item : any, index : any) => {
         return (
           <deletedContext.Provider key={index} value={[isDeleted, setIsDeleted]}>
-          <FormSection key={index} title={props.title} info={item}  statuses={statuses}/>
+          <FormSection key={index} title={props.title} info={item}  statuses={get.statuses}/>
           </deletedContext.Provider>
         );
       }) : <div>Загрузка</div>}
@@ -58,8 +55,4 @@ console.log("check", isDeleted)
 };
 
 export default Form;
-
-function debounce(arg0: Promise<void>) {
-  throw new Error('Function not implemented.');
-}
 

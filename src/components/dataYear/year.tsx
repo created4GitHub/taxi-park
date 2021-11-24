@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Button } from '../../button';
+import { Button } from '../button';
 
 import './year.style.scss'
 
@@ -27,8 +27,7 @@ const YearForm = (props: any) => {
             )
         })
     }
-console.log(props)
-    props.onChange(result)
+    // props.onChange(result)
 
     const onBlur = (event: any) => {
         setMoldOpening(false);

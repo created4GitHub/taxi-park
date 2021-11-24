@@ -1,60 +1,42 @@
-import React, { useEffect } from 'react';
+import React, { useContext }from 'react';
 
-import DayForm from '../../formData/dataDay/day'
-import MontForm from '../../formData/dataMont/mont';
-import YearForm from '../../formData/dataYear/year';
 import Input from '../../input';
 
-export default function DriverFilter(props : any) {
-    const options: { [key: string]: { type: string, placeholder?: string } } = {
-        id: {
-            type: "input",
-            placeholder: "ID"
-        },
-        name: {
-            type: "input",
-            placeholder: "First and Last names"
-        },
-        date_created: {
-            type: "date"
-        },
+import { getContext } from '../../../context';
 
+
+export default function DriverFilter( props : any ) {
+    const [get, setGet] = useContext(getContext);
+
+
+    const search = (event : any) => {
+        props.info.filter((item : any) => {
+            
+        })
+        console.log(event.target.value)
     }
-    return <div>Cars</div>
-    // return (
-    //     <>
-    //         {Object.keys(options).map((key: string, index: number) => {
-    //             if (options[key].type === "input") {
-    //                 return <Input {
-    //                     ...{
-    //                         className: options[key].type + "_" + key,
-    //                         type: "text",
-    //                         name: key,
-    //                         placeholder: "Search for " + options[key].placeholder,
-    //                         onChange: () => console.log("hey")
-    //                     }
-    //                 }
-    //                 />
-    //             }
-    //             else if(options[key].type === "date"){
-    //                 return (
-    //                     <div>
-    //                 <DayForm/>
-    //                 <MontForm/>
-    //                 <YearForm onChange={(e: any) => console.log(e)}/>
-    //                 </div>
-    //                 )
-    //             }
 
-    //         })}
-    //     </>
-    // )
+    return (
+        <>
+        <div className="filter-element">
+        < Input 
+        onChange={search}
+        name="id"
+        placeholder="Search by ID"/>
+        </div>
+        <div className="filter-element">
+        < Input 
+        onChange={search}
+        name="first_name"
+        placeholder="Search by name"/>
+            </div>
+            <div className="filter-element">
+            < Input 
+            onChange={search}
+            name="last_name"
+            placeholder="Search by surname"/>
+            </div>
+        </>
+    )
 }
 
-
-{/* <div className="content__options-filter">
-<div className='content__options-filter date'>
-<div className='content__options-search'>
-</div>
-</div>
-</div> */}

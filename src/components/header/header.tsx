@@ -9,6 +9,7 @@ import './header.scss';
 
 const Header = () => {
     return(
+        <header className="header">
         <div className='header__content'>
             <div className='header__content leftSide'>
                 <div className='header__content divForButton'>
@@ -34,6 +35,7 @@ const Header = () => {
                 </div>
             </div>
         </div>
+        </header>
     )
 }
 

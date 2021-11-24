@@ -14,7 +14,7 @@ export default function OptionTitles() {
     const [context, setContext]: any = useContext(Context);
 
     return (
-        <>
+        <div className="content__options">
             <div className="content__options-paragraph">
             <div className='elem'>
                     <Link to="/drivers">
@@ -49,6 +49,6 @@ export default function OptionTitles() {
                 < Route path="/drivers" element={< Filter {...{ title: "driver" }} />} />
                 < Route path="/cars" element={< Filter {...{ title: "car" }} />} />
             </Routes>
-        </>
+            </div>
     )
 }
