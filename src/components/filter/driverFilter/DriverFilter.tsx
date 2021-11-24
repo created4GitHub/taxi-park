@@ -14,11 +14,6 @@ export default function DriverFilter() {
   const search = (event: any) => {
     data.current = receivedData.info.filter((item: any) => {
       if (event.target.id === "status") {
-        console.log(
-          event.target.value === item.status.title,
-          event.target.value,
-          item.status.title
-        );
         return event.target.value === item.status.title ? true : false;
       } else {
         return String(item[event.target.name]).includes(event.target.value)
@@ -26,9 +21,7 @@ export default function DriverFilter() {
           : false;
       }
     });
-    if (data.current.length === 0) {
-      isDataEmpty.current = true;
-    }
+    isDataEmpty.current = true;
     setIsFiltered(!isFiltered);
   };
 

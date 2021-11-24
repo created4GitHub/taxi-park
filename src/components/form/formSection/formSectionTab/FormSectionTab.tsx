@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./style.scss";
 
 import { PATCH } from "../../../../requests";
 
 const FormSectionTab = (props: any) => {
+  const [isDiv, setIsDiv] = useState(true);
+  const [isUpdatedSelect, setIsUpdatedSelect] = useState("");
+
   let item = props.item;
   let itemInfo = props.info;
-  let [isDiv, setIsDiv] = useState(true);
+
+  useEffect(() => {
+    if (item[1] === "status") {
+      setIsUpdatedSelect(item[1].title);
+    }
+  }, [isUpdatedSelect]);
 
   function changeElement(event: any) {
     let element = event.target.id;
@@ -43,6 +51,7 @@ const FormSectionTab = (props: any) => {
   };
 
   const saveStatus = (event: any) => {
+    // setIsUpdatedSelect((isUpdatedSelect) => !isUpdatedSelect);
     type statusType = {
       title: string;
       code: string;
@@ -64,7 +73,7 @@ const FormSectionTab = (props: any) => {
   };
 
   let statuses = Object.values(props.statuses);
-  console.log(item[1].title);
+
   return (
     <>
       <div className="table-section-tab">
@@ -90,7 +99,7 @@ const FormSectionTab = (props: any) => {
           )
         ) : (
           <select
-            defaultValue={item[1].title}
+            value={isUpdatedSelect}
             onChange={saveStatus}
             className="table-section-tab-select"
           >

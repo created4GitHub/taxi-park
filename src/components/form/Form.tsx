@@ -46,9 +46,7 @@ const Form = (props: any) => {
     });
   }, [context, isDeleted]);
 
-  let currentData =
-    (!isDataEmpty.current && data.current.length && data.current) ||
-    receivedData.info;
+  let currentData = (isDataEmpty.current && data.current) || receivedData.info;
 
   return (
     <>
