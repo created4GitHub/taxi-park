@@ -80,16 +80,37 @@ const AddForm = () => {
     return (
         <div className='table_section_add'>
             <div className='table_section-block-input'>
-                <Input className='table_section-input' onChange={(event) => addRequest.mark = event.target.value} placeholder='Brand'/>
+                <Input 
+                    className='table_section-input' 
+                    onChange={(event) => addRequest.mark = event.target.value} 
+                    placeholder='Brand'
+                    pattern='[a-zA-Z]{1,15}$'
+                />
+                <div className="table_section-block-input__error">
+                    Please use only English letters; 1-15 symbols.
+                </div>
             </div>
             <div className='table_section-block-input'>
-                <Input className='table_section-input' onChange={(event) => addRequest.model = event.target.value} placeholder='Modal'/>
+                <Input 
+                    className='table_section-input' 
+                    onChange={(event) => addRequest.model = event.target.value} 
+                    placeholder='Modal'
+                    pattern='[a-zA-Z0-9]{1,15}$'
+                />
+                <div className="table_section-block-input__error">
+                    Please use English letters and only numbers; 1-15 symbols.
+                </div>
             </div>
             <div className='table_section-block-input'>
-                <Input className='table_section-input' maxLength='8' onChange={(event) => addRequest.number = event.target.value} placeholder='Number car'/>
+                <Input 
+                    className='table_section-input-numbers' 
+                    maxLength='8' 
+                    onChange={(event) => addRequest.number = event.target.value} 
+                    placeholder='Number car'
+                />
             </div>
             <div className='table_section-block-input'>
-                <YearForm onChange={(event: any) => addRequest.year = event}/>
+                <YearForm className='table_section-block-input-data' onChange={(event: any) => addRequest.year = event}/>
             </div>
             <select className='table_section_add-select' onChange={chendeSelect} >
                 {renderCheckbox()}

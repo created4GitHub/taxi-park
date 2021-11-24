@@ -34,9 +34,42 @@
             border-radius: 8px;
             border: solid silver 1px;
         }
-        .table_section-input::-webkit-calendar-picker-indicator{
+        .table_section-input:invalid{
+            border-color: red;
+            color: red;
+            box-shadow: none;
+        }
+        .table_section-input:valid {
+            border-color: rgb(0, 0, 0);
+        }
+        .table_section-input-numbers{
+            box-shadow: none;
+            width: 110px;
+            height: 23px;
+            border-radius: 8px;
+            border: solid silver 1px;
+        }
+        .table_section-input-date {
+            box-shadow: none;
+            width: 110px;
+            height: 23px;
+            border-radius: 8px;
+            border: solid silver 1px;
+        }
+        .table_section-input-data::-webkit-calendar-picker-indicator{
             padding: 0;
             margin: 2px 5px 0 0;
+        }
+        .table_section-block-input__error {
+            color: red;
+            text-align: left;
+            font-size: 12px;
+            display: block;
+            margin-top: 3px;
+            display: none;
+        }
+        .table_section-input:invalid:not(:placeholder-shown) + .table_section-block-input__error {
+            display: block;
         }
     }   
     .table_section_add-select{

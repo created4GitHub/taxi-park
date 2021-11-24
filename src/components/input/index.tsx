@@ -7,6 +7,8 @@ type Props = {
   type?: string,
   placeholder?: string,
   value?: string,
+  pattern?: any,
+  title?: string,
   onChange?: ChangeEventHandler<HTMLInputElement> | undefined
 };
 
@@ -20,6 +22,8 @@ const Input : React.FC<Props> = (props) => {
       placeholder={props.placeholder}
       value={props.value}
       onChange={props.onChange}
+      pattern={props.pattern}
+      title={props.title}
     />
   )
 }
