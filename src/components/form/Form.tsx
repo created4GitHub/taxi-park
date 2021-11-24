@@ -1,32 +1,11 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useContext } from 'react';
+import { Context, deletedContext, getContext } from "../../context";
 
-import FormSection from "../formSection/FormSection";
+import { GET } from "../../requests"; 
+
+import FormSection from "./formSection/FormSection";
+
 import "./form.scss";
-
-const getStatuses = fetch(
-  "https://edu.evgeniychvertkov.com/v1/driver-status/",
-  {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "X-Authorization":
-        "api13ea3305989c1bbf4aa08d52b09fb239dbd0c27bd13daa1227861f55af160b34",
-      "Content-Type": "application/json",
-    },
-  }
-).then((resp) => resp.json());
-
-const getInfo = fetch("https://edu.evgeniychvertkov.com/v1/driver/", {
-  method: "GET",
-  headers: {
-    Accept: "application/json",
-    "X-Authorization":
-      "api13ea3305989c1bbf4aa08d52b09fb239dbd0c27bd13daa1227861f55af160b34",
-    "Content-Type": "application/json",
-  },
-}).then((resp) => resp.json());
-
-export const Statuses = React.createContext(null);
 
 type infoType = {
   id: number;
@@ -40,35 +19,40 @@ type infoType = {
   };
 };
 
-const Form = () => {
-  const statuses = useRef([]);
-  const info = useRef([]);
-  const [isReceived, setIsReceived] = useState(false);
+const infoContext = React.createContext(null);
+
+const Form = (props : any) => {
+  const [context, setContext] = useContext(Context);
+  const [get, setGet] = useContext(getContext);
+  const [isDeleted, setIsDeleted] = useState(true);
 
   useEffect(() => {
-    getStatuses.then((resp) => {
-      statuses.current = resp.data;
-    });
-    getInfo.then((resp) => {
-      info.current = resp.data;
-      setIsReceived(!isReceived);
-    });
-  }, []);
+    GET(props.title).then((resp) => {
+      if(props.title === "driver"){
+        resp.data = resp.data.map((item : any) => {
+          item.date_birth = new Date(item.date_birth).toLocaleDateString();
+          item.date_created = new Date(item.date_created).toLocaleDateString();
+          return item;
+        });
+      }
+      GET(props.status).then((statuses) => {
+        setGet({info: resp.data, statuses: statuses.data});
+      });
+    })
+  }, [context, isDeleted]);
+
   return (
     <>
-      {isReceived ? (
-        <div className="table">
-          {info.current.map((item, index) => {
-            return (
-              <FormSection key={index} {...{ info: item, statuses: statuses.current }} />
-            );
-          })}
-        </div>
-      ) : (
-        <div>Загрузка</div>
-      )}
+      {get.statuses &&  get.info ? get.info.map((item : any, index : any) => {
+        return (
+          <deletedContext.Provider key={index} value={[isDeleted, setIsDeleted]}>
+          <FormSection key={index} title={props.title} info={item}  statuses={get.statuses}/>
+          </deletedContext.Provider>
+        );
+      }) : <div>Загрузка</div>}
     </>
   );
 };
 
 export default Form;
+

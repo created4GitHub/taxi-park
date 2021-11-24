@@ -1,8 +1,8 @@
 import React, { ChangeEventHandler } from "react";
 
-
 type Props = {
   className?: string,
+  maxLength?: any,
   name?: string,
   type?: string,
   placeholder?: string,
@@ -13,6 +13,7 @@ type Props = {
 const Input : React.FC<Props> = (props) => {
   return (
     <input
+      maxLength={props.maxLength}
       className={props.className}
       type={props.type}
       name={props.name}

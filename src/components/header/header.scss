@@ -1,6 +1,10 @@
 .header__content{
     display: flex;
     justify-content: space-between;
+    background-color: white;
+    .button__img{
+        background-color: white;
+    }
     .leftSide {
         display: flex;
         .divForButton {
@@ -26,9 +30,11 @@
             margin-top: 8px;
             margin-right: 8px;
             .iconUser {
+                background-color: white;
                 align-items: center;
                 border: none;
                 cursor: pointer;
+                margin-right: 10px;
                 width: 40px;
                 height: 40px;
             }
@@ -41,6 +47,7 @@
                 margin-top: 25px;
                 margin-right: 27px;
             .vectorDown {
+                background-color: white;
                 align-items: center;
                 border: none;
                 cursor: pointer;
