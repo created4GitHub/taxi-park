@@ -11,7 +11,9 @@ const YearSelect = (props: any) => {
     return (
             <select 
             onChange={props.onChange}
-            name={props.name}>
+            name={props.name}
+            defaultValue={props.value}
+            >
                 {massYears.map((item: number, index: number) => {
                     return (
                         <option

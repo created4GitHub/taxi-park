@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 
 import Input from "../../input";
 
@@ -11,19 +11,33 @@ export default function DriverFilter() {
 
   const { data, isDataEmpty } = useContext(filteredDataContext);
 
+  const filtersValues = useRef({});
+
+
   const search = (event: any) => {
-    data.current = receivedData.info.filter((item: any) => {
-      if (event.target.id === "status") {
-        return event.target.value === item.status.title ? true : false;
-      } else {
-        return String(item[event.target.name]).includes(event.target.value)
-          ? true
-          : false;
-      }
-    });
-    isDataEmpty.current = true;
-    setIsFiltered(!isFiltered);
+    (filtersValues.current as {[key: string] : string})[event.target.name] = event.target.value;
+    let result = receivedData.info;
+    for(let key in filtersValues.current){
+      result = result.filter((item: any) => {
+        if (key === "status") {
+          return (filtersValues.current as {[key: string] : string})[key] === item.status.title ? true : false;
+        } else {
+          return String(item[key]).includes((filtersValues.current as {[key: string] : string})[key])
+            ? true
+            : false;
+        }
+      });
+    }
+      data.current = result;
+      isDataEmpty.current = true;
+      setIsFiltered(!isFiltered);
   };
+
+  const resetFilters = () => {
+    isDataEmpty.current = false;
+    filtersValues.current = {};
+    setIsFiltered(!isFiltered);
+  }
 
   return (
     <>
