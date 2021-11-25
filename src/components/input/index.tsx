@@ -2,7 +2,7 @@ import React, { ChangeEventHandler } from "react";
 
 type Props = {
   className?: string;
-  maxLength?: any;
+  maxLength?: number;
   name?: string;
   type?: string;
   placeholder?: string;

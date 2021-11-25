@@ -36,7 +36,7 @@ const AddForm = () => {
     }, [])
 
     const renderCheckbox = () => {
-        return statuses && statuses.map((item: any, index: any) => {
+        return statuses && statuses.map((item: any, index: number) => {
             return <option key={index} value={item.code} >{item.title}</option>
         })
     }
@@ -80,7 +80,7 @@ const AddForm = () => {
         addRequest.status.code = ''
     }
 
-    const chendeSelect = (event: any) => {
+    const chandesSelect = (event: any) => {
         addRequest.status.title = event.target.selectedOptions[0].innerText
         addRequest.status.code = event.target.value
     }
@@ -110,20 +110,15 @@ const AddForm = () => {
                 </div>
             </div>
             <div className='table_section-block-input'>
-                <Input 
-                    className='table_section-input-numbers' 
-                    maxLength='8' 
-                    onChange={(event) => addRequest.number = event.target.value} 
-                    placeholder='Number car'
-                />
+                <Input className='table_section-input' maxLength={8} onChange={(event) => addRequest.number = event.target.value} placeholder='Number car'/>
             </div>
             <div className='table_section-block-input'>
-                <YearSelect onChange={(event: any) => addRequest.year = event.target.value}/>
+                <YearSelect onChange={(event) => addRequest.year = event.target.value}/>
             </div>
             <div className='table_section-block-input'>
-                <FindDriverId onChange={(event: any) => addRequest.driver_id = event} />
+                <FindDriverId onChange={(event) => addRequest.driver_id = event} />
             </div>
-            <select className='table_section_add-select' onChange={chendeSelect} >
+            <select className='table_section_add-select' onChange={chandesSelect} >
                 {renderCheckbox()}
             </select>
             <div className='table_section_buttons' >

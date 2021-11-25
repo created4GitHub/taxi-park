@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from "react";
+import React, { MouseEventHandler, FocusEventHandler } from "react";
 
 import "./style.scss";
 
@@ -6,9 +6,9 @@ type Props = {
   className: string;
   disabled: boolean | undefined;
   btnText: string;
-  onBlur: any;
-  name: any;
-  id: any;
+  onBlur: FocusEventHandler<HTMLButtonElement>;
+  name: string;
+  id: string;
   onClick: MouseEventHandler<HTMLButtonElement> | undefined;
 };
 

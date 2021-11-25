@@ -1,11 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, ChangeEventHandler } from 'react'
 
 import { GET } from '../../requests'
 import { Button } from '../button'
  
 import './findDriverId.style.scss'
 
-const FindDriverId = (props: any) => {
+type Props = {
+    maxLength?: number;
+    name?: string;
+    onChange: ChangeEventHandler<HTMLSelectElement>;
+};
+
+const FindDriverId: React.FC<Props> = (props) => {
     const [isActive, setIsActive]: any = useState(false)
     const [users, setUsers]: any = useState([])
     const [result, setResult]: any = useState()
@@ -31,13 +37,13 @@ const FindDriverId = (props: any) => {
         })
     }
 
-    const onBlur = (event: any) => {        
+    const onBlurEvent = (event: any) => {        
         if(event.relatedTarget !== null && event.relatedTarget.id){
             setNameBut(event.relatedTarget.id);
             setResult(event.relatedTarget.id)
         }
 
-        setIsActive((prevState: any) => !prevState);
+        setIsActive((prevState: boolean) => !prevState);
     }
 
     props.onChange(result)
@@ -46,8 +52,8 @@ const FindDriverId = (props: any) => {
         <div className='search__findDriber'>
             <Button 
                 className='data_year-button' 
-                onClick={() => setIsActive((prevState: any) => !prevState)}
-                onBlur={onBlur}
+                onClick={() => setIsActive((prevState: boolean) => !prevState)}
+                onBlur={onBlurEvent}
                 btnText = {'id driver - ' + nameBut}
             />
             { isActive ? <div className='search__findDriber_cartsDriver'>

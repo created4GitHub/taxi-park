@@ -33,7 +33,7 @@ const AddDrivers = () => {
     }, [])
 
     const renderCheckbox = () => {
-        return statuses && statuses.map((item: any, index: any) => {
+        return statuses && statuses.map((item: any, index: number) => {
             return <option key={index} value={item.code} >{item.title}</option>
         })
     }
@@ -75,7 +75,7 @@ const AddDrivers = () => {
         addRequest.status.code = '';
     }
 
-    const chendeSelect = (event: any) => {
+    const changesSelect = (event: any) => {
         addRequest.status.title = event.target.selectedOptions[0].innerText
         addRequest.status.code = event.target.value
     }
@@ -108,7 +108,7 @@ const AddDrivers = () => {
             <div className='table_section-block-input'>
                 <Input type="date" className='table_section-input-date' onChange={(event) => addRequest.date_birth = Date.parse(event.target.value)} />
             </div>
-            <select className='table_section_add-select' onChange={chendeSelect} >
+            <select className='table_section_add-select' onChange={changesSelect} >
                 {renderCheckbox()}
             </select>
             <div className='table_section_buttons' >

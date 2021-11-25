@@ -1,6 +1,14 @@
+import React, { ChangeEventHandler } from "react";
+
 import './year.style.scss'
 
-const YearSelect = (props: any) => {
+type Props = {
+    maxLength?: number;
+    name?: string;
+    onChange?: ChangeEventHandler<HTMLSelectElement> | undefined;
+};
+
+const YearSelect: React.FC<Props> = (props) => {
 
     let massYears = [];
 

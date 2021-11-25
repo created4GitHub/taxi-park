@@ -17,7 +17,7 @@ const FormSection = (props: any) => {
   const [isDeleted, setIsDeleted] = useContext(deletedContext);
   let infoEntries = Object.entries(props.info) as any;  
   
-  const deleteEl = (event: any) => {
+  const deleteElement = () => {
     REMOVE(props.title, itemInfo.id).then((data: any) => {
       setIsDeleted((isDeleted: any) => !isDeleted);
     });
@@ -37,7 +37,7 @@ const FormSection = (props: any) => {
 
   const renderCar = () => {
     if(cars){
-      return cars.map((item: any, index: any) => {
+      return cars.map((item: any, index: number) => {
          return (
             <div key={index} className='table_section_isActive-cars block'>
               <p>{item.id}</p> 
@@ -70,19 +70,19 @@ const FormSection = (props: any) => {
   return (
     <>
       <div className="table_section">
-        {infoEntries.map((item: any, index: any) => {
+        {infoEntries.map((item: any, index: number) => {
           return <FormSectionTab key={index} {...{ ...props, item: item }} />;
         })}
         <Button 
           onClick = {() => {
-            setIsopen((prevState: any) => !prevState)
+            setIsopen((prevState: boolean) => !prevState)
             search()
           }}
           className = 'table_section-showButton'
           btnText = 'show'
         />
         <Button
-          onClick={deleteEl}
+          onClick={deleteElement}
           className="table_section-deleteButton"
           btnText="delete"
         />

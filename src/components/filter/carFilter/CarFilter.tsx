@@ -14,7 +14,6 @@ export default function DriverFilter() {
   const { data, isDataEmpty } = useContext(filteredDataContext);
 
   const search = (event: any) => {
-    console.log(event)
       data.current = receivedData.info.filter((item: any) => {
         if (event.target.id === "status") {
           return event.target.value === item.status.title ? true : false;
