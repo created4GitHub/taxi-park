@@ -2,13 +2,6 @@
     display: flex;
     justify-content: space-between;
     background-color: white;
-    .button__img{
-        display: none;
-        background-color: white;
-        @media (max-width: 1080px) {
-            display: flex;
-        }
-    }
     .leftSide {
         display: flex;
         .divForButton {
