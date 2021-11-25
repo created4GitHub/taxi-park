@@ -13,10 +13,11 @@ export default function DriverFilter() {
 
   const { data, isDataEmpty } = useContext(filteredDataContext);
 
+
+
   const search = (event: any) => {
-    console.log(event)
       data.current = receivedData.info.filter((item: any) => {
-        if (event.target.id === "status") {
+        if (event.target.name === "status") {
           return event.target.value === item.status.title ? true : false;
         } else {
           return String(item[event.target.name]).includes(event.target.value)
@@ -45,11 +46,10 @@ export default function DriverFilter() {
       <div className="filter-element">
         <YearSelect onChange={search} name="year"/>
       </div>
-      <div className="filter-element">
-        {receivedData.statuses &&
+      {receivedData.statuses &&
           receivedData.statuses.map((item: any, index: number) => {
             return (
-              <div className="filter-element-inputRadio" key={index}>
+              <div className="filter-element" key={index}>
                 <Input
                   type="radio"
                   name="status"
@@ -61,7 +61,9 @@ export default function DriverFilter() {
               </div>
             );
           })}
-      </div>
+      <button className="reset-filter">
+        Reset
+      </button>
     </>
   );
 }
