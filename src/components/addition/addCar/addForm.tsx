@@ -1,7 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../../../context";
 
-import YearForm from "../../formData/dataYear/year";
+import FindDriverId from "../../findDriverId/findDriverId";
+import YearSelect from "../../yearSelect/YearSelect";
 import Input from "../../input";
 import { Button } from "../../button";
 import { GET } from "../../../requests";
@@ -13,7 +14,6 @@ import deleteObj from '../../../img/deleteObj.svg'
 import './addForm.style.scss'
 
 const AddForm = () => {
-    console.log("add")
     const [statuses, setStatuses]: any = useState();
     const [context, setContext] = useContext(Context);
     const [addRequest, setAddRequest]: any = useState({
@@ -21,7 +21,7 @@ const AddForm = () => {
         mark: '',
         number: '', 
         year: null,
-        driver_id: 60,
+        driver_id: 120,
         status: {
             title: '', 
             code: ''
@@ -54,6 +54,13 @@ const AddForm = () => {
             }
         }
 
+        if(addRequest.status.title === ""){
+            addRequest.status = {
+                title: "Эконом",
+                code: "econom"
+            }
+        }
+
         checkRequest(addRequest);
 
         for(let index of checkMass){
@@ -62,12 +69,13 @@ const AddForm = () => {
             }
         } 
         setContext(false)
-        POST('car', addRequest)
+
+        POST('car', addRequest);
         addRequest.model = ''
         addRequest.mark = ''
         addRequest.number = '' 
         addRequest.year = null
-        addRequest.driver_id = 60
+        addRequest.driver_id = ''
         addRequest.status.title = ''
         addRequest.status.code = ''
     }
@@ -110,7 +118,10 @@ const AddForm = () => {
                 />
             </div>
             <div className='table_section-block-input'>
-                <YearForm className='table_section-block-input-data' onChange={(event: any) => addRequest.year = event}/>
+                <YearSelect onChange={(event: any) => addRequest.year = event.target.value}/>
+            </div>
+            <div className='table_section-block-input'>
+                <FindDriverId onChange={(event: any) => addRequest.driver_id = event} />
             </div>
             <select className='table_section_add-select' onChange={chendeSelect} >
                 {renderCheckbox()}

@@ -1,17 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./style.scss";
 
-import { PATCH } from "../../../../requests"; 
+import { PATCH } from "../../../../requests";
 
 const FormSectionTab = (props: any) => {
+  const [isDiv, setIsDiv] = useState(true);
+  const [isUpdatedSelect, setIsUpdatedSelect] = useState("");
+
   let item = props.item;
   let itemInfo = props.info;
-  let [isDiv, setIsDiv] = useState(true);
+
+  useEffect(() => {
+    if (item[1] === "status") {
+      setIsUpdatedSelect(item[1].title);
+    }
+  }, [isUpdatedSelect]);
 
   function changeElement(event: any) {
     let element = event.target.id;
-    if (element !== "id" && element !== "date_birth" && element !== "date_created") {
+    if (
+      element !== "id" &&
+      element !== "date_birth" &&
+      element !== "date_created"
+    ) {
       setIsDiv(!isDiv);
     }
   }
@@ -38,8 +50,6 @@ const FormSectionTab = (props: any) => {
     PATCH(props.title, itemInfo.id, { [key]: info });
   };
 
-  let statuses = Object.values(props.statuses);
-
   const saveStatus = (event: any) => {
     type statusType = {
       title: string;
@@ -61,14 +71,15 @@ const FormSectionTab = (props: any) => {
     PATCH(props.title, itemInfo.id, { status: newStatus });
   };
 
+  let statuses = Object.values(props.statuses);
+
   return (
     <>
       <div className="table-section-tab">
         {item[0] !== "status" ? (
           isDiv ? (
             <p className="table_paragraph" id={item[0]} onClick={changeElement}>
-              {typeof item[1] !== "object" ? itemInfo[item[0]] 
-              : item[1].title}
+              {typeof item[1] !== "object" ? itemInfo[item[0]] : item[1].title}
             </p>
           ) : (
             <input
@@ -86,17 +97,20 @@ const FormSectionTab = (props: any) => {
             />
           )
         ) : (
-          <select defaultValue={item[1].title} onChange={saveStatus} className="table-section-tab-select" >
+          <select
+            value={item[1].title}
+            onChange={saveStatus}
+            className="table-section-tab-select"
+          >
             {statuses.length ? (
-              statuses.map((status: any, index: any) => { 
-
+              statuses.map((status: any, index: any) => {
                 return <option key={index}>{status.title}</option>;
               })
             ) : (
               <option>Загрузка</option>
             )}
           </select>
-        )}  
+        )}
       </div>
     </>
   );

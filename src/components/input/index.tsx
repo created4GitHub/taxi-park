@@ -1,20 +1,22 @@
 import React, { ChangeEventHandler } from "react";
 
 type Props = {
-  className?: string,
-  maxLength?: any,
-  name?: string,
-  type?: string,
-  placeholder?: string,
-  value?: string,
+  className?: string;
+  maxLength?: any;
+  name?: string;
+  type?: string;
+  placeholder?: string;
+  value?: string;
+  id?: string;
   pattern?: any,
   title?: string,
-  onChange?: ChangeEventHandler<HTMLInputElement> | undefined
+  onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
 };
 
-const Input : React.FC<Props> = (props) => {
+const Input: React.FC<Props> = (props) => {
   return (
     <input
+      id={props.id}
       maxLength={props.maxLength}
       className={props.className}
       type={props.type}
@@ -25,7 +27,7 @@ const Input : React.FC<Props> = (props) => {
       pattern={props.pattern}
       title={props.title}
     />
-  )
-}
+  );
+};
 
 export default Input;

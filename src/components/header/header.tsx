@@ -1,14 +1,11 @@
-import React from "react";
-
 import logo from '../../img/taxi.png';
 import icon from '../../img/IconsRow.svg';
-import iconUser from '../../img/IconsUser.svg';
-import iconVectorDown from '../../img/IconsVectorDown.svg';
 
 import './header.scss';
 
 const Header = () => {
     return(
+        <header className="header">
         <div className='header__content'>
             <div className='header__content leftSide'>
                 <div className='header__content divForButton'>
@@ -20,20 +17,8 @@ const Header = () => {
                     <img src={logo} alt="#" />
                 </div>
             </div>
-            <div className = 'header__content rightSide'>
-                <div className='header__content user'>
-                    <button className='header__content iconUser'>
-                        <img src={iconUser} alt="#" />
-                    </button>
-                </div>
-                <p>Admin</p>
-                <div className='header__content vector'>
-                    <button className='header__content vectorDown'>
-                        <img src={iconVectorDown} alt="#" />
-                    </button>
-                </div>
-            </div>
         </div>
+        </header>
     )
 }
 

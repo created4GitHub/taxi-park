@@ -4,9 +4,16 @@
     align-items: center;
     flex-direction: row;
     justify-content: center;
+    @media (max-width: 840px) {
+        height: 38px;
+    }
 }
+
 .table-section-tab:first-child {
     width: 45%;
+    @media (max-width: 840px) {
+
+    }
 }
 .table-section-tab-select{
     height: 25px;
