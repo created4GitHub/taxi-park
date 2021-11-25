@@ -79,7 +79,8 @@ export default function DriverFilter() {
               </div>
             );
           })}
-      <button className="reset-filter">
+      <button className="reset-filter"
+      onClick={resetFilters}>
         Reset
       </button>
     </>
