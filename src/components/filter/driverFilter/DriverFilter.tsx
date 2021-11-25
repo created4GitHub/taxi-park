@@ -13,8 +13,8 @@ export default function DriverFilter() {
 
   const filtersValues = useRef({});
 
-
   const search = (event: any) => {
+    console.log(event.target.value);
     (filtersValues.current as {[key: string] : string})[event.target.name] = event.target.value;
     let result = receivedData.info;
     for(let key in filtersValues.current){
@@ -42,13 +42,17 @@ export default function DriverFilter() {
   return (
     <>
       <div className="filter-element">
-        <Input onChange={search} name="id" placeholder="Search by ID" />
+        <Input onChange={search} 
+        name="id" 
+        placeholder="Search by ID"
+        value={(filtersValues.current as {[key: string] : string}).id || ""} />
       </div>
       <div className="filter-element">
         <Input
           onChange={search}
           name="first_name"
           placeholder="Search by name"
+          value={(filtersValues.current as {[key: string] : string})["first_name"] || ""}
         />
       </div>
       <div className="filter-element">
@@ -56,6 +60,7 @@ export default function DriverFilter() {
           onChange={search}
           name="last_name"
           placeholder="Search by surname"
+          value={(filtersValues.current as {[key: string] : string})["last_name"] || ""}
         />
       </div>
         {receivedData.statuses &&
@@ -68,6 +73,7 @@ export default function DriverFilter() {
                   id={"status"+index}
                   onChange={search}
                   value={item.title}
+                  checked={(filtersValues.current as {[key: string] : string}).status === item.title}
                 />
                 <label htmlFor={"status"+index}>{item.title}</label>
               </div>

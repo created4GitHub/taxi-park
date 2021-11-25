@@ -15,9 +15,6 @@ export default function DriverFilter() {
 
   const filtersValues = useRef({});
 
-  const yearElement = useRef();
-
-
   const search = (event: any) => {
     console.log(event.target.value);
     (filtersValues.current as {[key: string] : string})[event.target.name] = event.target.value;
@@ -43,7 +40,7 @@ export default function DriverFilter() {
     filtersValues.current = {};
     setIsFiltered(!isFiltered);
   }
-console.log(yearElement.current)
+
   return (
     <>
       <div className="filter-element">
