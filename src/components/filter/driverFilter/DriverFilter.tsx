@@ -44,23 +44,24 @@ export default function DriverFilter() {
           placeholder="Search by surname"
         />
       </div>
-      <div className="filter-element">
         {receivedData.statuses &&
           receivedData.statuses.map((item: any, index: number) => {
             return (
-              <div key={index}>
+              <div className="filter-element" key={index}>
                 <Input
                   type="radio"
                   name="status"
-                  id="status"
+                  id={"status"+index}
                   onChange={search}
                   value={item.title}
                 />
-                <label htmlFor="status">{item.title}</label>
+                <label htmlFor={"status"+index}>{item.title}</label>
               </div>
             );
           })}
-      </div>
+      <button className="reset-filter">
+        Reset
+      </button>
     </>
   );
 }
