@@ -4,6 +4,8 @@ import Input from "../../input";
 
 import { receivedDataContext, filteredDataContext } from "../../../context";
 
+import YearSelect from "../../yearSelect/YearSelect";
+
 export default function DriverFilter() {
   const [receivedData, setReceivedData] = useContext(receivedDataContext);
 
@@ -12,6 +14,7 @@ export default function DriverFilter() {
   const { data, isDataEmpty } = useContext(filteredDataContext);
 
   const search = (event: any) => {
+    console.log(event.target.value)
     data.current = receivedData.info.filter((item: any) => {
       if (event.target.id === "status") {
         return event.target.value === item.status.title ? true : false;
@@ -38,6 +41,9 @@ export default function DriverFilter() {
       </div>
       <div className="filter-element">
         <Input onChange={search} name="number" placeholder="Search by number" />
+      </div>
+      <div className="filter-element">
+        <YearSelect onChange={search}/>
       </div>
       <div className="filter-element">
         {receivedData.statuses &&

@@ -4,7 +4,7 @@ import { Button } from '../button';
 
 import './year.style.scss'
 
-const YearForm = (props: any) => {
+const YearSelect = (props: any) => {
     const [moldOpening, setMoldOpening]: any = useState();
     const [buttonTextYear, setButtonTextYear]: any = useState('Год');
     const [result, setResult]: any = useState();
@@ -27,13 +27,12 @@ const YearForm = (props: any) => {
             )
         })
     }
-    // props.onChange(result)
 
     const onBlur = (event: any) => {
         setMoldOpening(false);
         if(event.relatedTarget !== null && event.relatedTarget.id){
             setButtonTextYear(event.relatedTarget.id);
-            setResult(event.relatedTarget.id)
+            setResult(event.relatedTarget.id);
         }
     }
 
@@ -53,4 +52,4 @@ const YearForm = (props: any) => {
     )
 }
 
-export default YearForm
+export default YearSelect;

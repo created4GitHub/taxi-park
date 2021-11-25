@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../../../context";
 
-import YearForm from "../../dataYear/year";
+import YearForm from "../../yearSelect/YearSelect";
 import Input from "../../input";
 import { Button } from "../../button";
 import { GET } from "../../../requests";

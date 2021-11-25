@@ -51,7 +51,6 @@ const FormSectionTab = (props: any) => {
   };
 
   const saveStatus = (event: any) => {
-    // setIsUpdatedSelect((isUpdatedSelect) => !isUpdatedSelect);
     type statusType = {
       title: string;
       code: string;
@@ -99,7 +98,7 @@ const FormSectionTab = (props: any) => {
           )
         ) : (
           <select
-            value={isUpdatedSelect}
+            value={item[1].title}
             onChange={saveStatus}
             className="table-section-tab-select"
           >
