@@ -80,7 +80,7 @@ const AddForm = () => {
         addRequest.status.code = ''
     }
 
-    const chandesSelect = (event: any) => {
+    const changesSelect = (event: any) => {
         addRequest.status.title = event.target.selectedOptions[0].innerText
         addRequest.status.code = event.target.value
     }
@@ -88,37 +88,21 @@ const AddForm = () => {
     return (
         <div className='table_section_add'>
             <div className='table_section-block-input'>
-                <Input 
-                    className='table_section-input' 
-                    onChange={(event) => addRequest.mark = event.target.value} 
-                    placeholder='Brand'
-                    pattern='[a-zA-Z]{1,15}$'
-                />
-                <div className="table_section-block-input__error">
-                    Please use only English letters; 1-15 symbols.
-                </div>
+                <Input className='table_section-input' onChange={(event) => addRequest.mark = event.target.value} placeholder='Brand'/>
             </div>
             <div className='table_section-block-input'>
-                <Input 
-                    className='table_section-input' 
-                    onChange={(event) => addRequest.model = event.target.value} 
-                    placeholder='Modal'
-                    pattern='[a-zA-Z0-9]{1,15}$'
-                />
-                <div className="table_section-block-input__error">
-                    Please use English letters and only numbers; 1-15 symbols.
-                </div>
+                <Input className='table_section-input' onChange={(event) => addRequest.model = event.target.value} placeholder='Modal'/>
             </div>
             <div className='table_section-block-input'>
                 <Input className='table_section-input' maxLength={8} onChange={(event) => addRequest.number = event.target.value} placeholder='Number car'/>
             </div>
             <div className='table_section-block-input'>
-                <YearSelect onChange={(event) => addRequest.year = event.target.value}/>
+                <YearSelect onChange={(event: any) => addRequest.year = event.target.value}/>
             </div>
             <div className='table_section-block-input'>
-                <FindDriverId onChange={(event) => addRequest.driver_id = event} />
+                <FindDriverId onChange={(event: any) => addRequest.driver_id = event} />
             </div>
-            <select className='table_section_add-select' onChange={chandesSelect} >
+            <select className='table_section_add-select' onChange={changesSelect} >
                 {renderCheckbox()}
             </select>
             <div className='table_section_buttons' >

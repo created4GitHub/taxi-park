@@ -83,30 +83,13 @@ const AddDrivers = () => {
     return (
         <div className='table_section_add'>
             <div className='table_section-block-input'>
-                <Input 
-                    className='table_section-input' 
-                    onChange={(event) => addRequest.first_name = event.target.value} 
-                    placeholder='Name'
-                    pattern='[a-zA-Z]{1,15}'
-                    title='no'
-                />
-                <div className="table_section-block-input__error">
-                    Please use only English letters; 1-15 symbols.
-                </div>
+                <Input className='table_section-input' onChange={(event) => addRequest.first_name = event.target.value} placeholder='Name'/>
             </div>
             <div className='table_section-block-input'>
-                <Input 
-                    className='table_section-input' 
-                    onChange={(event) => addRequest.last_name = event.target.value} 
-                    placeholder='first name'
-                    pattern='[a-zA-Z]{1,15}'
-                />
-                <div className="table_section-block-input__error">
-                    Please use only English letters; 1-15 symbols.
-                </div>
+                <Input className='table_section-input' onChange={(event) => addRequest.last_name = event.target.value} placeholder='first name'/>
             </div>
             <div className='table_section-block-input'>
-                <Input type="date" className='table_section-input-date' onChange={(event) => addRequest.date_birth = Date.parse(event.target.value)} />
+                <Input type="date" className='table_section-input' onChange={(event) => addRequest.date_birth = Date.parse(event.target.value)} />
             </div>
             <select className='table_section_add-select' onChange={changesSelect} >
                 {renderCheckbox()}

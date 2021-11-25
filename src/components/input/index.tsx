@@ -8,9 +8,9 @@ type Props = {
   placeholder?: string;
   value?: string;
   id?: string;
-  pattern?: any,
-  title?: string,
+  checked?: boolean;
   onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
+  onInput?: ChangeEventHandler<HTMLInputElement> | undefined;
 };
 
 const Input: React.FC<Props> = (props) => {
@@ -24,8 +24,8 @@ const Input: React.FC<Props> = (props) => {
       placeholder={props.placeholder}
       value={props.value}
       onChange={props.onChange}
-      pattern={props.pattern}
-      title={props.title}
+      onInput={props.onInput}
+      checked={props.checked}
     />
   );
 };
