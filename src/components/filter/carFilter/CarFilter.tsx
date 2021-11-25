@@ -14,18 +14,18 @@ export default function DriverFilter() {
   const { data, isDataEmpty } = useContext(filteredDataContext);
 
   const search = (event: any) => {
-    console.log(event.target.value)
-    data.current = receivedData.info.filter((item: any) => {
-      if (event.target.id === "status") {
-        return event.target.value === item.status.title ? true : false;
-      } else {
-        return String(item[event.target.name]).includes(event.target.value)
-          ? true
-          : false;
-      }
-    });
-    isDataEmpty.current = true;
-    setIsFiltered(!isFiltered);
+    console.log(event)
+      data.current = receivedData.info.filter((item: any) => {
+        if (event.target.id === "status") {
+          return event.target.value === item.status.title ? true : false;
+        } else {
+          return String(item[event.target.name]).includes(event.target.value)
+            ? true
+            : false;
+        }
+      });
+      isDataEmpty.current = true;
+      setIsFiltered(!isFiltered);
   };
 
   return (
@@ -43,7 +43,7 @@ export default function DriverFilter() {
         <Input onChange={search} name="number" placeholder="Search by number" />
       </div>
       <div className="filter-element">
-        <YearSelect onChange={search}/>
+        <YearSelect onChange={search} name="year"/>
       </div>
       <div className="filter-element">
         {receivedData.statuses &&

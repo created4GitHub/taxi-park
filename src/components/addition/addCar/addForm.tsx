@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../../../context";
 
-import YearForm from "../../yearSelect/YearSelect";
+import YearSelect from "../../yearSelect/YearSelect";
 import Input from "../../input";
 import { Button } from "../../button";
 import { GET } from "../../../requests";
@@ -96,7 +96,7 @@ const AddForm = () => {
                 <Input className='table_section-input' maxLength='8' onChange={(event) => addRequest.number = event.target.value} placeholder='Number car'/>
             </div>
             <div className='table_section-block-input'>
-                <YearForm onChange={(event: any) => addRequest.year = event}/>
+                <YearSelect onChange={(event: any) => addRequest.year = event.target.value}/>
             </div>
             <select className='table_section_add-select' onChange={chendeSelect} >
                 {renderCheckbox()}
