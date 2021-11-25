@@ -79,7 +79,7 @@ const FormSection = (props: any) => {
             search()
           }}
           className = 'table_section-showButton'
-          btnText = 'show'
+          btnText = { isOpen ? 'hide' : 'show' }
         />
         <Button
           onClick={deleteEl}

@@ -45,25 +45,30 @@ export default function DriverFilter() {
     <>
       <div className='filter_element-inputs'>
           <Input onInput={search} 
-          name="id" 
-          placeholder="Search by ID" 
-          value={(filtersValues.current as {[key: string] : string}).id|| ""}/>
+            name="id" 
+            placeholder="Search by ID" 
+            value={(filtersValues.current as {[key: string] : string}).id|| ""}
+          />
           <Input onInput={search} 
-          name="driver_id" 
-          placeholder="Search by driver ID" 
-          value={(filtersValues.current as {[key: string] : string})["driver_id"]|| ""}/>
+            name="driver_id" 
+            placeholder="Search by driver ID" 
+            value={(filtersValues.current as {[key: string] : string})["driver_id"]|| ""}
+          />
           <Input onInput={search} 
-          name="mark" 
-          placeholder="Search by mark" 
-          value={(filtersValues.current as {[key: string] : string}).mark|| ""}/>
+            name="mark" 
+            placeholder="Search by mark" 
+            value={(filtersValues.current as {[key: string] : string}).mark|| ""}
+          />
           <Input onInput={search} 
-          name="model" 
-          placeholder="Search by model" 
-          value={(filtersValues.current as {[key: string] : string}).model|| ""}/>
+            name="model" 
+            placeholder="Search by model" 
+            value={(filtersValues.current as {[key: string] : string}).model|| ""}
+          />
           <Input onInput={search} 
-          name="number" 
-          placeholder="Search by number" 
-          value={(filtersValues.current as {[key: string] : string}).number|| ""}/>
+            name="number" 
+            placeholder="Search by number" 
+            value={(filtersValues.current as {[key: string] : string}).number|| ""}
+          />
       </div>
       <div className='filter_element-inputRadio'>
         {receivedData.statuses &&
