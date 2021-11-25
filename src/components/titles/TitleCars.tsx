@@ -11,6 +11,7 @@ const FormCars = () => {
             <div className='title-section-title'>class</div>
             <div className='title-section-title'>info</div>
             <div className='title-section-title'>Delete</div>
+            <div className='title-section-title'>Delete</div>
         </div>
     )
 }

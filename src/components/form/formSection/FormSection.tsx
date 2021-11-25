@@ -90,7 +90,7 @@ const FormSection = (props: any) => {
         />
       </div>
         { isOpen ? <div className='table_section_isActive'>
-          <div className='table_section_isActive-style'>
+          {/* <div className='table_section_isActive-style'> */}
             <div className='table_section_isActive-cap block'>
               {props.title === 'driver' ? 
                 <>
@@ -113,7 +113,7 @@ const FormSection = (props: any) => {
             </div>
             {props.title === 'driver' ? renderCar() : ''}
             {props.title === 'car' ? renderDriver() : ''}
-          </div>
+          {/* </div> */}
         </div> : '' } 
     </>
   );
