@@ -11,8 +11,6 @@ import { POST } from "../../../requests";
 import addObj from '../../../img/addObj.svg'
 import deleteObj from '../../../img/deleteObj.svg'
 
-import './addForm.style.scss'
-
 const AddForm = () => {
     const [statuses, setStatuses]: any = useState();
     const [context, setContext] = useContext(Context);

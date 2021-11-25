@@ -91,11 +91,12 @@ export default function DriverFilter() {
       <div className="filter_element-yearSelect">
         <YearSelect onChange={search} name="year" value={"2018"}/>
       </div>
-      <button  
-        className="reset-filter-button"
-        onClick={resetFilters}>
-        Reset
-      </button>
+      <div className="reset-filter-button">
+        <button
+          onClick={resetFilters}>
+          Reset
+        </button>
+      </div>
     </>
   );
 }

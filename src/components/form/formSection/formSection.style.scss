@@ -1,20 +1,11 @@
-@keyframes slideright {
-    0% {
-        transform: translateY(-100%);
-        color: skyblue;
-    }       
-    100% {
-        color: black;
-        transform: translateY(0%);
-    }   
-}
-
 @keyframes advancing {
     0% {
         height: 0;
     }       
     100% {
-        min-height: 100%;
+        @media (max-width: 840px) {
+            min-height: 100%;
+        }
     }  
 }
 
