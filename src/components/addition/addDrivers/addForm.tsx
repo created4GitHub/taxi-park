@@ -53,6 +53,13 @@ const AddDrivers = () => {
 
         checkRequest(addRequest);
 
+        if(addRequest.status.title === ""){
+            addRequest.status = {
+                title: "Активный",
+                code: "active"
+            }
+        }
+
         for(let index of checkMass){
             if(index === '' || !index){
                 return

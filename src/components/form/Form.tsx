@@ -1,7 +1,12 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { Context, deletedContext } from "../../context";
+import React, { useEffect, useState, useContext } from "react";
+import {
+  Context,
+  deletedContext,
+  receivedDataContext,
+  filteredDataContext,
+} from "../../context";
 
-import { GET } from "../../requests"; 
+import { GET } from "../../requests";
 
 import FormSection from "./formSection/FormSection";
 
@@ -19,46 +24,53 @@ type infoType = {
   };
 };
 
-const infoContext = React.createContext(null);
-
-const Form = (props : any) => {
+const Form = (props: any) => {
   const [context, setContext] = useContext(Context);
-  const [statuses, setStatuses] = useState([]);
-  const [info, setInfo] = useState([]);
+  const [receivedData, setReceivedData] = useContext(receivedDataContext);
   const [isDeleted, setIsDeleted] = useState(true);
 
+  const { data, isDataEmpty } = useContext(filteredDataContext);
+
   useEffect(() => {
-    GET(props.status).then((resp) => {
-      setStatuses(resp.data);
-    });
     GET(props.title).then((resp) => {
-      if(props.title === "driver"){
-        resp.data = resp.data.map((item : any) => {
+      if (props.title === "driver") {
+        resp.data = resp.data.map((item: any) => {
           item.date_birth = new Date(item.date_birth).toLocaleDateString();
           item.date_created = new Date(item.date_created).toLocaleDateString();
           return item;
         });
-      }      
-      setInfo(resp.data); 
-    })
+      }
+      GET(props.status).then((statuses) => {
+        setReceivedData({ info: resp.data, statuses: statuses.data });
+      });
+    });
   }, [context, isDeleted]);
+
+  let currentData = (isDataEmpty.current && data.current) || receivedData.info;
 
   return (
     <>
-      {statuses.length &&  info.length ? info.map((item : any, index : any) => {
-        return (
-          <deletedContext.Provider key={index} value={[isDeleted, setIsDeleted]}>
-          <FormSection key={index} title={props.title} info={item}  statuses={statuses}/>
-          </deletedContext.Provider>
-        );
-      }) : <div>Загрузка</div>}
+      {receivedData.statuses && currentData ? (
+        currentData.map((item: any, index: any) => {
+          return (
+            <deletedContext.Provider
+              key={index}
+              value={[isDeleted, setIsDeleted]}
+            >
+              <FormSection
+                key={index}
+                title={props.title}
+                info={item}
+                statuses={receivedData.statuses}
+              />
+            </deletedContext.Provider>
+          );
+        })
+      ) : (
+        <div>Загрузка</div>
+      )}
     </>
   );
 };
 
 export default Form;
-
-function debounce(arg0: Promise<void>) {
-  throw new Error('Function not implemented.');
-}
-

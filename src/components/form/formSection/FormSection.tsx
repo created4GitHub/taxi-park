@@ -3,12 +3,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { deletedContext } from "../../../context";
 
 import FormSectionTab from "./formSectionTab/FormSectionTab";
-import { GET, REMOVE } from '../../../requests';
-import { GETCAR } from '../../../requests';
+import { GET, REMOVE, GETCAR } from '../../../requests';
 import { Button } from "../../button";
 
-import icons from '../../../img/IconsDirection.svg'
-import './formSection.style.scss';
+import icons from "../../../img/IconsDirection.svg";
+import "./formSection.style.scss";
 
 const FormSection = (props: any) => {
   let itemInfo = props.info;
@@ -19,11 +18,10 @@ const FormSection = (props: any) => {
   let infoEntries = Object.entries(props.info) as any;  
   
   const deleteEl = (event: any) => {
-    REMOVE(props.title, itemInfo.id)
-    .then((data: any) => {
-      setIsDeleted((isDeleted : any) => !isDeleted);
-    })
-  }
+    REMOVE(props.title, itemInfo.id).then((data: any) => {
+      setIsDeleted((isDeleted: any) => !isDeleted);
+    });
+  };
 
   const search = () => {
     if(props.title === 'driver'){
@@ -83,10 +81,10 @@ const FormSection = (props: any) => {
           className = 'table_section-showButton'
           btnText = 'show'
         />
-        <Button 
-          onClick = {deleteEl}
-          className = 'table_section-deleteButton'
-          btnText = 'delete'
+        <Button
+          onClick={deleteEl}
+          className="table_section-deleteButton"
+          btnText="delete"
         />
       </div>
         { isOpen ? <div className='table_section_isActive'>

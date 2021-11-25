@@ -14,14 +14,19 @@ export default function OptionTitles() {
     const [context, setContext]: any = useContext(Context);
 
     return (
-        <>
+        <div className="content__options">
             <div className="content__options-paragraph">
             <div className='elem'>
                     <Link to="/drivers">
                         <Button
                             className={activeButton !== 'Drivers' ? "but up" : "but up active"}
                             onClick={() => { setActiveButton('Drivers'); setContext(false) }}
-                            btnText={<p className='options-paragraph'><img className='options-img' src={drivers} alt="alt" />Drivers</p>}
+                            btnText={
+                            <p className='options-paragraph'>
+                                <img 
+                                className='options-img' 
+                                src={drivers} 
+                                alt="alt" />Drivers</p>}
                         />
                         <Button
                             onClick ={() => { setActiveButton('Drivers'); setContext(true) }}
@@ -35,7 +40,11 @@ export default function OptionTitles() {
                         <Button
                             className={activeButton !== 'Cars' ? "but" : "but active"}
                             onClick={() => { setActiveButton('Cars'); setContext(false) }}
-                            btnText={<p className='options-paragraph'><img className='options-img' src={cars} alt="alt" />Cars</p>}
+                            btnText={
+                            <p className='options-paragraph'>
+                                <img className='options-img' 
+                                src={cars} 
+                                alt="alt" />Cars</p>}
                         />
                         <Button
                             onClick ={() => { setActiveButton('Cars'); setContext(true) }}
@@ -49,6 +58,6 @@ export default function OptionTitles() {
                 < Route path="/drivers" element={< Filter {...{ title: "driver" }} />} />
                 < Route path="/cars" element={< Filter {...{ title: "car" }} />} />
             </Routes>
-        </>
+            </div>
     )
 }

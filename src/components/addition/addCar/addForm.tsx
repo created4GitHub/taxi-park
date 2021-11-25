@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../../../context";
 
-import YearForm from "../../formData/dataYear/year";
 import FindDriverId from "../../findDriverId/findDriverId";
+import YearSelect from "../../yearSelect/YearSelect";
 import Input from "../../input";
 import { Button } from "../../button";
 import { GET } from "../../../requests";
@@ -21,7 +21,7 @@ const AddForm = () => {
         mark: '',
         number: '', 
         year: null,
-        driver_id: 60,
+        driver_id: 120,
         status: {
             title: '', 
             code: ''
@@ -54,6 +54,13 @@ const AddForm = () => {
             }
         }
 
+        if(addRequest.status.title === ""){
+            addRequest.status = {
+                title: "Эконом",
+                code: "econom"
+            }
+        }
+
         checkRequest(addRequest);
 
         for(let index of checkMass){
@@ -62,7 +69,8 @@ const AddForm = () => {
             }
         } 
         setContext(false)
-        POST('car', addRequest)
+
+        POST('car', addRequest);
         addRequest.model = ''
         addRequest.mark = ''
         addRequest.number = '' 
@@ -89,7 +97,7 @@ const AddForm = () => {
                 <Input className='table_section-input' maxLength='8' onChange={(event) => addRequest.number = event.target.value} placeholder='Number car'/>
             </div>
             <div className='table_section-block-input'>
-                <YearForm onChange={(event: any) => addRequest.year = event}/>
+                <YearSelect onChange={(event: any) => addRequest.year = event.target.value}/>
             </div>
             <div className='table_section-block-input'>
                 <FindDriverId onChange={(event: any) => addRequest.driver_id = event} />
