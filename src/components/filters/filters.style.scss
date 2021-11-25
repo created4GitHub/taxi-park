@@ -21,11 +21,11 @@
         flex-direction: column;
     }
     @media (max-width: 550px) {
-        height: 300px; 
+        height: 300px;
         width: 420px;
     }
     @media (max-width: 445px) {
-        height: 100%; 
+        height: 100%;
         width: 300px;
     }
 
@@ -40,10 +40,10 @@
         @media (max-width: 1080px) {
             height: 125px;
             border: none;
-            .elem{
+            .elem {
                 border-bottom: solid #c0c0c04d 1px;
                 align-items: center;
-                .add{
+                .add {
                     border-radius: 8px;
                 }
             }
@@ -172,7 +172,7 @@
                 height: 125px;
                 width: 100%;
             }
-            input{
+            input {
                 height: 25px;
                 width: 120px;
                 margin-bottom: 10px;
@@ -192,7 +192,8 @@
                 align-items: stretch;
                 align-content: space-around;
             }
-            .filter_element-radio {}
+            .filter_element-radio {
+            }
         }
 
         .filter_element-yearSelect {
@@ -201,11 +202,11 @@
                 height: 40px;
                 display: flex;
                 justify-content: center;
-                select{
+                select {
                     width: 200px;
                 }
             }
-            select{
+            select {
                 height: 25px;
                 border-radius: 8px;
                 color: black;
@@ -213,12 +214,11 @@
             }
         }
 
-
         .reset-filter-button {
             @media (max-width: 1080px) {
                 border: none;
-                color: #D09700;
-                background-color: #FEF8E8;
+                color: #d09700;
+                background-color: #fef8e8;
                 border-radius: 8px;
             }
             @media (max-width: 445px) {

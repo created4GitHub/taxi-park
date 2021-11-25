@@ -1,13 +1,13 @@
 import React, { useState, Dispatch, SetStateAction, useContext } from 'react';
 import { Link, Routes, Route } from "react-router-dom";
 
-import { Button } from "../button";
-import Filter from '../filter/Filter';
+import { Context } from '../../context';
+
+import { Button } from "../button/Button";
+import Filter from '../filters/Filters';
 
 import drivers from '../../img/drivers.svg';
 import cars from '../../img/cars.svg';
-
-import { Context } from '../../context';
 
 export default function OptionTitles() {
     const [activeButton, setActiveButton]: [string, Dispatch<SetStateAction<string>>] = useState('');

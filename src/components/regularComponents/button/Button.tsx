@@ -1,6 +1,6 @@
 import React, { MouseEventHandler } from "react";
 
-import "./style.scss";
+import "./button.style.scss";
 
 type Props = {
   className: string;

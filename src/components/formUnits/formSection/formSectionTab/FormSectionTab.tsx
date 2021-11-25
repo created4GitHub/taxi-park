@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-import "./style.scss";
+import "./formSectionTab.style.scss";
 
 import { PATCH } from "../../../../requests";
 

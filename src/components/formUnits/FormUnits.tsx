@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import {
   Context,
   deletedContext,
@@ -10,7 +10,7 @@ import { GET } from "../../requests";
 
 import FormSection from "./formSection/FormSection";
 
-import "./form.scss";
+import "./form.style.scss";
 
 type infoType = {
   id: number;
@@ -24,7 +24,7 @@ type infoType = {
   };
 };
 
-const Form = (props: any) => {
+const FormUnits = (props: any) => {
   const [context, setContext] = useContext(Context);
   const [receivedData, setReceivedData] = useContext(receivedDataContext);
   const [isDeleted, setIsDeleted] = useState(true);
@@ -73,4 +73,4 @@ const Form = (props: any) => {
   );
 };
 
-export default Form;
+export default FormUnits;

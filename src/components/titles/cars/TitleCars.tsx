@@ -1,5 +1,5 @@
-import './titles.style.scss'
-const FormCars = () => {
+import '../titles.style.scss'
+const TitlesCars = () => {
 
     return (
         <div className='title-section'>
@@ -16,5 +16,5 @@ const FormCars = () => {
     )
 }
 
-export default FormCars;
+export default TitlesCars;
 

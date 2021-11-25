@@ -1,13 +1,13 @@
 import React, { useState, useRef } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import OptionTitles from "./components/optionTitles/OptionTitles";
-import Header from "./components/header/header";
+import OptionTitles from "./components/titles/TitlesOptions";
+import Header from "./components/header/Header";
 
-import Drivers from "./components/drivers/Drivers";
-import Cars from "./components/cars/Cars";
-import AddCar from "./components/addition/addCar/addForm";
-import AddDrivers from "./components/addition/addDrivers/addForm";
+import FormDrivers from "./components/titles/drivers/FormDrivers";
+import FormCars from "./components/titles/cars/FormCars";
+import AddCar from "./components/addNewUnit/addCar/addCar";
+import AddDrivers from "./components/addNewUnit/addDrivers/addDriver";
 
 import { Context, receivedDataContext, filteredDataContext } from "./context";
 
@@ -50,8 +50,8 @@ const App: React.FC = () => {
                       )}
                     </Routes>
                     <Routes>
-                      <Route path="/drivers" element={<Drivers />} />
-                      <Route path="/cars" element={<Cars />} />
+                      <Route path="/drivers" element={<FormDrivers />} />
+                      <Route path="/cars" element={<FormCars />} />
                     </Routes>
                   </div>
                 </div>

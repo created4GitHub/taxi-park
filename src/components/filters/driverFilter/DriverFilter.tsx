@@ -1,42 +1,16 @@
-import React, { useContext, useRef } from "react";
+import { useContext } from "react";
 
-import Input from "../../input";
+import { receivedDataContext, filteredValuesContext } from "../../../context";
 
-import { receivedDataContext, filteredDataContext } from "../../../context";
+import Input from "../../regularComponents/input/Input";
 
-export default function DriverFilter() {
+export default function DriverFilter(props : any) {
   const [receivedData, setReceivedData] = useContext(receivedDataContext);
 
-  const [isFiltered, setIsFiltered] = useContext(filteredDataContext).filter;
+  const filtersValues = useContext(filteredValuesContext);
 
-  const { data, isDataEmpty } = useContext(filteredDataContext);
-
-  const filtersValues = useRef({});
-
-  const search = (event: any) => {
-    (filtersValues.current as { [key: string]: string })[event.target.name] = event.target.value;
-    let result = receivedData.info;
-    for (let key in filtersValues.current) {
-      result = result.filter((item: any) => {
-        if (key === "status") {
-          return (filtersValues.current as { [key: string]: string })[key] === item.status.title ? true : false;
-        } else {
-          return String(item[key]).includes((filtersValues.current as { [key: string]: string })[key])
-            ? true
-            : false;
-        }
-      });
-    }
-    data.current = result;
-    isDataEmpty.current = true;
-    setIsFiltered(!isFiltered);
-  };
-
-  const resetFilters = () => {
-    isDataEmpty.current = false;
-    filtersValues.current = {};
-    setIsFiltered(!isFiltered);
-  }
+  const search = props.search;
+  const resetFilters = props.resetFilters;
 
   return (
     <>

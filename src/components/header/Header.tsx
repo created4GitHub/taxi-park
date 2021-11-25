@@ -1,7 +1,6 @@
 import logo from '../../img/taxi.png';
-import icon from '../../img/IconsRow.svg';
 
-import './header.scss';
+import './header.style.scss';
 
 const Header = () => {
     return(
