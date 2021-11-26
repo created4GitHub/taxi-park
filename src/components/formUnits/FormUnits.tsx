@@ -23,8 +23,12 @@ type infoType = {
     code: string;
   };
 };
+type Props = {
+  title: string;
+  status: string
+};
 
-const FormUnits = (props: any) => {
+const FormUnits: React.FC<Props> = (props) => {
   const [context, setContext] = useContext(Context);
   const [receivedData, setReceivedData] = useContext(receivedDataContext);
   const [isDeleted, setIsDeleted] = useState(true);
@@ -51,7 +55,7 @@ const FormUnits = (props: any) => {
   return (
     <>
       {receivedData.statuses && currentData ? (
-        currentData.map((item: any, index: any) => {
+        currentData.map((item: any, index: number) => {
           return (
             <deletedContext.Provider
               key={index}

@@ -30,21 +30,21 @@ const FormSectionTab = (props: any) => {
 
   const pressedEnter = (event: any) => {
     if (event.key === "Enter") {
-      saveNewInfo(
+      saveNewInformation(
         event.target.id,
         event.target.value || event.target.placeholder
       );
     }
   };
 
-  const onBlur = (event: any) => {
-    saveNewInfo(
+  const onBlurEvent = (event: any) => {
+    saveNewInformation(
       event.target.id,
       event.target.value || event.target.placeholder
     );
   };
 
-  const saveNewInfo = (key: any, info: any) => {
+  const saveNewInformation = (key: any, info: any) => {
     itemInfo[key] = info;
     setIsDiv(!isDiv);
     PATCH(props.title, itemInfo.id, { [key]: info });
@@ -92,7 +92,7 @@ const FormSectionTab = (props: any) => {
               className="table_input"
               autoFocus={true}
               onClick={changeElement}
-              onBlur={onBlur}
+              onBlur={onBlurEvent}
               onKeyPress={pressedEnter}
             />
           )

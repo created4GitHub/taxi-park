@@ -157,7 +157,7 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            input{
+            input {
                 height: 25px;
                 width: 95px;
                 margin-bottom: 10px;
@@ -174,7 +174,7 @@
                 justify-content: flex-start;
                 align-items: center;
                 flex-wrap: wrap;
-                input{
+                input {
                     height: 25px;
                     width: 120px;
                     margin-bottom: 10px;
@@ -198,18 +198,6 @@
                 height: 125px;
                 width: 100%;
             }
-<<<<<<< HEAD:src/components/filters/filters.style.scss
-            input {
-                height: 25px;
-                width: 120px;
-                margin-bottom: 10px;
-                border-radius: 8px;
-                color: black;
-                border: solid silver 1px;
-            }
-=======
-            
->>>>>>> e9a074c59e3731b15c1f8c6a89c47982998e1d62:src/components/filter/filters.style.scss
         }
 
         .filter_element-inputRadio {
@@ -231,12 +219,8 @@
                 width: 100%;
                 flex-wrap: wrap;
             }
-<<<<<<< HEAD:src/components/filters/filters.style.scss
-            .filter_element-radio {
-=======
             .filter-element {
                 font-size: 14px;
->>>>>>> e9a074c59e3731b15c1f8c6a89c47982998e1d62:src/components/filter/filters.style.scss
             }
         }
 
@@ -246,7 +230,7 @@
             justify-content: center;
             align-items: center;
             align-content: center;
-            select{
+            select {
                 height: 25px;
                 width: 200px;
                 border-radius: 8px;
@@ -266,18 +250,7 @@
                     width: 200px;
                 }
             }
-<<<<<<< HEAD:src/components/filters/filters.style.scss
-            select {
-                height: 25px;
-                border-radius: 8px;
-                color: black;
-                border: solid silver 1px;
-            }
         }
-
-=======
-        }
->>>>>>> e9a074c59e3731b15c1f8c6a89c47982998e1d62:src/components/filter/filters.style.scss
         .reset-filter-button {
             height: 60px;
             display: flex;
@@ -285,24 +258,17 @@
             justify-content: center;
 
             @media (max-width: 1080px) {
-<<<<<<< HEAD:src/components/filters/filters.style.scss
-                border: none;
-                color: #d09700;
-                background-color: #fef8e8;
-                border-radius: 8px;
-=======
                 height: 100%;
->>>>>>> e9a074c59e3731b15c1f8c6a89c47982998e1d62:src/components/filter/filters.style.scss
             }
             @media (max-width: 445px) {
                 height: auto;
             }
-            button{
+            button {
                 width: 200px;
                 height: 35px;
                 border-radius: 8px;
-                color: #D09700;
-                background-color: #FEF8E8;
+                color: #d09700;
+                background-color: #fef8e8;
                 border: none;
                 cursor: pointer;
 
