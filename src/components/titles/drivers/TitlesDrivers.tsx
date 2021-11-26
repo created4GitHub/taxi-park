@@ -1,6 +1,7 @@
 import '../titles.style.scss'
-const TitlesDrivers = () => {
 
+const TitlesDrivers = () => {
+    
     return (
         <div className='title-section'>
             <div className='title-section-title'>ID </div>
@@ -16,4 +17,3 @@ const TitlesDrivers = () => {
 }
 
 export default TitlesDrivers;
-

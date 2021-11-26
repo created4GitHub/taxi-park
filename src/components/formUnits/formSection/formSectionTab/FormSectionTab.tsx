@@ -1,15 +1,41 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, MouseEvent, Dispatch, SetStateAction } from "react";
 
 import "./formSectionTab.style.scss";
 
 import { PATCH } from "../../../../requests";
 
-const FormSectionTab = (props: any) => {
-  const [isDiv, setIsDiv] = useState(true);
-  const [isUpdatedSelect, setIsUpdatedSelect] = useState("");
+type InfoType = {
+  id: number;
+  first_name: string;
+  driver_id: number;
+  last_name: string;
+  date_birth: number;
+  date_created: number;
+  mark: string;
+  model: string;
+  number: string | number;
+  year: number;
+  title: string;
+  status: Status;
+};
 
+type Status = {
+  title: string;
+  code?: string;
+};
+type PropsStatus = {
+  info: InfoType;
+  item: [string, any];
+  title: string;
+  statuses: Status[];
+};
+
+const FormSectionTab = (props: PropsStatus) => {
+  
+  const [isDiv, setIsDiv] = useState<boolean>(true);
+  const [isUpdatedSelect, setIsUpdatedSelect]: [string, Dispatch<SetStateAction<string>>] = useState("");
   let item = props.item;
-  let itemInfo = props.info;
+  let itemInfo: any = props.info;
 
   useEffect(() => {
     if (item[1] === "status") {
@@ -17,53 +43,53 @@ const FormSectionTab = (props: any) => {
     }
   }, [isUpdatedSelect]);
 
-  function changeElement(event: any) {
-    let element = event.target.id;
+  function changeElement(event: MouseEvent<HTMLElement>) {
+    let element: string = (event.target as HTMLElement).id;
+
     if (
       element !== "id" &&
       element !== "date_birth" &&
-      element !== "date_created"
+      element !== "date_created" && 
+      element !== 'driver_id'
     ) {
       setIsDiv(!isDiv);
     }
   }
 
-  const pressedEnter = (event: any) => {
+  const pressedEnter = (event: React.KeyboardEvent) => {
     if (event.key === "Enter") {
       saveNewInformation(
-        event.target.id,
-        event.target.value || event.target.placeholder
+        (event.target as HTMLElement).id,
+        (event.target as HTMLInputElement).value || (event.target as HTMLInputElement).placeholder
       );
     }
   };
 
-  const onBlurEvent = (event: any) => {
+  const onBlurEvent = (event: React.FocusEvent<HTMLInputElement>) => {
     saveNewInformation(
-      event.target.id,
-      event.target.value || event.target.placeholder
+      (event.target as HTMLElement).id,
+      (event.target as HTMLInputElement).value || (event.target as HTMLInputElement).placeholder
     );
   };
 
-  const saveNewInformation = (key: any, info: any) => {
-    itemInfo[key] = info;
+  const saveNewInformation = (key: string, info: string) => {
+    // InfoType[key] = info;
     setIsDiv(!isDiv);
     PATCH(props.title, itemInfo.id, { [key]: info });
   };
 
-  const saveStatus = (event: any) => {
-    type statusType = {
-      title: string;
-      code: string;
-    };
-    let newStatus: statusType = {
+  const saveStatus = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    let newStatus: Status = {
       title: "",
       code: "",
     };
+
     for (let index: number = 0; index < statuses.length; index++) {
-      let status = statuses[index] as statusType;
-      if (status.title === event.target.value) {
+      let status = statuses[index] as Status;
+      if (status.title === (event.target as HTMLInputElement).value) {
         newStatus.title = status.title;
         newStatus.code = status.code;
+
         break;
       }
     }
@@ -71,7 +97,7 @@ const FormSectionTab = (props: any) => {
     PATCH(props.title, itemInfo.id, { status: newStatus });
   };
 
-  let statuses = Object.values(props.statuses);
+  let statuses: Status[] = Object.values(props.statuses);
 
   return (
     <>
@@ -103,7 +129,7 @@ const FormSectionTab = (props: any) => {
             className="table-section-tab-select"
           >
             {statuses.length ? (
-              statuses.map((status: any, index: any) => {
+              statuses.map((status: Status, index: number) => {
                 return <option key={index}>{status.title}</option>;
               })
             ) : (

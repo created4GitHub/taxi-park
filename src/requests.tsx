@@ -1,3 +1,15 @@
+type InfoType = {
+  id?: number;
+  first_name?: string;
+  last_name?: string;
+  date_birth?: number;
+  date_created?: number;
+  status?: {
+    title?: string;
+    code?: string;
+  };
+};
+
 export const GET = (param: string) => {
   return fetch(
     `https://edu.evgeniychvertkov.com/v1/${param}/`,
@@ -13,19 +25,19 @@ export const GET = (param: string) => {
   ).then((resp) => resp.json());
 }
 
-export const POST = (param : string, info: any) => {
-    return fetch(`https://edu.evgeniychvertkov.com/v1/${param}/`, {
-        method: "POST",
-        headers: {
-          "X-Authorization":
-            "api13ea3305989c1bbf4aa08d52b09fb239dbd0c27bd13daa1227861f55af160b34",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(info)
-      });
+export const POST = (param: string, info: InfoType) => {
+  return fetch(`https://edu.evgeniychvertkov.com/v1/${param}/`, {
+    method: "POST",
+    headers: {
+      "X-Authorization":
+        "api13ea3305989c1bbf4aa08d52b09fb239dbd0c27bd13daa1227861f55af160b34",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(info),
+  });
 }
 
-export const PATCH = (param: string, id: number, info: any) => {
+export const PATCH = (param: string, id: number, info: InfoType) => {
   return fetch(`https://edu.evgeniychvertkov.com/v1/${param}/` + id + "/", {
     method: "PATCH",
     headers: {
@@ -38,16 +50,15 @@ export const PATCH = (param: string, id: number, info: any) => {
   });
 }
 
-export const REMOVE = (param : string, id: number) => {
-    return fetch(`https://edu.evgeniychvertkov.com/v1/${param}/` + id + "/", {
-        method: "DELETE",
-        headers: {
-          "X-Authorization":
-            "api13ea3305989c1bbf4aa08d52b09fb239dbd0c27bd13daa1227861f55af160b34",
-          "Content-Type": "application/json",
-        },
-        // body: JSON.stringify(info)
-      });
+export const REMOVE = (param: string, id: number) => {
+  return fetch(`https://edu.evgeniychvertkov.com/v1/${param}/` + id + "/", {
+    method: "DELETE",
+    headers: {
+      "X-Authorization":
+        "api13ea3305989c1bbf4aa08d52b09fb239dbd0c27bd13daa1227861f55af160b34",
+      "Content-Type": "application/json",
+    },
+  });
 }
 
 export const GETCAR = (id: string) => {
@@ -59,7 +70,5 @@ export const GETCAR = (id: string) => {
       "Content-Type": "application/json",
       "E-Driver-Id": id
     }
-  })
-    // .then(resp => resp.json())
-    // .then(data => console.log(data))
+  });
 } 

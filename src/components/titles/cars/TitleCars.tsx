@@ -1,4 +1,5 @@
-import '../titles.style.scss'
+import '../titles.style.scss';
+
 const TitlesCars = () => {
 
     return (
@@ -17,4 +18,3 @@ const TitlesCars = () => {
 }
 
 export default TitlesCars;
-

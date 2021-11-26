@@ -9,6 +9,6 @@ const Drivers = () => {
       <Form {...{title: "driver", status: "driver-status"}}/>
     </>
   ) 
-};
+}
 
 export default Drivers;

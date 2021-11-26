@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, Dispatch, SetStateAction } from "react";
 
 import { receivedDataContext, filteredDataContext, filteredValuesContext } from "../../context";
 
@@ -9,12 +9,9 @@ import "./filters.style.scss";
 
 const Filter = (props: any) => {
 
-    const [receivedData, setReceivedData] = useContext(receivedDataContext);
-
+    const [receivedData, setReceivedData]: any = useContext(receivedDataContext);
     const [isFiltered, setIsFiltered] = useContext(filteredDataContext).filter;
-  
     const { data, isDataEmpty } = useContext(filteredDataContext);
-  
     const filtersValues = useRef({});
   
     const search = (event: any) => {
