@@ -5,16 +5,32 @@ import { deletedContext } from "../../../context";
 import FormSectionTab from "./formSectionTab/FormSectionTab";
 import { GET, REMOVE, GETCAR } from '../../../requests';
 import { Button } from "../../regularComponents/button/Button";
+import AdditionalInfo from "./additionalInfo/AdditionalInfo";
 
 import icons from "../../../img/IconsDirection.svg";
 
 import "./formSection.style.scss";
 
+export const renderDrivers = (driver : any) => {
+  if (driver) {
+    return (
+      <div className='table_section_isActive-cars block'>
+        <p>{driver.id}</p>
+        <p>{driver.last_name}</p>
+        <p>{driver.first_name}</p>
+        <p>{new Date(driver.date_birth).toLocaleDateString()}</p>
+        <p>{new Date(driver.date_created).toLocaleDateString()}</p>
+        <p>{driver.status.title}</p>
+      </div>
+    )
+  }
+}
+
 const FormSection = (props: any) => {
-  let itemInfo = props.info;
+  const itemInfo = props.info;
   const [isOpen, setIsopen]: any = useState(false);
-  const [cars, setCars]: any = useState();
-  const [driver, setDriver]: any = useState();
+  // const [cars, setCars]: any = useState();
+  const [additionalInfo, setAdditionalInfo]: any = useState();
   const [isDeleted, setIsDeleted] = useContext(deletedContext);
   let infoEntries = Object.entries(props.info) as any;
 
@@ -30,42 +46,9 @@ const FormSection = (props: any) => {
         .then(resp => resp.json())
         .then(data => setCars(data.data));
     }
-    if (props.title === 'car' && props.info.driver_id) {
+    if (props.title === 'car') {
       GET(`driver/${props.info.driver_id}`)
-        .then(resp => setDriver(resp.data));
-    }
-  }
-
-  const renderCar = () => {
-    if (cars) {
-      return cars.map((item: any, index: any) => {
-        return (
-          <div key={index} className='table_section_isActive-cars block'>
-            <p>{item.id}</p>
-            <p>{item.driver_id}</p>
-            <p>{item.mark}</p>
-            <p>{item.model}</p>
-            <p>{item.number}</p>
-            <p>{item.year}</p>
-            <p>{item.status.title}</p>
-          </div>
-        )
-      })
-    }
-  }
-
-  const renderDriver = () => {
-    if (driver) {
-      return (
-        <div className='table_section_isActive-cars block'>
-          <p>{driver.id}</p>
-          <p>{driver.last_name}</p>
-          <p>{driver.first_name}</p>
-          <p>{new Date(driver.date_birth).toLocaleDateString()}</p>
-          <p>{new Date(driver.date_created).toLocaleDateString()}</p>
-          <p>{driver.status.title}</p>
-        </div>
-      )
+        .then(resp => setDrivers(resp.data));
     }
   }
 
@@ -111,8 +94,7 @@ const FormSection = (props: any) => {
               <p>Status <img src={icons} alt="alt" /></p>
             </> : ''}
         </div>
-        {props.title === 'driver' ? renderCar() : ''}
-        {props.title === 'car' ? renderDriver() : ''}
+        {AdditionalInfo(additionalInfo)}
       </div> : ''}
     </>
   );
