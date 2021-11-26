@@ -10,7 +10,7 @@ import "./filters.style.scss";
 const Filter = (props: any) => {
 
     const [receivedData, setReceivedData]: any = useContext(receivedDataContext);
-    const [isFiltered, setIsFiltered] = useContext(filteredDataContext).filter;
+    const [isFiltered, setIsFiltered]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(filteredDataContext).filter;
     const { data, isDataEmpty } = useContext(filteredDataContext);
     const filtersValues = useRef({});
   

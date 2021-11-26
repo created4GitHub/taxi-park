@@ -1,0 +1,136 @@
+.table_section_add {
+  width: 100%;
+  border-bottom: 1px solid #EEEEEE;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+@media (max-width: 840px) {
+  .table_section_add {
+    width: 130px;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.table_section_add .table_section_buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.table_section_add .table_section_buttons .table_section-button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+.table_section_add .table_section_buttons .table_section-button:hover {
+  position: relative;
+}
+
+.table_section_add .table_section-block-input {
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: white;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.table_section_add .table_section-block-input .table_section-input {
+  width: 110px;
+  height: 23px;
+  border-radius: 8px;
+  border: solid silver 1px;
+}
+
+.table_section_add .table_section-block-input .table_section-input:invalid {
+  border-color: red;
+  color: red;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.table_section_add .table_section-block-input .table_section-input:valid {
+  border-color: black;
+}
+
+.table_section_add .table_section-block-input .table_section-input-numbers {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  width: 110px;
+  height: 23px;
+  border-radius: 8px;
+  border: solid silver 1px;
+}
+
+.table_section_add .table_section-block-input .table_section-input-date {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  width: 110px;
+  height: 23px;
+  border-radius: 8px;
+  border: solid silver 1px;
+}
+
+.table_section_add .table_section-block-input .table_section-input-data::-webkit-calendar-picker-indicator {
+  padding: 0;
+  margin: 2px 5px 0 0;
+}
+
+.table_section_add .table_section-block-input .table_section-block-input__error {
+  color: red;
+  text-align: left;
+  font-size: 12px;
+  display: block;
+  margin-top: 3px;
+  display: none;
+}
+
+.table_section_add .table_section-block-input .table_section-input:invalid:not(:placeholder-shown) + .table_section-block-input__error {
+  display: block;
+}
+
+.table_section_add .table_section_add-select {
+  height: 25px;
+  border-radius: 8px;
+  color: #8a8a8a;
+  border: solid silver 1px;
+}
+/*# sourceMappingURL=addCar.style.css.map */
