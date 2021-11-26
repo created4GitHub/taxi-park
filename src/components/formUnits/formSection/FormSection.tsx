@@ -1,5 +1,4 @@
-import { useContext, useState } from "react";
-
+import { useContext, useState, Dispatch, SetStateAction } from "react";
 import { deletedContext } from "../../../context";
 
 import FormSectionTab from "./formSectionTab/FormSectionTab";
@@ -10,23 +9,50 @@ import icons from "../../../img/IconsDirection.svg";
 
 import "./formSection.style.scss";
 
-const FormSection = (props: any) => {
-  let itemInfo = props.info;
-  const [isOpen, setIsopen]: any = useState(false);
-  const [cars, setCars]: any = useState();
-  const [driver, setDriver]: any = useState();
-  const [isDeleted, setIsDeleted] = useContext(deletedContext);
-  let infoEntries = Object.entries(props.info) as any;
+type InfoType = {
+  id: number;
+  first_name: string;
+  driver_id: number;
+  last_name: string;
+  date_birth: number;
+  date_created: number;
+  mark: string;
+  model: string;
+  number: string | number;
+  year: number;
+  title: string;
+  status: Status;
+};
 
-  const deleteEl = (event: any) => {
-    REMOVE(props.title, itemInfo.id).then((data: any) => {
-      setIsDeleted((isDeleted: any) => !isDeleted);
+type Status = {
+  title: string;
+  code?: string;
+
+};
+
+type PropsStatus = {
+  info: InfoType;
+  title: string;
+  statuses: Status[];
+};
+
+const FormSection = (props: PropsStatus) => {
+  let itemInfo: InfoType = props.info;
+  const [isOpen, setIsopen] = useState<boolean>();
+  const [cars, setCars]: [undefined[] | undefined, Dispatch<SetStateAction<undefined[] | undefined>>] = useState();
+  const [driver, setDriver]: [InfoType | undefined, Dispatch<SetStateAction<InfoType | undefined>>] = useState();
+  const [isDeleted, setIsDeleted]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(deletedContext);
+  let infoEntries: [string, unknown][] = Object.entries(props.info);
+
+  const deleteEl = () => {
+    REMOVE(props.title, itemInfo.id).then(() => {
+      setIsDeleted((isDeleted: SetStateAction<boolean>) => !isDeleted);
     });
   };
 
   const search = () => {
     if (props.title === 'driver') {
-      GETCAR(props.info.id)
+      GETCAR(String(props.info.id))
         .then(resp => resp.json())
         .then(data => setCars(data.data));
     }
@@ -38,16 +64,16 @@ const FormSection = (props: any) => {
 
   const renderCar = () => {
     if (cars) {
-      return cars.map((item: any, index: any) => {
+      return cars.map((item: InfoType | undefined, index: number) => {
         return (
           <div key={index} className='table_section_isActive-cars block'>
-            <p>{item.id}</p>
-            <p>{item.driver_id}</p>
-            <p>{item.mark}</p>
-            <p>{item.model}</p>
-            <p>{item.number}</p>
-            <p>{item.year}</p>
-            <p>{item.status.title}</p>
+            <p>{item!.id}</p>
+            <p>{item!.driver_id}</p>
+            <p>{item!.mark}</p>
+            <p>{item!.model}</p>
+            <p>{item!.number}</p>
+            <p>{item!.year}</p>
+            <p>{item!.status.title}</p>
           </div>
         )
       })
@@ -72,12 +98,12 @@ const FormSection = (props: any) => {
   return (
     <>
       <div className="table_section">
-        {infoEntries.map((item: any, index: any) => {
+        {infoEntries.map((item: [string, unknown], index: number) => {
           return <FormSectionTab key={index} {...{ ...props, item: item }} />;
         })}
         <Button
           onClick={() => {
-            setIsopen((prevState: any) => !prevState);
+            setIsopen((prevState) => !prevState);
             search();
           }}
           className='table_section-showButton'

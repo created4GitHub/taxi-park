@@ -1,24 +1,22 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, Dispatch, SetStateAction, MutableRefObject } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import OptionTitles from "./components/titles/TitlesOptions";
 import Header from "./components/header/Header";
-
+import { Context, receivedDataContext, filteredDataContext } from "./context";
 import FormDrivers from "./components/titles/drivers/FormDrivers";
 import FormCars from "./components/titles/cars/FormCars";
 import AddCar from "./components/addNewUnit/addCar/addCar";
 import AddDrivers from "./components/addNewUnit/addDrivers/addDriver";
 
-import { Context, receivedDataContext, filteredDataContext } from "./context";
-
 import "./app.scss";
 
 const App: React.FC = () => {
-  const [context, setContext] = useState(false);
-  const [receivedData, setReceivedData] = useState({});
-  const [isFiltered, setIsFiltered] = useState(true);
-  const data = useRef([]);
-  const isDataEmpty = useRef(false);
+  const [context, setContext]: [false, Dispatch<SetStateAction<false>>] = useState(false);
+  const [receivedData, setReceivedData]: [{}, Dispatch<SetStateAction<{}>>] = useState({});
+  const [isFiltered, setIsFiltered]: [true, Dispatch<SetStateAction<true>>] = useState(true);
+  const data: MutableRefObject<never[]> = useRef([]);
+  const isDataEmpty: MutableRefObject<boolean> = useRef(false);
 
   return (
     <>

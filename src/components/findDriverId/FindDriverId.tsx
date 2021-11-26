@@ -1,9 +1,22 @@
-import React, { useEffect, useState, ChangeEventHandler } from 'react'
+import React, { useEffect, useState, ChangeEventHandler, Dispatch, SetStateAction } from 'react'
 
 import { GET } from '../../requests'
 import { Button } from '../regularComponents/button/Button'
  
 import './findDriverId.style.scss'
+type InfoType = {
+    id: number;
+    first_name: string;
+    driver_id: number;
+    last_name: string;
+    date_birth: number;
+    date_created: number;
+    mark: string;
+    model: string;
+    number: string | number;
+    year: number;
+    title: string;
+};
 
 type Props = {
     maxLength?: number;
@@ -11,11 +24,11 @@ type Props = {
     onChange: ChangeEventHandler<HTMLSelectElement>;
 };
 
-const FindDriverId: React.FC<Props> = (props) => {
-    const [isActive, setIsActive]: any = useState(false)
-    const [users, setUsers]: any = useState([])
-    const [result, setResult]: any = useState()
-    const [nameBut, setNameBut]: any = useState('user')
+const FindDriverId: React.FC<Props> = (props: Props) => {
+    const [isActive, setIsActive] = useState<boolean>(false)
+    const [users, setUsers]: [never[], Dispatch<SetStateAction<never[]>>] = useState([])
+    const [result, setResult]: [string, Dispatch<SetStateAction<string>>] = useState('')
+    const [nameBut, setNameBut]: [string, Dispatch<SetStateAction<string>>] = useState('user')
 
     useEffect(() => {
         GET('driver').then((data: any) => {
@@ -24,7 +37,7 @@ const FindDriverId: React.FC<Props> = (props) => {
     }, [])
 
     const renderDrivers = () => {
-        return users.map((item: any, index: number) => {
+        return users.map((item: InfoType, index: number) => {
             return <Button 
                 id={item.id}
                 className='search__findDriber-button'
@@ -37,7 +50,7 @@ const FindDriverId: React.FC<Props> = (props) => {
         })
     }
 
-    const onBlurEvent = (event: any) => {        
+    const onBlurEvent = (event: React.FocusEvent<HTMLInputElement>): void => {        
         if(event.relatedTarget !== null && event.relatedTarget.id){
             setNameBut(event.relatedTarget.id);
             setResult(event.relatedTarget.id)
@@ -45,8 +58,8 @@ const FindDriverId: React.FC<Props> = (props) => {
 
         setIsActive((prevState: boolean) => !prevState);
     }
-
-    props.onChange(result)
+    props.onChange(result as never) 
+    
 
     return(
         <div className='search__findDriber'>
@@ -63,4 +76,4 @@ const FindDriverId: React.FC<Props> = (props) => {
     )
 }
 
-export default FindDriverId
+export default FindDriverId;

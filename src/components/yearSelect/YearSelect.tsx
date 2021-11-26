@@ -9,30 +9,29 @@ type Props = {
     onChange?: ChangeEventHandler<HTMLSelectElement> | undefined;
 };
 
-const YearSelect: React.FC<Props> = (props) => {
+const YearSelect: React.FC<Props> = (props: Props) => {
+    let massYears: number[] = [];
 
-    let massYears = [];
-
-    for (let i: number = 2021; i >= 1960; i--) {
-        massYears.push(i)
+    for (let index: number = 2021; index >= 1960; index--) {
+        massYears.push(index);
     }
 
     return (
-            <select 
+        <select 
             onChange={props.onChange}
             name={props.name}
             defaultValue={props.defaultValue}
-            >
-                {massYears.map((item: any, index: number) => {
-                    return (
-                        <option
-                            id={item}
-                            key={index}
-                        >{item}
-                        </option>
-                    )
-                })}
-            </select>
+        >
+        {massYears.map((item: number, index: number) => {
+            return (
+                <option
+                    id={item + ''}
+                    key={index}
+                >{item}
+                </option>
+                )
+            })}
+        </select>
     )
 }
 

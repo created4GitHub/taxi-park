@@ -1,10 +1,5 @@
-import { useEffect, useState, useContext } from "react";
-import {
-  Context,
-  deletedContext,
-  receivedDataContext,
-  filteredDataContext,
-} from "../../context";
+import { useEffect, useState, useContext, Dispatch, SetStateAction, MutableRefObject } from "react";
+import { Context, deletedContext, receivedDataContext, filteredDataContext, } from "../../context";
 
 import { GET } from "../../requests";
 
@@ -12,26 +7,32 @@ import FormSection from "./formSection/FormSection";
 
 import "./form.style.scss";
 
-type infoType = {
-  id: number;
-  first_name: string;
-  last_name: string;
-  date_birth: number;
-  date_created: number;
-  status: {
-    title: string;
-    code: string;
-  };
-};
-type Props = {
+type PropsStatus = {
   title: string;
   status: string
 };
 
-const FormUnits: React.FC<Props> = (props) => {
-  const [context, setContext] = useContext(Context);
-  const [receivedData, setReceivedData] = useContext(receivedDataContext);
-  const [isDeleted, setIsDeleted] = useState(true);
+type InfoType = {
+  id?: number;
+  first_name?: string;
+  last_name?: string;
+  date_birth?: number;
+  date_created?: number;
+  status?: {
+    title?: string;
+    code?: string;
+  };
+};
+
+type Received = {
+  info: InfoType;
+  statuses: PropsStatus[];
+}
+
+const FormUnits: React.FC<PropsStatus> = (props: PropsStatus) => {
+  const [context, setContext]: [false, Dispatch<SetStateAction<false>>] = useContext(Context);
+  const [receivedData, setReceivedData]: [Received, Dispatch<SetStateAction<Received>>] = useContext(receivedDataContext);
+  const [isDeleted, setIsDeleted]: [true, Dispatch<SetStateAction<true>>] = useState(true);
 
   const { data, isDataEmpty } = useContext(filteredDataContext);
 
@@ -50,7 +51,7 @@ const FormUnits: React.FC<Props> = (props) => {
     });
   }, [context, isDeleted]);
 
-  let currentData = (isDataEmpty.current && data.current) || receivedData.info;
+  let currentData: string[] = (isDataEmpty.current && data.current) || receivedData.info;
 
   return (
     <>
