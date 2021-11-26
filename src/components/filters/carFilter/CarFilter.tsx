@@ -1,17 +1,52 @@
-import { useContext } from "react";
+import { useContext, ChangeEventHandler, MouseEventHandler, Dispatch, SetStateAction } from "react";
 
 import { receivedDataContext, filteredValuesContext } from "../../../context";
 
 import Input from "../../regularComponents/input/Input";
 import YearSelect from "../../yearSelect/YearSelect";
 
-export default function DriverFilter(props : any) {
-  const [receivedData, setReceivedData] = useContext(receivedDataContext);
+type Current = {
+  current: Record<string, string>;
+}
 
-  const filtersValues = useContext(filteredValuesContext);
+type qwerty = {
+  search: ChangeEventHandler<HTMLInputElement>;
+  resetFilters: MouseEventHandler<HTMLButtonElement>;
+}
 
-  const search = props.search;
-  const resetFilters = props.resetFilters;
+type InfoType = {
+  id: number;
+  first_name: string;
+  driver_id: number;
+  last_name: string;
+  date_birth: number;
+  date_created: number;
+  mark: string;
+  model: string;
+  number: string | number;
+  year: number;
+  title: string;
+  status: Status;
+};
+
+type Status = {
+  title: string;
+  code?: string;
+
+};
+
+type PropsStatus = {
+  info: InfoType[];
+  statuses: Status[];
+};
+
+
+const DriverFilter = (props : qwerty) => {
+  const [receivedData, setReceivedData]: [PropsStatus, Dispatch<SetStateAction<PropsStatus>>] = useContext(receivedDataContext);
+  const filtersValues: Current = useContext(filteredValuesContext);
+
+  const search: ChangeEventHandler<HTMLElement> = props.search;
+  const resetFilters: MouseEventHandler<HTMLButtonElement> = props.resetFilters;
 
   return (
     <>
@@ -19,27 +54,27 @@ export default function DriverFilter(props : any) {
           <Input onInput={search} 
             name="id" 
             placeholder="Search by ID" 
-            value={(filtersValues.current as {[key: string] : string}).id|| ""}
+            value={(filtersValues.current as {[key: string] : string}).id || ""}
           />
           <Input onInput={search} 
             name="driver_id" 
             placeholder="Search by driver ID" 
-            value={(filtersValues.current as {[key: string] : string})["driver_id"]|| ""}
+            value={(filtersValues.current as {[key: string] : string})["driver_id"] || ""}
           />
           <Input onInput={search} 
             name="mark" 
             placeholder="Search by mark" 
-            value={(filtersValues.current as {[key: string] : string}).mark|| ""}
+            value={(filtersValues.current as {[key: string] : string}).mark || ""}
           />
           <Input onInput={search} 
             name="model" 
             placeholder="Search by model" 
-            value={(filtersValues.current as {[key: string] : string}).model|| ""}
+            value={(filtersValues.current as {[key: string] : string}).model || ""}
           />
           <Input onInput={search} 
             name="number" 
             placeholder="Search by number" 
-            value={(filtersValues.current as {[key: string] : string}).number|| ""}
+            value={(filtersValues.current as {[key: string] : string}).number || ""}
           />
       </div>
       <div className='filter_element-inputRadio'>
@@ -72,3 +107,5 @@ export default function DriverFilter(props : any) {
     </>
   );
 }
+
+export default DriverFilter;

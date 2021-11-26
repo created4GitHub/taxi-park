@@ -1,16 +1,51 @@
-import { useContext } from "react";
+import { useContext, Dispatch, SetStateAction, ChangeEventHandler, MouseEventHandler } from "react";
 
 import { receivedDataContext, filteredValuesContext } from "../../../context";
 
 import Input from "../../regularComponents/input/Input";
 
-export default function DriverFilter(props : any) {
-  const [receivedData, setReceivedData] = useContext(receivedDataContext);
+type Current = {
+  current: Record<string, string>;
+}
 
-  const filtersValues = useContext(filteredValuesContext);
+type qwerty = {
+  search: ChangeEventHandler<HTMLInputElement>;
+  resetFilters: MouseEventHandler<HTMLButtonElement>;
+}
 
-  const search = props.search;
-  const resetFilters = props.resetFilters;
+type InfoType = {
+  id: number;
+  first_name: string;
+  driver_id: number;
+  last_name: string;
+  date_birth: number;
+  date_created: number;
+  mark: string;
+  model: string;
+  number: string | number;
+  year: number;
+  title: string;
+  status: Status;
+};
+
+type Status = {
+  title: string;
+  code?: string;
+
+};
+
+type PropsStatus = {
+  info: InfoType[];
+  statuses: Status[];
+};
+
+
+const DriverFilter = (props : qwerty) => {
+  const [receivedData, setReceivedData]: [PropsStatus, Dispatch<SetStateAction<PropsStatus>>] = useContext(receivedDataContext);
+  const filtersValues: Current  = useContext(filteredValuesContext);
+
+  const search: ChangeEventHandler<HTMLInputElement> | undefined = props.search;
+  const resetFilters: MouseEventHandler<HTMLButtonElement> | undefined = props.resetFilters;
 
   return (
     <>
@@ -59,3 +94,5 @@ export default function DriverFilter(props : any) {
     </>
   );
 }
+
+export default DriverFilter;

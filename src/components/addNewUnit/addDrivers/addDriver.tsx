@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, Dispatch, SetStateAction } from "react";
 
 import { Context } from "../../../context";
 
@@ -11,10 +11,25 @@ import deleteObj from '../../../img/deleteObj.svg'
 
 import './addDriver.style.scss'
 
+interface Request {
+    first_name: string,
+    last_name: string,
+    date_birth: number,
+    status: {
+        title: string,
+        code: string,
+    }
+}
+
+type titles = {
+    title: string, 
+    code: string;
+}
+
 const AddDrivers = () => {
-    const [statuses, setStatuses]: any = useState();
-    const [context, setContext] = useContext(Context);
-    const [addRequest, setAddRequest]: any = useState({
+    const [statuses, setStatuses] = useState<titles[]>();
+    const [context, setContext]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(Context);
+    const [addRequest, setAddRequest] = useState<Request>({
         first_name: '',
         last_name: '',
         date_birth: 0,
@@ -22,23 +37,23 @@ const AddDrivers = () => {
             title: '',
             code: ''
         }
-    })
+    });
 
     useEffect(() => {
-        const getStatuses = GET('driver-status');
-        getStatuses.then((resp: any) => {
+        GET('driver-status')
+        .then((resp: any) => {
             setStatuses(resp.data);
         });
-    }, [])
+    }, []);
 
     const renderCheckbox = () => {
-        return statuses && statuses.map((item: any, index: any) => {
+        return statuses && statuses.map((item: titles, index: number) => {
             return <option key={index} value={item.code} >{item.title}</option>
         })
     }
 
     const check = () => {
-        let checkMass: any = [];
+        let checkMass: Array<string | number> = [];        
 
         const checkRequest = (mass: any) => {
             for (let item in mass) {
