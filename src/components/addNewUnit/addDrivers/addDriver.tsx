@@ -3,7 +3,7 @@ import { useState, useContext, useEffect } from "react";
 import { Context } from "../../../context";
 
 import Input from "../../regularComponents/input/Input";
-import { Button } from "../../button/Button";
+import { Button } from "../../regularComponents/button/Button";
 import { GET, POST } from "../../../requests";
 
 import addObj from '../../../img/addObj.svg'

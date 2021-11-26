@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import { GET } from '../../requests'
-import { Button } from '../button/Button'
+import { Button } from '../regularComponents/button/Button'
  
 import './findDriverId.style.scss'
 

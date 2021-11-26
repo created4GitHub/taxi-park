@@ -4,7 +4,7 @@ import { deletedContext } from "../../../context";
 
 import FormSectionTab from "./formSectionTab/FormSectionTab";
 import { GET, REMOVE, GETCAR } from '../../../requests';
-import { Button } from "../../button/Button";
+import { Button } from "../../regularComponents/button/Button";
 
 import icons from "../../../img/IconsDirection.svg";
 

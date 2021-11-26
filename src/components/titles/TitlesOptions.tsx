@@ -3,7 +3,7 @@ import { Link, Routes, Route } from "react-router-dom";
 
 import { Context } from '../../context';
 
-import { Button } from "../button/Button";
+import { Button } from "../regularComponents/button/Button";
 import Filter from '../filters/Filters';
 
 import drivers from '../../img/drivers.svg';
