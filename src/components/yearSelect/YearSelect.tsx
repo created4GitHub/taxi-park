@@ -5,6 +5,7 @@ import './year.style.scss'
 type Props = {
     maxLength?: number;
     name?: string;
+    defaultValue?: string;
     onChange?: ChangeEventHandler<HTMLSelectElement> | undefined;
 };
 
@@ -20,7 +21,7 @@ const YearSelect: React.FC<Props> = (props) => {
             <select 
             onChange={props.onChange}
             name={props.name}
-            defaultValue={props.value}
+            defaultValue={props.defaultValue}
             >
                 {massYears.map((item: any, index: number) => {
                     return (

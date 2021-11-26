@@ -107,7 +107,7 @@ const AddForm = () => {
                 className='table_section-block-input'>
                 <Input
                     className='table_section-input'
-                    maxLength='8'
+                    maxLength={8}
                     onChange={(event) => addRequest.number = event.target.value}
                     placeholder='Number car'
                 />

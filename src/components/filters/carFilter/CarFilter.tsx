@@ -61,7 +61,7 @@ export default function DriverFilter(props : any) {
             })}
       </div>
       <div className="filter_element-yearSelect">
-        <YearSelect onChange={search} name="year" value={"2018"}/>
+        <YearSelect onChange={search} name="year" defaultValue={"2018"}/>
       </div>
       <div className="reset-filter-button">
         <button
