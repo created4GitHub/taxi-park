@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, Dispatch, SetStateAction } from "react";
 import { Context } from "../../../context";
 
 import FindDriverId from "../../findDriverId/FindDriverId";
@@ -12,15 +12,32 @@ import deleteObj from '../../../img/deleteObj.svg'
 
 import './addCar.style.scss'
 
+interface Request {
+    model: string,
+    mark: string,
+    number: string,
+    driver_id: number | null,
+    year: number | null,
+    status: {
+        title: string,
+        code: string,
+    }
+}
+
+type titles = {
+    title: string, 
+    code: string;
+}
+
 const AddForm = () => {
-    const [statuses, setStatuses]: any = useState();
-    const [context, setContext] = useContext(Context);
-    const [addRequest, setAddRequest]: any = useState({
+    const [statuses, setStatuses] = useState<titles[]>();
+    const [context, setContext]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(Context);
+    const [addRequest, setAddRequest] = useState<Request>({
         model: '',
         mark: '',
         number: '',
         year: null,
-        driver_id: 120,
+        driver_id: null,
         status: {
             title: '',
             code: ''
@@ -29,19 +46,19 @@ const AddForm = () => {
 
     useEffect(() => {
         const getStatuses = GET('car-status');
-        getStatuses.then((resp: any) => {
+        getStatuses.then(resp => {
             setStatuses(resp.data);
         });
     }, [])
 
     const renderCheckbox = () => {
-        return statuses && statuses.map((item: any, index: any) => {
+        return statuses && statuses.map((item: titles, index: number) => {
             return <option key={index} value={item.code} >{item.title}</option>
         })
     }
 
     const check = () => {
-        let checkMass: any = [];
+        let checkMass: Array<string | number> = [];
 
         const checkRequest = (mass: any) => {
             for (let item in mass) {
@@ -74,12 +91,12 @@ const AddForm = () => {
         addRequest.mark = ''
         addRequest.number = ''
         addRequest.year = null
-        addRequest.driver_id = ''
+        addRequest.driver_id = null
         addRequest.status.title = ''
         addRequest.status.code = ''
     }
 
-    const changeSelect = (event: any) => {
+    const changeSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
         addRequest.status.title = event.target.selectedOptions[0].innerText
         addRequest.status.code = event.target.value
     }
@@ -142,4 +159,4 @@ const AddForm = () => {
     )
 }
 
-export default AddForm
+export default AddForm;

@@ -41,7 +41,7 @@ const AddDrivers = () => {
 
     useEffect(() => {
         GET('driver-status')
-        .then((resp: any) => {
+        .then(resp => {
             setStatuses(resp.data);
         });
     }, []);
@@ -89,9 +89,9 @@ const AddDrivers = () => {
         addRequest.status.code = '';
     }
 
-    const changeSelect = (event: any) => {
-        addRequest.status.title = event.target.selectedOptions[0].innerText
-        addRequest.status.code = event.target.value
+    const changeSelect = (event: React.ChangeEvent<HTMLSelectElement> ) => {
+        addRequest.status.title = event.target.selectedOptions[0].innerText;
+        addRequest.status.code = event.target.value;
     }
 
 
@@ -139,4 +139,4 @@ const AddDrivers = () => {
     )
 }
 
-export default AddDrivers
+export default AddDrivers;
