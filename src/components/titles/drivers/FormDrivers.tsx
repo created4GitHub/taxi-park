@@ -6,7 +6,7 @@ const Drivers = () => {
   return(
     <>
       <FormDrivers />
-      <Form {...{title: "driver", status: "driver-status"}}/>
+      <Form {...{title: "driver"}}/>
     </>
   ) 
 }

@@ -4,44 +4,24 @@ import { receivedDataContext, filteredValuesContext } from "../../../context";
 
 import Input from "../../regularComponents/input/Input";
 
-type Current = {
+import {Info, Status} from '../../../interfaces'
+
+interface Current  {
   current: Record<string, string>;
 }
-
-type qwerty = {
+interface Props  {
   search: ChangeEventHandler<HTMLInputElement>;
   resetFilters: MouseEventHandler<HTMLButtonElement>;
 }
 
-type InfoType = {
-  id: number;
-  first_name: string;
-  driver_id: number;
-  last_name: string;
-  date_birth: number;
-  date_created: number;
-  mark: string;
-  model: string;
-  number: string | number;
-  year: number;
-  title: string;
-  status: Status;
-};
-
-type Status = {
-  title: string;
-  code?: string;
-
-};
-
-type PropsStatus = {
-  info: InfoType[];
+interface Data  {
+  info: Info[];
   statuses: Status[];
 };
 
 
-const DriverFilter = (props : qwerty) => {
-  const [receivedData, setReceivedData]: [PropsStatus, Dispatch<SetStateAction<PropsStatus>>] = useContext(receivedDataContext);
+const DriverFilter = (props : Props) => {
+  const [receivedData, setReceivedData]: [Data, Dispatch<SetStateAction<Data>>] = useContext(receivedDataContext);
   const filtersValues: Current  = useContext(filteredValuesContext);
 
   const search: ChangeEventHandler<HTMLInputElement> | undefined = props.search;

@@ -1,4 +1,10 @@
-import React, { useState, useRef, Dispatch, SetStateAction, MutableRefObject } from "react";
+import React, {
+  useState,
+  useRef,
+  Dispatch,
+  SetStateAction,
+  MutableRefObject,
+} from "react";
 import { Routes, Route } from "react-router-dom";
 
 import OptionTitles from "./components/titles/TitlesOptions";
@@ -9,12 +15,14 @@ import FormCars from "./components/titles/cars/FormCars";
 import AddCar from "./components/addNewUnit/addCar/addCar";
 import AddDrivers from "./components/addNewUnit/addDrivers/addDriver";
 
+import { Info } from "./interfaces";
+
 import "./app.scss";
 
 const App: React.FC = () => {
-  const [context, setContext]: [false, Dispatch<SetStateAction<false>>] = useState(false);
-  const [receivedData, setReceivedData]: [{}, Dispatch<SetStateAction<{}>>] = useState({});
-  const [isFiltered, setIsFiltered]: [true, Dispatch<SetStateAction<true>>] = useState(true);
+  const [context, setContext] = useState<boolean>(false);
+  const [receivedData, setReceivedData] = useState(new Array<Info>());
+  const [isFiltered, setIsFiltered] = useState<boolean>(true);
   const data: MutableRefObject<never[]> = useRef([]);
   const isDataEmpty: MutableRefObject<boolean> = useRef(false);
 
