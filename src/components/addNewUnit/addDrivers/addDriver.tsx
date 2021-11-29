@@ -11,7 +11,7 @@ import { Context } from "../../../context";
 import Input from "../../regularComponents/input/Input";
 import { Button } from "../../regularComponents/button/Button";
 
-import { GET, POST, GETSTATUS } from "../../../requests";
+import { POST, GETSTATUS } from "../../../requests";
 
 import { Info, Status } from "../../../interfaces";
 

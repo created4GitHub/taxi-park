@@ -28,37 +28,41 @@ const Filter = (props: { title: string }) => {
   const [receivedData]: [Data] = useContext(receivedDataContext);
   const [isFiltered, setIsFiltered]: [ boolean, Dispatch<SetStateAction<boolean>> ] = useContext(filteredDataContext).filter;
   const { data, isDataEmpty } = useContext(filteredDataContext);
-  const filtersValues: MutableRefObject<{}> = useRef({});
+  const filtersValues: MutableRefObject<{[key: string] : string}> = useRef({});
+
+    if(filtersValues.current.title && filtersValues.current.title !== props.title){
+      resetFilters();
+    }
 
   const search = (event: React.ChangeEvent<HTMLInputElement>) => {
-    (filtersValues.current as { [key: string]: string })[
-      (event.target as HTMLInputElement).name
-    ] = event.target.value;
+    filtersValues.current.title = props.title;
+    filtersValues.current[event.target.name] = event.target.value;
     let result = receivedData.info;
+
     for (let key in filtersValues.current) {
+      if(key === "title"){
+        continue;
+      }
       result = result.filter((item: Info | any) => {
         if (key === "status") {
-          return (filtersValues.current as { [key: string]: string })[key] ===
+          return (filtersValues.current)[key] ===
             item.status.title
             ? true
-            : false;
+            : false;  
         } else {
-          return String(item[key]).includes(
-            (filtersValues.current as { [key: string]: string })[key]
-          )
+          return String(item[key]).includes(filtersValues.current[key])
             ? true
             : false;
         }
       });
     }
-
     data.current = result;
-    isDataEmpty.current = true;
+    isDataEmpty.current = false;
     setIsFiltered(!isFiltered);
   };
 
-  const resetFilters = () => {
-    isDataEmpty.current = false;
+  function resetFilters(){
+    isDataEmpty.current = true;
     filtersValues.current = {};
     setIsFiltered(!isFiltered);
   };

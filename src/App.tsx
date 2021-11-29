@@ -18,7 +18,7 @@ const App: React.FC = () => {
   const [receivedData, setReceivedData] = useState(new Array<Info>());
   const [isFiltered, setIsFiltered] = useState<boolean>(true);
   const data: MutableRefObject<never[]> = useRef([]);
-  const isDataEmpty: MutableRefObject<boolean> = useRef(false);
+  const isDataEmpty: MutableRefObject<boolean> = useRef(true);
 
   return (
     <>
