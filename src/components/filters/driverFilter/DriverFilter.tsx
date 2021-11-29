@@ -1,16 +1,31 @@
-import { useContext } from "react";
+import { useContext, Dispatch, SetStateAction, ChangeEventHandler, MouseEventHandler } from "react";
 
 import { receivedDataContext, filteredValuesContext } from "../../../context";
 
 import Input from "../../regularComponents/input/Input";
 
-export default function DriverFilter(props : any) {
-  const [receivedData, setReceivedData] = useContext(receivedDataContext);
+import {Info, Status} from '../../../interfaces'
 
-  const filtersValues = useContext(filteredValuesContext);
+interface Current  {
+  current: Record<string, string>;
+}
+interface Props  {
+  search: ChangeEventHandler<HTMLInputElement>;
+  resetFilters: MouseEventHandler<HTMLButtonElement>;
+}
 
-  const search = props.search;
-  const resetFilters = props.resetFilters;
+interface Data  {
+  info: Info[];
+  statuses: Status[];
+};
+
+
+const DriverFilter = (props : Props) => {
+  const [receivedData, setReceivedData]: [Data, Dispatch<SetStateAction<Data>>] = useContext(receivedDataContext);
+  const filtersValues: Current  = useContext(filteredValuesContext);
+
+  const search: ChangeEventHandler<HTMLInputElement> | undefined = props.search;
+  const resetFilters: MouseEventHandler<HTMLButtonElement> | undefined = props.resetFilters;
 
   return (
     <>
@@ -59,3 +74,5 @@ export default function DriverFilter(props : any) {
     </>
   );
 }
+
+export default DriverFilter;

@@ -2,13 +2,12 @@ import Form from "../../formUnits/FormUnits";
 import FormCars from "./TitleCars";
 
 const Cars = () => {
-
-  return(
+  return (
     <>
-      <FormCars/>
-      <Form {...{title: "car", status: "car-status"}}/>
+      <FormCars />
+      <Form {...{ title: "car" }} />
     </>
-  )
+  );
 };
 
 export default Cars;

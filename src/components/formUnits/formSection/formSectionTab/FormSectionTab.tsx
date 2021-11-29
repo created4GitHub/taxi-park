@@ -1,39 +1,21 @@
-import { useEffect, useState, MouseEvent, Dispatch, SetStateAction } from "react";
-
-import "./formSectionTab.style.scss";
+import { useEffect, useState, MouseEvent } from "react";
 
 import { PATCH } from "../../../../requests";
 
-type InfoType = {
-  id: number;
-  first_name: string;
-  driver_id: number;
-  last_name: string;
-  date_birth: number;
-  date_created: number;
-  mark: string;
-  model: string;
-  number: string | number;
-  year: number;
-  title: string;
-  status: Status;
-};
+import { Info, Status } from "../../../../interfaces";
 
-type Status = {
-  title: string;
-  code?: string;
-};
-type PropsStatus = {
-  info: InfoType;
+import "./formSectionTab.style.scss";
+
+type Props = {
+  info: Info;
   item: [string, any];
   title: string;
   statuses: Status[];
 };
 
-const FormSectionTab = (props: PropsStatus) => {
-  
+const FormSectionTab = (props: Props) => {
   const [isDiv, setIsDiv] = useState<boolean>(true);
-  const [isUpdatedSelect, setIsUpdatedSelect]: [string, Dispatch<SetStateAction<string>>] = useState("");
+  const [isUpdatedSelect, setIsUpdatedSelect] = useState<string>("");
   let item = props.item;
   let itemInfo: any = props.info;
 
@@ -45,22 +27,25 @@ const FormSectionTab = (props: PropsStatus) => {
 
   function changeElement(event: MouseEvent<HTMLElement>) {
     let element: string = (event.target as HTMLElement).id;
-
-    if (
-      element !== "id" &&
-      element !== "date_birth" &&
-      element !== "date_created" && 
-      element !== 'driver_id'
-    ) {
+    if (!["id", "date_birth", "date_created", "driver_id"].includes(element)) {
       setIsDiv(!isDiv);
     }
   }
+
+  const saveNewInformation = (
+    key: string,
+    info: string | number | Status ) => {
+    itemInfo[key] = info;
+    setIsDiv(!isDiv);
+    PATCH(props.title, itemInfo.id, { [key]: info });
+  };
 
   const pressedEnter = (event: React.KeyboardEvent) => {
     if (event.key === "Enter") {
       saveNewInformation(
         (event.target as HTMLElement).id,
-        (event.target as HTMLInputElement).value || (event.target as HTMLInputElement).placeholder
+        (event.target as HTMLInputElement).value ||
+          (event.target as HTMLInputElement).placeholder
       );
     }
   };
@@ -68,17 +53,14 @@ const FormSectionTab = (props: PropsStatus) => {
   const onBlurEvent = (event: React.FocusEvent<HTMLInputElement>) => {
     saveNewInformation(
       (event.target as HTMLElement).id,
-      (event.target as HTMLInputElement).value || (event.target as HTMLInputElement).placeholder
+      (event.target as HTMLInputElement).value ||
+        (event.target as HTMLInputElement).placeholder
     );
   };
 
-  const saveNewInformation = (key: string, info: string) => {
-    // InfoType[key] = info;
-    setIsDiv(!isDiv);
-    PATCH(props.title, itemInfo.id, { [key]: info });
-  };
-
-  const saveStatus = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const saveStatus = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     let newStatus: Status = {
       title: "",
       code: "",
