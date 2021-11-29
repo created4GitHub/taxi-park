@@ -1,7 +1,5 @@
 import React, { MouseEventHandler, FocusEventHandler } from "react";
 
-import "./button.style.scss";
-
 type Props = {
   className: string;
   disabled: boolean | undefined;

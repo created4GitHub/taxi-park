@@ -12,10 +12,10 @@ import {
   filteredDataContext,
 } from "../../context";
 
+
+import Loader from "../loader/loader";
 import FormSection from "./formSection/FormSection";
-
 import { GET, GETSTATUS } from "../../requests";
-
 import { Info, Status } from "../../interfaces";
 
 import "./form.style.scss";
@@ -77,7 +77,7 @@ const FormUnits: React.FC<{ title: string }> = (props: { title: string }) => {
           );
         })
       ) : (
-        <div>Загрузка</div>
+        <div><Loader/></div>
       )}
     </>
   );
