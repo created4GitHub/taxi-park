@@ -203,10 +203,12 @@
         .filter_element-inputRadio {
             display: flex;
             flex-wrap: wrap;
-            height: 60px;
+            height: 50px;
             flex-direction: column;
             align-items: stretch;
             align-content: space-around;
+            justify-content: space-between;
+            
             @media (max-width: 1080px) {
                 display: flex;
                 height: 122px;

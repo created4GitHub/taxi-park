@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useRef,
-  Dispatch,
-  SetStateAction,
-  MutableRefObject,
-} from "react";
+import React, { useState, useRef, MutableRefObject } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import OptionTitles from "./components/titles/TitlesOptions";
