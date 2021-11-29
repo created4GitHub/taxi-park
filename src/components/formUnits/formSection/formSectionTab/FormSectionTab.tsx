@@ -14,16 +14,17 @@ type Props = {
 };
 
 const FormSectionTab = (props: Props) => {
-  const [isDiv, setIsDiv] = useState<boolean>(true);
-  const [isUpdatedSelect, setIsUpdatedSelect] = useState<string>("");
   let item = props.item;
   let itemInfo: any = props.info;
 
-  useEffect(() => {
-    if (item[1] === "status") {
-      setIsUpdatedSelect(item[1].title);
-    }
-  }, [isUpdatedSelect]);
+  const [isDiv, setIsDiv] = useState<boolean>(true);
+  const [selectValue, setSelectValue] = useState<string>(item[1].title);
+
+  // useEffect(() => {
+  //   if (item[1] === "status") { 
+  //     setIsUpdatedSelect(item[1].title);
+  //   }
+  // }, [isUpdatedSelect]);
 
   function changeElement(event: MouseEvent<HTMLElement>) {
     let element: string = (event.target as HTMLElement).id;
@@ -71,11 +72,11 @@ const FormSectionTab = (props: Props) => {
       if (status.title === (event.target as HTMLInputElement).value) {
         newStatus.title = status.title;
         newStatus.code = status.code;
-
         break;
       }
     }
     itemInfo.status = newStatus;
+    setSelectValue(newStatus.title);
     PATCH(props.title, itemInfo.id, { status: newStatus });
   };
 
@@ -106,17 +107,14 @@ const FormSectionTab = (props: Props) => {
           )
         ) : (
           <select
-            value={item[1].title}
+            value={selectValue}
             onChange={saveStatus}
             className="table-section-tab-select"
           >
-            {statuses.length ? (
-              statuses.map((status: Status, index: number) => {
+            {statuses.length && statuses.map((status: Status, index: number) => {
                 return <option key={index}>{status.title}</option>;
               })
-            ) : (
-              <option>Загрузка</option>
-            )}
+            }
           </select>
         )}
       </div>
