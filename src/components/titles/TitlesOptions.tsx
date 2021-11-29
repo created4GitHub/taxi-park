@@ -13,8 +13,7 @@ const OptionTitles = () => {
     string,
     Dispatch<SetStateAction<string>>
   ] = useState("");
-  const [context, setContext]: [boolean, Dispatch<SetStateAction<boolean>>] =
-    useContext(Context);
+  const [addNew, setAddNew]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(Context);
 
   return (
     <div className="content__options">
@@ -27,7 +26,7 @@ const OptionTitles = () => {
               }
               onClick={() => {
                 setActiveButton("Drivers");
-                setContext(false);
+                setAddNew(false);
               }}
               btnText={
                 <p className="options-paragraph">
@@ -39,7 +38,7 @@ const OptionTitles = () => {
             <Button
               onClick={() => {
                 setActiveButton("Drivers");
-                setContext(true);
+                setAddNew(true);
               }}
               className="add driver"
               btnText="+"
@@ -52,7 +51,7 @@ const OptionTitles = () => {
               className={activeButton !== "Cars" ? "but" : "but active"}
               onClick={() => {
                 setActiveButton("Cars");
-                setContext(false);
+                setAddNew(false);
               }}
               btnText={
                 <p className="options-paragraph">
@@ -64,7 +63,7 @@ const OptionTitles = () => {
             <Button
               onClick={() => {
                 setActiveButton("Cars");
-                setContext(true);
+                setAddNew(true);
               }}
               className="add car"
               btnText="+"

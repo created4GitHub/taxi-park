@@ -14,7 +14,7 @@ import { Info } from "./interfaces";
 import "./app.scss";
 
 const App: React.FC = () => {
-  const [context, setContext] = useState<boolean>(false);
+  const [addNew, setAddNew] = useState<boolean>(false);
   const [receivedData, setReceivedData] = useState(new Array<Info>());
   const [isFiltered, setIsFiltered] = useState<boolean>(true);
   const data: MutableRefObject<never[]> = useRef([]);
@@ -22,7 +22,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <Context.Provider value={[context, setContext]}>
+      <Context.Provider value={[addNew, setAddNew]}>
         <receivedDataContext.Provider value={[receivedData, setReceivedData]}>
           <filteredDataContext.Provider
             value={{
@@ -38,12 +38,12 @@ const App: React.FC = () => {
                 <div className="content__inform">
                   <div className="table">
                     <Routes>
-                      {context ? (
+                      {addNew ? (
                         <Route path="/drivers" element={<AddDrivers />} />
                       ) : (
                         ""
                       )}
-                      {context ? (
+                      {addNew ? (
                         <Route path="/cars" element={<AddCar />} />
                       ) : (
                         ""

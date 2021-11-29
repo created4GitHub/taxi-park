@@ -25,7 +25,8 @@ interface Received {
 }
 
 const FormUnits: React.FC<{ title: string }> = (props: { title: string }) => {
-  const [context, setContext]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(Context);
+  const [addNew, setAddNew]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(Context);
+
   const [receivedData, setReceivedData]: [
     Received,
     Dispatch<SetStateAction<Received>>
@@ -54,7 +55,7 @@ const FormUnits: React.FC<{ title: string }> = (props: { title: string }) => {
         } as Received);
       });
     });
-  }, [context, isDeleted]);
+  }, [addNew, isDeleted]);
 
   let currentData: string[] =
     (isDataEmpty.current && data.current) || receivedData.info;

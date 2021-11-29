@@ -11,8 +11,10 @@ const TitlesCars = () => {
             <div className='title-section-title'>year</div>
             <div className='title-section-title'>class</div>
             <div className='title-section-title'>info</div>
-            <div className='title-section-title'>Delete</div>
-            <div className='title-section-title'>Delete</div>
+            <div className="title-section-button">
+                <div className='title-section-title'>Info</div>
+                <div className='title-section-title'>Delete</div>
+            </div>
         </div>
     )
 }

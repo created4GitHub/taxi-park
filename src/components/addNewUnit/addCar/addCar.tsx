@@ -23,7 +23,7 @@ import "./addCar.style.scss";
 
 const AddForm = () => {
   const [statuses, setStatuses] = useState(new Array<Status>());
-  const [context, setContext]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(Context);
+  const [addNew, setAddNew]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(Context);
   const [addRequest] = useState<Info>({
     model: "",
     mark: "",
@@ -83,7 +83,7 @@ const AddForm = () => {
         return;
       }
     }
-    setContext(false);
+    setAddNew(false);
 
     POST("car", addRequest);
     addRequest.model = "";
@@ -145,7 +145,7 @@ const AddForm = () => {
         />
         <Button
           className="table_section-button"
-          onClick={() => setContext(false)}
+          onClick={() => setAddNew(false)}
           btnText={<img src={deleteObj} alt="alt" />}
         />
       </div>
