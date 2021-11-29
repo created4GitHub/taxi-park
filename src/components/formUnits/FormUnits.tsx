@@ -19,6 +19,7 @@ import { GET, GETSTATUS } from "../../requests";
 import { Info, Status } from "../../interfaces";
 
 import "./form.style.scss";
+import { current } from "@reduxjs/toolkit";
 interface Received {
   info: Info[];
   statuses: Status[];
@@ -57,9 +58,9 @@ const FormUnits: React.FC<{ title: string }> = (props: { title: string }) => {
   }, [context, isDeleted]);
 
   let currentData: string[] =
-    (isDataEmpty.current && data.current) || receivedData.info;
+    (!isDataEmpty.current && data.current) || receivedData.info;
 
-  return (
+    return (
     <>
       {receivedData.statuses && currentData ? (
         currentData.map((item: any, index: number) => {

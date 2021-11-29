@@ -107,7 +107,7 @@ const FormSectionTab = (props: Props) => {
           )
         ) : (
           <select
-            value={selectValue}
+            defaultValue={item[1].title}
             onChange={saveStatus}
             className="table-section-tab-select"
           >
