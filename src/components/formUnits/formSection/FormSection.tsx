@@ -21,8 +21,7 @@ const FormSection = (props: Props) => {
   const [isOpen, setIsopen] = useState<boolean>();
   const [cars, setCars] = useState<Info[]>();
   const [driver, setDriver] = useState<Info>();
-  const [isDelete, setIsDeleted]: [boolean, Dispatch<SetStateAction<boolean>>] =
-    useContext(deletedContext);
+  const [isDelete, setIsDeleted]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(deletedContext);
 
   let itemInfo = props.info;
   let infoEntries = Object.entries(itemInfo);
@@ -35,13 +34,15 @@ const FormSection = (props: Props) => {
 
   const search = () => {
     if (props.title === "driver") {
-      GETDRIVERBYCAR(String(props.info.id)).then((data) =>
-        setCars(data.data as unknown as Info[])
+      GETDRIVERBYCAR(String(props.info.id)).then((data) =>{
+        setCars(data.data as Info[])
+      }
       );
     }
     if (props.title === "car" && props.info.driver_id) {
-      GET(`driver/${props.info.driver_id}`).then((resp) =>
-        setDriver(resp.data as unknown as Info)
+      GET(`driver/${props.info.driver_id}`).then((resp) =>{
+        setDriver(resp.data as unknown as Info);
+      }
       );
     }
   };

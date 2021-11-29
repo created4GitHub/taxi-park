@@ -23,7 +23,7 @@ import "./addCar.style.scss";
 
 const AddForm = () => {
   const [statuses, setStatuses] = useState(new Array<Status>());
-  const [setContext]: [Dispatch<SetStateAction<boolean>>] = useContext(Context);
+  const [context, setContext]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(Context);
   const [addRequest] = useState<Info>({
     model: "",
     mark: "",

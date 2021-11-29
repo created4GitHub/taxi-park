@@ -11,7 +11,7 @@ import { Context } from "../../../context";
 import Input from "../../regularComponents/input/Input";
 import { Button } from "../../regularComponents/button/Button";
 
-import { GET, POST, GETSTATUS } from "../../../requests";
+import { POST, GETSTATUS } from "../../../requests";
 
 import { Info, Status } from "../../../interfaces";
 
@@ -22,7 +22,7 @@ import "./addDriver.style.scss";
 
 const AddDrivers = () => {
   const [statuses, setStatuses] = useState<Status[]>();
-  const [setContext]: [Dispatch<SetStateAction<boolean>>] = useContext(Context);
+  const [context, setContext]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(Context);
   const [addRequest] = useState<Info>({
     first_name: "",
     last_name: "",
