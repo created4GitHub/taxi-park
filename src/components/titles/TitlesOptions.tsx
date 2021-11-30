@@ -1,6 +1,6 @@
 import { useState, Dispatch, SetStateAction, useContext } from "react";
 import { Link, Routes, Route } from "react-router-dom";
-import { Context } from "../../context";
+import { ModalContext } from "../../context";
 
 import { Button } from "../regularComponents/button/Button";
 import Filter from "../filters/Filters";
@@ -13,8 +13,8 @@ const OptionTitles = () => {
     string,
     Dispatch<SetStateAction<string>>
   ] = useState("");
-  const [context, setContext]: [boolean, Dispatch<SetStateAction<boolean>>] =
-    useContext(Context);
+  const [modalContext, setContext]: [boolean, Dispatch<SetStateAction<boolean>>] =
+    useContext(ModalContext);
 
   return (
     <div className="content__options">

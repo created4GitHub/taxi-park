@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 
 import OptionTitles from "./components/titles/TitlesOptions";
 import Header from "./components/header/Header";
-import { Context, receivedDataContext, filteredDataContext } from "./context";
+import { ModalContext, receivedDataContext, filteredDataContext } from "./context";
 import FormDrivers from "./components/titles/drivers/FormDrivers";
 import FormCars from "./components/titles/cars/FormCars";
 import AddCar from "./components/addNewUnit/addCar/addCar";
@@ -14,7 +14,7 @@ import { Info } from "./interfaces";
 import "./app.scss";
 
 const App: React.FC = () => {
-  const [context, setContext] = useState<boolean>(false);
+  const [modalContext, setContext] = useState<boolean>(false);
   const [receivedData, setReceivedData] = useState(new Array<Info>());
   const [isFiltered, setIsFiltered] = useState<boolean>(true);
   const data: MutableRefObject<never[]> = useRef([]);
@@ -22,7 +22,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <Context.Provider value={[context, setContext]}>
+      <ModalContext.Provider value={[modalContext, setContext]}>
         <receivedDataContext.Provider value={[receivedData, setReceivedData]}>
           <filteredDataContext.Provider
             value={{
@@ -38,12 +38,12 @@ const App: React.FC = () => {
                 <div className="content__inform">
                   <div className="table">
                     <Routes>
-                      {context ? (
+                      {modalContext ? (
                         <Route path="/drivers" element={<AddDrivers />} />
                       ) : (
                         ""
                       )}
-                      {context ? (
+                      {modalContext ? (
                         <Route path="/cars" element={<AddCar />} />
                       ) : (
                         ""
@@ -59,7 +59,7 @@ const App: React.FC = () => {
             </div>
           </filteredDataContext.Provider>
         </receivedDataContext.Provider>
-      </Context.Provider>
+      </ModalContext.Provider>
     </>
   );
 };

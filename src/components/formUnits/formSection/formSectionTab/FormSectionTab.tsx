@@ -20,12 +20,6 @@ const FormSectionTab = (props: Props) => {
   const [isDiv, setIsDiv] = useState<boolean>(true);
   const [selectValue, setSelectValue] = useState<string>(item[1].title);
 
-  // useEffect(() => {
-  //   if (item[1] === "status") { 
-  //     setIsUpdatedSelect(item[1].title);
-  //   }
-  // }, [isUpdatedSelect]);
-
   function changeElement(event: MouseEvent<HTMLElement>) {
     let element: string = (event.target as HTMLElement).id;
     if (!["id", "date_birth", "date_created", "driver_id"].includes(element)) {
@@ -41,10 +35,10 @@ const FormSectionTab = (props: Props) => {
     PATCH(props.title, itemInfo.id, { [key]: info });
   };
 
-  const pressedEnter = (event: React.KeyboardEvent) => {
+  const pressedEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       saveNewInformation(
-        (event.target as HTMLElement).id,
+        (event.target as HTMLInputElement).id,
         (event.target as HTMLInputElement).value ||
           (event.target as HTMLInputElement).placeholder
       );
@@ -107,7 +101,7 @@ const FormSectionTab = (props: Props) => {
           )
         ) : (
           <select
-            defaultValue={item[1].title}
+            defaultValue={selectValue}
             onChange={saveStatus}
             className="table-section-tab-select"
           >

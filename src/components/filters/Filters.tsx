@@ -53,7 +53,8 @@ const Filter = (props: { title: string }) => {
             ? true
             : false;  
         } else {
-          return String(item[key]).includes(filtersValues.current[key])
+          return String(item[key]).toLocaleLowerCase()
+          .includes(filtersValues.current[key].toLocaleLowerCase())
             ? true
             : false;
         }

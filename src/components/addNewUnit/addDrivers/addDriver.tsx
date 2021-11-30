@@ -6,7 +6,7 @@ import {
   SetStateAction,
 } from "react";
 
-import { Context } from "../../../context";
+import { ModalContext } from "../../../context";
 
 import Input from "../../regularComponents/input/Input";
 import { Button } from "../../regularComponents/button/Button";
@@ -22,7 +22,7 @@ import "./addDriver.style.scss";
 
 const AddDrivers = () => {
   const [statuses, setStatuses] = useState<Status[]>();
-  const [context, setContext]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(Context);
+  const [modalContext, setContext]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(ModalContext);
   const [addRequest] = useState<Info>({
     first_name: "",
     last_name: "",

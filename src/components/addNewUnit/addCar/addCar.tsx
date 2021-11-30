@@ -5,7 +5,7 @@ import {
   Dispatch,
   SetStateAction
 } from "react";
-import { Context } from "../../../context";
+import { ModalContext } from "../../../context";
 
 import FindDriverId from "../../findDriverId/FindDriverId";
 import YearSelect from "../../yearSelect/YearSelect";
@@ -23,7 +23,7 @@ import "./addCar.style.scss";
 
 const AddForm = () => {
   const [statuses, setStatuses] = useState(new Array<Status>());
-  const [context, setContext]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(Context);
+  const [modalContext, setContext]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(ModalContext);
   const [addRequest] = useState<Info>({
     model: "",
     mark: "",

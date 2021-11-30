@@ -57,7 +57,7 @@ const DriverFilter = (props: Props) => {
         <Input
           onInput={search}
           name="mark"
-          placeholder="Search by mark"
+          placeholder="Search by brand"
           value={
             (filtersValues.current as { [key: string]: string }).mark || ""
           }
