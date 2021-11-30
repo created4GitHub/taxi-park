@@ -14,7 +14,7 @@ import { Info } from "./interfaces";
 import "./app.scss";
 
 const App: React.FC = () => {
-  const [modalContext, setContext] = useState<boolean>(false);
+  const [modalContext, setModalContext] = useState<boolean>(false);
   const [receivedData, setReceivedData] = useState(new Array<Info>());
   const [isFiltered, setIsFiltered] = useState<boolean>(true);
   const data: MutableRefObject<never[]> = useRef([]);
@@ -22,7 +22,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <ModalContext.Provider value={[modalContext, setContext]}>
+      <ModalContext.Provider value={[modalContext, setModalContext]}>
         <receivedDataContext.Provider value={[receivedData, setReceivedData]}>
           <filteredDataContext.Provider
             value={{

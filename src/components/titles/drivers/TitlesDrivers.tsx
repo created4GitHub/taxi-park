@@ -10,8 +10,10 @@ const TitlesDrivers = () => {
             <div className='title-section-title'>Birthday</div>
             <div className='title-section-title'>Create</div>
             <div className='title-section-title'>Status</div>
-            <div className='title-section-title'>Info</div>
-            <div className='title-section-title'>Delete</div>
+                <div className="title-section-button">
+                    <div className='title-section-title'>Info</div>
+                    <div className='title-section-title'>Delete</div>
+                </div>
         </div>
     )
 }

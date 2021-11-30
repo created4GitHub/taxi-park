@@ -10,9 +10,11 @@ const TitlesCars = () => {
             <div className='title-section-title'>Numbers</div>
             <div className='title-section-title'>Year</div>
             <div className='title-section-title'>Class</div>
-            <div className='title-section-title'>Info</div>
-            <div className='title-section-title'>Show</div>
-            <div className='title-section-title'>Delete</div>
+            <div className='title-section-title'>Status</div>
+            <div className="title-section-button">
+                <div className='title-section-title'>Show</div>
+                <div className='title-section-title'>Delete</div>
+            </div>
         </div>
     )
 }

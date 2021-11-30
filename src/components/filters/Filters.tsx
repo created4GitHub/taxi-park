@@ -26,10 +26,7 @@ type Data = {
 
 const Filter = (props: { title: string }) => {
   const [receivedData]: [Data] = useContext(receivedDataContext);
-  const [isFiltered, setIsFiltered]: [
-    boolean,
-    Dispatch<SetStateAction<boolean>>
-  ] = useContext(filteredDataContext).filter;
+  const [isFiltered, setIsFiltered]: [ boolean, Dispatch<SetStateAction<boolean>> ] = useContext(filteredDataContext).filter;
   const { data, isDataEmpty } = useContext(filteredDataContext);
   const filtersValues: MutableRefObject<{[key: string] : string}> = useRef({});
 
