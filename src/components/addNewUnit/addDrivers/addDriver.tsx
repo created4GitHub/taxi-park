@@ -22,7 +22,7 @@ import "./addDriver.style.scss";
 
 const AddDrivers = () => {
   const [statuses, setStatuses] = useState<Status[]>();
-  const [modalContext, setContext]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(ModalContext);
+  const [modalContext, setModalContext]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(ModalContext);
   const [addRequest] = useState<Info>({
     first_name: "",
     last_name: "",
@@ -81,7 +81,7 @@ const AddDrivers = () => {
     }
 
     POST("driver", addRequest);
-    setContext(false);
+    setModalContext(false);
     addRequest.first_name = "";
     addRequest.last_name = "";
     addRequest.date_birth = 0;
@@ -130,7 +130,7 @@ const AddDrivers = () => {
         />
         <Button
           className="table_section-button"
-          onClick={() => setContext(false)}
+          onClick={() => setModalContext(false)}
           btnText={<img src={deleteObj} alt="alt" />}
         />
       </div>
