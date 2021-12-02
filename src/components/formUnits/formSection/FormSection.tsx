@@ -10,6 +10,7 @@ import { Info, Status } from "../../../interfaces";
 import icons from "../../../img/IconsDirection.svg";
 
 import "./formSection.style.scss";
+import { JsxElement } from "typescript";
 
 type Props = {
   info: Info;
@@ -34,13 +35,13 @@ const FormSection = (props: Props) => {
 
   const search = () => {
     if (props.title === "driver") {
-      GETDRIVERBYCAR(String(props.info.id)).then((data) =>{
+      GETDRIVERBYCAR(String(props.info.id)).then((data) => {
         setCars(data.data as Info[])
       }
       );
     }
     if (props.title === "car" && props.info.driver_id) {
-      GET(`driver/${props.info.driver_id}`).then((resp) =>{
+      GET(`driver/${props.info.driver_id}`).then((resp) => {
         setDriver(resp.data as unknown as Info);
       }
       );
@@ -137,7 +138,7 @@ const FormSection = (props: Props) => {
             ) : (
               ""
             )}
-            {props.title === "car" ? (
+            {props.title === "car" && (
               <>
                 <p>
                   ID <img src={icons} alt="alt" />
@@ -159,8 +160,6 @@ const FormSection = (props: Props) => {
                   Status <img src={icons} alt="alt" />
                 </p>
               </>
-            ) : (
-              ""
             )}
           </div>
           {props.title === "driver" ? renderCar() : ""}

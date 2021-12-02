@@ -6,7 +6,6 @@ import {
   SetStateAction,
 } from "react";
 import {
-  ModalContext,
   deletedContext,
   receivedDataContext,
   filteredDataContext,
@@ -26,7 +25,6 @@ interface Received {
 }
 
 const FormUnits: React.FC<{ title: string }> = (props: { title: string }) => {
-  const [modalContext, setContext]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(ModalContext);
   const [receivedData, setReceivedData]: [
     Received,
     Dispatch<SetStateAction<Received>>
@@ -55,12 +53,12 @@ const FormUnits: React.FC<{ title: string }> = (props: { title: string }) => {
         } as Received);
       });
     });
-  }, [modalContext, isDeleted]);
+  }, [isDeleted]);
 
   let currentData: string[] =
     (!isDataEmpty.current && data.current) || receivedData.info;
 
-    return (
+  return (
     <>
       {receivedData.statuses && currentData ? (
         currentData.map((item: any, index: number) => {
@@ -78,7 +76,7 @@ const FormUnits: React.FC<{ title: string }> = (props: { title: string }) => {
           );
         })
       ) : (
-        <div><Loader/></div>
+        <div><Loader /></div>
       )}
     </>
   );

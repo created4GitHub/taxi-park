@@ -1,83 +1,34 @@
-import { useState, Dispatch, SetStateAction, useContext } from "react";
-import { Link, Routes, Route } from "react-router-dom";
-import { ModalContext } from "../../context";
+import { useState } from "react";
 
-import { Button } from "../regularComponents/button/Button";
+import { Routes, Route } from "react-router-dom";
+
 import Filter from "../filters/Filters";
 
-import drivers from "../../img/drivers.svg";
-import cars from "../../img/cars.svg";
+import Title from "./Title";
 
-const OptionTitles = () => {
-  const [activeButton, setActiveButton]: [
-    string,
-    Dispatch<SetStateAction<string>>
-  ] = useState("");
-  const [modalContext, setModalContext]: [boolean, Dispatch<SetStateAction<boolean>>] =
-    useContext(ModalContext);
+const TitlesOptions = () => {
+  const [isActive, setIsActive] = useState<string>("");
 
   return (
     <div className="content__options">
       <div className="content__options-paragraph">
-        <div className="elem">
-          <Link to="/drivers">
-            <Button
-              className={
-                activeButton !== "Drivers" ? "but up" : "but up active"
-              }
-              onClick={() => {
-                setActiveButton("Drivers");
-                setModalContext(false);
-              }}
-              btnText={
-                <p className="options-paragraph">
-                  <img className="options-img" src={drivers} alt="alt" />
-                  Drivers
-                </p>
-              }
-            />
-            <Button
-              onClick={() => {
-                setActiveButton("Drivers");
-                setModalContext(true);
-              }}
-              className="add driver"
-              btnText="+"
-            />
-          </Link>
-        </div>
-        <div className="elem">
-          <Link to="/cars">
-            <Button
-              className={activeButton !== "Cars" ? "but" : "but active"}
-              onClick={() => {
-                setActiveButton("Cars");
-                setModalContext(false);
-              }}
-              btnText={
-                <p className="options-paragraph">
-                  <img className="options-img" src={cars} alt="alt" />
-                  Cars
-                </p>
-              }
-            />
-            <Button
-              onClick={() => {
-                setActiveButton("Cars");
-                setModalContext(true);
-              }}
-              className="add car"
-              btnText="+"
-            />
-          </Link>
-        </div>
+        <Title
+          title="Drivers"
+          link={"/drivers"}
+          state={{ isActive, setIsActive }}
+        />
+        <Title
+          title="Cars"
+          link={"/cars"}
+          state={{ isActive, setIsActive }}
+        />
       </div>
       <Routes>
-        <Route path="/drivers" element={<Filter {...{ title: "driver" }} />} />
-        <Route path="/cars" element={<Filter {...{ title: "car" }} />} />
+        <Route path="/drivers" element={<Filter title="driver" />} />
+        <Route path="/cars" element={<Filter title="car" />} />
       </Routes>
     </div>
   );
 };
 
-export default OptionTitles;
+export default TitlesOptions;

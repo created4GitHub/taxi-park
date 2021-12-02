@@ -6,8 +6,6 @@ import {
   SetStateAction,
 } from "react";
 
-import { ModalContext } from "../../../context";
-
 import Input from "../../regularComponents/input/Input";
 import { Button } from "../../regularComponents/button/Button";
 
@@ -22,8 +20,7 @@ import "./addDriver.style.scss";
 
 const AddDrivers = () => {
   const [statuses, setStatuses] = useState<Status[]>();
-  const [modalContext, setModalContext]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(ModalContext);
-  const [addRequest] = useState<Info>({
+  const [addRequest] = useState({
     first_name: "",
     last_name: "",
     date_birth: 0,
@@ -81,7 +78,7 @@ const AddDrivers = () => {
     }
 
     POST("driver", addRequest);
-    setModalContext(false);
+    // setModalContext(false);
     addRequest.first_name = "";
     addRequest.last_name = "";
     addRequest.date_birth = 0;
@@ -130,7 +127,7 @@ const AddDrivers = () => {
         />
         <Button
           className="table_section-button"
-          onClick={() => setModalContext(false)}
+          // onClick={() => setModalContext(false)}
           btnText={<img src={deleteObj} alt="alt" />}
         />
       </div>

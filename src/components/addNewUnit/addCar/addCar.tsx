@@ -1,16 +1,18 @@
 import {
   useState,
-  useContext,
   useEffect,
-  Dispatch,
-  SetStateAction
+  useRef,
+  LegacyRef,
+  MutableRefObject,
 } from "react";
-import { ModalContext } from "../../../context";
+import { useDispatch } from 'react-redux';
 
 import FindDriverId from "../../findDriverId/FindDriverId";
 import YearSelect from "../../yearSelect/YearSelect";
 import Input from "../../regularComponents/input/Input";
 import { Button } from "../../regularComponents/button/Button";
+
+import { openAddNewModal, closeAddNewModal } from "../../../store/actions/action";
 
 import { POST, GETSTATUS } from "../../../requests";
 
@@ -21,9 +23,9 @@ import deleteObj from "../../../img/deleteObj.svg";
 
 import "./addCar.style.scss";
 
-const AddForm = () => {
+const AddForm = ({ title }: { title: string }) => {
+  const formRef = useRef<HTMLFormElement>(null);
   const [statuses, setStatuses] = useState(new Array<Status>());
-  const [modalContext, setModalContext]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(ModalContext);
   const [addRequest] = useState<Info>({
     model: "",
     mark: "",
@@ -35,6 +37,21 @@ const AddForm = () => {
       code: "",
     },
   });
+  let placeholders: string[];
+  let status: { title: string, code: string };
+
+  if (title === "car") {
+    placeholders = ["Brand", "Model", "Number Car"];
+    status = { title: "Эконом", code: "econom" };
+  }
+  else {
+    placeholders = ["Name", "Surname", "Number Car"];
+    status = { title: "Активный", code: "active" };
+  }
+
+  const item: Info = { status };
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getStatuses = GETSTATUS("car");
@@ -57,6 +74,11 @@ const AddForm = () => {
   };
 
   const check = () => {
+    console.log((formRef.current as HTMLFormElement).elements)
+    let values = (formRef.current as HTMLFormElement).elements;
+    for (let item of Object.keys(values)) {
+      console.log(values[item].value)
+    }
     let checkMass: Array<string | number> = [];
 
     const checkRequest = (mass: any) => {
@@ -69,13 +91,6 @@ const AddForm = () => {
       }
     };
 
-    if (addRequest.status.title === "") {
-      addRequest.status = {
-        title: "Эконом",
-        code: "econom",
-      };
-    }
-
     checkRequest(addRequest);
 
     for (let index of checkMass) {
@@ -83,16 +98,9 @@ const AddForm = () => {
         return;
       }
     }
-    setModalContext(false);
-
+    // setModalContext(false);
     POST("car", addRequest);
-    addRequest.model = "";
-    addRequest.mark = "";
-    addRequest.number = "";
-    addRequest.year = 0;
-    addRequest.driver_id = 0;
-    addRequest.status.title = "";
-    addRequest.status.code = "";
+
   };
 
   const changeSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -101,18 +109,18 @@ const AddForm = () => {
   };
 
   return (
-    <div className="table_section_add">
+    <form ref={formRef} className="table_section_add">
       <div className="table_section-block-input">
         <Input
           className="table_section-input"
-          onChange={(event) => (addRequest.mark = event.target.value)}
+          onChange={(event) => (item.mark = event.target.value)}
           placeholder="Brand"
         />
       </div>
       <div className="table_section-block-input">
         <Input
           className="table_section-input"
-          onChange={(event) => (addRequest.model = event.target.value)}
+          onChange={(event) => (item.model = event.target.value)}
           placeholder="Modal"
         />
       </div>
@@ -120,19 +128,19 @@ const AddForm = () => {
         <Input
           className="table_section-input"
           maxLength={8}
-          onChange={(event) => (addRequest.number = event.target.value)}
+          onChange={(event) => (item.number = event.target.value)}
           placeholder="Number car"
         />
       </div>
       <div className="table_section-block-input">
         <YearSelect
           onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
-            (addRequest.year = +event.target.value)
+            (item.year = +event.target.value)
           }
         />
       </div>
       <div className="table_section-block-input">
-        <FindDriverId onChange={(id: string) => (addRequest.driver_id = +id)} />
+        <FindDriverId onChange={(id: string) => (item.driver_id = +id)} />
       </div>
       <select className="table_section_add-select" onChange={changeSelect}>
         {renderCheckbox()}
@@ -145,11 +153,12 @@ const AddForm = () => {
         />
         <Button
           className="table_section-button"
-          onClick={() => setModalContext(false)}
+          // onClick={() => setModalContext(false)}
           btnText={<img src={deleteObj} alt="alt" />}
         />
       </div>
-    </div>
+    </form>
+
   );
 };
 

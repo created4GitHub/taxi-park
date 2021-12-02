@@ -19,6 +19,7 @@ export const Button: React.FC<Props> | any = (props: any) => {
       onClick={props.onClick}
       className={props.className}
       disabled={props.disabled}
+      type="button"
     >
       {props.btnText}
     </button>

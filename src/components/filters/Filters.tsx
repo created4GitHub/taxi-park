@@ -24,23 +24,23 @@ type Data = {
   statuses: Status[];
 };
 
-const Filter = (props: { title: string }) => {
+const Filter = ({ title }: { title: string }) => {
   const [receivedData]: [Data] = useContext(receivedDataContext);
-  const [isFiltered, setIsFiltered]: [ boolean, Dispatch<SetStateAction<boolean>> ] = useContext(filteredDataContext).filter;
+  const [isFiltered, setIsFiltered]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(filteredDataContext).filter;
   const { data, isDataEmpty } = useContext(filteredDataContext);
-  const filtersValues: MutableRefObject<{[key: string] : string}> = useRef({});
+  const filtersValues: MutableRefObject<{ [key: string]: string }> = useRef({});
 
-    if(filtersValues.current.title && filtersValues.current.title !== props.title){
-      resetFilters();
-    }
+  if (filtersValues.current.title && filtersValues.current.title !== title) {
+    resetFilters();
+  }
 
   const search = (event: React.ChangeEvent<HTMLInputElement>) => {
-    filtersValues.current.title = props.title;
+    filtersValues.current.title = title;
     filtersValues.current[event.target.name] = event.target.value;
     let result = receivedData.info;
 
     for (let key in filtersValues.current) {
-      if(key === "title"){
+      if (key === "title") {
         continue;
       }
       result = result.filter((item: Info | any) => {
@@ -48,10 +48,10 @@ const Filter = (props: { title: string }) => {
           return (filtersValues.current)[key] ===
             item.status.title
             ? true
-            : false;  
+            : false;
         } else {
           return String(item[key]).toLocaleLowerCase()
-          .includes(filtersValues.current[key].toLocaleLowerCase())
+            .includes(filtersValues.current[key].toLocaleLowerCase())
             ? true
             : false;
         }
@@ -62,7 +62,7 @@ const Filter = (props: { title: string }) => {
     setIsFiltered(!isFiltered);
   };
 
-  function resetFilters(){
+  function resetFilters() {
     isDataEmpty.current = true;
     filtersValues.current = {};
     setIsFiltered(!isFiltered);
@@ -71,7 +71,7 @@ const Filter = (props: { title: string }) => {
   return (
     <div className="content__options-filter">
       <filteredValuesContext.Provider value={filtersValues}>
-        {props.title === "driver" ? (
+        {title === "driver" ? (
           <DriverFilter {...{ search: search, resetFilters: resetFilters }} />
         ) : (
           <CarFilter {...{ search: search, resetFilters: resetFilters }} />
