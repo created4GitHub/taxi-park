@@ -40,9 +40,7 @@ const App: React.FC = () => {
                     <Routes>
                       {addNew ? (
                         <Route path="/drivers" element={<AddDrivers />} />
-                      ) : (
-                        ""
-                      )}
+                      ) : ""}
                       {addNew ? (
                         <Route path="/cars" element={<AddCar />} />
                       ) : (

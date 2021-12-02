@@ -22,7 +22,7 @@ import deleteObj from "../../../img/deleteObj.svg";
 import "./addCar.style.scss";
 
 const AddForm = () => {
-  const [statuses, setStatuses] = useState(new Array<Status>());
+  const [statuses, setStatuses] = useState(Array<Status>());
   const [addNew, setAddNew]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(Context);
   const [addRequest] = useState<Info>({
     model: "",
@@ -75,14 +75,15 @@ const AddForm = () => {
         code: "econom",
       };
     }
-
+    
     checkRequest(addRequest);
 
-    for (let index of checkMass) {
-      if (index === "" || !index) {
+    checkMass.forEach((item: string | number) => {
+      if (item === "" || !item) {
         return;
       }
-    }
+    });
+
     setAddNew(false);
 
     POST("car", addRequest);
@@ -100,19 +101,26 @@ const AddForm = () => {
     addRequest.status.code = event.target.value;
   };
 
+  const onChange = (event: any) => {
+    const id: string = event.target.id;
+    (addRequest as any)[id] = event.target.value;
+  }
+
   return (
     <div className="table_section_add">
       <div className="table_section-block-input">
         <Input
           className="table_section-input"
-          onChange={(event) => (addRequest.mark = event.target.value)}
+          id="mark"
+          onChange={onChange}
           placeholder="Brand"
         />
       </div>
       <div className="table_section-block-input">
         <Input
           className="table_section-input"
-          onChange={(event) => (addRequest.model = event.target.value)}
+          id="model"
+          onChange={onChange}
           placeholder="Modal"
         />
       </div>
@@ -120,15 +128,15 @@ const AddForm = () => {
         <Input
           className="table_section-input"
           maxLength={8}
-          onChange={(event) => (addRequest.number = event.target.value)}
+          id="number"
+          onChange={onChange}
           placeholder="Number car"
         />
       </div>
       <div className="table_section-block-input">
         <YearSelect
-          onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
-            (addRequest.year = +event.target.value)
-          }
+          id="year"
+          onChange={onChange}
         />
       </div>
       <div className="table_section-block-input">

@@ -74,11 +74,11 @@ const AddDrivers = () => {
       };
     }
 
-    for (let index of checkMass) {
-      if (index === "" || !index) {
+    checkMass.forEach((item: any) => {
+      if (item === "" || !item) {
         return;
       }
-    }
+    })
 
     POST("driver", addRequest);
     setContext(false);
@@ -94,19 +94,31 @@ const AddDrivers = () => {
     addRequest.status.code = event.target.value;
   };
 
+  const onChange = (event: any) => {
+    const id: string = event.target.id;
+
+    if(event.target.id === 'date_birth'){
+      (addRequest as any)[id] = Date.parse(event.target.value);
+    } else {
+      (addRequest as any)[id] = event.target.value;
+    }
+  }
+
   return (
     <div className="table_section_add">
       <div className="table_section-block-input">
         <Input
           className="table_section-input"
-          onChange={(event) => (addRequest.first_name = event.target.value)}
+          id='first_name'
+          onChange={onChange}
           placeholder="Name"
         />
       </div>
       <div className="table_section-block-input">
         <Input
           className="table_section-input"
-          onChange={(event) => (addRequest.last_name = event.target.value)}
+          id='last_name'
+          onChange={onChange}
           placeholder="first name"
         />
       </div>
@@ -114,9 +126,8 @@ const AddDrivers = () => {
         <Input
           type="date"
           className="table_section-input"
-          onChange={(event) =>
-            (addRequest.date_birth = Date.parse(event.target.value))
-          }
+          id='date_birth'
+          onChange={onChange}
         />
       </div>
       <select className="table_section_add-select" onChange={changeSelect}>

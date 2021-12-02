@@ -1,4 +1,4 @@
-import { useEffect, useState, MouseEvent } from "react";
+import { useState, MouseEvent } from "react";
 
 import { PATCH } from "../../../../requests";
 
@@ -20,12 +20,6 @@ const FormSectionTab = (props: Props) => {
   const [isDiv, setIsDiv] = useState<boolean>(true);
   const [selectValue, setSelectValue] = useState<string>(item[1].title);
 
-  // useEffect(() => {
-  //   if (item[1] === "status") { 
-  //     setIsUpdatedSelect(item[1].title);
-  //   }
-  // }, [isUpdatedSelect]);
-
   function changeElement(event: MouseEvent<HTMLElement>) {
     let element: string = (event.target as HTMLElement).id;
     if (!["id", "date_birth", "date_created", "driver_id"].includes(element)) {
@@ -35,7 +29,7 @@ const FormSectionTab = (props: Props) => {
 
   const saveNewInformation = (
     key: string,
-    info: string | number | Status ) => {
+    info: string | number | Status) => {
     itemInfo[key] = info;
     setIsDiv(!isDiv);
     PATCH(props.title, itemInfo.id, { [key]: info });
@@ -46,7 +40,7 @@ const FormSectionTab = (props: Props) => {
       saveNewInformation(
         (event.target as HTMLElement).id,
         (event.target as HTMLInputElement).value ||
-          (event.target as HTMLInputElement).placeholder
+        (event.target as HTMLInputElement).placeholder
       );
     }
   };
@@ -55,13 +49,11 @@ const FormSectionTab = (props: Props) => {
     saveNewInformation(
       (event.target as HTMLElement).id,
       (event.target as HTMLInputElement).value ||
-        (event.target as HTMLInputElement).placeholder
+      (event.target as HTMLInputElement).placeholder
     );
   };
 
-  const saveStatus = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
+  const saveStatus = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     let newStatus: Status = {
       title: "",
       code: "",
@@ -112,8 +104,8 @@ const FormSectionTab = (props: Props) => {
             className="table-section-tab-select"
           >
             {statuses.length && statuses.map((status: Status, index: number) => {
-                return <option key={index}>{status.title}</option>;
-              })
+              return <option key={index}>{status.title}</option>;
+            })
             }
           </select>
         )}

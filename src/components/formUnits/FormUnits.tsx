@@ -19,7 +19,7 @@ import { GET, GETSTATUS } from "../../requests";
 import { Info, Status } from "../../interfaces";
 
 import "./form.style.scss";
-import { current } from "@reduxjs/toolkit";
+
 interface Received {
   info: Info[];
   statuses: Status[];

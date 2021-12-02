@@ -30,9 +30,9 @@ const Filter = (props: { title: string }) => {
   const { data, isDataEmpty } = useContext(filteredDataContext);
   const filtersValues: MutableRefObject<{[key: string] : string}> = useRef({});
 
-    if(filtersValues.current.title && filtersValues.current.title !== props.title){
-      resetFilters();
-    }
+  if(filtersValues.current.title && filtersValues.current.title !== props.title){
+    resetFilters();
+  }
 
   const search = (event: React.ChangeEvent<HTMLInputElement>) => {
     filtersValues.current.title = props.title;

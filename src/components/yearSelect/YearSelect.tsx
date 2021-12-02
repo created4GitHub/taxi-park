@@ -3,6 +3,7 @@ import React, { ChangeEventHandler } from "react";
 import './year.style.scss'
 
 type Props = {
+    id?: string;
     maxLength?: number;
     name?: string;
     defaultValue?: string;
@@ -18,6 +19,7 @@ const YearSelect: React.FC<Props> = (props: Props) => {
 
     return (
         <select 
+            id={props.id}
             onChange={props.onChange}
             name={props.name}
             defaultValue={props.defaultValue}
