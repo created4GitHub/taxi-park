@@ -68,7 +68,7 @@ const FormSection = (props: Props) => {
           btnText="delete"
         />
       </div>
-      { isOpen ? <TableSection cars={cars} driver={driver} title={props}/> : '' }
+      { isOpen ? <TableSection cars={cars} driver={driver} title={props.title}/> : '' }
     </>
   );
 };
