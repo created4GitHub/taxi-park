@@ -11,13 +11,16 @@ import {
   filteredDataContext,
 } from "../../context";
 
-
 import Loader from "../loader/loader";
 import FormSection from "./formSection/FormSection";
+
+import { dispatchStatuses } from "../../store/actions/action";
+
 import { GET, GETSTATUS } from "../../requests";
 import { Info, Status } from "../../interfaces";
 
 import "./form.style.scss";
+import { useDispatch } from "react-redux";
 
 interface Received {
   info: Info[];
@@ -33,6 +36,7 @@ const FormUnits: React.FC<{ title: string }> = (props: { title: string }) => {
     useState(true);
 
   const { data, isDataEmpty } = useContext(filteredDataContext);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     GET(props.title).then((resp) => {
@@ -47,6 +51,7 @@ const FormUnits: React.FC<{ title: string }> = (props: { title: string }) => {
         });
       }
       GETSTATUS(props.title).then((statuses) => {
+        dispatch(dispatchStatuses(statuses.data));
         setReceivedData({
           info: resp.data,
           statuses: statuses.data,

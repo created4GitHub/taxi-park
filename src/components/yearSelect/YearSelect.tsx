@@ -3,13 +3,12 @@ import React, { ChangeEventHandler } from "react";
 import './year.style.scss'
 
 type Props = {
-    maxLength?: number;
     name?: string;
     defaultValue?: string;
-    onChange?: ChangeEventHandler<HTMLSelectElement> | undefined;
+    onChange?: ChangeEventHandler<HTMLSelectElement>;
 };
 
-const YearSelect: React.FC<Props> = (props: Props) => {
+const YearSelect: React.FC<Props> = ({ name, defaultValue, onChange }: Props) => {
     let massYears: number[] = [];
 
     for (let index: number = 2021; index >= 1960; index--) {
@@ -17,18 +16,18 @@ const YearSelect: React.FC<Props> = (props: Props) => {
     }
 
     return (
-        <select 
-            onChange={props.onChange}
-            name={props.name}
-            defaultValue={props.defaultValue}
+        <select
+            onChange={onChange}
+            name={name}
+            defaultValue={defaultValue}
         >
-        {massYears.map((item: number, index: number) => {
-            return (
-                <option
-                    id={item + ''}
-                    key={index}
-                >{item}
-                </option>
+            {massYears.map((item: number, index: number) => {
+                return (
+                    <option
+                        id={item + ''}
+                        key={index}
+                    >{item}
+                    </option>
                 )
             })}
         </select>

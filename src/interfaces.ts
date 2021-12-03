@@ -19,3 +19,8 @@ export interface Status {
   title: string;
   code: string;
 }
+
+export interface ActionType<T> {
+  type: string;
+  payload?: T;
+}

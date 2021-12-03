@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler } from "react";
+import React, { ChangeEventHandler, FocusEventHandler } from "react";
 
 type Props = {
   className?: string;
@@ -11,6 +11,7 @@ type Props = {
   checked?: boolean;
   onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
   onInput?: ChangeEventHandler<HTMLInputElement> | undefined;
+  onFocus?: FocusEventHandler<HTMLInputElement> | undefined;
 };
 
 const Input: React.FC<Props> = (props) => {
@@ -25,6 +26,7 @@ const Input: React.FC<Props> = (props) => {
       value={props.value}
       onChange={props.onChange}
       onInput={props.onInput}
+      onFocus={props.onFocus}
       checked={props.checked}
     />
   );

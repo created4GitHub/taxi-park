@@ -1,4 +1,5 @@
-.table_section_add {
+.table_section_add,
+form {
     width: 100%;
     border-bottom: 1px solid #eeeeee;
     display: flex;
@@ -7,7 +8,9 @@
     flex-direction: row;
     flex-wrap: wrap;
     @media (max-width: 840px) {
-        height: auto;
+        width: 130px;
+        justify-content: center;
+        flex-direction: column;
     }
 
     .table_section_buttons {
@@ -36,7 +39,7 @@
 
         .table_section-input {
             width: 110px;
-            height: 20px;
+            height: 23px;
             border-radius: 8px;
             border: solid silver 1px;
         }
@@ -44,6 +47,13 @@
             border-color: red;
             color: red;
             box-shadow: none;
+        }
+        .table_section-input-numbers {
+            box-shadow: none;
+            width: 110px;
+            height: 23px;
+            border-radius: 8px;
+            border: solid silver 1px;
         }
         .table_section-input-date {
             box-shadow: none;
@@ -56,17 +66,24 @@
             padding: 0;
             margin: 2px 5px 0 0;
         }
-        select {
-            width: 110px;
-            height: 25px;
-            border-radius: 8px;
-            border: solid silver 1px;
+        .table_section-block-input__error {
+            color: red;
+            text-align: left;
+            font-size: 12px;
+            display: block;
+            margin-top: 3px;
+            display: none;
+        }
+        .table_section-input:invalid:not(:placeholder-shown) + .table_section-block-input__error {
+            display: block;
         }
     }
-    .table_section_add-select {
+    select {
         height: 25px;
         border-radius: 8px;
-        color: #8a8a8a;
         border: solid silver 1px;
+    }
+    .warning {
+        color: red;
     }
 }

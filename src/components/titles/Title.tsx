@@ -8,10 +8,13 @@ import { Button } from "../regularComponents/button/Button";
 import drivers from "../../img/drivers.svg";
 import cars from "../../img/cars.svg";
 
-export default function Title({ title, link, state: { isActive, setIsActive } }: {
-    title: string, link: string, state: { isActive: string, setIsActive: React.Dispatch<React.SetStateAction<string>> }
+interface Props {
+    title: string;
+    link: string;
+    state: { isActive: string, setIsActive: React.Dispatch<React.SetStateAction<string>> }
 }
-) {
+
+export default function Title({ title, link, state: { isActive, setIsActive } }: Props) {
 
     const dispatch = useDispatch();
 

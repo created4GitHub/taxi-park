@@ -10,7 +10,6 @@ import { Info, Status } from "../../../interfaces";
 import icons from "../../../img/IconsDirection.svg";
 
 import "./formSection.style.scss";
-import { JsxElement } from "typescript";
 
 type Props = {
   info: Info;
