@@ -1,0 +1,25 @@
+.header__content{
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    .leftSide {
+        display: flex;
+        .divForButton {
+            margin-top: 16px;
+            margin-left: 30px;
+            .button {
+                width: 24px;
+                height: 24px;
+                align-items: center;
+                border: none;
+                cursor: pointer;
+            }
+        }
+        .logo {
+            width: 176px;
+            height: 40px;
+            margin-left: 27px;
+            margin-top: 8px;
+        }
+    }
+}

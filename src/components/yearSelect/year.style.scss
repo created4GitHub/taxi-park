@@ -1,0 +1,58 @@
+.search__data_year {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    .data_year-button{
+        width: 100px;
+        height: 30px;
+        cursor: pointer;
+        background: white;
+        border-radius: 8px;
+        border: solid silver 1px;
+        color: #8a8a8a;
+        cursor: pointer;
+
+    }
+
+    .data_year-block {
+        position: absolute;
+        margin-top: 35px;
+        height: 310px;
+        box-shadow: 0px 0px 4px rgb(231, 199, 198);
+        background-color: white;
+        border-radius: 8px;
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: auto;
+        
+        .data_year-block_button{
+            width: 90px;
+            height: 30px;
+            margin: 3px;
+            font-size: 14px;
+            line-height: 16px;
+            border-radius: 8px;
+            background-color: white;
+            border: solid silver 1px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .data_year-block_button:hover {
+            background: #f9d567;
+        }
+    }
+}
+
+.data_year-button {
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+    background: #dfe0e485;
+    border-radius: 8px;
+    border: solid silver 1px;
+}

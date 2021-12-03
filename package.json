@@ -11,11 +11,16 @@
     "@types/node": "^16.11.7",
     "@types/react": "^17.0.35",
     "@types/react-dom": "^17.0.11",
+    "jest": "^26.6.0",
+    "jest-dom": "^4.0.0",
     "react": "^17.0.2",
+    "react-datepicker": "^4.3.0",
     "react-dom": "^17.0.2",
+    "react-history-router": "^1.4.1",
     "react-redux": "^7.2.6",
     "react-router": "^6.0.2",
     "react-scripts": "4.0.3",
+    "react-testing-library": "^8.0.1",
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
     "redux-logger": "^3.0.6",
@@ -43,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-router-dom": "^6.0.2"
   }
 }
