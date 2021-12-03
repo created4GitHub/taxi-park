@@ -2,12 +2,12 @@ import { useEffect, useState, MouseEvent } from "react";
 
 import { PATCH } from "../../../../requests";
 
-import { Info, Status } from "../../../../interfaces";
+import { Information, Status } from "../../../../interfaces";
 
 import "./formSectionTab.style.scss";
 
 type Props = {
-  info: Info;
+  info: Information;
   item: [string, any];
   title: string;
   statuses: Status[];
@@ -25,7 +25,7 @@ const FormSectionTab = (props: Props) => {
     if (!["id", "date_birth", "date_created", "driver_id"].includes(element)) {
       setIsDiv(!isDiv);
     }
-  }
+  };
 
   const saveNewInformation = (
     key: string,
@@ -40,7 +40,7 @@ const FormSectionTab = (props: Props) => {
       saveNewInformation(
         (event.target as HTMLInputElement).id,
         (event.target as HTMLInputElement).value ||
-          (event.target as HTMLInputElement).placeholder
+        (event.target as HTMLInputElement).placeholder,
       );
     }
   };
@@ -49,7 +49,7 @@ const FormSectionTab = (props: Props) => {
     saveNewInformation(
       (event.target as HTMLElement).id,
       (event.target as HTMLInputElement).value ||
-        (event.target as HTMLInputElement).placeholder
+      (event.target as HTMLInputElement).placeholder,
     );
   };
 
@@ -69,6 +69,7 @@ const FormSectionTab = (props: Props) => {
         break;
       }
     }
+
     itemInfo.status = newStatus;
     setSelectValue(newStatus.title);
     PATCH(props.title, itemInfo.id, { status: newStatus });

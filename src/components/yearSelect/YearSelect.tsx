@@ -1,6 +1,6 @@
 import React, { ChangeEventHandler } from "react";
 
-import './year.style.scss'
+import './year.style.scss';
 
 type Props = {
     name?: string;

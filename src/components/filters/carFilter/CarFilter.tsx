@@ -11,42 +11,43 @@ import { receivedDataContext, filteredValuesContext } from "../../../context";
 import Input from "../../regularComponents/input/Input";
 import YearSelect from "../../yearSelect/YearSelect";
 
-import { Info, Status } from "../../../interfaces";
+import { Information, Status } from "../../../interfaces";
 
-interface Current {
+interface CurrentValue {
   current: Record<string, string>;
-}
+};
+
 interface Props {
-  search: ChangeEventHandler<HTMLInputElement>;
+  searchCar: ChangeEventHandler<HTMLInputElement>;
   resetFilters: MouseEventHandler<HTMLButtonElement>;
-}
+};
 
 interface Data {
-  info: Info[];
+  info: Information[];
   statuses: Status[];
-}
+};
 
 const DriverFilter = (props: Props) => {
   const [receivedData, setReceivedData]: [
     Data,
     Dispatch<SetStateAction<Data>>
   ] = useContext(receivedDataContext);
-  const filtersValues: Current = useContext(filteredValuesContext);
+  const filtersValues: CurrentValue = useContext(filteredValuesContext);
 
-  const search: ChangeEventHandler<HTMLElement> = props.search;
+  const searchCar: ChangeEventHandler<HTMLElement> = props.searchCar;
   const resetFilters: MouseEventHandler<HTMLButtonElement> = props.resetFilters;
 
   return (
     <>
       <div className="filter_element-inputs">
         <Input
-          onInput={search}
+          onInput={searchCar}
           name="id"
           placeholder="Search by ID"
           value={(filtersValues.current as { [key: string]: string }).id || ""}
         />
         <Input
-          onInput={search}
+          onInput={searchCar}
           name="driver_id"
           placeholder="Search by driver ID"
           value={
@@ -55,7 +56,7 @@ const DriverFilter = (props: Props) => {
           }
         />
         <Input
-          onInput={search}
+          onInput={searchCar}
           name="mark"
           placeholder="Search by brand"
           value={
@@ -63,7 +64,7 @@ const DriverFilter = (props: Props) => {
           }
         />
         <Input
-          onInput={search}
+          onInput={searchCar}
           name="model"
           placeholder="Search by model"
           value={
@@ -71,7 +72,7 @@ const DriverFilter = (props: Props) => {
           }
         />
         <Input
-          onInput={search}
+          onInput={searchCar}
           name="number"
           placeholder="Search by number"
           value={
@@ -88,7 +89,7 @@ const DriverFilter = (props: Props) => {
                   type="radio"
                   name="status"
                   id={"status" + index}
-                  onChange={search}
+                  onChange={searchCar}
                   value={item.title}
                   checked={
                     (filtersValues.current as { [key: string]: string })
@@ -101,7 +102,7 @@ const DriverFilter = (props: Props) => {
           })}
       </div>
       <div className="filter_element-yearSelect">
-        <YearSelect onChange={search} name="year" defaultValue={"2018"} />
+        <YearSelect onChange={searchCar} name="year" defaultValue={"2018"} />
       </div>
       <div className="reset-filter-button">
         <button onClick={resetFilters}>Reset</button>

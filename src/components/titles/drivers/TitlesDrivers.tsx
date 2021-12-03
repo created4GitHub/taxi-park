@@ -1,4 +1,4 @@
-import '../titles.style.scss'
+import '../titles.style.scss';
 
 const TitlesDrivers = () => {
     

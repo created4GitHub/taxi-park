@@ -11,23 +11,24 @@ interface Button {
 
 interface Props {
     checkForm: () => void;
-    closeAddNewModal: () => {
+    closeModal: () => {
         type: string;
-    }
-}
+    };
+};
 
-export default function AddNewButton({ checkForm, closeAddNewModal }: Props) {
+export default function AddNewButton({ checkForm, closeModal }: Props) {
     const dispatch = useDispatch();
     const buttons: Button[] = [
         {
             onClick: () => checkForm(),
-            src: addObj
+            src: addObj,
         },
         {
-            onClick: () => dispatch(closeAddNewModal()),
-            src: deleteObj
+            onClick: () => dispatch(closeModal()),
+            src: deleteObj,
         },
-    ]
+    ];
+
     return (
         <div className="table_section_buttons">
             {

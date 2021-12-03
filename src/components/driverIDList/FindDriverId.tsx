@@ -1,7 +1,7 @@
 import React, { ChangeEventHandler, useEffect, useState } from "react";
 
 import { GET } from "../../requests";
-import { Info } from "../../interfaces";
+import { Information } from "../../interfaces";
 
 import "./findDriverId.style.scss";
 
@@ -11,17 +11,17 @@ type Props = {
 };
 
 const DriverIDList: React.FC<Props> = ({ name, onChange }: Props) => {
-  const [drivers, setDrivers] = useState(Array<Info>());
+  const [drivers, setDrivers] = useState(Array<Information>());
 
   useEffect(() => {
     GET("driver").then((data) => {
-      setDrivers(data.data as Info[]);
+      setDrivers(data.data as Information[]);
     });
   }, []);
 
   return (
     <select name={name} onChange={onChange}>
-      {drivers.length && drivers.map((item: Info, index: number) =>
+      {drivers.length && drivers.map((item: Information, index: number) =>
         <option key={index} value={item.id}>
           {item.first_name + " " + item.last_name}
         </option>

@@ -1,12 +1,12 @@
 import { Status } from "../../interfaces";
 
-export const openAddNewModal = () => {
+export const openNewModal = () => {
     return {
         type: "ADD_NEW_TRUE"
     };
 };
 
-export const closeAddNewModal = () => {
+export const closeNewModal = () => {
     return {
         type: "ADD_NEW_FALSE"
     };

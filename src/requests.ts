@@ -1,15 +1,15 @@
-import { Info, Status } from "./interfaces";
+import { Information, Status } from "./interfaces";
 
 interface Response {
   is_error: string;
   status: string;
-  data?: Info[];
+  data?: Information[];
 }
 
 interface InfoResponse {
   is_error: string;
   status: string;
-  data: Info[];
+  data: Information[];
 }
 
 interface StatusResponse {
@@ -34,7 +34,7 @@ export const GET = async (param: string): Promise<InfoResponse> => {
   return await response.json();
 };
 
-export const POST = async (param: string, info: Info): Promise<Response> => {
+export const POST = async (param: string, info: Information): Promise<Response> => {
   const response = await fetch(
     `https://edu.evgeniychvertkov.com/v1/${param}/`,
     {

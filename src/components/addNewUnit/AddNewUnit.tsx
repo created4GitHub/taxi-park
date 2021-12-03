@@ -5,13 +5,13 @@ import AddNewSection from "./addNewSection/AddNewSection";
 import AddNewButton from "./addNewButton/AddNewButton";
 import Statuses from "../statuses/Statuses";
 
-import { closeAddNewModal } from "../../store/actions/action";
+import { closeNewModal } from "../../store/actions/action";
 
 import { POST } from "../../requests";
-import { Info, Status } from "../../interfaces";
+import { Information, Status } from "../../interfaces";
 
-import "./addNewUnit.style.scss";
 import { RootState } from "../../store/reducers/rootReducer";
+import "./addNewUnit.style.scss";
 
 const AddNewUnit = ({ title }: { title: string }) => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -21,7 +21,7 @@ const AddNewUnit = ({ title }: { title: string }) => {
 
   const checkForm = () => {
     type Unit = { [key: string]: string | number | Status };
-    type Value = HTMLInputElement;
+    type InputValue = HTMLInputElement;
 
     let formValues: HTMLFormControlsCollection = (formRef.current as HTMLFormElement).elements;
     let unit: Unit = {};
@@ -32,23 +32,23 @@ const AddNewUnit = ({ title }: { title: string }) => {
         break;
       }
 
-      else if ((item as Value).value === "") {
-        (item as Value).placeholder = `Fill it in`;
+      else if ((item as InputValue).value === "") {
+        (item as InputValue).placeholder = `Fill it in`;
         item.classList.add("warning");
         isFilled = false;
         continue;
       }
 
-      else if ((item as Value).name === "status") {
-        unit.status = statuses.find((status: Status) => status.title === (item as Value).value)!;
+      else if ((item as InputValue).name === "status") {
+        unit.status = statuses.find((status: Status) => status.title === (item as InputValue).value)!;
         continue;
       }
-      unit[(item as Value).name as keyof Info] = (item as Value).value;
+      unit[(item as InputValue).name as keyof Information] = (item as InputValue).value;
     }
 
     if (isFilled) {
-      POST(title, (unit as unknown as Info));
-      dispatch(closeAddNewModal());
+      POST(title, (unit as unknown as Information));
+      dispatch(closeNewModal());
     }
   };
 
@@ -57,7 +57,7 @@ const AddNewUnit = ({ title }: { title: string }) => {
       <form ref={formRef}>
         <AddNewSection title={title} />
         <Statuses />
-        <AddNewButton checkForm={checkForm} closeAddNewModal={closeAddNewModal} />
+        <AddNewButton checkForm={checkForm} closeModal={closeNewModal} />
       </form>
     </div>
 

@@ -6,17 +6,16 @@ import Header from "./components/header/Header";
 import TitlesOptions from "./components/titles/TitlesOptions";
 import FormDrivers from "./components/titles/drivers/FormDrivers";
 import FormCars from "./components/titles/cars/FormCars";
-import AddCar from "./components/addNewUnit/AddNewUnit";
 
 import { receivedDataContext, filteredDataContext } from "./context";
-import { Info } from "./interfaces";
+import { Information } from "./interfaces";
 import { RootState } from "./store/reducers/rootReducer";
 
 import "./app.scss";
 import AddNewUnit from "./components/addNewUnit/AddNewUnit";
 
 const App: React.FC = () => {
-  const [receivedData, setReceivedData] = useState(new Array<Info>());
+  const [receivedData, setReceivedData] = useState(new Array<Information>());
   const [isFiltered, setIsFiltered] = useState<boolean>(true);
   const data: MutableRefObject<never[]> = useRef([]);
   const isDataEmpty: MutableRefObject<boolean> = useRef(true);

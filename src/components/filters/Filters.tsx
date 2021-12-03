@@ -15,12 +15,12 @@ import {
 import DriverFilter from "./driverFilter/DriverFilter";
 import CarFilter from "./carFilter/CarFilter";
 
-import { Info, Status } from "../../interfaces";
+import { Information, Status } from "../../interfaces";
 
 import "./filters.style.scss";
 
 type Data = {
-  info: Info[];
+  info: Information[];
   statuses: Status[];
 };
 
@@ -43,7 +43,7 @@ const Filter = ({ title }: { title: string }) => {
       if (key === "title") {
         continue;
       }
-      result = result.filter((item: Info | any) => {
+      result = result.filter((item: Information | any) => {
         if (key === "status") {
           return (filtersValues.current)[key] ===
             item.status.title
@@ -52,11 +52,11 @@ const Filter = ({ title }: { title: string }) => {
         } else {
           return String(item[key]).toLocaleLowerCase()
             .includes(filtersValues.current[key].toLocaleLowerCase())
-            ? true
-            : false;
+            ? true : false;
         }
       });
     }
+
     data.current = result;
     isDataEmpty.current = false;
     setIsFiltered(!isFiltered);
@@ -72,9 +72,9 @@ const Filter = ({ title }: { title: string }) => {
     <div className="content__options-filter">
       <filteredValuesContext.Provider value={filtersValues}>
         {title === "driver" ? (
-          <DriverFilter {...{ search: search, resetFilters: resetFilters }} />
+          <DriverFilter {...{ searchDriver: search, resetFilters: resetFilters }} />
         ) : (
-          <CarFilter {...{ search: search, resetFilters: resetFilters }} />
+          <CarFilter {...{ searchCar: search, resetFilters: resetFilters }} />
         )}
       </filteredValuesContext.Provider>
     </div>

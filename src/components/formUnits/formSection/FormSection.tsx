@@ -5,22 +5,22 @@ import { Button } from "../../regularComponents/button/Button";
 
 import { GET, REMOVE, GETDRIVERBYCAR } from "../../../requests";
 
-import { Info, Status } from "../../../interfaces";
+import { Information, Status } from "../../../interfaces";
 
 import icons from "../../../img/IconsDirection.svg";
 
 import "./formSection.style.scss";
 
 type Props = {
-  info: Info;
+  info: Information;
   title: string;
   statuses: Status[];
 };
 
 const FormSection = (props: Props) => {
   const [isOpen, setIsopen] = useState<boolean>();
-  const [cars, setCars] = useState<Info[]>();
-  const [driver, setDriver] = useState<Info>();
+  const [cars, setCars] = useState<Information[]>();
+  const [driver, setDriver] = useState<Information>();
   const [isDelete, setIsDeleted]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(deletedContext);
 
   let itemInfo = props.info;
@@ -35,22 +35,20 @@ const FormSection = (props: Props) => {
   const search = () => {
     if (props.title === "driver") {
       GETDRIVERBYCAR(String(props.info.id)).then((data) => {
-        setCars(data.data as Info[])
-      }
-      );
+        setCars(data.data as Information[])
+      });
     }
     if (props.title === "car" && props.info.driver_id) {
       GET(`driver/${props.info.driver_id}`).then((resp) => {
-        setDriver(resp.data as unknown as Info);
-      }
-      );
+        setDriver(resp.data as unknown as Information);
+      });
     }
   };
 
   const renderCar = () => {
     return (
       cars &&
-      cars.map((item: Info | undefined, index: number) => {
+      cars.map((item: Information | undefined, index: number) => {
         return (
           <div key={index} className="table_section_isActive-cars block">
             <p>{item!.id}</p>
