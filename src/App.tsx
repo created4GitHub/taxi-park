@@ -3,14 +3,12 @@ import { Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import Header from "./components/header/Header";
-import TitlesOptions from "./components/titles/TitlesOptions";
-import FormDrivers from "./components/titles/drivers/FormDrivers";
-import FormCars from "./components/titles/cars/FormCars";
-import AddCar from "./components/addNewUnit/AddNewUnit";
+import TitlesOptions from "./components/titles/Titles";
+import FormUnits from "./components/formUnits/FormUnits";
 
 import { receivedDataContext, filteredDataContext } from "./context";
 import { Info } from "./interfaces";
-import { RootState } from "./store/reducers/rootReducer";
+import { RootState } from "./store/rootReducer";
 
 import "./app.scss";
 import AddNewUnit from "./components/addNewUnit/AddNewUnit";
@@ -44,7 +42,7 @@ const App: React.FC = () => {
                       element={
                         <>
                           {isAddNew && <AddNewUnit title={"driver"} />}
-                          <FormDrivers />
+                          <FormUnits title={"driver"} />
                         </>
                       }
                     />
@@ -53,7 +51,7 @@ const App: React.FC = () => {
                       element={
                         <>
                           {isAddNew && <AddNewUnit title={"car"} />}
-                          <FormCars />
+                          <FormUnits title={"driver"} />
                         </>
                       }
                     />

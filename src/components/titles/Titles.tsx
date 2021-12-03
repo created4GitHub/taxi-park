@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 
 import Filter from "../filters/Filters";
 
-import Title from "./Title";
+import Title from "./title/Title";
 
 const TitlesOptions = () => {
   const [isActive, setIsActive] = useState<string>("");

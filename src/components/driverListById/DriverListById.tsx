@@ -3,7 +3,7 @@ import React, { ChangeEventHandler, useEffect, useState } from "react";
 import { GET } from "../../requests";
 import { Info } from "../../interfaces";
 
-import "./findDriverId.style.scss";
+import "./driverListById.style.scss";
 
 type Props = {
   name?: string;

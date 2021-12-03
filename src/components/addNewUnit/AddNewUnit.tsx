@@ -5,13 +5,13 @@ import AddNewSection from "./addNewSection/AddNewSection";
 import AddNewButton from "./addNewButton/AddNewButton";
 import Statuses from "../statuses/Statuses";
 
-import { closeAddNewModal } from "../../store/actions/action";
+import { closeAddNewModal } from "../../store/actions/actions";
 
 import { POST } from "../../requests";
 import { Info, Status } from "../../interfaces";
+import { RootState } from "../../store/rootReducer";
 
 import "./addNewUnit.style.scss";
-import { RootState } from "../../store/reducers/rootReducer";
 
 const AddNewUnit = ({ title }: { title: string }) => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -33,7 +33,6 @@ const AddNewUnit = ({ title }: { title: string }) => {
       }
 
       else if ((item as Value).value === "") {
-        (item as Value).placeholder = `Fill it in`;
         item.classList.add("warning");
         isFilled = false;
         continue;

@@ -1,10 +1,14 @@
-import { useEffect, useState, MouseEvent } from "react";
+import { useState, MouseEvent } from "react";
+
+import Statuses from "../../../statuses/Statuses";
 
 import { PATCH } from "../../../../requests";
 
 import { Info, Status } from "../../../../interfaces";
 
 import "./formSectionTab.style.scss";
+import { RootState } from "../../../../store/rootReducer";
+import { useSelector } from "react-redux";
 
 type Props = {
   info: Info;
@@ -14,6 +18,7 @@ type Props = {
 };
 
 const FormSectionTab = (props: Props) => {
+  const statuses = useSelector((state: RootState) => state.statusReducer);
   let item = props.item;
   let itemInfo: any = props.info;
 
@@ -27,20 +32,20 @@ const FormSectionTab = (props: Props) => {
     }
   }
 
-  const saveNewInformation = (
-    key: string,
-    info: string | number | Status ) => {
+  const saveNewInformation = (key: string, info: string | number | Status) => {
     itemInfo[key] = info;
     setIsDiv(!isDiv);
+    console.log(key, info, itemInfo.id)
     PATCH(props.title, itemInfo.id, { [key]: info });
   };
 
   const pressedEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
+      event.target = event.target as HTMLInputElement;
       saveNewInformation(
         (event.target as HTMLInputElement).id,
         (event.target as HTMLInputElement).value ||
-          (event.target as HTMLInputElement).placeholder
+        (event.target as HTMLInputElement).placeholder
       );
     }
   };
@@ -49,32 +54,15 @@ const FormSectionTab = (props: Props) => {
     saveNewInformation(
       (event.target as HTMLElement).id,
       (event.target as HTMLInputElement).value ||
-        (event.target as HTMLInputElement).placeholder
+      (event.target as HTMLInputElement).placeholder
     );
   };
 
-  const saveStatus = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    let newStatus: Status = {
-      title: "",
-      code: "",
-    };
-
-    for (let index: number = 0; index < statuses.length; index++) {
-      let status = statuses[index] as Status;
-      if (status.title === (event.target as HTMLInputElement).value) {
-        newStatus.title = status.title;
-        newStatus.code = status.code;
-        break;
-      }
-    }
-    itemInfo.status = newStatus;
-    setSelectValue(newStatus.title);
-    PATCH(props.title, itemInfo.id, { status: newStatus });
+  const saveStatus = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    let status = statuses.find((status: Status) => status.title === event.target.value)!;
+    console.log(status)
+    saveNewInformation(event.target.id, status);
   };
-
-  let statuses: Status[] = Object.values(props.statuses);
 
   return (
     <>
@@ -99,18 +87,7 @@ const FormSectionTab = (props: Props) => {
               onKeyPress={pressedEnter}
             />
           )
-        ) : (
-          <select
-            defaultValue={selectValue}
-            onChange={saveStatus}
-            className="table-section-tab-select"
-          >
-            {statuses.length && statuses.map((status: Status, index: number) => {
-                return <option key={index}>{status.title}</option>;
-              })
-            }
-          </select>
-        )}
+        ) : <Statuses defaultValue={selectValue} onChange={saveStatus} id={item[0]} />}
       </div>
     </>
   );

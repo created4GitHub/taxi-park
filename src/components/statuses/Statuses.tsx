@@ -1,9 +1,15 @@
 import { useSelector } from "react-redux";
 
 import { Status } from "../../interfaces";
-import { RootState } from "../../store/reducers/rootReducer";
+import { RootState } from "../../store/rootReducer";
 
-export default function Statuses() {
+interface Props {
+    defaultValue?: string;
+    id?: string;
+    onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+}
+
+export default function Statuses({ defaultValue, onChange, id }: Props) {
 
     const statuses = useSelector((state: RootState) => state.statusReducer);
 
@@ -11,6 +17,9 @@ export default function Statuses() {
         <select
             name="status"
             className="table_section_add-select"
+            defaultValue={defaultValue}
+            onChange={onChange}
+            id={id}
         >
             {statuses &&
                 statuses.map((item: Status, index: number) =>

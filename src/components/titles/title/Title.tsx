@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 
-import { openAddNewModal, closeAddNewModal } from "../../store/actions/action";
+import { openAddNewModal, closeAddNewModal } from "../../../store/actions/actions";
 
-import { Button } from "../regularComponents/button/Button";
+import { Button } from "../../regularComponents/button/Button";
 
-import drivers from "../../img/drivers.svg";
-import cars from "../../img/cars.svg";
+import drivers from "../../../img/drivers.svg"
+import cars from "../../../img/cars.svg";
 
 interface Props {
     title: string;

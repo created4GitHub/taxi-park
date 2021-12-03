@@ -1,46 +1,25 @@
-import {
-  useEffect,
-  useState,
-  useContext,
-  Dispatch,
-  SetStateAction,
-} from "react";
-import {
-  deletedContext,
-  receivedDataContext,
-  filteredDataContext,
-} from "../../context";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import Loader from "../loader/loader";
 import FormSection from "./formSection/FormSection";
+import UnitsTitles from "./unitsTitles/UnitsTitles";
 
-import { dispatchStatuses } from "../../store/actions/action";
-
+import { dispatchStatuses, dispatchData } from "../../store/actions/actions";
 import { GET, GETSTATUS } from "../../requests";
-import { Info, Status } from "../../interfaces";
+import { RootState } from "../../store/rootReducer";
 
 import "./form.style.scss";
-import { useDispatch } from "react-redux";
 
-interface Received {
-  info: Info[];
-  statuses: Status[];
-}
-
-const FormUnits: React.FC<{ title: string }> = (props: { title: string }) => {
-  const [receivedData, setReceivedData]: [
-    Received,
-    Dispatch<SetStateAction<Received>>
-  ] = useContext(receivedDataContext);
-  const [isDeleted, setIsDeleted]: [true, Dispatch<SetStateAction<true>>] =
-    useState(true);
-
-  const { data, isDataEmpty } = useContext(filteredDataContext);
+const FormUnits: React.FC<{ title: string }> = ({ title }) => {
+  const [isDeleted, setIsDeleted] = useState<boolean>(true);
+  const data = useSelector((state: RootState) => state.dataReducer);
+  const statuses = useSelector((state: RootState) => state.statusReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    GET(props.title).then((resp) => {
-      if (props.title === "driver") {
+    GET(title).then((resp) => {
+      if (title === "driver") {
         resp.data = resp.data.map((item) => {
           item.date_birth =
             item.date_birth && new Date(item.date_birth).toLocaleDateString();
@@ -50,34 +29,26 @@ const FormUnits: React.FC<{ title: string }> = (props: { title: string }) => {
           return item;
         });
       }
-      GETSTATUS(props.title).then((statuses) => {
+      GETSTATUS(title).then((statuses) => {
         dispatch(dispatchStatuses(statuses.data));
-        setReceivedData({
-          info: resp.data,
-          statuses: statuses.data,
-        } as Received);
+        dispatch(dispatchData(resp.data));
       });
     });
   }, [isDeleted]);
 
-  let currentData: string[] =
-    (!isDataEmpty.current && data.current) || receivedData.info;
 
   return (
     <>
-      {receivedData.statuses && currentData ? (
-        currentData.map((item: any, index: number) => {
+      <UnitsTitles title={title} />
+      {statuses && data.length ? (
+        data.map((item: any, index: number) => {
           return (
-            <deletedContext.Provider
+            <FormSection
+              title={title}
+              info={item}
+              statuses={statuses}
               key={index}
-              value={[isDeleted, setIsDeleted]}
-            >
-              <FormSection
-                title={props.title}
-                info={item}
-                statuses={receivedData.statuses}
-              />
-            </deletedContext.Provider>
+            />
           );
         })
       ) : (

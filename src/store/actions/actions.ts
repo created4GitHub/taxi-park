@@ -1,4 +1,4 @@
-import { Status } from "../../interfaces";
+import { Info, Status } from "../../interfaces";
 
 export const openAddNewModal = () => {
     return {
@@ -16,5 +16,12 @@ export const dispatchStatuses = (statuses: Status[]) => {
     return {
         type: "STATUS_RECEIVED",
         payload: statuses
+    };
+};
+
+export const dispatchData = (data: Info[]) => {
+    return {
+        type: "DATA_RECEIVED",
+        payload: data
     };
 };

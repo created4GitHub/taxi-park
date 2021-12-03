@@ -23,10 +23,8 @@ const YearSelect: React.FC<Props> = ({ name, defaultValue, onChange }: Props) =>
         >
             {massYears.map((item: number, index: number) => {
                 return (
-                    <option
-                        id={item + ''}
-                        key={index}
-                    >{item}
+                    <option key={index} >
+                        {item}
                     </option>
                 )
             })}

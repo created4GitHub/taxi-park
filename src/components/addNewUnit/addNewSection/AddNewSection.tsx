@@ -1,4 +1,4 @@
-import DriverIDList from "../../driverIDList/FindDriverId";
+import DriverIDList from "../../driverListById/DriverListById";
 import YearSelect from "../../yearSelect/YearSelect";
 import Input from "../../regularComponents/input/Input";
 import { FocusEventHandler } from "react";
@@ -8,16 +8,28 @@ export default function AddNewSection({ title }: { title: string }) {
     interface Info {
         name: string;
         placeholder: string;
-        length: number
+        length: number;
     }
     let info: Info[];
     let optionalInfo: JSX.Element;
 
     if (title === "car") {
         info = [
-            { name: "model", placeholder: "Model", length: 15 },
-            { name: "mark", placeholder: "Mark", length: 10 },
-            { name: "number", placeholder: "Number", length: 8 }
+            {
+                name: "model",
+                placeholder: "Model",
+                length: 15
+            },
+            {
+                name: "mark",
+                placeholder: "Mark",
+                length: 10
+            },
+            {
+                name: "number",
+                placeholder: "Number",
+                length: 8
+            }
         ]
         optionalInfo = (<>
             <YearSelect name="year" />
@@ -27,8 +39,16 @@ export default function AddNewSection({ title }: { title: string }) {
     }
     else {
         info = [
-            { name: "first_name", placeholder: "Name", length: 15 },
-            { name: "last_name", placeholder: "Surname", length: 15 },
+            {
+                name: "first_name",
+                placeholder: "Name",
+                length: 15
+            },
+            {
+                name: "last_name",
+                placeholder: "Surname",
+                length: 15
+            },
         ]
         optionalInfo = <Input type="date" name="date_birth" />
     }
@@ -48,7 +68,7 @@ export default function AddNewSection({ title }: { title: string }) {
                 <div key={index} className="table_section-block-input">
                     < Input
                         className="table_section-input"
-                        placeholder={item.name}
+                        placeholder={item.placeholder}
                         name={item.name}
                         maxLength={item.length}
                         onFocus={isWarning}

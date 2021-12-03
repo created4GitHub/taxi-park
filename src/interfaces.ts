@@ -9,7 +9,7 @@ export interface Info {
   number?: string;
   driver_id?: number;
   year?: number;
-  status: {
+  status?: {
     title: string;
     code: string;
   };

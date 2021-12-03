@@ -1,5 +1,4 @@
-import { useContext, useState, Dispatch, SetStateAction } from "react";
-import { deletedContext } from "../../../context";
+import { useState } from "react";
 import FormSectionTab from "./formSectionTab/FormSectionTab";
 import { Button } from "../../regularComponents/button/Button";
 
@@ -21,14 +20,13 @@ const FormSection = (props: Props) => {
   const [isOpen, setIsopen] = useState<boolean>();
   const [cars, setCars] = useState<Info[]>();
   const [driver, setDriver] = useState<Info>();
-  const [isDelete, setIsDeleted]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(deletedContext);
 
   let itemInfo = props.info;
   let infoEntries = Object.entries(itemInfo);
 
   const deleteEl = () => {
     itemInfo.id && REMOVE(props.title, itemInfo.id).then(() => {
-      setIsDeleted((isDeleted) => !isDeleted);
+      // setIsDeleted((isDeleted) => !isDeleted);
     });
   };
 
@@ -59,7 +57,7 @@ const FormSection = (props: Props) => {
             <p>{item!.model}</p>
             <p>{item!.number}</p>
             <p>{item!.year}</p>
-            <p>{item!.status.title}</p>
+            <p>{item!.status!.title}</p>
           </div>
         );
       })
@@ -81,7 +79,7 @@ const FormSection = (props: Props) => {
             {driver.date_created &&
               new Date(driver.date_created).toLocaleDateString()}
           </p>
-          <p>{driver.status.title}</p>
+          <p>{driver.status!.title}</p>
         </div>
       );
     }
