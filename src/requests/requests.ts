@@ -1,4 +1,4 @@
-import { Info, Status } from "./interfaces";
+import { Info, Status } from "../interfaces/interfaces";
 
 interface Response {
   is_error: string;

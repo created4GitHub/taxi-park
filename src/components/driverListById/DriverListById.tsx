@@ -1,7 +1,7 @@
 import React, { ChangeEventHandler, useEffect, useState } from "react";
 
-import { GET } from "../../requests";
-import { Info } from "../../interfaces";
+import { GET } from "../../requests/requests";
+import { Info } from "../../interfaces/interfaces";
 
 import "./driverListById.style.scss";
 

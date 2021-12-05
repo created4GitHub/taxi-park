@@ -6,8 +6,8 @@ import Header from "./components/header/Header";
 import TitlesOptions from "./components/titles/Titles";
 import FormUnits from "./components/formUnits/FormUnits";
 
-import { receivedDataContext, filteredDataContext } from "./context";
-import { Info } from "./interfaces";
+import { receivedDataContext, filteredDataContext } from "./context/context";
+import { Info } from "./interfaces/interfaces";
 import { RootState } from "./store/rootReducer";
 
 import "./app.scss";
@@ -51,7 +51,7 @@ const App: React.FC = () => {
                       element={
                         <>
                           {isAddNew && <AddNewUnit title={"car"} />}
-                          <FormUnits title={"driver"} />
+                          <FormUnits title={"car"} />
                         </>
                       }
                     />

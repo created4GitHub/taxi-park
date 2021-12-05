@@ -10,12 +10,12 @@ import {
   receivedDataContext,
   filteredDataContext,
   filteredValuesContext,
-} from "../../context";
+} from "../../context/context";
 
 import DriverFilter from "./driverFilter/DriverFilter";
 import CarFilter from "./carFilter/CarFilter";
 
-import { Info, Status } from "../../interfaces";
+import { Info, Status } from "../../interfaces/interfaces";
 
 import "./filters.style.scss";
 

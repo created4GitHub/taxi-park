@@ -6,7 +6,7 @@ import FormSection from "./formSection/FormSection";
 import UnitsTitles from "./unitsTitles/UnitsTitles";
 
 import { dispatchStatuses, dispatchData } from "../../store/actions/actions";
-import { GET, GETSTATUS } from "../../requests";
+import { GET, GETSTATUS } from "../../requests/requests";
 import { RootState } from "../../store/rootReducer";
 
 import "./form.style.scss";

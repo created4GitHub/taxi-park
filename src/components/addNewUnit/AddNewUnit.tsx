@@ -7,8 +7,8 @@ import Statuses from "../statuses/Statuses";
 
 import { closeAddNewModal } from "../../store/actions/actions";
 
-import { POST } from "../../requests";
-import { Info, Status } from "../../interfaces";
+import { POST } from "../../requests/requests";
+import { Info, Status } from "../../interfaces/interfaces";
 import { RootState } from "../../store/rootReducer";
 
 import "./addNewUnit.style.scss";

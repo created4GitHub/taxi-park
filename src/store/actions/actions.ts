@@ -1,4 +1,4 @@
-import { Info, Status } from "../../interfaces";
+import { Info, Status } from "../../interfaces/interfaces";
 
 export const openAddNewModal = () => {
     return {

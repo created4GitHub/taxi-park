@@ -1,10 +1,10 @@
 import { useContext, Dispatch, SetStateAction, ChangeEventHandler, MouseEventHandler } from "react";
 
-import { receivedDataContext, filteredValuesContext } from "../../../context";
+import { receivedDataContext, filteredValuesContext } from "../../../context/context";
 
 import Input from "../../regularComponents/input/Input";
 
-import {Info, Status} from '../../../interfaces'
+import {Info, Status} from '../../../interfaces/interfaces'
 
 interface Current  {
   current: Record<string, string>;

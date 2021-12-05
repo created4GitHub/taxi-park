@@ -1,4 +1,4 @@
-import { Info, ActionType } from "../../interfaces";
+import { Info, ActionType } from "../../interfaces/interfaces";
 
 const defaultState = [{ status: { title: "", code: "" } }];
 export default function dataReducer(state: Info[] = [], action: ActionType<Info[]>): Info[] {

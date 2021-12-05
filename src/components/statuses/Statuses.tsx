@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 
-import { Status } from "../../interfaces";
+import { Status } from "../../interfaces/interfaces";
 import { RootState } from "../../store/rootReducer";
 
 interface Props {

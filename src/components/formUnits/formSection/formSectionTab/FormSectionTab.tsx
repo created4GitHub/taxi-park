@@ -2,9 +2,9 @@ import { useState, MouseEvent } from "react";
 
 import Statuses from "../../../statuses/Statuses";
 
-import { PATCH } from "../../../../requests";
+import { PATCH } from "../../../../requests/requests";
 
-import { Info, Status } from "../../../../interfaces";
+import { Info, Status } from "../../../../interfaces/interfaces";
 
 import "./formSectionTab.style.scss";
 import { RootState } from "../../../../store/rootReducer";

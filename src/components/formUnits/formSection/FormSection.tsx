@@ -2,9 +2,9 @@ import { useState } from "react";
 import FormSectionTab from "./formSectionTab/FormSectionTab";
 import { Button } from "../../regularComponents/button/Button";
 
-import { GET, REMOVE, GETDRIVERBYCAR } from "../../../requests";
+import { GET, REMOVE, GETDRIVERBYCAR } from "../../../requests/requests";
 
-import { Info, Status } from "../../../interfaces";
+import { Info, Status } from "../../../interfaces/interfaces";
 
 import icons from "../../../img/IconsDirection.svg";
 
@@ -25,23 +25,22 @@ const FormSection = (props: Props) => {
   let infoEntries = Object.entries(itemInfo);
 
   const deleteEl = () => {
-    itemInfo.id && REMOVE(props.title, itemInfo.id).then(() => {
-      // setIsDeleted((isDeleted) => !isDeleted);
-    });
+    itemInfo.id &&
+      REMOVE(props.title, itemInfo.id).then(() => {
+        // setIsDeleted((isDeleted) => !isDeleted);
+      });
   };
 
   const search = () => {
     if (props.title === "driver") {
       GETDRIVERBYCAR(String(props.info.id)).then((data) => {
-        setCars(data.data as Info[])
-      }
-      );
+        setCars(data.data as Info[]);
+      });
     }
     if (props.title === "car" && props.info.driver_id) {
       GET(`driver/${props.info.driver_id}`).then((resp) => {
         setDriver(resp.data as unknown as Info);
-      }
-      );
+      });
     }
   };
 
