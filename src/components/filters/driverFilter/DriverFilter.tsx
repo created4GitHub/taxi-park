@@ -4,44 +4,45 @@ import { receivedDataContext, filteredValuesContext } from "../../../context/con
 
 import Input from "../../regularComponents/input/Input";
 
-import {Info, Status} from '../../../interfaces/interfaces'
+import { Data, Status } from '../../../interfaces/interfaces';
 
-interface Current  {
+interface CurrentValue {
   current: Record<string, string>;
-}
-interface Props  {
-  search: ChangeEventHandler<HTMLInputElement>;
-  resetFilters: MouseEventHandler<HTMLButtonElement>;
-}
+};
 
-interface Data  {
-  info: Info[];
+interface Props {
+  searchDriver: ChangeEventHandler<HTMLInputElement>;
+  resetFilters: MouseEventHandler<HTMLButtonElement>;
+};
+
+interface ReceivedData {
+  info: Data[];
   statuses: Status[];
 };
 
 
-const DriverFilter = (props : Props) => {
-  const [receivedData, setReceivedData]: [Data, Dispatch<SetStateAction<Data>>] = useContext(receivedDataContext);
-  const filtersValues: Current  = useContext(filteredValuesContext);
+const DriverFilter = (props: Props) => {
+  const [receivedData, setReceivedData]: [ReceivedData, Dispatch<SetStateAction<ReceivedData>>] = useContext(receivedDataContext);
+  const filtersValues: CurrentValue = useContext(filteredValuesContext);
 
-  const search: ChangeEventHandler<HTMLInputElement> | undefined = props.search;
+  const searchUser: ChangeEventHandler<HTMLInputElement> | undefined = props.searchDriver;
   const resetFilters: MouseEventHandler<HTMLButtonElement> | undefined = props.resetFilters;
 
   return (
     <>
       <div className='filter_element-inputs'>
-        <Input onChange={search}
+        <Input onChange={searchUser}
           name="id"
           placeholder="Search by ID"
           value={(filtersValues.current as { [key: string]: string }).id || ""} />
         <Input
-          onChange={search}
+          onChange={searchUser}
           name="first_name"
           placeholder="Search by name"
           value={(filtersValues.current as { [key: string]: string })["first_name"] || ""}
         />
         <Input
-          onChange={search}
+          onChange={searchUser}
           name="last_name"
           placeholder="Search by surname"
           value={(filtersValues.current as { [key: string]: string })["last_name"] || ""}
@@ -56,7 +57,7 @@ const DriverFilter = (props : Props) => {
                   type="radio"
                   name="status"
                   id={"status" + index}
-                  onChange={search}
+                  onChange={searchUser}
                   value={item.title}
                   checked={(filtersValues.current as { [key: string]: string }).status === item.title}
                 />

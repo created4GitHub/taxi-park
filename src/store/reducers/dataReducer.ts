@@ -1,7 +1,7 @@
-import { Info, ActionType } from "../../interfaces/interfaces";
+import { Data, ActionType } from "../../interfaces/interfaces";
 
 const defaultState = [{ status: { title: "", code: "" } }];
-export default function dataReducer(state: Info[] = [], action: ActionType<Info[]>): Info[] {
+export default function dataReducer(state: Data[] = [], action: ActionType<Data[]>): Data[] {
     switch (action.type) {
         case "DATA_RECEIVED":
             return action.payload!;

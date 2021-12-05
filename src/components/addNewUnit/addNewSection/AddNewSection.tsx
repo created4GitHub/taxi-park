@@ -35,7 +35,7 @@ export default function AddNewSection({ title }: { title: string }) {
             <YearSelect name="year" />
             <DriverIDList name="driver_id" />
         </>
-        )
+        );
     }
     else {
         info = [
@@ -51,16 +51,15 @@ export default function AddNewSection({ title }: { title: string }) {
             },
         ]
         optionalInfo = <Input type="date" name="date_birth" />
-    }
+    };
 
     const isWarning: FocusEventHandler<HTMLInputElement> = (event) => {
         event.target.classList.forEach((item: string) => {
             if (item === "warning") {
                 event.target.classList.remove("warning");
             }
-        }
-        )
-    }
+        });
+    };
 
     return (
         <>

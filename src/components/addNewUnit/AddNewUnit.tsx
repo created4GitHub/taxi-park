@@ -5,10 +5,10 @@ import AddNewSection from "./addNewSection/AddNewSection";
 import AddNewButton from "./addNewButton/AddNewButton";
 import Statuses from "../statuses/Statuses";
 
-import { closeAddNewModal } from "../../store/actions/actions";
+import { closeAddNewUnit } from "../../store/actions/actions";
 
 import { POST } from "../../requests/requests";
-import { Info, Status } from "../../interfaces/interfaces";
+import { Data, Status } from "../../interfaces/interfaces";
 import { RootState } from "../../store/rootReducer";
 
 import "./addNewUnit.style.scss";
@@ -21,7 +21,7 @@ const AddNewUnit = ({ title }: { title: string }) => {
 
   const checkForm = () => {
     type Unit = { [key: string]: string | number | Status };
-    type Value = HTMLInputElement;
+    type InputValue = HTMLInputElement;
 
     let formValues: HTMLFormControlsCollection = (formRef.current as HTMLFormElement).elements;
     let unit: Unit = {};
@@ -32,22 +32,22 @@ const AddNewUnit = ({ title }: { title: string }) => {
         break;
       }
 
-      else if ((item as Value).value === "") {
+      else if ((item as InputValue).value === "") {
         item.classList.add("warning");
         isFilled = false;
         continue;
       }
 
-      else if ((item as Value).name === "status") {
-        unit.status = statuses.find((status: Status) => status.title === (item as Value).value)!;
+      else if ((item as InputValue).name === "status") {
+        unit.status = statuses.find((status: Status) => status.title === (item as InputValue).value)!;
         continue;
       }
-      unit[(item as Value).name as keyof Info] = (item as Value).value;
+      unit[(item as InputValue).name as keyof Data] = (item as InputValue).value;
     }
 
     if (isFilled) {
-      POST(title, (unit as unknown as Info));
-      dispatch(closeAddNewModal());
+      POST(title, (unit as unknown as Data));
+      dispatch(closeAddNewUnit());
     }
   };
 
@@ -56,7 +56,7 @@ const AddNewUnit = ({ title }: { title: string }) => {
       <form ref={formRef}>
         <AddNewSection title={title} />
         <Statuses />
-        <AddNewButton checkForm={checkForm} closeAddNewModal={closeAddNewModal} />
+        <AddNewButton checkForm={checkForm} closeAddNewUnit={closeAddNewUnit} />
       </form>
     </div>
 

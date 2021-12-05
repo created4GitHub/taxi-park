@@ -11,12 +11,12 @@ interface Button {
 
 interface Props {
   checkForm: () => void;
-  closeAddNewModal: () => {
+  closeAddNewUnit: () => {
     type: string;
   };
 }
 
-export default function AddNewButton({ checkForm, closeAddNewModal }: Props) {
+export default function AddNewButton({ checkForm, closeAddNewUnit }: Props) {
   const dispatch = useDispatch();
   const buttons: Button[] = [
     {
@@ -24,7 +24,7 @@ export default function AddNewButton({ checkForm, closeAddNewModal }: Props) {
       src: addObj,
     },
     {
-      onClick: () => dispatch(closeAddNewModal()),
+      onClick: () => dispatch(closeAddNewUnit()),
       src: deleteObj,
     },
   ];

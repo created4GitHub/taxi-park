@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 
-import { openAddNewModal, closeAddNewModal } from "../../../store/actions/actions";
+import { openAddNewUnit, closeAddNewUnit } from "../../../store/actions/actions";
 
 import { Button } from "../../regularComponents/button/Button";
 
@@ -28,7 +28,7 @@ export default function Title({ title, link, state: { isActive, setIsActive } }:
                     className={className}
                     onClick={() => {
                         setIsActive(title);
-                        dispatch(closeAddNewModal());
+                        dispatch(closeAddNewUnit());
                     }}
                     btnText={
                         <p className="options-paragraph">
@@ -43,7 +43,7 @@ export default function Title({ title, link, state: { isActive, setIsActive } }:
                 <Button
                     onClick={() => {
                         setIsActive(title);
-                        dispatch(openAddNewModal());
+                        dispatch(openAddNewUnit());
                     }}
                     btnText="+"
                     className="add"

@@ -1,12 +1,12 @@
-import { Info, Status } from "../../interfaces/interfaces";
+import { Data, Status } from "../../interfaces/interfaces";
 
-export const openAddNewModal = () => {
+export const openAddNewUnit = () => {
     return {
         type: "ADD_NEW_TRUE"
     };
 };
 
-export const closeAddNewModal = () => {
+export const closeAddNewUnit = () => {
     return {
         type: "ADD_NEW_FALSE"
     };
@@ -19,7 +19,7 @@ export const dispatchStatuses = (statuses: Status[]) => {
     };
 };
 
-export const dispatchData = (data: Info[]) => {
+export const dispatchData = (data: Data[]) => {
     return {
         type: "DATA_RECEIVED",
         payload: data

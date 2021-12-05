@@ -4,22 +4,22 @@ import { Button } from "../../regularComponents/button/Button";
 
 import { GET, REMOVE, GETDRIVERBYCAR } from "../../../requests/requests";
 
-import { Info, Status } from "../../../interfaces/interfaces";
+import { Data, Status } from "../../../interfaces/interfaces";
 
 import icons from "../../../img/IconsDirection.svg";
 
 import "./formSection.style.scss";
 
 type Props = {
-  info: Info;
+  info: Data;
   title: string;
   statuses: Status[];
 };
 
 const FormSection = (props: Props) => {
   const [isOpen, setIsopen] = useState<boolean>();
-  const [cars, setCars] = useState<Info[]>();
-  const [driver, setDriver] = useState<Info>();
+  const [cars, setCars] = useState<Data[]>();
+  const [driver, setDriver] = useState<Data>();
 
   let itemInfo = props.info;
   let infoEntries = Object.entries(itemInfo);
@@ -34,12 +34,12 @@ const FormSection = (props: Props) => {
   const search = () => {
     if (props.title === "driver") {
       GETDRIVERBYCAR(String(props.info.id)).then((data) => {
-        setCars(data.data as Info[]);
+        setCars(data.data as Data[]);
       });
     }
     if (props.title === "car" && props.info.driver_id) {
       GET(`driver/${props.info.driver_id}`).then((resp) => {
-        setDriver(resp.data as unknown as Info);
+        setDriver(resp.data as unknown as Data);
       });
     }
   };
@@ -47,7 +47,7 @@ const FormSection = (props: Props) => {
   const renderCar = () => {
     return (
       cars &&
-      cars.map((item: Info | undefined, index: number) => {
+      cars.map((item: Data | undefined, index: number) => {
         return (
           <div key={index} className="table_section_isActive-cars block">
             <p>{item!.id}</p>

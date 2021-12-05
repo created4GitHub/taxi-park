@@ -4,14 +4,14 @@ import Statuses from "../../../statuses/Statuses";
 
 import { PATCH } from "../../../../requests/requests";
 
-import { Info, Status } from "../../../../interfaces/interfaces";
+import { Data, Status } from "../../../../interfaces/interfaces";
 
 import "./formSectionTab.style.scss";
 import { RootState } from "../../../../store/rootReducer";
 import { useSelector } from "react-redux";
 
 type Props = {
-  info: Info;
+  info: Data;
   item: [string, any];
   title: string;
   statuses: Status[];
@@ -30,7 +30,7 @@ const FormSectionTab = (props: Props) => {
     if (!["id", "date_birth", "date_created", "driver_id"].includes(element)) {
       setIsDiv(!isDiv);
     }
-  }
+  };
 
   const saveNewInformation = (key: string, info: string | number | Status) => {
     itemInfo[key] = info;
