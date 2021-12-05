@@ -3,12 +3,6 @@ import { Data, Status } from "../interfaces/interfaces";
 interface Response {
   is_error: string;
   status: string;
-  data?: Data[];
-}
-
-interface InfoResponse {
-  is_error: string;
-  status: string;
   data: Data[];
 }
 
@@ -18,9 +12,55 @@ interface StatusResponse {
   data: Status[];
 }
 
-export const GET = async (param: string): Promise<InfoResponse> => {
+const convertDate = (item: Data): Data | Data[] => {
+  item.date_birth = new Date(item.date_birth!).toLocaleDateString();
+  item.date_created = new Date(item.date_created!).toLocaleDateString();
+  return item;
+}
+
+export const GET = async (title: string, id?: number): Promise<Data[] | Data> => {
+  const query = (id && `${title}/${id}`) || `${title}`;
   const response = await fetch(
-    `https://edu.evgeniychvertkov.com/v1/${param}/`,
+    `https://edu.evgeniychvertkov.com/v1/${query}/`,
+    {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "X-Authorization":
+          "api13ea3305989c1bbf4aa08d52b09fb239dbd0c27bd13daa1227861f55af160b34",
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  return await response.json()
+    .then((resp) => {
+      if (id) {
+        return convertDate(resp.data);
+      }
+      else if (title === "driver") {
+        return resp.data.map((item: Data) => convertDate(item));
+      }
+      return resp.data;
+    })
+};
+
+export const GETCARSBYDRIVER = async (id: string): Promise<Response> => {
+  const response = await fetch("https://edu.evgeniychvertkov.com/v1/car/", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "X-Authorization":
+        "api13ea3305989c1bbf4aa08d52b09fb239dbd0c27bd13daa1227861f55af160b34",
+      "Content-Type": "application/json",
+      "E-Driver-Id": id,
+    },
+  });
+  return await response.json();
+};
+
+export const GETSTATUS = async (title: string): Promise<StatusResponse> => {
+  const response = await fetch(
+    `https://edu.evgeniychvertkov.com/v1/${title}-status/`,
     {
       method: "GET",
       headers: {
@@ -34,9 +74,9 @@ export const GET = async (param: string): Promise<InfoResponse> => {
   return await response.json();
 };
 
-export const POST = async (param: string, info: Data): Promise<Response> => {
+export const POST = async (title: string, info: Data): Promise<Response> => {
   const response = await fetch(
-    `https://edu.evgeniychvertkov.com/v1/${param}/`,
+    `https://edu.evgeniychvertkov.com/v1/${title}/`,
     {
       method: "POST",
       headers: {
@@ -51,12 +91,12 @@ export const POST = async (param: string, info: Data): Promise<Response> => {
 };
 
 export const PATCH = async (
-  param: string,
+  title: string,
   id: number,
   info: { [key: string]: string | number | Status }
 ): Promise<Response> => {
   const response = await fetch(
-    `https://edu.evgeniychvertkov.com/v1/${param}/` + id + "/",
+    `https://edu.evgeniychvertkov.com/v1/${title}/` + id + "/",
     {
       method: "PATCH",
       headers: {
@@ -71,42 +111,12 @@ export const PATCH = async (
   return await response.json();
 };
 
-export const REMOVE = async (param: string, id: number): Promise<Response> => {
+export const REMOVE = async (title: string, id: number): Promise<Response> => {
   const response = await fetch(
-    `https://edu.evgeniychvertkov.com/v1/${param}/` + id + "/",
+    `https://edu.evgeniychvertkov.com/v1/${title}/` + id + "/",
     {
       method: "DELETE",
       headers: {
-        "X-Authorization":
-          "api13ea3305989c1bbf4aa08d52b09fb239dbd0c27bd13daa1227861f55af160b34",
-        "Content-Type": "application/json",
-      },
-    }
-  );
-  return await response.json();
-};
-
-export const GETDRIVERBYCAR = async (id: string): Promise<InfoResponse> => {
-  const response = await fetch("https://edu.evgeniychvertkov.com/v1/car/", {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "X-Authorization":
-        "api13ea3305989c1bbf4aa08d52b09fb239dbd0c27bd13daa1227861f55af160b34",
-      "Content-Type": "application/json",
-      "E-Driver-Id": id,
-    },
-  });
-  return await response.json();
-};
-
-export const GETSTATUS = async (param: string): Promise<StatusResponse> => {
-  const response = await fetch(
-    `https://edu.evgeniychvertkov.com/v1/${param}-status/`,
-    {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
         "X-Authorization":
           "api13ea3305989c1bbf4aa08d52b09fb239dbd0c27bd13daa1227861f55af160b34",
         "Content-Type": "application/json",

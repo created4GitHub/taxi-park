@@ -15,7 +15,7 @@ const DriverIDList: React.FC<Props> = ({ name, onChange }: Props) => {
 
   useEffect(() => {
     GET("driver").then((data) => {
-      setDrivers(data.data as Data[]);
+      setDrivers(data as Data[]);
     });
   }, []);
 

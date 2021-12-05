@@ -6,15 +6,13 @@ import Header from "./components/header/Header";
 import TitlesOptions from "./components/titles/Titles";
 import FormUnits from "./components/formUnits/FormUnits";
 
-import { receivedDataContext, filteredDataContext } from "./context/context";
-import { Data } from "./interfaces/interfaces";
+import { filteredDataContext } from "./context/context";
 import { RootState } from "./store/rootReducer";
 
 import "./app.scss";
 import AddNewUnit from "./components/addNewUnit/AddNewUnit";
 
 const App: React.FC = () => {
-  const [receivedData, setReceivedData] = useState(Array<Data>());
   const [isFiltered, setIsFiltered] = useState<boolean>(true);
   const data: MutableRefObject<never[]> = useRef([]);
   const isDataEmpty: MutableRefObject<boolean> = useRef(true);
@@ -22,7 +20,6 @@ const App: React.FC = () => {
 
   return (
     <>
-      <receivedDataContext.Provider value={[receivedData, setReceivedData]}>
         <filteredDataContext.Provider
           value={{
             filter: [isFiltered, setIsFiltered],
@@ -61,7 +58,6 @@ const App: React.FC = () => {
             </div>
           </div>
         </filteredDataContext.Provider>
-      </receivedDataContext.Provider>
     </>
   );
 };

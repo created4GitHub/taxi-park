@@ -1,102 +1,61 @@
 import { useState } from "react";
+
 import FormSectionTab from "./formSectionTab/FormSectionTab";
 import { Button } from "../../regularComponents/button/Button";
+import TableSection from "./additionalInfo/additionalInfo";
 
-import { GET, REMOVE, GETDRIVERBYCAR } from "../../../requests/requests";
-
-import { Data, Status } from "../../../interfaces/interfaces";
-
-import icons from "../../../img/IconsDirection.svg";
+import { Data } from "../../../interfaces/interfaces";
+import { GET, REMOVE, GETCARSBYDRIVER } from "../../../requests/requests";
 
 import "./formSection.style.scss";
 
 type Props = {
-  info: Data;
+  data: Data;
   title: string;
-  statuses: Status[];
+  setIsDeleted: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const FormSection = (props: Props) => {
+const FormSection = ({ data, title, setIsDeleted }: Props) => {
   const [isOpen, setIsopen] = useState<boolean>();
-  const [cars, setCars] = useState<Data[]>();
-  const [driver, setDriver] = useState<Data>();
-
-  let itemInfo = props.info;
-  let infoEntries = Object.entries(itemInfo);
+  const [additionalData, setadditionalData] = useState<Data[]>([]);
 
   const deleteEl = () => {
-    itemInfo.id &&
-      REMOVE(props.title, itemInfo.id).then(() => {
-        // setIsDeleted((isDeleted) => !isDeleted);
-      });
+    REMOVE(title, data.id!).then(() => {
+      setIsDeleted((isDeleted) => !isDeleted);
+    });
   };
 
   const search = () => {
-    if (props.title === "driver") {
-      GETDRIVERBYCAR(String(props.info.id)).then((data) => {
-        setCars(data.data as Data[]);
+    if (title === "driver") {
+      GETCARSBYDRIVER(String(data.id)).then((data) => {
+        setadditionalData(data.data);
       });
-    }
-    if (props.title === "car" && props.info.driver_id) {
-      GET(`driver/${props.info.driver_id}`).then((resp) => {
-        setDriver(resp.data as unknown as Data);
+    } else {
+      GET("driver", data.driver_id).then((resp) => {
+        setadditionalData([resp] as Data[]);
       });
-    }
-  };
-
-  const renderCar = () => {
-    return (
-      cars &&
-      cars.map((item: Data | undefined, index: number) => {
-        return (
-          <div key={index} className="table_section_isActive-cars block">
-            <p>{item!.id}</p>
-            <p>{item!.driver_id}</p>
-            <p>{item!.mark}</p>
-            <p>{item!.model}</p>
-            <p>{item!.number}</p>
-            <p>{item!.year}</p>
-            <p>{item!.status!.title}</p>
-          </div>
-        );
-      })
-    );
-  };
-
-  const renderDriver = () => {
-    if (driver) {
-      return (
-        <div className="table_section_isActive-cars block">
-          <p>{driver.id}</p>
-          <p>{driver.last_name}</p>
-          <p>{driver.first_name}</p>
-          <p>
-            {driver.date_birth &&
-              new Date(driver.date_birth).toLocaleDateString()}
-          </p>
-          <p>
-            {driver.date_created &&
-              new Date(driver.date_created).toLocaleDateString()}
-          </p>
-          <p>{driver.status!.title}</p>
-        </div>
-      );
     }
   };
 
   return (
     <>
       <div className="table_section">
-        {infoEntries.map((item: [string, unknown], index: number) => {
-          return <FormSectionTab key={index} {...{ ...props, item: item }} />;
-        })}
+        {Object.keys(data).map((property: string) =>
+          <FormSectionTab
+            key={property}
+            property={property}
+            value={data[property as keyof Data]!}
+            title={title}
+            data={data}
+          />
+        )}
         <Button
           onClick={() => {
             setIsopen((prevState) => !prevState);
             search();
           }}
           className="table_section-showButton"
-          btnText={isOpen ? "hide" : "show"}
+          btnText={isOpen ? "Hide" : "Show"}
         />
         <Button
           onClick={deleteEl}
@@ -104,66 +63,7 @@ const FormSection = (props: Props) => {
           btnText="delete"
         />
       </div>
-      {isOpen ? (
-        <div className="table_section_isActive">
-          <div className="table_section_isActive-cap block">
-            {props.title === "driver" ? (
-              <>
-                <p>
-                  ID <img src={icons} alt="alt" />
-                </p>
-                <p>
-                  Driver ID <img src={icons} alt="alt" />
-                </p>
-                <p>
-                  Model <img src={icons} alt="alt" />
-                </p>
-                <p>
-                  Mark <img src={icons} alt="alt" />
-                </p>
-                <p>
-                  Number <img src={icons} alt="alt" />
-                </p>
-                <p>
-                  Year <img src={icons} alt="alt" />
-                </p>
-                <p>
-                  Class <img src={icons} alt="alt" />
-                </p>
-              </>
-            ) : (
-              ""
-            )}
-            {props.title === "car" && (
-              <>
-                <p>
-                  ID <img src={icons} alt="alt" />
-                </p>
-                <p>
-                  Name <img src={icons} alt="alt" />
-                </p>
-                <p>
-                  Surname <img src={icons} alt="alt" />
-                </p>
-                <p>
-                  Birthday <img src={icons} alt="alt" />
-                </p>
-                <p>
-                  Registration
-                  <img src={icons} alt="alt" />
-                </p>
-                <p>
-                  Status <img src={icons} alt="alt" />
-                </p>
-              </>
-            )}
-          </div>
-          {props.title === "driver" ? renderCar() : ""}
-          {props.title === "car" ? renderDriver() : ""}
-        </div>
-      ) : (
-        ""
-      )}
+      {isOpen && <TableSection additionalData={additionalData} title={title} />}
     </>
   );
 };

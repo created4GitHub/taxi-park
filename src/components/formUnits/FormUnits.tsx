@@ -8,6 +8,7 @@ import UnitsTitles from "./unitsTitles/UnitsTitles";
 import { dispatchStatuses, dispatchData } from "../../store/actions/actions";
 import { GET, GETSTATUS } from "../../requests/requests";
 import { RootState } from "../../store/rootReducer";
+import { Data } from "../../interfaces/interfaces";
 
 import "./form.style.scss";
 
@@ -19,22 +20,12 @@ const FormUnits: React.FC<{ title: string }> = ({ title }) => {
 
   useEffect(() => {
     GET(title).then((resp) => {
-      if (title === "driver") {
-        resp.data = resp.data.map((item) => {
-          item.date_birth =
-            item.date_birth && new Date(item.date_birth).toLocaleDateString();
-          item.date_created =
-            item.date_created &&
-            new Date(item.date_created).toLocaleDateString();
-          return item;
-        });
-      }
       GETSTATUS(title).then((statuses) => {
         dispatch(dispatchStatuses(statuses.data));
-        dispatch(dispatchData(resp.data));
+        dispatch(dispatchData(resp as Data[]));
       });
     });
-  }, [isDeleted]);
+  }, [isDeleted, title]);
 
 
   return (
@@ -44,10 +35,10 @@ const FormUnits: React.FC<{ title: string }> = ({ title }) => {
         data.map((item: any, index: number) => {
           return (
             <FormSection
+            key={index}
               title={title}
-              info={item}
-              statuses={statuses}
-              key={index}
+              data={item}
+              setIsDeleted={setIsDeleted}
             />
           );
         })

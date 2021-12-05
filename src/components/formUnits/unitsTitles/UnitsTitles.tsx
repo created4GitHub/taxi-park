@@ -15,9 +15,9 @@ export default function UnitsTitles({ title }: { title: string }) {
             {info.map((item: string, index: number) => {
                 if (["Drivers", "Cars"].includes(item)) {
                     return (
-                        <div className="title-section-button">
-                            <div key={index} className='title-section-title'>{item}</div>
-                            <div key={index} className='title-section-title'>Delete</div>
+                        <div key={index} className="title-section-button">
+                            <div className='title-section-title'>{item}</div>
+                            <div className='title-section-title'>Delete</div>
                         </div>
                     )
                 }

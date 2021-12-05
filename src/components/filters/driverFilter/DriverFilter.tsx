@@ -4,8 +4,7 @@ import { receivedDataContext, filteredValuesContext } from "../../../context/con
 
 import Input from "../../regularComponents/input/Input";
 
-import { Data, Status } from '../../../interfaces/interfaces';
-
+import { Data, Status } from '../../../interfaces/interfaces'
 interface CurrentValue {
   current: Record<string, string>;
 };
@@ -15,14 +14,14 @@ interface Props {
   resetFilters: MouseEventHandler<HTMLButtonElement>;
 };
 
-interface ReceivedData {
-  info: Data[];
+interface Info {
+  data: Data[];
   statuses: Status[];
 };
 
 
 const DriverFilter = (props: Props) => {
-  const [receivedData, setReceivedData]: [ReceivedData, Dispatch<SetStateAction<ReceivedData>>] = useContext(receivedDataContext);
+  const [receivedData, setReceivedData]: [Info, Dispatch<SetStateAction<Info>>] = useContext(receivedDataContext);
   const filtersValues: CurrentValue = useContext(filteredValuesContext);
 
   const searchUser: ChangeEventHandler<HTMLInputElement> | undefined = props.searchDriver;
