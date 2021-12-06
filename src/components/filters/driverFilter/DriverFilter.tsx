@@ -1,69 +1,63 @@
-import { useContext, Dispatch, SetStateAction, ChangeEventHandler, MouseEventHandler } from "react";
+import { useContext, ChangeEventHandler, MouseEventHandler } from "react";
 
-import { receivedDataContext, filteredValuesContext } from "../../../context/context";
+import { filteredValuesContext } from "../../../context/context";
 
 import Input from "../../regularComponents/input/Input";
 
 import { Data, Status } from '../../../interfaces/interfaces'
+import { RootState } from "../../../store/rootReducer";
+import { useSelector } from "react-redux";
 interface CurrentValue {
   current: Record<string, string>;
 };
 
 interface Props {
   searchDriver: ChangeEventHandler<HTMLInputElement>;
-  resetFilters: MouseEventHandler<HTMLButtonElement>;
-};
-
-interface Info {
+  resetFilters: () => void;
   data: Data[];
-  statuses: Status[];
 };
 
-
-const DriverFilter = (props: Props) => {
-  const [receivedData, setReceivedData]: [Info, Dispatch<SetStateAction<Info>>] = useContext(receivedDataContext);
+const DriverFilter = ({ searchDriver, resetFilters, data }: Props) => {
   const filtersValues: CurrentValue = useContext(filteredValuesContext);
+  const statuses = useSelector((state: RootState) => state.statusReducer);
 
-  const searchUser: ChangeEventHandler<HTMLInputElement> | undefined = props.searchDriver;
-  const resetFilters: MouseEventHandler<HTMLButtonElement> | undefined = props.resetFilters;
 
   return (
     <>
       <div className='filter_element-inputs'>
-        <Input onChange={searchUser}
+        <Input onChange={searchDriver}
           name="id"
           placeholder="Search by ID"
           value={(filtersValues.current as { [key: string]: string }).id || ""} />
         <Input
-          onChange={searchUser}
+          onChange={searchDriver}
           name="first_name"
           placeholder="Search by name"
           value={(filtersValues.current as { [key: string]: string })["first_name"] || ""}
         />
         <Input
-          onChange={searchUser}
+          onChange={searchDriver}
           name="last_name"
           placeholder="Search by surname"
           value={(filtersValues.current as { [key: string]: string })["last_name"] || ""}
         />
       </div>
       <div className='filter_element-inputRadio'>
-        {receivedData.statuses &&
-          receivedData.statuses.map((item: any, index: number) => {
-            return (
-              <div className="filter-element" key={index}>
-                <Input
-                  type="radio"
-                  name="status"
-                  id={"status" + index}
-                  onChange={searchUser}
-                  value={item.title}
-                  checked={(filtersValues.current as { [key: string]: string }).status === item.title}
-                />
-                <label htmlFor={"status" + index}>{item.title}</label>
-              </div>
-            );
-          })}
+        {statuses.length && statuses.map((item: any, index: number) => {
+          return (
+            <div className="filter-element" key={index}>
+              <Input
+                type="radio"
+                name="status"
+                id={"status" + index}
+                onChange={searchDriver}
+                value={item.title}
+                checked={(filtersValues.current as { [key: string]: string }).status === item.title}
+              />
+              <label htmlFor={"status" + index}>{item.title}</label>
+            </div>
+          );
+        })}
       </div>
       <div className="reset-filter-button">
         <button

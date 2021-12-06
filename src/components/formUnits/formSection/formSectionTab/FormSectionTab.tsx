@@ -29,11 +29,7 @@ const FormSectionTab = ({ value, property, title, data }: Props) => {
     }
   }
 
-  const saveNewInformation = (
-    property: string,
-    newValue: string,
-    target: any
-  ) => {
+  const saveNewInformation = (property: string, newValue: string) => {
     (data as any)[property as keyof Data] = newValue;
     setIsDiv(!isDiv);
     PATCH(title, id, { [property]: newValue });
@@ -42,13 +38,13 @@ const FormSectionTab = ({ value, property, title, data }: Props) => {
   const pressedEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       const target = event.target as HTMLInputElement;
-      saveNewInformation(target.id, target.value || target.placeholder, target);
+      saveNewInformation(target.id, target.value || target.placeholder);
     }
   };
 
   const onBlurEvent = (event: React.FocusEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
-    saveNewInformation(target.id, target.value || target.placeholder, target);
+    saveNewInformation(target.id, target.value || target.placeholder);
   };
 
   const saveStatus = (event: React.ChangeEvent<HTMLSelectElement>) => {

@@ -7,7 +7,6 @@ import {
 } from "react";
 
 import {
-  receivedDataContext,
   filteredDataContext,
   filteredValuesContext,
 } from "../../context/context";
@@ -18,26 +17,30 @@ import CarFilter from "./carFilter/CarFilter";
 import { Data, Status } from "../../interfaces/interfaces";
 
 import "./filters.style.scss";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/rootReducer";
 
-type ReceivedData = {
-  info: Data[];
-  statuses: Status[];
-};
 
 const Filter = ({ title }: { title: string }) => {
-  const [receivedData]: [ReceivedData] = useContext(receivedDataContext);
+  const data = useSelector((state: RootState) => state.dataReducer);
   const [isFiltered, setIsFiltered]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(filteredDataContext).filter;
-  const { data, isDataEmpty } = useContext(filteredDataContext);
+  const { datas, isDataEmpty } = useContext(filteredDataContext);
   const filtersValues: MutableRefObject<{ [key: string]: string }> = useRef({});
+
+  const resetFilters = () => {
+    isDataEmpty.current = true;
+    filtersValues.current = {};
+    setIsFiltered(!isFiltered);
+  };
 
   if (filtersValues.current.title && filtersValues.current.title !== title) {
     resetFilters();
   }
 
-  const search = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const filter = (event: React.ChangeEvent<HTMLInputElement>) => {
     filtersValues.current.title = title;
     filtersValues.current[event.target.name] = event.target.value;
-    let result = receivedData.info;
+    let result = data;
 
     for (let key in filtersValues.current) {
       if (key === "title") {
@@ -57,14 +60,8 @@ const Filter = ({ title }: { title: string }) => {
       });
     }
 
-    data.current = result;
+    datas.current = result;
     isDataEmpty.current = false;
-    setIsFiltered(!isFiltered);
-  };
-
-  function resetFilters() {
-    isDataEmpty.current = true;
-    filtersValues.current = {};
     setIsFiltered(!isFiltered);
   };
 
@@ -72,9 +69,9 @@ const Filter = ({ title }: { title: string }) => {
     <div className="content__options-filter">
       <filteredValuesContext.Provider value={filtersValues}>
         {title === "driver" ? (
-          <DriverFilter {...{ searchDriver: search, resetFilters: resetFilters }} />
+          <DriverFilter searchDriver={filter} resetFilters={resetFilters} data={data} />
         ) : (
-          <CarFilter {...{ searchCar: search, resetFilters: resetFilters }} />
+          <CarFilter {...{ searchCar: filter, resetFilters: resetFilters }} />
         )}
       </filteredValuesContext.Provider>
     </div>
