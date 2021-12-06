@@ -30,7 +30,7 @@ const FormSectionTab = ({ value, property, title, data }: Props) => {
   }
 
   const saveNewInformation = (property: string, newValue: string) => {
-    (data as any)[property as keyof Data] = newValue;
+    (data[property as keyof Data] as string) = newValue;
     setIsDiv(!isDiv);
     PATCH(title, id, { [property]: newValue });
   };
@@ -38,20 +38,20 @@ const FormSectionTab = ({ value, property, title, data }: Props) => {
   const pressedEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       const target = event.target as HTMLInputElement;
-      saveNewInformation(target.id, target.value || target.placeholder);
+      saveNewInformation(target.name, target.value || target.placeholder);
     }
   };
 
   const onBlurEvent = (event: React.FocusEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
-    saveNewInformation(target.id, target.value || target.placeholder);
+    saveNewInformation(target.name, target.value || target.placeholder);
   };
 
   const saveStatus = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const status = statuses.find(
       (status: Status) => status.title === event.target.value
     )!;
-    PATCH(title, +event.target.id, { [property]: status });
+    PATCH(title, id, { [property]: status });
   };
 
   return (
@@ -59,15 +59,14 @@ const FormSectionTab = ({ value, property, title, data }: Props) => {
       <div className="table-section-tab">
         {property !== "status" ? (
           isDiv ? (
-            <p className="table_paragraph" id={property} onClick={updateElement} >
-              {value}
+            <p className="table_paragraph" onClick={updateElement} >
+              {data[property as keyof Data]}
             </p>
           ) : (
             <input
-              name="code"
               type="text"
-              id={property}
-              placeholder={String(value)}
+              name={property}
+              placeholder={String(data[property as keyof Data])}
               className="table_input"
               autoFocus={true}
               onClick={updateElement}

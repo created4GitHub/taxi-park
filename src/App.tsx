@@ -3,10 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import Header from "./components/header/Header";
-import TitlesOptions from "./components/titles/Titles";
+import Titles from "./components/titles/Titles";
 import FormUnits from "./components/formUnits/FormUnits";
 
-import { filteredDataContext } from "./context/context";
 import { RootState } from "./store/rootReducer";
 
 import "./app.scss";
@@ -20,44 +19,43 @@ const App: React.FC = () => {
 
   return (
     <>
-        <filteredDataContext.Provider
-          value={{
-            filter: [isFiltered, setIsFiltered],
-            data: data,
-            isDataEmpty: isDataEmpty,
-          }}
-        >
-          <Header />
-          <div className="container">
-            <div className="content">
-              <TitlesOptions />
-              <div className="content__inform">
-                <div className="table">
-                  <Routes>
-                    <Route
-                      path="/drivers"
-                      element={
-                        <>
-                          {isAddNew && <AddNewUnit title={"driver"} />}
-                          <FormUnits title={"driver"} />
-                        </>
-                      }
-                    />
-                    <Route
-                      path="/cars"
-                      element={
-                        <>
-                          {isAddNew && <AddNewUnit title={"car"} />}
-                          <FormUnits title={"car"} />
-                        </>
-                      }
-                    />
-                  </Routes>
-                </div>
-              </div>
+      {/* <filteredDataContext.Provider
+        value={{
+          data: data,
+          isDataEmpty: isDataEmpty,
+        }}
+      > */}
+      <Header />
+      <div className="container">
+        <div className="content">
+          <Titles setIsFiltered={setIsFiltered} />
+          <div className="content__inform">
+            <div className="table">
+              <Routes>
+                <Route
+                  path="/drivers"
+                  element={
+                    <>
+                      {isAddNew && <AddNewUnit title={"driver"} />}
+                      <FormUnits title={"driver"} />
+                    </>
+                  }
+                />
+                <Route
+                  path="/cars"
+                  element={
+                    <>
+                      {isAddNew && <AddNewUnit title={"car"} />}
+                      <FormUnits title={"car"} />
+                    </>
+                  }
+                />
+              </Routes>
             </div>
           </div>
-        </filteredDataContext.Provider>
+        </div>
+      </div>
+      {/* </filteredDataContext.Provider> */}
     </>
   );
 };

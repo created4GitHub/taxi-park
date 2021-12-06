@@ -4,33 +4,37 @@ import {
   Dispatch,
   SetStateAction,
   MutableRefObject,
+  MouseEventHandler,
 } from "react";
+import { useSelector } from "react-redux";
 
-import {
-  filteredDataContext,
-  filteredValuesContext,
-} from "../../context/context";
-
-import DriverFilter from "./driverFilter/DriverFilter";
-import CarFilter from "./carFilter/CarFilter";
-
+import { RootState } from "../../store/rootReducer";
 import { Data, Status } from "../../interfaces/interfaces";
+import Input from "../regularComponents/input/Input";
+import FilterStatuses from "./filterStatuses/FilterStatuses";
+import FilterInputs from "./filterInputs/FilterInputs";
 
 import "./filters.style.scss";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/rootReducer";
 
+interface Props {
+  title: string;
+  setIsFiltered: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-const Filter = ({ title }: { title: string }) => {
+interface Info {
+  name: string;
+  placeholder: string;
+};
+
+const Filters = ({ title, setIsFiltered }: Props) => {
   const data = useSelector((state: RootState) => state.dataReducer);
-  const [isFiltered, setIsFiltered]: [boolean, Dispatch<SetStateAction<boolean>>] = useContext(filteredDataContext).filter;
-  const { datas, isDataEmpty } = useContext(filteredDataContext);
+  // const { datas, isDataEmpty } = useContext(filteredDataContext);
   const filtersValues: MutableRefObject<{ [key: string]: string }> = useRef({});
 
+
   const resetFilters = () => {
-    isDataEmpty.current = true;
     filtersValues.current = {};
-    setIsFiltered(!isFiltered);
+    setIsFiltered(isFiltered => !isFiltered);
   };
 
   if (filtersValues.current.title && filtersValues.current.title !== title) {
@@ -60,22 +64,23 @@ const Filter = ({ title }: { title: string }) => {
       });
     }
 
-    datas.current = result;
-    isDataEmpty.current = false;
-    setIsFiltered(!isFiltered);
+    // datas.current = result;
+    // isDataEmpty.current = false;
+    setIsFiltered(isFiltered => !isFiltered);
   };
 
   return (
-    <div className="content__options-filter">
-      <filteredValuesContext.Provider value={filtersValues}>
-        {title === "driver" ? (
-          <DriverFilter searchDriver={filter} resetFilters={resetFilters} data={data} />
-        ) : (
-          <CarFilter {...{ searchCar: filter, resetFilters: resetFilters }} />
-        )}
-      </filteredValuesContext.Provider>
-    </div>
+    <form className="content__options-filter">
+      <FilterInputs filter={filter} title={title} />
+      <FilterStatuses filter={filter} />
+      <div className="reset-filter-button">
+        <button
+          onClick={resetFilters}>
+          Reset
+        </button>
+      </div>
+    </form>
   );
 };
 
-export default Filter;
+export default Filters;

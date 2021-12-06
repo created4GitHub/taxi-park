@@ -6,7 +6,6 @@ import AddNewButton from "./addNewButton/AddNewButton";
 import Statuses from "../statuses/Statuses";
 
 import { closeAddNewUnit } from "../../store/actions/actions";
-
 import { POST } from "../../requests/requests";
 import { Data, Status } from "../../interfaces/interfaces";
 import { RootState } from "../../store/rootReducer";

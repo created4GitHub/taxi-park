@@ -6,7 +6,7 @@ import Filter from "../filters/Filters";
 
 import Title from "./title/Title";
 
-const TitlesOptions = () => {
+const Titles = ({ setIsFiltered }: { setIsFiltered: React.Dispatch<React.SetStateAction<boolean>> }) => {
   const [isActive, setIsActive] = useState<string>("");
 
   return (
@@ -24,11 +24,11 @@ const TitlesOptions = () => {
         />
       </div>
       <Routes>
-        <Route path="/drivers" element={<Filter title="driver" />} />
-        <Route path="/cars" element={<Filter title="car" />} />
+        <Route path="/drivers" element={<Filter title="driver" setIsFiltered={setIsFiltered} />} />
+        <Route path="/cars" element={<Filter title="car" setIsFiltered={setIsFiltered} />} />
       </Routes>
     </div>
   );
 };
 
-export default TitlesOptions;
+export default Titles;
