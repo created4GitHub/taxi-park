@@ -1,10 +1,10 @@
-import { useContext, ChangeEventHandler, MouseEventHandler } from "react";
+import { useContext, ChangeEventHandler } from "react";
+import { useSelector } from "react-redux";
 
 import Input from "../../regularComponents/input/Input";
-
-import { Data, Status } from '../../../interfaces/interfaces'
+import { Data } from '../../../interfaces/interfaces'
 import { RootState } from "../../../store/rootReducer";
-import { useSelector } from "react-redux";
+
 interface CurrentValue {
   current: Record<string, string>;
 };

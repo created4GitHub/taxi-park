@@ -21,8 +21,7 @@ export default function Statuses({ defaultValue, onChange, id }: Props) {
             onChange={onChange}
             id={id}
         >
-            {statuses &&
-                statuses.map((item: Status, index: number) =>
+            {statuses?.map((item: Status, index: number) =>
                     <option key={index} >
                         {item.title}
                     </option>

@@ -32,6 +32,7 @@ export const GET = async (title: string, id?: number): Promise<Data[] | Data> =>
       },
     }
   );
+  
   return await response.json()
     .then((resp) => {
       if (id) {
@@ -44,7 +45,7 @@ export const GET = async (title: string, id?: number): Promise<Data[] | Data> =>
     })
 };
 
-export const GETCARSBYDRIVER = async (id: string): Promise<Response> => {
+export const GET_CARS_BY_DRIVER = async (id: string): Promise<Response> => {
   const response = await fetch("https://edu.evgeniychvertkov.com/v1/car/", {
     method: "GET",
     headers: {

@@ -2,10 +2,9 @@ import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 
 import { openAddNewUnit, closeAddNewUnit } from "../../../store/actions/actions";
-
 import { Button } from "../../regularComponents/button/Button";
 
-import drivers from "../../../img/drivers.svg"
+import drivers from "../../../img/drivers.svg";
 import cars from "../../../img/cars.svg";
 
 interface Props {

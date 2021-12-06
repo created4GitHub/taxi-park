@@ -29,18 +29,15 @@ const AddNewUnit = ({ title }: { title: string }) => {
     for (let item of Object.values(formValues)) {
       if (item.nodeName === "BUTTON") {
         break;
-      }
-
-      else if ((item as InputValue).value === "") {
+      } else if ((item as InputValue).value === "") {
         item.classList.add("warning");
         isFilled = false;
         continue;
-      }
-
-      else if ((item as InputValue).name === "status") {
+      } else if ((item as InputValue).name === "status") {
         unit.status = statuses.find((status: Status) => status.title === (item as InputValue).value)!;
         continue;
       }
+      
       unit[(item as InputValue).name as keyof Data] = (item as InputValue).value;
     }
 
@@ -52,7 +49,7 @@ const AddNewUnit = ({ title }: { title: string }) => {
 
   return (
     <div className="table_section_add">
-      <form ref={formRef}>
+      <form className="search-table_section_add" ref={formRef}>
         <AddNewSection title={title} />
         <Statuses />
         <AddNewButton checkForm={checkForm} closeAddNewUnit={closeAddNewUnit} />

@@ -1,5 +1,4 @@
-.table_section_add,
-form {
+.table_section_add, .search-table_section_add {
     width: 100%;
     border-bottom: 1px solid #eeeeee;
     display: flex;
@@ -7,12 +6,12 @@ form {
     justify-content: space-evenly;
     flex-direction: row;
     flex-wrap: wrap;
+
     @media (max-width: 840px) {
         width: 130px;
         justify-content: center;
         flex-direction: column;
     }
-
     .table_section_buttons {
         display: flex;
         align-items: center;

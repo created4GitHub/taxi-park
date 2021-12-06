@@ -1,10 +1,4 @@
-import {
-  useContext,
-  ChangeEventHandler,
-  MouseEventHandler,
-  Dispatch,
-  SetStateAction,
-} from "react";
+import { useContext, ChangeEventHandler, MouseEventHandler, Dispatch, SetStateAction } from "react";
 
 import Input from "../../regularComponents/input/Input";
 import YearSelect from "../../yearSelect/YearSelect";

@@ -5,7 +5,7 @@ import { Button } from "../../regularComponents/button/Button";
 import TableSection from "./additionalInfo/additionalInfo";
 
 import { Data } from "../../../interfaces/interfaces";
-import { GET, REMOVE, GETCARSBYDRIVER } from "../../../requests/requests";
+import { GET, REMOVE, GET_CARS_BY_DRIVER } from "../../../requests/requests";
 
 import "./formSection.style.scss";
 
@@ -27,7 +27,7 @@ const FormSection = ({ data, title, setIsDeleted }: Props) => {
 
   const search = () => {
     if (title === "driver") {
-      GETCARSBYDRIVER(String(data.id)).then((data) => {
+      GET_CARS_BY_DRIVER(String(data.id)).then((data) => {
         setadditionalData(data.data);
       });
     } else {

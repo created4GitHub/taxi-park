@@ -8,6 +8,7 @@ import UnitsTitles from "./unitsTitles/UnitsTitles";
 import { dispatchStatuses, dispatchData } from "../../store/actions/actions";
 import { GET, GETSTATUS } from "../../requests/requests";
 import { RootState } from "../../store/rootReducer";
+
 import { Data } from "../../interfaces/interfaces";
 
 import "./form.style.scss";
@@ -18,33 +19,35 @@ const FormUnits: React.FC<{ title: string }> = ({ title }) => {
   const statuses = useSelector((state: RootState) => state.statusReducer);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    GET(title).then((resp) => {
+  const getRequests = async () => {
+    const response = GET(title);
+    await response.then((resp) => {
       GETSTATUS(title).then((statuses) => {
         dispatch(dispatchStatuses(statuses.data));
         dispatch(dispatchData(resp as Data[]));
       });
     });
-  }, [isDeleted, title]);
+  }
 
+  useEffect(() => {
+    getRequests()
+  }, [isDeleted, title]);
 
   return (
     <>
       <UnitsTitles title={title} />
-      {statuses && data.length ? (
-        data.map((item: any, index: number) => {
+      {data.length ?
+        data?.map((item: any, index: number) => {
           return (
             <FormSection
-            key={index}
+              key={index}
               title={title}
               data={item}
               setIsDeleted={setIsDeleted}
             />
           );
-        })
-      ) : (
-        <div><Loader /></div>
-      )}
+        }) : <div><Loader /></div>
+      }
     </>
   );
 };
