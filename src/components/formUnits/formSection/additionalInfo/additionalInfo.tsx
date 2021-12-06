@@ -1,13 +1,13 @@
 import icons from "../../../../img/IconsDirection.svg";
-import { Data } from "../../../../interfaces/interfaces";
+import { Data, Status } from "../../../../interfaces/interfaces";
 
 const AdditionalData = ({ additionalData, title }: { additionalData: Data[], title: string }) => {
     const carTitles = ['ID', 'Name', 'Surname', 'Birthday', 'Registration', 'Status'];
     const driverTitles = ['ID', 'Driver ID', 'Model', 'Mark', 'Number', 'Year', 'Class'];
 
     const renderTitles = (array: string[]) => {
-        return array.map((item: any, index: number) => {
-            return <p key={index}> {item} <img src={icons} alt="alt" /></p>
+        return array.map((item: string) => {
+            return <p key={item}> {item} <img src={icons} alt="alt" /></p>
         });
     }
 
@@ -16,18 +16,19 @@ const AdditionalData = ({ additionalData, title }: { additionalData: Data[], tit
             <div className="block">
                 {title === 'car' ? renderTitles(carTitles) : renderTitles(driverTitles)}
             </div>
-            {additionalData?.map((item: any) => {
-                return (
+            <div className="block">
+                {additionalData?.map((item: Data) => {
                     <div className="block">
-                        {Object.values(item).map((item: any, index: number) => {
+                        {Object.values(item).map((item: Status | string | number) => {
                             if (item.hasOwnProperty("title")) {
-                                return <p key={index}>{item.title}</p>;
+                                return <p key={(item as Status).title}>{(item as Status).title}</p>;
                             }
-                            return <p key={index}>{item}</p>;
-                        })}
+                            return <p key={(item as string | number)}>{item}</p>
+                        })
+                        })
                     </div>
-                )
-            })}
+                })}
+            </div>
         </div>
     )
 }

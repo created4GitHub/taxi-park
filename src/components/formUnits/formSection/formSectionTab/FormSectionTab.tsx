@@ -22,7 +22,7 @@ const FormSectionTab = ({ value, property, title, data }: Props) => {
   const id = data.id!;
 
   function updateElement(event: MouseEvent<HTMLElement>) {
-    let element: string = (event.target as HTMLElement).id;
+    const element: string = (event.target as HTMLElement).id;
     if (!["id", "date_birth", "date_created", "driver_id"].includes(element)) {
       setIsDiv(!isDiv);
     }

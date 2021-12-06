@@ -2,24 +2,24 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Filter from "../filters/Filters";
-import Title from "./title/Title";
+import ButtonPath from "./buttonPath";
 
 interface Props {
   setIsFiltered: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Titles = ({ setIsFiltered }: Props) => {
+const PathRout = ({ setIsFiltered }: Props) => {
   const [isActive, setIsActive] = useState<string>("");
 
   return (
     <div className="content__options">
       <div className="content__options-paragraph">
-        <Title
+        <ButtonPath
           title="Drivers"
           link={"/drivers"}
           state={{ isActive, setIsActive }}
         />
-        <Title
+        <ButtonPath
           title="Cars"
           link={"/cars"}
           state={{ isActive, setIsActive }}
@@ -33,4 +33,4 @@ const Titles = ({ setIsFiltered }: Props) => {
   );
 };
 
-export default Titles;
+export default PathRout;

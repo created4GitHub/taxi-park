@@ -22,11 +22,11 @@ const AddNewUnit = ({ title }: { title: string }) => {
     type Unit = { [key: string]: string | number | Status };
     type InputValue = HTMLInputElement;
 
-    let formValues: HTMLFormControlsCollection = (formRef.current as HTMLFormElement).elements;
-    let unit: Unit = {};
+    const formValues: HTMLFormControlsCollection = (formRef.current as HTMLFormElement).elements;
+    const unit: Unit = {};
     let isFilled: boolean = true;
 
-    for (let item of Object.values(formValues)) {
+    for (const item of Object.values(formValues)) {
       if (item.nodeName === "BUTTON") {
         break;
       } else if ((item as InputValue).value === "") {
