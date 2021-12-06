@@ -1,9 +1,10 @@
 import React from "react";
-import TitlesOptions from "../titles/Titles";
+import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
+
+import TitlesOptions from "../titles/Titles";
 import FormUnits from "../../components/formUnits/FormUnits";
 import AddNewUnit from "../../components/addNewUnit/AddNewUnit";
-import { useSelector } from "react-redux";
 import { RootState } from "../../store/rootReducer";
 
 const Container = () => {

@@ -18,13 +18,17 @@ const FormUnits: React.FC<{ title: string }> = ({ title }) => {
   const statuses = useSelector((state: RootState) => state.statusReducer);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    GET(title).then((resp) => {
+  const get = async () => {
+    await GET(title).then((resp) => {
       GETSTATUS(title).then((statuses) => {
         dispatch(dispatchStatuses(statuses.data));
         dispatch(dispatchData(resp as Data[]));
       });
     });
+  }
+
+  useEffect(() => {
+    get()
   }, [isDeleted, title]);
 
 
