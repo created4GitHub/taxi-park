@@ -8,7 +8,6 @@ import { GET, REMOVE, GET_CARS_BY_DRIVER } from "../../../requests/requests";
 
 import "./formSection.style.scss";
 
-
 type Props = {
   data: Data;
   title: string;
@@ -37,8 +36,8 @@ const FormSection = ({ data, title, setIsDeleted }: Props) => {
     });
   };
 
-  const handleClick = () => {
-    // setIsopen((prevState) => !prevState);
+  const showClick = () => {
+    setIsAdditionalData((prevState) => !prevState);
     search();
   }
 
@@ -55,7 +54,7 @@ const FormSection = ({ data, title, setIsDeleted }: Props) => {
           />
         )}
         <Button
-          onClick={handleClick}
+          onClick={showClick}
           className="table_section-showButton"
           btnText={isAdditionalData ? "Hide" : "Show"}
         />
