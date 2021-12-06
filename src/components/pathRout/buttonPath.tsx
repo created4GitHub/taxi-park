@@ -17,7 +17,7 @@ const ButtonPath = ({ title, link, state: { isActive, setIsActive } }: Props) =>
 
     const dispatch = useDispatch();
 
-    const className = isActive !== title ? "but up" : "but up active";
+    const className = isActive !== title ? "route-button path" : "route-button path active";
     const src = title === "Drivers" ? drivers : cars;
 
     const handleClick = (param: any) => {
@@ -26,7 +26,7 @@ const ButtonPath = ({ title, link, state: { isActive, setIsActive } }: Props) =>
     }
 
     return (
-        <div className="elem">
+        <div className="paragraph_element-route">
             <Link to={link}>
                 <Button
                     className={className}
@@ -44,7 +44,7 @@ const ButtonPath = ({ title, link, state: { isActive, setIsActive } }: Props) =>
                 <Button
                     onClick={() => {handleClick(openAddNewUnit)}}
                     btnText="+"
-                    className="add"
+                    className="addNewUnit"
                 />
             </Link>
         </div>

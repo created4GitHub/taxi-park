@@ -36,7 +36,7 @@ const FormSection = ({ data, title, setIsDeleted }: Props) => {
     });
   };
 
-  const handleClick = () => {
+  const showClick = () => {
     setIsAdditionalData((prevState) => !prevState);
     search();
   }
@@ -54,7 +54,7 @@ const FormSection = ({ data, title, setIsDeleted }: Props) => {
           />
         )}
         <Button
-          onClick={handleClick}
+          onClick={showClick}
           className="table_section-showButton"
           btnText={isAdditionalData ? "Hide" : "Show"}
         />
