@@ -3,7 +3,7 @@ import { Data, Status } from "../../../../interfaces/interfaces";
 
 const AdditionalData = ({ additionalData, title }: { additionalData: Data[], title: string }) => {
     const carTitles = ['ID', 'Name', 'Surname', 'Birthday', 'Registration', 'Status'];
-    const driverTitles = ['ID', 'Driver ID', 'Model', 'Mark', 'Number', 'Year', 'Class'];
+    const driverTitles = ['ID', 'Model', 'Mark', 'Number', 'Year', 'Driver ID', 'Class'];
 
     const renderTitles = (array: string[]) => {
         return array.map((item: string) => {
