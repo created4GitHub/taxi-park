@@ -25,3 +25,11 @@ export const dispatchData = (data: Data[]) => {
         payload: data
     };
 };
+
+export const dispatchFilteredData = (data: Data[]) => {
+    return {
+        type: "DATA_FILTERED",
+        payload: data
+    };
+};
+

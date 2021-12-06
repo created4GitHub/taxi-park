@@ -1,12 +1,11 @@
-import { ChangeEvent } from "react";
-import { useSelector } from "react-redux";
+import { ChangeEvent, MutableRefObject } from "react";
 
 import Input from "../../regularComponents/input/Input";
-import { RootState } from "../../../store/rootReducer";
 
 interface Props {
     filter: (event: ChangeEvent<HTMLInputElement>) => void;
     title: string;
+    filterValues: MutableRefObject<{ [key: string]: string }>;
 }
 
 interface Info {
@@ -14,8 +13,8 @@ interface Info {
     placeholder: string;
 };
 
-export default function FilterInputs({ filter, title }: Props) {
-    const statuses = useSelector((state: RootState) => state.statusReducer);
+export default function FilterInputs({ filter, title, filterValues }: Props) {
+
     const inputInfo: Info[] = (title === "car"
         && [
             {
@@ -57,11 +56,11 @@ export default function FilterInputs({ filter, title }: Props) {
     return (
         <>
             <div className='filter_element-inputs'>
-                {inputInfo.map((item: Info) =>
+                {inputInfo.map(({ name, placeholder }: Info) =>
                     <Input onChange={filter}
-                        name="id"
-                        placeholder="Search by ID"
-                    // value={(filtersValues.current as { [key: string]: string }).id} 
+                        name={name}
+                        placeholder={placeholder}
+                        value={(filterValues.current as { [key: string]: string })[name] || ""}
                     />
                 )}
             </div>

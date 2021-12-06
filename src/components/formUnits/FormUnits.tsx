@@ -13,10 +13,15 @@ import { Data } from "../../interfaces/interfaces";
 
 import "./form.style.scss";
 
-const FormUnits: React.FC<{ title: string }> = ({ title }) => {
+interface Props {
+  title: string;
+}
+
+const FormUnits = ({ title }: Props) => {
   const [isDeleted, setIsDeleted] = useState<boolean>(true);
-  const data = useSelector((state: RootState) => state.dataReducer);
-  const statuses = useSelector((state: RootState) => state.statusReducer);
+  const receivedData = useSelector((state: RootState) => state.dataReducer);
+  const filteredData = useSelector((state: RootState) => state.filteredDataReducer);
+  const data = (filteredData.length && filteredData) || receivedData;
   const dispatch = useDispatch();
 
   const getRequests = async () => {
@@ -37,7 +42,7 @@ const FormUnits: React.FC<{ title: string }> = ({ title }) => {
     <>
       <UnitsTitles title={title} />
       {data.length ?
-        data?.map((item: any, index: number) => {
+        data.map((item: any, index: number) => {
           return (
             <FormSection
               key={index}

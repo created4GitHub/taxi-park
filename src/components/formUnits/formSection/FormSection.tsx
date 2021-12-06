@@ -2,12 +2,12 @@ import { useState } from "react";
 
 import FormSectionTab from "./formSectionTab/FormSectionTab";
 import { Button } from "../../regularComponents/button/Button";
-import TableSection from "./additionalInfo/additionalInfo";
-
+import AdditionalData from "./additionalInfo/additionalInfo";
 import { Data } from "../../../interfaces/interfaces";
 import { GET, REMOVE, GET_CARS_BY_DRIVER } from "../../../requests/requests";
 
 import "./formSection.style.scss";
+
 
 type Props = {
   data: Data;
@@ -16,7 +16,7 @@ type Props = {
 };
 
 const FormSection = ({ data, title, setIsDeleted }: Props) => {
-  const [isOpen, setIsopen] = useState<boolean>();
+  const [isAdditionalData, setIsAdditionalData] = useState<boolean>(false);
   const [additionalData, setadditionalData] = useState<Data[]>([]);
 
   const deleteEl = () => {
@@ -51,11 +51,11 @@ const FormSection = ({ data, title, setIsDeleted }: Props) => {
         )}
         <Button
           onClick={() => {
-            setIsopen((prevState) => !prevState);
+            setIsAdditionalData(isAdditionalData => !isAdditionalData);
             search();
           }}
           className="table_section-showButton"
-          btnText={isOpen ? "Hide" : "Show"}
+          btnText={isAdditionalData ? "Hide" : "Show"}
         />
         <Button
           onClick={deleteEl}
@@ -63,7 +63,7 @@ const FormSection = ({ data, title, setIsDeleted }: Props) => {
           btnText="delete"
         />
       </div>
-      {isOpen && <TableSection additionalData={additionalData} title={title} />}
+      {isAdditionalData && <AdditionalData additionalData={additionalData} title={title} />}
     </>
   );
 };

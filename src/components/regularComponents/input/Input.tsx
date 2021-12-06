@@ -9,9 +9,9 @@ type Props = {
   value?: string;
   id?: string;
   checked?: boolean;
-  onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
-  onInput?: ChangeEventHandler<HTMLInputElement> | undefined;
-  onFocus?: FocusEventHandler<HTMLInputElement> | undefined;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  onInput?: ChangeEventHandler<HTMLInputElement>;
+  onFocus?: FocusEventHandler<HTMLInputElement>;
 };
 
 const Input: React.FC<Props> = (props) => {

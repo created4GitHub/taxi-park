@@ -4,7 +4,11 @@ import { Routes, Route } from "react-router-dom";
 import Filter from "../filters/Filters";
 import Title from "./title/Title";
 
-const Titles = ({ setIsFiltered }: { setIsFiltered: React.Dispatch<React.SetStateAction<boolean>> }) => {
+interface Props {
+  setIsFiltered: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Titles = ({ setIsFiltered }: Props) => {
   const [isActive, setIsActive] = useState<string>("");
 
   return (

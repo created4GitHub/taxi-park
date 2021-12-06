@@ -10,7 +10,7 @@ import cars from "../../../img/cars.svg";
 interface Props {
     title: string;
     link: string;
-    state: { isActive: string, setIsActive: React.Dispatch<React.SetStateAction<string>> }
+    state: { isActive: string, setIsActive: React.Dispatch<React.SetStateAction<string>> };
 }
 
 export default function Title({ title, link, state: { isActive, setIsActive } }: Props) {
