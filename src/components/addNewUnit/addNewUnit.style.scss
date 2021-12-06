@@ -6,12 +6,12 @@
     justify-content: space-evenly;
     flex-direction: row;
     flex-wrap: wrap;
+
     @media (max-width: 840px) {
         width: 130px;
         justify-content: center;
         flex-direction: column;
     }
-
     .table_section_buttons {
         display: flex;
         align-items: center;
