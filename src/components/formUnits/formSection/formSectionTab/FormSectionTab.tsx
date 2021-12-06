@@ -1,14 +1,13 @@
 import { useState, MouseEvent } from "react";
+import { useSelector } from "react-redux";
 
 import Statuses from "../../../statuses/Statuses";
 
 import { PATCH } from "../../../../requests/requests";
-
+import { RootState } from "../../../../store/rootReducer";
 import { Data, Status } from "../../../../interfaces/interfaces";
 
 import "./formSectionTab.style.scss";
-import { RootState } from "../../../../store/rootReducer";
-import { useSelector } from "react-redux";
 
 interface Props {
   value: string | number | Status;

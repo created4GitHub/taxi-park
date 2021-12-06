@@ -17,7 +17,7 @@ const AdditionalInfo = ({ additionalData, title }: { additionalData: Data[], tit
                 {title === 'car' ? renderTitles(carTitles) : renderTitles(driverTitles)}
             </div>
             <div className="block">
-                {additionalData.length && additionalData.map((item: any) => {
+                {additionalData?.map((item: any) => {
                     return Object.values(item).map((item: any, index: number) => {
                         if (item.hasOwnProperty("title")) {
                             return <p key={index}>{item.title}</p>;

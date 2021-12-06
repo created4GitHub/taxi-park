@@ -1,10 +1,10 @@
 import React, { useState, useRef, MutableRefObject } from "react";
 
-import Header from "./components/header/Header";
 import { filteredDataContext } from "./context/context";
+import Header from "./components/header/Header";
+import Container from "./components/appContent/container";
 
 import "./app.scss";
-import Container from "./components/appContainer/container";
 
 const App: React.FC = () => {
   const [isFiltered, setIsFiltered] = useState<boolean>(true);

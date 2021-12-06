@@ -6,5 +6,6 @@ import dataReducer from "./reducers/dataReducer"
 
 const rootReducer = combineReducers({ addNewReducer, statusReducer, dataReducer });
 
-export default rootReducer;
 export type RootState = ReturnType<typeof rootReducer>;
+
+export default rootReducer;

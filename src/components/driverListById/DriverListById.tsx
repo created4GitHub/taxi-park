@@ -21,7 +21,7 @@ const DriverIDList: React.FC<Props> = ({ name, onChange }: Props) => {
 
   return (
     <select name={name} onChange={onChange}>
-      {drivers.length && drivers.map((item: Data, index: number) =>
+      {drivers?.map((item: Data, index: number) =>
         <option key={index} value={item.id}>
           {item.first_name + " " + item.last_name}
         </option>

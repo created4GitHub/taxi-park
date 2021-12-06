@@ -1,10 +1,4 @@
-import {
-  useContext,
-  ChangeEventHandler,
-  MouseEventHandler,
-  Dispatch,
-  SetStateAction,
-} from "react";
+import { useContext, ChangeEventHandler, MouseEventHandler, Dispatch, SetStateAction } from "react";
 
 import { receivedDataContext, filteredValuesContext } from "../../../context/context";
 
@@ -81,25 +75,24 @@ const DriverFilter = (props: Props) => {
         />
       </div>
       <div className="filter_element-inputRadio">
-        {receivedData.statuses &&
-          receivedData.statuses.map((item: any, index: number) => {
-            return (
-              <div className="filter_element-radio" key={index}>
-                <Input
-                  type="radio"
-                  name="status"
-                  id={"status" + index}
-                  onChange={searchCar}
-                  value={item.title}
-                  checked={
-                    (filtersValues.current as { [key: string]: string })
-                      .status === item.title
-                  }
-                />
-                <label htmlFor={"status" + index}>{item.title}</label>
-              </div>
-            );
-          })}
+        {receivedData.statuses?.map((item: any, index: number) => {
+          return (
+            <div className="filter_element-radio" key={index}>
+              <Input
+                type="radio"
+                name="status"
+                id={"status" + index}
+                onChange={searchCar}
+                value={item.title}
+                checked={
+                  (filtersValues.current as { [key: string]: string })
+                    .status === item.title
+                }
+              />
+              <label htmlFor={"status" + index}>{item.title}</label>
+            </div>
+          );
+        })}
       </div>
       <div className="filter_element-yearSelect">
         <YearSelect onChange={searchCar} name="year" defaultValue={"2018"} />

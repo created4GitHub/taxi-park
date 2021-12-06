@@ -127,6 +127,8 @@
     }
 
     .content__options-filter {
+        width: 232px;
+
         @media (max-width: 1080px) {
             display: flex;
             width: 1000px;

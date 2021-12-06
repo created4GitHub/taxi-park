@@ -50,7 +50,7 @@ const AddNewUnit = ({ title }: { title: string }) => {
 
   return (
     <div className="table_section_add">
-      <form ref={formRef}>
+      <form className="search-table_section_add" ref={formRef}>
         <AddNewSection title={title} />
         <Statuses />
         <AddNewButton checkForm={checkForm} closeAddNewUnit={closeAddNewUnit} />

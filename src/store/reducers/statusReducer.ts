@@ -1,5 +1,6 @@
 import { Status, ActionType } from "../../interfaces/interfaces";
-export default function statusReducer(state: Status[] = [{ title: "", code: "" }], action: ActionType<Status[]>): Status[] {
+
+function statusReducer(state: Status[] = [{ title: "", code: "" }], action: ActionType<Status[]>): Status[] {
     switch (action.type) {
         case "STATUS_RECEIVED":
             return action.payload!;
@@ -7,3 +8,5 @@ export default function statusReducer(state: Status[] = [{ title: "", code: "" }
             return state;
     }
 }
+
+export default statusReducer;

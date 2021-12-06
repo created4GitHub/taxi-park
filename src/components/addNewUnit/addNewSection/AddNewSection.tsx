@@ -1,15 +1,20 @@
+import { FocusEventHandler } from "react";
+
 import DriverIDList from "../../driverListById/DriverListById";
 import YearSelect from "../../yearSelect/YearSelect";
 import Input from "../../regularComponents/input/Input";
-import { FocusEventHandler } from "react";
 
-export default function AddNewSection({ title }: { title: string }) {
+interface Info {
+    name: string;
+    placeholder: string;
+    length: number;
+}
 
-    interface Info {
-        name: string;
-        placeholder: string;
-        length: number;
-    }
+interface Props {
+    title: string;
+} 
+
+export default function AddNewSection({ title }: Props) {
     let info: Info[];
     let optionalInfo: JSX.Element;
 
@@ -63,7 +68,7 @@ export default function AddNewSection({ title }: { title: string }) {
 
     return (
         <>
-            {info.map((item: Info, index: number) =>
+            {info?.map((item: Info, index: number) =>
                 <div key={index} className="table_section-block-input">
                     < Input
                         className="table_section-input"
