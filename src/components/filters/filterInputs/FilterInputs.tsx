@@ -58,6 +58,7 @@ export default function FilterInputs({ filter, title, filterValues }: Props) {
             <div className='filter_element-inputs'>
                 {inputInfo.map(({ name, placeholder }: Info) =>
                     <Input onChange={filter}
+                        key={name}
                         name={name}
                         placeholder={placeholder}
                         value={(filterValues.current as { [key: string]: string })[name] || ""}

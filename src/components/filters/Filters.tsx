@@ -70,7 +70,7 @@ const Filters = ({ title, setIsFiltered }: Props) => {
     <form className="content__options-filter">
       <FilterInputs filter={filter} title={title} filterValues={filterValues} />
       {optionElement}
-      <FilterStatuses filter={filter} />
+      <FilterStatuses filter={filter} filterValues={filterValues} />
       <ResetButton resetFilters={resetFilters} />
     </form>
   );

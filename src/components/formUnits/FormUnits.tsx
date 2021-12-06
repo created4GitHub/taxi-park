@@ -38,7 +38,7 @@ const FormUnits = ({ title }: Props) => {
   useEffect(() => {
     getRequests()
   }, [isDeleted, title]);
-  console.log(isFilteredData, filteredData)
+
   return (
     <>
       <UnitsTitles title={title} />

@@ -54,6 +54,7 @@ const FormSectionTab = ({ value, property, title, data }: Props) => {
     setSelectValue(event.target.value);
     PATCH(title, id, { [property]: status });
   };
+  
   return (
     <>
       <div className="table-section-tab">
