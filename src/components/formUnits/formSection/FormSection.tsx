@@ -8,7 +8,6 @@ import { GET, REMOVE, GET_CARS_BY_DRIVER } from "../../../requests/requests";
 
 import "./formSection.style.scss";
 
-
 type Props = {
   data: Data;
   title: string;
@@ -38,7 +37,7 @@ const FormSection = ({ data, title, setIsDeleted }: Props) => {
   };
 
   const handleClick = () => {
-    setIsopen((prevState) => !prevState);
+    setIsAdditionalData((prevState) => !prevState);
     search();
   }
 

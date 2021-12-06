@@ -21,7 +21,9 @@ const FormUnits = ({ title }: Props) => {
   const [isDeleted, setIsDeleted] = useState<boolean>(true);
   const receivedData = useSelector((state: RootState) => state.dataReducer);
   const filteredData = useSelector((state: RootState) => state.filteredDataReducer);
+  
   const data = (filteredData.length && filteredData) || receivedData;
+  
   const dispatch = useDispatch();
 
   const getRequests = async () => {
@@ -42,10 +44,10 @@ const FormUnits = ({ title }: Props) => {
     <>
       <UnitsTitles title={title} />
       {data.length ?
-        data.map((item: any, index: number) => {
+        data.map((item: any) => {
           return (
             <FormSection
-              key={index}
+              key={item.id}
               title={title}
               data={item}
               setIsDeleted={setIsDeleted}

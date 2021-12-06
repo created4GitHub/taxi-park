@@ -16,19 +16,19 @@ const AdditionalData = ({ additionalData, title }: { additionalData: Data[], tit
             <div className="block">
                 {title === 'car' ? renderTitles(carTitles) : renderTitles(driverTitles)}
             </div>
-            <div className="block">
-                {additionalData?.map((item: Data) => {
-                    <div className="block">
+            {additionalData?.map((item: Data) => {
+                return (
+                    <div className="block" key={item.id}>
                         {Object.values(item).map((item: Status | string | number) => {
                             if (item.hasOwnProperty("title")) {
                                 return <p key={(item as Status).title}>{(item as Status).title}</p>;
                             }
+
                             return <p key={(item as string | number)}>{item}</p>
-                        })
-                        })
+                        })}
                     </div>
-                })}
-            </div>
+                )
+            })}
         </div>
     )
 }
