@@ -68,18 +68,19 @@ export default function AddNewSection({ title }: Props) {
 
     return (
         <>
-            {info?.map((item: Info, index: number) =>
-                <div key={index} className="table_section-block-input">
-                    < Input
-                        className="table_section-input"
-                        placeholder={item.placeholder}
-                        name={item.name}
-                        maxLength={item.length}
-                        onFocus={isWarning}
-                    />
-                </div >
-            )
-            }
+            {info?.map((item: Info) => {
+                return (
+                    <div key={item.name} className="table_section-block-input">
+                        < Input
+                            className="table_section-input"
+                            placeholder={item.placeholder}
+                            name={item.name}
+                            maxLength={item.length}
+                            onFocus={isWarning}
+                        />
+                    </div >
+                )
+            })}
             {optionalInfo}
         </>
     )

@@ -9,7 +9,7 @@ type Props = {
 };
 
 const YearSelect: React.FC<Props> = ({ name, defaultValue, onChange }: Props) => {
-    let massYears: number[] = [];
+    const massYears: number[] = [];
 
     for (let index: number = 2021; index >= 1960; index--) {
         massYears.push(index);
@@ -21,9 +21,9 @@ const YearSelect: React.FC<Props> = ({ name, defaultValue, onChange }: Props) =>
             name={name}
             defaultValue={defaultValue}
         >
-            {massYears?.map((item: number, index: number) => {
+            {massYears?.map((item: number) => {
                 return (
-                    <option key={index} >
+                    <option key={item} >
                         {item}
                     </option>
                 )

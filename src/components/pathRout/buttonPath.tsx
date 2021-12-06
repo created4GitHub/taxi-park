@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 
-import { openAddNewUnit, closeAddNewUnit } from "../../../store/actions/actions";
-import { Button } from "../../regularComponents/button/Button";
+import { openAddNewUnit, closeAddNewUnit } from "../../store/actions/actions";
+import { Button } from "../regularComponents/button/Button";
 
-import drivers from "../../../img/drivers.svg";
-import cars from "../../../img/cars.svg";
+import drivers from "../../img/drivers.svg";
+import cars from "../../img/cars.svg";
 
 interface Props {
     title: string;
@@ -13,7 +13,7 @@ interface Props {
     state: { isActive: string, setIsActive: React.Dispatch<React.SetStateAction<string>> }
 }
 
-export default function Title({ title, link, state: { isActive, setIsActive } }: Props) {
+const ButtonPath = ({ title, link, state: { isActive, setIsActive } }: Props) => {
 
     const dispatch = useDispatch();
 
@@ -51,3 +51,5 @@ export default function Title({ title, link, state: { isActive, setIsActive } }:
         </div>
     )
 }
+
+export default ButtonPath;

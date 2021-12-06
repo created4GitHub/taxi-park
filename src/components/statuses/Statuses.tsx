@@ -21,11 +21,13 @@ export default function Statuses({ defaultValue, onChange, id }: Props) {
             onChange={onChange}
             id={id}
         >
-            {statuses?.map((item: Status, index: number) =>
-                    <option key={index} >
+            {statuses?.map((item: Status, index: number) => {
+                return (
+                    <option key={item.title} >
                         {item.title}
                     </option>
-                )}
+                )
+            })}
         </select>
     )
 }

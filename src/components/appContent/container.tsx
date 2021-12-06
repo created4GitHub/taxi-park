@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
-import Titles from "../titles/Titles";
+import PathRout from "../pathRout/pathRoute";
 import FormUnits from "../formUnits/FormUnits";
 import AddNewUnit from "../addNewUnit/AddNewUnit";
 import { RootState } from "../../store/rootReducer";
@@ -14,7 +14,7 @@ const Container = () => {
   return (
     <div className="container">
       <div className="content">
-        <Titles setIsFiltered={setIsFiltered} />
+        <PathRout setIsFiltered={setIsFiltered} />
         <div className="content__inform">
           <div className="table">
             <Routes>

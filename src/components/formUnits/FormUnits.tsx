@@ -37,7 +37,7 @@ const FormUnits: React.FC<{ title: string }> = ({ title }) => {
     <>
       <UnitsTitles title={title} />
       {data.length ?
-        data?.map((item: any, index: number) => {
+        data?.map((item: Data, index: number) => {
           return (
             <FormSection
               key={index}

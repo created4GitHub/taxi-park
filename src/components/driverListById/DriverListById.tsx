@@ -21,11 +21,13 @@ const DriverIDList: React.FC<Props> = ({ name, onChange }: Props) => {
 
   return (
     <select name={name} onChange={onChange}>
-      {drivers?.map((item: Data, index: number) =>
-        <option key={index} value={item.id}>
-          {item.first_name + " " + item.last_name}
-        </option>
-      )}
+      {drivers?.map((item: Data) => {
+        return (
+          <option key={item.id} value={item.id}>
+            {item.first_name + " " + item.last_name}
+          </option>
+        )
+      })}
     </select>
   );
 };

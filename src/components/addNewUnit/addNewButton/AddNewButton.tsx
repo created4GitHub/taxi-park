@@ -30,14 +30,16 @@ export default function AddNewButton({ checkForm, closeAddNewUnit }: Props) {
   ];
   return (
     <div className="table_section_buttons">
-      {buttons?.map((item: Button, index: number) => (
-        <Button
-          key={index}
-          onClick={item.onClick}
-          className="table_section-button"
-          btnText={<img src={item.src} alt="alt" />}
-        />
-      ))}
+      {buttons?.map((item: Button, index: number) => {
+        return (
+          <Button
+            key={item.src}
+            onClick={item.onClick}
+            className="table_section-button"
+            btnText={<img src={item.src} alt="alt" />}
+          />
+        )
+      })}
     </div>
   );
 }

@@ -11,17 +11,17 @@ export default function UnitsTitles({ title }: { title: string }) {
 
     return (
         <div className='title-section'>
-            {info?.map((item: string, index: number) => {
+            {info?.map((item: string) => {
                 if (["Drivers", "Cars"].includes(item)) {
                     return (
-                        <div key={index} className="title-section-button">
+                        <div key={item} className="title-section-button">
                             <div className='title-section-title'>{item}</div>
                             <div className='title-section-title'>Delete</div>
                         </div>
                     )
                 }
                 else {
-                    return <div key={index} className='title-section-title'>{item}</div>
+                    return <div key={item} className='title-section-title'>{item}</div>
                 }
             })}
         </div>
