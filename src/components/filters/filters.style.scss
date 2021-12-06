@@ -40,10 +40,10 @@
         @media (max-width: 1080px) {
             height: 125px;
             border: none;
-            .elem {
+            .paragraph_element-route {
                 border-bottom: solid #c0c0c04d 1px;
                 align-items: center;
-                .add {
+                .addNewUnit {
                     border-radius: 8px;
                 }
             }
@@ -58,7 +58,7 @@
             flex-direction: column;
             align-items: center;
         }
-        .elem {
+        .paragraph_element-route {
             display: flex;
 
             a {
@@ -67,7 +67,7 @@
             }
         }
 
-        .add {
+        .addNewUnit {
             width: 40px;
             height: 40px;
             border-color: #3498db;
@@ -80,11 +80,11 @@
             font-family: Gilroy;
         }
 
-        .add:hover {
+        .addNewUnit:hover {
             font-weight: 600;
         }
 
-        .but {
+        .route-button {
             border: none;
             background-color: white;
 
@@ -121,7 +121,7 @@
             border-radius: 0 8px 0 0;
         }
 
-        .up {
+        .path {
             border-radius: 10px 0 0 0;
         }
     }

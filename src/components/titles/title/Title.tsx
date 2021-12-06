@@ -17,11 +17,11 @@ export default function Title({ title, link, state: { isActive, setIsActive } }:
 
     const dispatch = useDispatch();
 
-    const className = isActive !== title ? "but up" : "but up active";
+    const className = isActive !== title ? "route-button path" : "route-button path active";
     const src = title === "Drivers" ? drivers : cars;
 
     return (
-        <div className="elem">
+        <div className="paragraph_element-route">
             <Link to={link}>
                 <Button
                     className={className}
@@ -45,7 +45,7 @@ export default function Title({ title, link, state: { isActive, setIsActive } }:
                         dispatch(openAddNewUnit());
                     }}
                     btnText="+"
-                    className="add"
+                    className="addNewUnit"
                 />
             </Link>
         </div>

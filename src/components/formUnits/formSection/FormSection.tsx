@@ -19,7 +19,7 @@ const FormSection = ({ data, title, setIsDeleted }: Props) => {
   const [isOpen, setIsopen] = useState<boolean>();
   const [additionalData, setadditionalData] = useState<Data[]>([]);
 
-  const deleteEl = () => {
+  const deleteElement = () => {
     REMOVE(title, data.id!).then(() => {
       setIsDeleted((isDeleted) => !isDeleted);
     });
@@ -58,7 +58,7 @@ const FormSection = ({ data, title, setIsDeleted }: Props) => {
           btnText={isOpen ? "Hide" : "Show"}
         />
         <Button
-          onClick={deleteEl}
+          onClick={deleteElement}
           className="table_section-deleteButton"
           btnText="delete"
         />
