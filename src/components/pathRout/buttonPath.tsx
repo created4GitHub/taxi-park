@@ -20,15 +20,17 @@ const ButtonPath = ({ title, link, state: { isActive, setIsActive } }: Props) =>
     const className = isActive !== title ? "but up" : "but up active";
     const src = title === "Drivers" ? drivers : cars;
 
+    const handleClick = (param: any) => {
+        setIsActive(title);
+        dispatch(param())
+    }
+
     return (
         <div className="elem">
             <Link to={link}>
                 <Button
                     className={className}
-                    onClick={() => {
-                        setIsActive(title);
-                        dispatch(closeAddNewUnit());
-                    }}
+                    onClick={() => {handleClick(closeAddNewUnit)}}
                     btnText={
                         <p className="options-paragraph">
                             <img
@@ -40,10 +42,7 @@ const ButtonPath = ({ title, link, state: { isActive, setIsActive } }: Props) =>
                     }
                 />
                 <Button
-                    onClick={() => {
-                        setIsActive(title);
-                        dispatch(openAddNewUnit());
-                    }}
+                    onClick={() => {handleClick(openAddNewUnit)}}
                     btnText="+"
                     className="add"
                 />

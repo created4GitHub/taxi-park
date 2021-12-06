@@ -18,13 +18,7 @@ type Props = {
 const FormSection = ({ data, title, setIsDeleted }: Props) => {
   const [isOpen, setIsopen] = useState<boolean>();
   const [additionalData, setadditionalData] = useState<Data[]>([]);
-
-  const deleteEl = () => {
-    REMOVE(title, data.id!).then(() => {
-      setIsDeleted((isDeleted) => !isDeleted);
-    });
-  };
-
+  
   const search = () => {
     if (title === "driver") {
       GET_CARS_BY_DRIVER(String(data.id)).then((data) => {
@@ -36,6 +30,17 @@ const FormSection = ({ data, title, setIsDeleted }: Props) => {
       });
     }
   };
+
+  const deleteEl = () => {
+    REMOVE(title, data.id!).then(() => {
+      setIsDeleted((isDeleted) => !isDeleted);
+    });
+  };
+
+  const handleClick = () => {
+    setIsopen((prevState) => !prevState);
+    search();
+  }
 
   return (
     <>
@@ -50,10 +55,7 @@ const FormSection = ({ data, title, setIsDeleted }: Props) => {
           />
         )}
         <Button
-          onClick={() => {
-            setIsopen((prevState) => !prevState);
-            search();
-          }}
+          onClick={handleClick}
           className="table_section-showButton"
           btnText={isOpen ? "Hide" : "Show"}
         />

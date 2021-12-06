@@ -6,7 +6,7 @@ export default function UnitsTitles({ title }: { title: string }) {
         info = ["ID", "Name", "Surname", "Born on", "Created on", "Status", "Cars"];
     }
     else {
-        info = ["ID", "Model", "Mark", "Number", "Year", "Driver's ID", "Drivers"];
+        info = ["ID", "Model", "Mark", "Number", "Year", "Driver's ID", "Status", "Drivers"];
     }
 
     return (
