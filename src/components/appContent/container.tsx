@@ -1,45 +1,47 @@
 import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
-import TitlesOptions from "../titles/Titles";
+import Titles from "../titles/Titles";
 import FormUnits from "../formUnits/FormUnits";
 import AddNewUnit from "../addNewUnit/AddNewUnit";
 import { RootState } from "../../store/rootReducer";
+import { useState } from "react";
 
 const Container = () => {
-    const isAddNew = useSelector((state: RootState) => state.addNewReducer);
+  const isAddNew = useSelector((state: RootState) => state.addNewReducer);
+  const [isFiltered, setIsFiltered] = useState<boolean>(false);
 
-    return (
-        <div className="container">
-        <div className="content">
-          <TitlesOptions />
-          <div className="content__inform">
-            <div className="table">
-              <Routes>
-                <Route
-                  path="/drivers"
-                  element={
-                    <>
-                      {isAddNew && <AddNewUnit title={"driver"} />}
-                      <FormUnits title={"driver"} />
-                    </>
-                  }
-                />
-                <Route
-                  path="/cars"
-                  element={
-                    <>
-                      {isAddNew && <AddNewUnit title={"car"} />}
-                      <FormUnits title={"car"} />
-                    </>
-                  }
-                />
-              </Routes>
-            </div>
+  return (
+    <div className="container">
+      <div className="content">
+        <Titles setIsFiltered={setIsFiltered} />
+        <div className="content__inform">
+          <div className="table">
+            <Routes>
+              <Route
+                path="/drivers"
+                element={
+                  <>
+                    {isAddNew && <AddNewUnit title={"driver"} />}
+                    <FormUnits title={"driver"} />
+                  </>
+                }
+              />
+              <Route
+                path="/cars"
+                element={
+                  <>
+                    {isAddNew && <AddNewUnit title={"car"} />}
+                    <FormUnits title={"car"} />
+                  </>
+                }
+              />
+            </Routes>
           </div>
         </div>
       </div>
-    )
+    </div>
+  )
 }
 
 export default Container
