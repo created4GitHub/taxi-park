@@ -18,6 +18,7 @@ interface Props {
 
 const FormSectionTab = ({ value, property, title, data }: Props) => {
   const statuses = useSelector((state: RootState) => state.statusReducer);
+  const [selectValue, setSelectValue] = useState<string>((value as Status).title);
   const [isDiv, setIsDiv] = useState<boolean>(true);
   const id = data.id!;
 
@@ -50,9 +51,9 @@ const FormSectionTab = ({ value, property, title, data }: Props) => {
     const status = statuses.find(
       (status: Status) => status.title === event.target.value
     )!;
+    setSelectValue(event.target.value);
     PATCH(title, id, { [property]: status });
   };
-
   return (
     <>
       <div className="table-section-tab">
@@ -74,7 +75,7 @@ const FormSectionTab = ({ value, property, title, data }: Props) => {
             />)
         ) : (
           <Statuses
-            defaultValue={(value as Status).title}
+            value={selectValue}
             onChange={saveStatus}
             id={property}
           />

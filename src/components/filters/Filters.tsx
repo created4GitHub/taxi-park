@@ -5,7 +5,7 @@ import FilterStatuses from "./filterStatuses/FilterStatuses";
 import FilterInputs from "./filterInputs/FilterInputs";
 import ResetButton from "./resetButton/ResetButton";
 import YearSelect from "../yearSelect/YearSelect";
-import { dispatchFilteredData } from "../../store/actions/actions";
+import { dispatchFilteredData, setIsFilteredData } from "../../store/actions/actions";
 import { RootState } from "../../store/rootReducer";
 import { Data } from "../../interfaces/interfaces";
 
@@ -23,6 +23,8 @@ const Filters = ({ title, setIsFiltered }: Props) => {
 
   const resetFilters = () => {
     filterValues.current = {};
+    dispatch(setIsFilteredData(false));
+    dispatch(dispatchFilteredData(data));
     setIsFiltered(isFiltered => !isFiltered);
   };
 
@@ -53,6 +55,7 @@ const Filters = ({ title, setIsFiltered }: Props) => {
         }
       });
     }
+    dispatch(setIsFilteredData(true));
     dispatch(dispatchFilteredData(result));
     setIsFiltered(isFiltered => !isFiltered);
   };

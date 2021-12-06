@@ -21,7 +21,8 @@ const FormUnits = ({ title }: Props) => {
   const [isDeleted, setIsDeleted] = useState<boolean>(true);
   const receivedData = useSelector((state: RootState) => state.dataReducer);
   const filteredData = useSelector((state: RootState) => state.filteredDataReducer);
-  const data = (filteredData.length && filteredData) || receivedData;
+  const isFilteredData = useSelector((state: RootState) => state.isFilteredReducer);
+  const data = (isFilteredData && filteredData) || receivedData;
   const dispatch = useDispatch();
 
   const getRequests = async () => {
@@ -37,7 +38,7 @@ const FormUnits = ({ title }: Props) => {
   useEffect(() => {
     getRequests()
   }, [isDeleted, title]);
-
+  console.log(isFilteredData, filteredData)
   return (
     <>
       <UnitsTitles title={title} />
@@ -51,7 +52,8 @@ const FormUnits = ({ title }: Props) => {
               setIsDeleted={setIsDeleted}
             />
           );
-        }) : <div><Loader /></div>
+        })
+        : <>{!isFilteredData && <div><Loader /></div>}</>
       }
     </>
   );

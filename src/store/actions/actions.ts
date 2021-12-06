@@ -33,3 +33,9 @@ export const dispatchFilteredData = (data: Data[]) => {
     };
 };
 
+export const setIsFilteredData = (isFiltered: boolean) => {
+    return {
+        type: "IS_DATA_FILTERED",
+        payload: isFiltered
+    };
+};

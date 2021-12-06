@@ -38,7 +38,7 @@ const FormSection = ({ data, title, setIsDeleted }: Props) => {
   };
 
   const handleClick = () => {
-    setIsopen((prevState) => !prevState);
+    // setIsopen((prevState) => !prevState);
     search();
   }
 
