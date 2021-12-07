@@ -6,7 +6,7 @@ import FormSection from "./formSection/FormSection";
 import UnitsTitles from "./unitsTitles/UnitsTitles";
 
 import { dispatchStatuses, dispatchData } from "../../store/actions/actions";
-import { GET, GETSTATUS } from "../../requests/requests";
+import { GET, GET_STATUS } from "../../requests/requests";
 import { RootState } from "../../store/rootReducer";
 
 import { Data } from "../../interfaces/interfaces";
@@ -28,7 +28,7 @@ const FormUnits = ({ title }: Props) => {
   useEffect(() => {
     (async function fetchData() {
       const response = await GET(title);
-      const statuses = await GETSTATUS(title);
+      const statuses = await GET_STATUS(title);
       dispatch(dispatchStatuses(statuses.data));
       dispatch(dispatchData(response as Data[]));
     })();

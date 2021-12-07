@@ -55,7 +55,7 @@ export const GET_CARS_BY_DRIVER = async (id: string): Promise<Response> => {
   return await response.json();
 };
 
-export const GETSTATUS = async (title: string): Promise<StatusResponse> => {
+export const GET_STATUS = async (title: string): Promise<StatusResponse> => {
   const response = await fetch(
     `https://edu.evgeniychvertkov.com/v1/${title}-status/`,
     {

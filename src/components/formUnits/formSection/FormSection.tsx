@@ -18,22 +18,19 @@ const FormSection = ({ data, title, setIsDeleted }: Props) => {
   const [isAdditionalData, setIsAdditionalData] = useState<boolean>(false);
   const [additionalData, setadditionalData] = useState<Data[]>([]);
 
-  const search = () => {
+  const search = async () => {
     if (title === "driver") {
-      GET_CARS_BY_DRIVER(String(data.id)).then((data) => {
-        setadditionalData(data.data);
-      });
+      const cars = await GET_CARS_BY_DRIVER(String(data.id));
+      setadditionalData(cars.data);
     } else {
-      GET("driver", data.driver_id).then((resp) => {
-        setadditionalData([resp] as Data[]);
-      });
+      const driver = await GET("driver", data.driver_id);
+      setadditionalData([driver] as Data[]);
     }
   };
 
-  const deleteEl = () => {
-    REMOVE(title, data.id!).then(() => {
-      setIsDeleted((isDeleted) => !isDeleted);
-    });
+  const deleteEl = async () => {
+    await REMOVE(title, data.id!);
+    setIsDeleted((isDeleted) => !isDeleted);
   };
 
   const showClick = () => {
