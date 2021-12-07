@@ -26,19 +26,19 @@ export const GET = async (title: string, id?: number): Promise<Data[] | Data> =>
       },
     }
   );
-  const info = await response.json();
+  const jsonData = await response.json();
   const convertDate = (item: Data): Data | Data[] => {
     item.date_birth = new Date(item.date_birth!).toLocaleDateString();
     item.date_created = new Date(item.date_created!).toLocaleDateString();
     return item;
   }
   if (id) {
-    return convertDate(info.data);
+    return convertDate(jsonData.data);
   }
   else if (title === "driver") {
-    return info.data.map((item: Data) => convertDate(item));
+    return jsonData.data.map((item: Data) => convertDate(item));
   }
-  return info.data;
+  return jsonData.data;
 };
 
 export const GET_CARS_BY_DRIVER = async (id: string): Promise<Response> => {
