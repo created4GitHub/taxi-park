@@ -20,12 +20,8 @@ const FormUnits = ({ title }: Props) => {
   const receivedData = useSelector((state: RootState) => state.dataReducer);
   const filteredData = useSelector((state: RootState) => state.filteredDataReducer);
   const isFilteredData = useSelector((state: RootState) => state.isFilteredReducer);
-<<<<<<< HEAD
   const isUpdated = useSelector((state: RootState) => state.IsUpdatedReducer);
-=======
-  const isData = useSelector((state: RootState) => state.IsUpdatedReducer);
-  const addUnits = useSelector((state: RootState) => state.addNewReducer);
->>>>>>> 01cdd06db26590de97494d3ff8d7e5ba3dfab21b
+  const isAdded = useSelector((state: RootState) => state.addNewReducer);
 
   const data = (isFilteredData && filteredData) || receivedData;
   const dispatch = useDispatch();
@@ -37,11 +33,7 @@ const FormUnits = ({ title }: Props) => {
       dispatch(dispatchStatuses(statuses.data));
       dispatch(dispatchData(data as Data[]));
     })();
-<<<<<<< HEAD
-  }, [isDeleted, title, isUpdated]);
-=======
-  }, [isDeleted, title, isData, addUnits]);
->>>>>>> 01cdd06db26590de97494d3ff8d7e5ba3dfab21b
+  }, [isDeleted, title, isUpdated, isAdded]);
 
   return (
     <>
