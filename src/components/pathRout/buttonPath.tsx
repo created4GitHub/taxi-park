@@ -20,9 +20,14 @@ const ButtonPath = ({ title, link, state: { isActive, setIsActive } }: Props) =>
     const className = isActive !== title ? "route-button path" : "route-button path active";
     const src = title === "Drivers" ? drivers : cars;
 
-    const handleClick = (param: any) => {
+    const closeUnit = () => {
         setIsActive(title);
-        dispatch(param())
+        dispatch(closeAddNewUnit());
+    }
+    
+    const openUnit = () => {
+        setIsActive(title);
+        dispatch(openAddNewUnit());
     }
 
     return (
@@ -30,7 +35,7 @@ const ButtonPath = ({ title, link, state: { isActive, setIsActive } }: Props) =>
             <Link to={link}>
                 <Button
                     className={className}
-                    onClick={() => {handleClick(closeAddNewUnit)}}
+                    onClick={closeUnit}
                     btnText={
                         <p className="options-paragraph">
                             <img
@@ -42,7 +47,7 @@ const ButtonPath = ({ title, link, state: { isActive, setIsActive } }: Props) =>
                     }
                 />
                 <Button
-                    onClick={() => {handleClick(openAddNewUnit)}}
+                    onClick={openUnit}
                     btnText="+"
                     className="addNewUnit"
                 />

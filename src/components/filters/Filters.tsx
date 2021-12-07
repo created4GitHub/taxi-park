@@ -7,7 +7,7 @@ import ResetButton from "./resetButton/ResetButton";
 import YearSelect from "../yearSelect/YearSelect";
 import { dispatchFilteredData, setIsFilteredData } from "../../store/actions/actions";
 import { RootState } from "../../store/rootReducer";
-import { Data } from "../../interfaces/interfaces";
+import { Data, Status } from "../../interfaces/interfaces";
 
 import "./filters.style.scss";
 
@@ -41,15 +41,15 @@ const Filters = ({ title, setIsFiltered }: Props) => {
       if (key === "title") {
         continue;
       }
-      result = result.filter((item: Data | any) => {
+      result = result.filter((item: Data) => {
         if (key === "status") {
           return (filterValues.current)[key] ===
-            item.status.title
+            (item.status as Status).title
             ? true
             : false;
         }
         else {
-          return String(item[key]).toLocaleLowerCase()
+          return String(item[key as keyof Data]).toLocaleLowerCase()
             .includes(filterValues.current[key].toLocaleLowerCase())
             ? true : false;
         }
