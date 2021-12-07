@@ -17,9 +17,9 @@ const AddNewUnit = ({ title }: { title: string }) => {
   const dispatch = useDispatch();
 
   const checkFormValues = () => {
-    type Unit = { [key: string]: string | number | Status };
     const formValues: HTMLFormControlsCollection = (formRef.current as HTMLFormElement).elements;
-    const unit: Unit = {};
+    const unit: Data = {};
+
     let isFilled: boolean = true;
 
     for (const item of Object.values(formValues)) {
@@ -37,7 +37,7 @@ const AddNewUnit = ({ title }: { title: string }) => {
         unit.status = statuses.find((status: Status) => status.title === value)!;
         continue;
       }
-      unit[name as keyof Data] = value;
+      (unit[name as keyof Data] as string) = value;
     }
     if (isFilled) {
       POST(title, (unit as Data));
