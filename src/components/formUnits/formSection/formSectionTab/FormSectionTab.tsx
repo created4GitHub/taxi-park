@@ -42,13 +42,13 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
   const pressedEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       const target = event.target as HTMLInputElement;
-      target.value && saveNewInformation(target.value);
+      target.value ? saveNewInformation(target.value) : setIsDiv(!isDiv);
     }
   };
 
   const onBlurEvent = (event: React.FocusEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
-    target.value && saveNewInformation(target.value);
+    target.value ? saveNewInformation(target.value) : setIsDiv(!isDiv);
   };
 
   const saveStatus = (event: React.ChangeEvent<HTMLSelectElement>) => {
