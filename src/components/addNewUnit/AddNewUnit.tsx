@@ -17,10 +17,10 @@ const AddNewUnit = ({ title }: { title: string }) => {
   const dispatch = useDispatch();
 
   const checkForm = () => {
-    type Unit = { [key: string]: string | number | Status };
     const formValues: HTMLFormControlsCollection = (formRef.current as HTMLFormElement).elements;
-    const unit: Unit = {};
-    let isFilled: boolean = true;
+    const unit: Data = {};
+
+    let isFilled: boolean = true;    
 
     for (const item of Object.values(formValues)) {
       const value = (item as HTMLInputElement).value;
@@ -36,11 +36,11 @@ const AddNewUnit = ({ title }: { title: string }) => {
         continue;
       }
 
-      unit[name as keyof Data] = value;
+      (unit[name as keyof Data] as string) = value;
     }
 
     if (isFilled) {
-      POST(title, (unit as unknown as Data));
+      POST(title, (unit as Data));
       dispatch(closeAddNewUnit());
     }
   };

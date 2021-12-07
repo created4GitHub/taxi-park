@@ -10,7 +10,8 @@ import IsUpdatedReduser from "./reducers/isUpdatedReducer";
 const rootReducer = combineReducers({
     addNewReducer, statusReducer,
     dataReducer, filteredDataReducer,
-    isFilteredReducer, IsUpdatedReducer: IsUpdatedReduser
+    isFilteredReducer, 
+    IsUpdatedReducer: IsUpdatedReduser
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
