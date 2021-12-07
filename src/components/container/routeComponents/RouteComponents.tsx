@@ -2,35 +2,19 @@ import { Routes, Route } from "react-router-dom";
 
 import AddNewUnit from "../../addNewUnit/AddNewUnit";
 import FormUnits from "../../formUnits/FormUnits";
+import { Info } from "../../../constants/RouteComponents"
 
 interface Props {
     isAddNew: boolean;
 }
 
-interface Info {
-    path: string;
-    title: string;
-}
-
 export default function RouteComponents({ isAddNew }: Props) {
-
-    const info: Info[] = [
-        {
-            path: "/drivers",
-            title: "driver"
-        },
-        {
-            path: "/cars",
-            title: "car"
-        },
-    ]
 
     return (
         <>
-            {info.map(({ path, title }: Info) =>
-                <Routes>
+            {Info.map(({ path, title }) =>
+                <Routes key={title}>
                     <Route
-                        key={title}
                         path={path}
                         element={
                             <>

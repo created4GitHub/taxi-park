@@ -1,6 +1,6 @@
 import { ActionType } from "../../interfaces/interfaces";
 
-export default function IsUpdatedReduser(state: boolean = false, action: ActionType<boolean>): boolean {
+export default function IsUpdatedReducer(state: boolean = false, action: ActionType<boolean>): boolean {
     switch (action.type) {
         case "IS_DATA_UPDATED":
             return action.payload!;

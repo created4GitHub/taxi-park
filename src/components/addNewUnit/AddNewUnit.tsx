@@ -16,7 +16,7 @@ const AddNewUnit = ({ title }: { title: string }) => {
   const statuses = useSelector((state: RootState) => state.statusReducer);
   const dispatch = useDispatch();
 
-  const checkForm = () => {
+  const checkFormValues = () => {
     type Unit = { [key: string]: string | number | Status };
     const formValues: HTMLFormControlsCollection = (formRef.current as HTMLFormElement).elements;
     const unit: Unit = {};
@@ -27,20 +27,20 @@ const AddNewUnit = ({ title }: { title: string }) => {
       const name = (item as HTMLInputElement).name;
       if (item.nodeName === "BUTTON") {
         break;
-      } else if (value === "") {
+      }
+      else if (value === "") {
         item.classList.add("warning");
         isFilled = false;
         continue;
-      } else if (name === "status") {
+      }
+      else if (name === "status") {
         unit.status = statuses.find((status: Status) => status.title === value)!;
         continue;
       }
-
       unit[name as keyof Data] = value;
     }
-
     if (isFilled) {
-      POST(title, (unit as unknown as Data));
+      POST(title, (unit as Data));
       dispatch(closeAddNewUnit());
     }
   };
@@ -50,7 +50,7 @@ const AddNewUnit = ({ title }: { title: string }) => {
       <form className="search-table_section_add" ref={formRef}>
         <AddNewSection title={title} />
         <Statuses />
-        <AddNewButton checkForm={checkForm} closeAddNewUnit={closeAddNewUnit} />
+        <AddNewButton checkFormValues={checkFormValues} closeAddNewUnit={closeAddNewUnit} />
       </form>
     </div>
 

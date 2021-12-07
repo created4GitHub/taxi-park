@@ -18,9 +18,8 @@ interface Props {
 
 const Filters = ({ title, setIsFiltered }: Props) => {
   const data = useSelector((state: RootState) => state.dataReducer);
-  
-  const dispatch = useDispatch();
   const filterValues: MutableRefObject<{ [key: string]: string }> = useRef({});
+  const dispatch = useDispatch();
 
   const resetFilters = () => {
     filterValues.current = {};
