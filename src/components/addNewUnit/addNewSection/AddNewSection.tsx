@@ -1,9 +1,5 @@
-import { FocusEventHandler } from "react";
-
-import DriverIDList from "../../driverListById/DriverListById";
-import YearSelect from "../../yearSelect/YearSelect";
 import Input from "../../regularComponents/input/Input";
-import { CarInfo, DriverInfo } from "../../../constants/AddNewSection"
+import { CarInfo, DriverInfo, CarOptionalInfo, DriverOptionalInfo } from "../../../constants/AddNewSection"
 
 interface Props {
     title: string;
@@ -12,9 +8,7 @@ interface Props {
 export default function AddNewSection({ title }: Props) {
     const isCar = title === "car";
     const info = (isCar && CarInfo) || DriverInfo;
-    const optionalInfo: JSX.Element =
-        (isCar && <> <YearSelect name="year" /> <DriverIDList name="driver_id" /></>)
-        || <Input type="date" onFocus={isWarning} className='table_section-input-date' name="date_birth" />;
+    const optionalInfo: JSX.Element = (isCar && CarOptionalInfo) || DriverOptionalInfo(isWarning);
 
     function isWarning(event: React.FocusEvent<HTMLInputElement>) {
         event.target.classList.forEach((item: string) => {

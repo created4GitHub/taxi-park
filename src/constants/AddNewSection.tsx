@@ -1,3 +1,7 @@
+import DriverIDList from "../components/driverListById/DriverListById";
+import Input from "../components/regularComponents/input/Input";
+import YearSelect from "../components/yearSelect/YearSelect";
+
 interface Info {
     name: string;
     placeholder: string;
@@ -34,3 +38,18 @@ export const DriverInfo: Info[] = [
         length: 15
     },
 ];
+
+export const CarOptionalInfo: JSX.Element =
+    <>
+        <YearSelect name="year" />
+        <DriverIDList name="driver_id" />
+    </>;
+
+export const DriverOptionalInfo = (onFocus: (event: React.FocusEvent<HTMLInputElement>) => void) => {
+    return <Input
+        type="date"
+        onFocus={onFocus}
+        className='table_section-input-date'
+        name="date_birth"
+    />
+}
