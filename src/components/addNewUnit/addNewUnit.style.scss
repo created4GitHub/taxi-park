@@ -1,4 +1,5 @@
-.table_section_add, .search-table_section_add {
+.table_section_add,
+.search-table_section_add {
     width: 100%;
     border-bottom: 1px solid #eeeeee;
     display: flex;
@@ -81,8 +82,5 @@
         height: 25px;
         border-radius: 8px;
         border: solid silver 1px;
-    }
-    .warning {
-        color: red;
     }
 }

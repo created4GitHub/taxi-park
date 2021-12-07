@@ -89,7 +89,7 @@ export const POST = async (title: string, info: Data): Promise<Response> => {
 
 export const PATCH = async (
   title: string,
-  id: number,
+  id: string,
   info: { [key: string]: string | number | Status }
 ): Promise<Response> => {
   const response = await fetch(

@@ -13,48 +13,46 @@ interface Props {
   value: string | number | Status;
   property: string;
   title: string;
+  id: string;
   data: Data;
 }
 
-const FormSectionTab = ({ value, property, title, data }: Props) => {
+const FormSectionTab = ({ value, property, title, data, id }: Props) => {
   const statuses = useSelector((state: RootState) => state.statusReducer);
   const [selectValue, setSelectValue] = useState<string>((value as Status).title);
   const [isDiv, setIsDiv] = useState<boolean>(true);
-  const id = data.id!;
 
   function updateElement(event: MouseEvent<HTMLElement>) {
-    const element: string = (event.target as HTMLElement).id;
-    if (!["id", "date_birth", "date_created", "driver_id"].includes(element)) {
+    if (!["id", "date_birth", "date_created", "driver_id"].includes(property)) {
       setIsDiv(!isDiv);
     }
   }
 
-  const saveNewInformation = (property: string, newValue: string) => {
-    (data[property as keyof Data] as string) = newValue;
-    setIsDiv(!isDiv);
+  const saveNewInformation = (newValue: string | Status) => {
+    (data[property as keyof Data] as string | Status) = newValue;
     PATCH(title, id, { [property]: newValue });
+    setIsDiv(!isDiv);
   };
 
   const pressedEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       const target = event.target as HTMLInputElement;
-      saveNewInformation(target.name, target.value || target.placeholder);
+      target.value && saveNewInformation(target.value);
     }
   };
 
   const onBlurEvent = (event: React.FocusEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
-    saveNewInformation(target.name, target.value || target.placeholder);
+    target.value && saveNewInformation(target.value);
   };
 
   const saveStatus = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const status = statuses.find(
-      (status: Status) => status.title === event.target.value
-    )!;
-    setSelectValue(event.target.value);
-    PATCH(title, id, { [property]: status });
+    const newTitle = event.target.value;
+    const status = statuses.find((status: Status) => status.title === newTitle)!;
+    saveNewInformation(status);
+    setSelectValue(newTitle);
   };
-  
+
   return (
     <>
       <div className="table-section-tab">
@@ -66,7 +64,6 @@ const FormSectionTab = ({ value, property, title, data }: Props) => {
           ) : (
             <input
               type="text"
-              name={property}
               placeholder={String(data[property as keyof Data])}
               className="table_input"
               autoFocus={true}

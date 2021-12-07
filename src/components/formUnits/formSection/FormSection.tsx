@@ -46,6 +46,7 @@ const FormSection = ({ data, title, setIsDeleted }: Props) => {
             key={property}
             property={property}
             value={data[property as keyof Data]!}
+            id={String(data.id)}
             title={title}
             data={data}
           />

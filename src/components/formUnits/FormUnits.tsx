@@ -11,7 +11,7 @@ import { RootState } from "../../store/rootReducer";
 
 import { Data } from "../../interfaces/interfaces";
 
-import "./form.style.scss";
+import "./formUnits.style.scss";
 
 interface Props {
   title: string;
