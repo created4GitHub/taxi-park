@@ -1,7 +1,7 @@
 import React from "react";
 
 import Header from "./components/header/Header";
-import Container from "./components/appContent/container";
+import Container from "./components/container/container";
 
 import "./app.scss";
 
