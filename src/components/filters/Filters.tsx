@@ -5,7 +5,7 @@ import FilterStatuses from "./filterStatuses/FilterStatuses";
 import FilterInputs from "./filterInputs/FilterInputs";
 import ResetButton from "./resetButton/ResetButton";
 import YearSelect from "../yearSelect/YearSelect";
-import { dispatchFilteredData, setIsFilteredData } from "../../store/actions/actions";
+import { dispatchFilteredData, dispatchIsDataFiltered, dispatchRerender } from "../../store/actions/actions";
 import { RootState } from "../../store/rootReducer";
 import { Data, Status } from "../../interfaces/interfaces";
 
@@ -13,19 +13,19 @@ import "./filters.style.scss";
 
 interface Props {
   title: string;
-  setIsFiltered: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Filters = ({ title, setIsFiltered }: Props) => {
+const Filters = ({ title }: Props) => {
   const data = useSelector((state: RootState) => state.dataReducer);
   const filterValues: MutableRefObject<{ [key: string]: string }> = useRef({});
+  const isRerender = useSelector((state: RootState) => state.rerenderReducer);
   const dispatch = useDispatch();
 
   const resetFilters = () => {
     filterValues.current = {};
-    dispatch(setIsFilteredData(false));
+    dispatch(dispatchIsDataFiltered(false));
     dispatch(dispatchFilteredData(data));
-    setIsFiltered(isFiltered => !isFiltered);
+    dispatch(dispatchRerender(!isRerender));
   };
 
   if (filterValues.current.title && filterValues.current.title !== title) {
@@ -55,9 +55,9 @@ const Filters = ({ title, setIsFiltered }: Props) => {
         }
       });
     }
-    dispatch(setIsFilteredData(true));
+    dispatch(dispatchIsDataFiltered(true));
     dispatch(dispatchFilteredData(result));
-    setIsFiltered(isFiltered => !isFiltered);
+    dispatch(dispatchRerender(!isRerender));
   };
 
   const optionElement = title === "car" && (

@@ -2,18 +2,18 @@ import { Routes, Route } from "react-router-dom";
 
 import AddNewUnit from "../../addNewUnit/AddNewUnit";
 import FormUnits from "../../formUnits/FormUnits";
-import { Info } from "../../../constants/FormRoute"
+import { RoutesInfo } from "../../../constants/RoutesInfo"
 
 interface Props {
     isAddNew: boolean;
 }
 
-export default function FormRoute({ isAddNew }: Props) {
+export default function UnitsRoute({ isAddNew }: Props) {
 
     return (
         <div className="content__inform">
             <div className="table">
-                {Info.map(({ path, title }) =>
+                {RoutesInfo.map(({ path, title }) =>
                     <Routes key={title}>
                         <Route
                             path={path}

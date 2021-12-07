@@ -3,7 +3,7 @@ interface Route {
     title: string;
 }
 
-export const Info: Route[] = [
+export const RoutesInfo: Route[] = [
     {
         path: "/drivers",
         title: "driver"

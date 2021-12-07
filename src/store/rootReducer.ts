@@ -6,11 +6,13 @@ import dataReducer from "./reducers/dataReducer"
 import filteredDataReducer from "./reducers/filteredDataReducer";
 import isFilteredReducer from "./reducers/isFilteredReducer";
 import IsUpdatedReducer from "./reducers/isUpdatedReducer";
+import rerenderReducer from "./reducers/rerenderReducer";
 
 const rootReducer = combineReducers({
     isAddNewReducer, statusReducer,
     dataReducer, filteredDataReducer,
-    isFilteredReducer, IsUpdatedReducer
+    isFilteredReducer, IsUpdatedReducer,
+    rerenderReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

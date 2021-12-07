@@ -1,19 +1,21 @@
 import { useSelector } from "react-redux";
-import { useState } from "react";
 
 import SideBar from "../sideBar/SideBar";
-import FormRoute from "./formRoute/FormRoute";
+import UnitsRoute from "./unitsRoute/FormRoute";
 import { RootState } from "../../store/rootReducer";
 
-const Container = () => {
+interface Props {
+  isRerender: boolean;
+}
+
+const Container = ({ isRerender }: Props) => {
   const isAddNew = useSelector((state: RootState) => state.isAddNewReducer);
-  const [isFiltered, setIsFiltered] = useState<boolean>(false);
 
   return (
     <div className="container">
       <div className="content">
-        <SideBar setIsFiltered={setIsFiltered} />
-        <FormRoute isAddNew={isAddNew} />
+        <SideBar />
+        <UnitsRoute isAddNew={isAddNew} />
       </div>
     </div>
   )

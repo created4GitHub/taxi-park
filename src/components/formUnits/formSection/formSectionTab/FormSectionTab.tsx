@@ -5,7 +5,7 @@ import Statuses from "../../../statuses/Statuses";
 import { PATCH } from "../../../../requests/requests";
 import { RootState } from "../../../../store/rootReducer";
 import { Data, Status } from "../../../../interfaces/interfaces";
-import { setIsUpdatedData } from "../../../../store/actions/actions";
+import { dispatchIsDataUpdated } from "../../../../store/actions/actions";
 
 import "./formSectionTab.style.scss";
 
@@ -36,7 +36,7 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
     (data[property as keyof Data] as string | Status) = newValue;
     setIsDiv(!isDiv);
     PATCH(title, id, { [property]: newValue });
-    dispatch(setIsUpdatedData(!isData));
+    dispatch(dispatchIsDataUpdated(!isData));
   };
 
   const pressedEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -54,8 +54,8 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
   const saveStatus = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const newTitle = event.target.value;
     const status = statuses.find((status: Status) => status.title === newTitle)!;
-    saveNewInformation(status);
     setSelectValue(newTitle);
+    saveNewInformation(status);
   };
 
   return (
