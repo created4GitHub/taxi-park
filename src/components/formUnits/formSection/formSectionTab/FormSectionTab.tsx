@@ -2,13 +2,12 @@ import { useState, MouseEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Statuses from "../../../statuses/Statuses";
-
 import { PATCH } from "../../../../requests/requests";
 import { RootState } from "../../../../store/rootReducer";
 import { Data, Status } from "../../../../interfaces/interfaces";
+import { setIsUpdatedData } from "../../../../store/actions/actions";
 
 import "./formSectionTab.style.scss";
-import { setIsUpdatedData } from "../../../../store/actions/actions";
 
 interface Props {
   value: string | number | Status;
@@ -38,7 +37,6 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
     setIsDiv(!isDiv);
     PATCH(title, id, { [property]: newValue });
     dispatch(setIsUpdatedData(!isData));
-    setIsDiv(!isDiv);
   };
 
   const pressedEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {

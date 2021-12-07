@@ -1,5 +1,6 @@
-import icons from "../../../../img/IconsDirection.svg";
 import { Data, Status } from "../../../../interfaces/interfaces";
+
+import icons from "../../../../img/IconsDirection.svg";
 
 const AdditionalData = ({ additionalData, title }: { additionalData: Data[], title: string }) => {
     const carTitles = ['ID', 'Name', 'Surname', 'Birthday', 'Registration', 'Status'];
