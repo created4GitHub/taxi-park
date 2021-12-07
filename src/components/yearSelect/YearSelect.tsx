@@ -10,7 +10,6 @@ type Props = {
 
 const YearSelect: React.FC<Props> = ({ name, defaultValue, onChange }: Props) => {
     const massYears: number[] = [];
-
     for (let index: number = 2021; index >= 1960; index--) {
         massYears.push(index);
     }

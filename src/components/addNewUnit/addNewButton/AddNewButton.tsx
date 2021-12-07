@@ -10,17 +10,17 @@ interface Button {
 }
 
 interface Props {
-  checkForm: () => void;
+  checkFormValues: () => void;
   closeAddNewUnit: () => {
     type: string;
   };
 }
 
-export default function AddNewButton({ checkForm, closeAddNewUnit }: Props) {
+export default function AddNewButton({ checkFormValues, closeAddNewUnit }: Props) {
   const dispatch = useDispatch();
   const buttons: Button[] = [
     {
-      onClick: () => checkForm(),
+      onClick: () => checkFormValues(),
       src: addObj,
     },
     {
@@ -30,7 +30,7 @@ export default function AddNewButton({ checkForm, closeAddNewUnit }: Props) {
   ];
   return (
     <div className="table_section_buttons">
-      {buttons?.map(({src, onClick}: Button) => {
+      {buttons?.map(({ src, onClick }: Button) => {
         return (
           <Button
             key={src}

@@ -4,14 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../loader/loader";
 import FormSection from "./formSection/FormSection";
 import UnitsTitles from "./unitsTitles/UnitsTitles";
-
 import { dispatchStatuses, dispatchData } from "../../store/actions/actions";
-import { GET, GETSTATUS } from "../../requests/requests";
+import { GET, GET_STATUS } from "../../requests/requests";
 import { RootState } from "../../store/rootReducer";
-
 import { Data } from "../../interfaces/interfaces";
 
-import "./form.style.scss";
+import "./formUnits.style.scss";
 
 interface Props {
   title: string;
@@ -22,23 +20,25 @@ const FormUnits = ({ title }: Props) => {
   const receivedData = useSelector((state: RootState) => state.dataReducer);
   const filteredData = useSelector((state: RootState) => state.filteredDataReducer);
   const isFilteredData = useSelector((state: RootState) => state.isFilteredReducer);
+  const isUpdated = useSelector((state: RootState) => state.IsUpdatedReducer);
+  const isAdded = useSelector((state: RootState) => state.isAddNewReducer);
   const data = (isFilteredData && filteredData) || receivedData;
   const dispatch = useDispatch();
 
   useEffect(() => {
     (async function fetchData() {
-      const response = await GET(title);
-      const statuses = await GETSTATUS(title);
+      const data = await GET(title);
+      const statuses = await GET_STATUS(title);
       dispatch(dispatchStatuses(statuses.data));
-      dispatch(dispatchData(response as Data[]));
+      dispatch(dispatchData(data as Data[]));
     })();
-  }, [isDeleted, title]);
+  }, [isDeleted, title, isUpdated, isAdded]);
 
   return (
     <>
       <UnitsTitles title={title} />
       {data.length ?
-        data.map((item: any) => {
+        data.map(item => {
           return (
             <FormSection
               key={item.id}

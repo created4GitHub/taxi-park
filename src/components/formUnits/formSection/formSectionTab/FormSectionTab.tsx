@@ -1,11 +1,11 @@
 import { useState, MouseEvent } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Statuses from "../../../statuses/Statuses";
-import Input from "../../../regularComponents/input/Input";
 import { PATCH } from "../../../../requests/requests";
 import { RootState } from "../../../../store/rootReducer";
 import { Data, Status } from "../../../../interfaces/interfaces";
+import { dispatchIsDataUpdated } from "../../../../store/actions/actions";
 
 import "./formSectionTab.style.scss";
 
@@ -13,46 +13,49 @@ interface Props {
   value: string | number | Status;
   property: string;
   title: string;
+  id: string;
   data: Data;
 }
 
-const FormSectionTab = ({ value, property, title, data }: Props) => {
+const FormSectionTab = ({ value, property, title, data, id }: Props) => {
   const statuses = useSelector((state: RootState) => state.statusReducer);
+  const isData = useSelector((state: RootState) => state.IsUpdatedReducer);
   const [selectValue, setSelectValue] = useState<string>((value as Status).title);
   const [isDiv, setIsDiv] = useState<boolean>(true);
-  const id = data.id!;
+  const dispatch = useDispatch();
 
   function updateElementType(event: MouseEvent<HTMLElement>) {
-    const element: string = (event.target as HTMLElement).id;
-    if (!["id", "date_birth", "date_created", "driver_id"].includes(element)) {
-      setIsDiv(!isDiv);
+    if (!["id", "date_birth", "date_created", "driver_id"].includes(property)) {
+      if (!((event.target as HTMLElement).className === "table_input")) {
+        setIsDiv(!isDiv);
+      }
     }
   }
 
-  const saveNewInformation = (property: string, newValue: string) => {
-    (data[property as keyof Data] as string) = newValue;
+  const saveNewInformation = (newValue: string | Status) => {
+    (data[property as keyof Data] as string | Status) = newValue;
     setIsDiv(!isDiv);
     PATCH(title, id, { [property]: newValue });
+    dispatch(dispatchIsDataUpdated(!isData));
   };
 
   const pressedEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       const target = event.target as HTMLInputElement;
-      saveNewInformation(target.name, target.value || target.placeholder);
+      target.value ? saveNewInformation(target.value) : setIsDiv(!isDiv);
     }
   };
 
   const onBlurEvent = (event: React.FocusEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
-    saveNewInformation(target.name, target.value || target.placeholder);
+    target.value ? saveNewInformation(target.value) : setIsDiv(!isDiv);
   };
 
   const saveStatus = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const status = statuses.find(
-      (status: Status) => status.title === event.target.value
-    )!;
-    setSelectValue(event.target.value);
-    PATCH(title, id, { [property]: status });
+    const newTitle = event.target.value;
+    const status = statuses.find((status: Status) => status.title === newTitle)!;
+    setSelectValue(newTitle);
+    saveNewInformation(status);
   };
 
   return (
@@ -64,8 +67,8 @@ const FormSectionTab = ({ value, property, title, data }: Props) => {
               {data[property as keyof Data]}
             </p>
           ) : (
-            <Input
-              name={property}
+            <input
+              type="text"
               placeholder={String(data[property as keyof Data])}
               className="table_input"
               autoFocus={true}

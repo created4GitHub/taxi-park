@@ -24,3 +24,8 @@ export interface ActionType<T> {
   type: string;
   payload?: T;
 }
+
+export interface Route {
+  path: string;
+  title: string;
+}

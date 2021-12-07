@@ -1,13 +1,9 @@
+import { CarInfo, DriverInfo } from "../../../constants/UnitsTitles"
+
 import './unitsTitles.style.scss'
 
 export default function UnitsTitles({ title }: { title: string }) {
-    let info: string[];
-    if (title === "driver") {
-        info = ["ID", "Name", "Surname", "Born on", "Created on", "Status", "Cars"];
-    }
-    else {
-        info = ["ID", "Model", "Mark", "Number", "Year", "Driver's ID", "Status", "Drivers"];
-    }
+    const info = (title === "car" && CarInfo) || DriverInfo;
 
     return (
         <div className='title-section'>

@@ -5,27 +5,27 @@ import FilterStatuses from "./filterStatuses/FilterStatuses";
 import FilterInputs from "./filterInputs/FilterInputs";
 import ResetButton from "./resetButton/ResetButton";
 import YearSelect from "../yearSelect/YearSelect";
-import { dispatchFilteredData, setIsFilteredData } from "../../store/actions/actions";
+import { dispatchFilteredData, dispatchIsDataFiltered, dispatchRerender } from "../../store/actions/actions";
 import { RootState } from "../../store/rootReducer";
-import { Data } from "../../interfaces/interfaces";
+import { Data, Status } from "../../interfaces/interfaces";
 
 import "./filters.style.scss";
 
 interface Props {
   title: string;
-  setIsFiltered: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Filters = ({ title, setIsFiltered }: Props) => {
+const Filters = ({ title }: Props) => {
   const data = useSelector((state: RootState) => state.dataReducer);
-  const dispatch = useDispatch();
   const filterValues: MutableRefObject<{ [key: string]: string }> = useRef({});
+  const isRerender = useSelector((state: RootState) => state.rerenderReducer);
+  const dispatch = useDispatch();
 
   const resetFilters = () => {
     filterValues.current = {};
-    dispatch(setIsFilteredData(false));
+    dispatch(dispatchIsDataFiltered(false));
     dispatch(dispatchFilteredData(data));
-    setIsFiltered(isFiltered => !isFiltered);
+    dispatch(dispatchRerender(!isRerender));
   };
 
   if (filterValues.current.title && filterValues.current.title !== title) {
@@ -41,23 +41,23 @@ const Filters = ({ title, setIsFiltered }: Props) => {
       if (key === "title") {
         continue;
       }
-      result = result.filter((item: Data | any) => {
+      result = result.filter((item: Data) => {
         if (key === "status") {
           return (filterValues.current)[key] ===
-            item.status.title
+            (item.status as Status).title
             ? true
             : false;
         }
         else {
-          return String(item[key]).toLocaleLowerCase()
+          return String(item[key as keyof Data]).toLocaleLowerCase()
             .includes(filterValues.current[key].toLocaleLowerCase())
             ? true : false;
         }
       });
     }
-    dispatch(setIsFilteredData(true));
+    dispatch(dispatchIsDataFiltered(true));
     dispatch(dispatchFilteredData(result));
-    setIsFiltered(isFiltered => !isFiltered);
+    dispatch(dispatchRerender(!isRerender));
   };
 
   const optionElement = title === "car" && (

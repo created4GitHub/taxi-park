@@ -33,9 +33,23 @@ export const dispatchFilteredData = (data: Data[]) => {
     };
 };
 
-export const setIsFilteredData = (isFiltered: boolean) => {
+export const dispatchIsDataFiltered = (isFiltered: boolean) => {
     return {
         type: "IS_DATA_FILTERED",
         payload: isFiltered
+    };
+};
+
+export const dispatchIsDataUpdated = (isUpdated: boolean) => {
+    return {
+        type: "IS_DATA_UPDATED",
+        payload: isUpdated
+    };
+};
+
+export const dispatchRerender = (isRerender: boolean) => {
+    return {
+        type: "RERENDER",
+        payload: isRerender
     };
 };

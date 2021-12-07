@@ -1,16 +1,17 @@
-import React, { MouseEventHandler, FocusEventHandler } from "react";
+import React, { MouseEventHandler, FocusEventHandler, ReactElement, JSXElementConstructor } from "react";
 
 type Props = {
-  className: string;
-  disabled: boolean | undefined;
-  btnText: string;
-  onBlur: FocusEventHandler<HTMLButtonElement>;
-  name: string;
-  id: string;
-  onClick: MouseEventHandler<HTMLButtonElement> | undefined;
+  id?: string;
+  name?: string;
+  type?: "button" | "reset" | "submit";
+  className?: string;
+  btnText?: string | ReactElement<HTMLElement, string | JSXElementConstructor<string>>;
+  disabled?: boolean;
+  onBlur?: FocusEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
-export const Button: React.FC<Props> | any = (props: any) => {
+export const Button: React.FC<Props> = (props) => {
   return (
     <button
       id={props.id}
@@ -19,7 +20,7 @@ export const Button: React.FC<Props> | any = (props: any) => {
       onClick={props.onClick}
       className={props.className}
       disabled={props.disabled}
-      type="button"
+      type={props.type || "button"}
     >
       {props.btnText}
     </button>

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import FormSectionTab from "./formSectionTab/FormSectionTab";
 import { Button } from "../../regularComponents/button/Button";
-import AdditionalData from "./additionalInfo/additionalInfo";
+import AdditionalData from "./additionalInfo/AdditionalInfo";
 import { Data } from "../../../interfaces/interfaces";
 import { GET, REMOVE, GET_CARS_BY_DRIVER } from "../../../requests/requests";
 
@@ -18,22 +18,19 @@ const FormSection = ({ data, title, setIsDeleted }: Props) => {
   const [isAdditionalData, setIsAdditionalData] = useState<boolean>(false);
   const [additionalData, setadditionalData] = useState<Data[]>([]);
 
-  const search = () => {
+  const search = async () => {
     if (title === "driver") {
-      GET_CARS_BY_DRIVER(String(data.id)).then((data) => {
-        setadditionalData(data.data);
-      });
+      const cars = await GET_CARS_BY_DRIVER(String(data.id));
+      setadditionalData(cars.data);
     } else {
-      GET("driver", data.driver_id).then((resp) => {
-        setadditionalData([resp] as Data[]);
-      });
+      const driver = await GET("driver", data.driver_id);
+      setadditionalData([driver] as Data[]);
     }
   };
 
-  const deleteEl = () => {
-    REMOVE(title, data.id!).then(() => {
-      setIsDeleted((isDeleted) => !isDeleted);
-    });
+  const deleteEl = async () => {
+    await REMOVE(title, data.id!);
+    setIsDeleted((isDeleted) => !isDeleted);
   };
 
   const showClick = () => {
@@ -49,6 +46,7 @@ const FormSection = ({ data, title, setIsDeleted }: Props) => {
             key={property}
             property={property}
             value={data[property as keyof Data]!}
+            id={String(data.id)}
             title={title}
             data={data}
           />
