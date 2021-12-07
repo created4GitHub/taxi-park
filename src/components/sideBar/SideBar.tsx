@@ -8,7 +8,7 @@ interface Props {
   setIsFiltered: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const PathRout = ({ setIsFiltered }: Props) => {
+const SideBar = ({ setIsFiltered }: Props) => {
   const [isActive, setIsActive] = useState<string>("");
 
   return (
@@ -33,4 +33,4 @@ const PathRout = ({ setIsFiltered }: Props) => {
   );
 };
 
-export default PathRout;
+export default SideBar;

@@ -1,23 +1,19 @@
 import { useSelector } from "react-redux";
 import { useState } from "react";
 
-import PathRout from "../pathRout/pathRoute";
-import RouteComponents from "./routeComponents/RouteComponents";
+import SideBar from "../sideBar/SideBar";
+import FormRoute from "./formRoute/FormRoute";
 import { RootState } from "../../store/rootReducer";
 
 const Container = () => {
-  const isAddNew = useSelector((state: RootState) => state.addNewReducer);
+  const isAddNew = useSelector((state: RootState) => state.isAddNewReducer);
   const [isFiltered, setIsFiltered] = useState<boolean>(false);
 
   return (
     <div className="container">
       <div className="content">
-        <PathRout setIsFiltered={setIsFiltered} />
-        <div className="content__inform">
-          <div className="table">
-            <RouteComponents isAddNew={isAddNew} />
-          </div>
-        </div>
+        <SideBar setIsFiltered={setIsFiltered} />
+        <FormRoute isAddNew={isAddNew} />
       </div>
     </div>
   )

@@ -21,7 +21,7 @@ const FormUnits = ({ title }: Props) => {
   const filteredData = useSelector((state: RootState) => state.filteredDataReducer);
   const isFilteredData = useSelector((state: RootState) => state.isFilteredReducer);
   const isUpdated = useSelector((state: RootState) => state.IsUpdatedReducer);
-  const isAdded = useSelector((state: RootState) => state.addNewReducer);
+  const isAdded = useSelector((state: RootState) => state.isAddNewReducer);
 
   const data = (isFilteredData && filteredData) || receivedData;
   const dispatch = useDispatch();
