@@ -1,5 +1,5 @@
 import { useState, MouseEvent } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Statuses from "../../../statuses/Statuses";
 
@@ -8,6 +8,7 @@ import { RootState } from "../../../../store/rootReducer";
 import { Data, Status } from "../../../../interfaces/interfaces";
 
 import "./formSectionTab.style.scss";
+import { setIsUpdatedData } from "../../../../store/actions/actions";
 
 interface Props {
   value: string | number | Status;
@@ -19,18 +20,24 @@ interface Props {
 
 const FormSectionTab = ({ value, property, title, data, id }: Props) => {
   const statuses = useSelector((state: RootState) => state.statusReducer);
+  const isData = useSelector((state: RootState) => state.IsUpdatedReducer);
   const [selectValue, setSelectValue] = useState<string>((value as Status).title);
   const [isDiv, setIsDiv] = useState<boolean>(true);
+  const dispatch = useDispatch();
 
   function updateElement(event: MouseEvent<HTMLElement>) {
     if (!["id", "date_birth", "date_created", "driver_id"].includes(property)) {
-      setIsDiv(!isDiv);
+      if (!((event.target as HTMLElement).className === "table_input")) {
+        setIsDiv(!isDiv);
+      }
     }
   }
 
   const saveNewInformation = (newValue: string | Status) => {
     (data[property as keyof Data] as string | Status) = newValue;
+    setIsDiv(!isDiv);
     PATCH(title, id, { [property]: newValue });
+    dispatch(setIsUpdatedData(!isData));
     setIsDiv(!isDiv);
   };
 

@@ -18,6 +18,14 @@ export default function AddNewSection({ title }: Props) {
     let info: Info[];
     let optionalInfo: JSX.Element;
 
+    const isWarning: FocusEventHandler<HTMLInputElement> = (event) => {
+        event.target.classList.forEach((item: string) => {
+            if (item === "warning") {
+                event.target.classList.remove("warning");
+            }
+        });
+    };
+
     if (title === "car") {
         info = [
             {
@@ -55,15 +63,7 @@ export default function AddNewSection({ title }: Props) {
                 length: 15
             },
         ]
-        optionalInfo = <Input type="date" name="date_birth" />
-    };
-
-    const isWarning: FocusEventHandler<HTMLInputElement> = (event) => {
-        event.target.classList.forEach((item: string) => {
-            if (item === "warning") {
-                event.target.classList.remove("warning");
-            }
-        });
+        optionalInfo = <Input type="date" onFocus={isWarning} className='table_section-input-date' name="date_birth" />
     };
 
     return (

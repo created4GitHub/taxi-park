@@ -39,3 +39,10 @@ export const setIsFilteredData = (isFiltered: boolean) => {
         payload: isFiltered
     };
 };
+
+export const setIsUpdatedData = (isUpdated: boolean) => {
+    return {
+        type: "IS_DATA_UPDATED",
+        payload: isUpdated
+    };
+};
