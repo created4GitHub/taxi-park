@@ -14,9 +14,10 @@ const DriverIDList: React.FC<Props> = ({ name, onChange }: Props) => {
   const [drivers, setDrivers] = useState(Array<Data>());
 
   useEffect(() => {
-    GET("driver").then((data) => {
-      setDrivers(data as Data[]);
-    });
+    (async function fetchData() {
+      const drivers = await GET("driver");
+      setDrivers(drivers as Data[]);
+    })();
   }, []);
 
   return (

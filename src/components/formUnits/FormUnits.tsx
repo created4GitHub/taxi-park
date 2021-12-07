@@ -27,10 +27,10 @@ const FormUnits = ({ title }: Props) => {
 
   useEffect(() => {
     (async function fetchData() {
-      const response = await GET(title);
+      const data = await GET(title);
       const statuses = await GET_STATUS(title);
       dispatch(dispatchStatuses(statuses.data));
-      dispatch(dispatchData(response as Data[]));
+      dispatch(dispatchData(data as Data[]));
     })();
   }, [isDeleted, title]);
 
