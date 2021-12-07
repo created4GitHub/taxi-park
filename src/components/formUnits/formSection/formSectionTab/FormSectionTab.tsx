@@ -2,7 +2,7 @@ import { useState, MouseEvent } from "react";
 import { useSelector } from "react-redux";
 
 import Statuses from "../../../statuses/Statuses";
-
+import Input from "../../../regularComponents/input/Input";
 import { PATCH } from "../../../../requests/requests";
 import { RootState } from "../../../../store/rootReducer";
 import { Data, Status } from "../../../../interfaces/interfaces";
@@ -22,7 +22,7 @@ const FormSectionTab = ({ value, property, title, data }: Props) => {
   const [isDiv, setIsDiv] = useState<boolean>(true);
   const id = data.id!;
 
-  function updateElement(event: MouseEvent<HTMLElement>) {
+  function updateElementType(event: MouseEvent<HTMLElement>) {
     const element: string = (event.target as HTMLElement).id;
     if (!["id", "date_birth", "date_created", "driver_id"].includes(element)) {
       setIsDiv(!isDiv);
@@ -54,23 +54,22 @@ const FormSectionTab = ({ value, property, title, data }: Props) => {
     setSelectValue(event.target.value);
     PATCH(title, id, { [property]: status });
   };
-  
+
   return (
     <>
       <div className="table-section-tab">
         {property !== "status" ? (
           isDiv ? (
-            <p className="table_paragraph" onClick={updateElement} >
+            <p className="table_paragraph" onClick={updateElementType} >
               {data[property as keyof Data]}
             </p>
           ) : (
-            <input
-              type="text"
+            <Input
               name={property}
               placeholder={String(data[property as keyof Data])}
               className="table_input"
               autoFocus={true}
-              onClick={updateElement}
+              onClick={updateElementType}
               onBlur={onBlurEvent}
               onKeyPress={pressedEnter}
             />)

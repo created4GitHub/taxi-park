@@ -25,18 +25,13 @@ const FormUnits = ({ title }: Props) => {
   const data = (isFilteredData && filteredData) || receivedData;
   const dispatch = useDispatch();
 
-  const getRequests = async () => {
-    const response = GET(title);
-    await response.then((resp) => {
-      GETSTATUS(title).then((statuses) => {
-        dispatch(dispatchStatuses(statuses.data));
-        dispatch(dispatchData(resp as Data[]));
-      });
-    });
-  }
-
   useEffect(() => {
-    getRequests()
+    (async function fetchData() {
+      const response = await GET(title);
+      const statuses = await GETSTATUS(title);
+      dispatch(dispatchStatuses(statuses.data));
+      dispatch(dispatchData(response as Data[]));
+    })();
   }, [isDeleted, title]);
 
   return (
