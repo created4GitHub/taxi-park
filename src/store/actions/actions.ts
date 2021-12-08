@@ -7,7 +7,8 @@ import {
     DATA_FILTERED,
     IS_DATA_FILTERED,
     IS_DATA_UPDATED,
-    RERENDER
+    RERENDER,
+    FILTER_DATA
 } from '../types'
 
 export const openAddNewUnit = () => {
@@ -63,3 +64,10 @@ export const dispatchRerender = (isRerender: boolean) => {
         payload: isRerender
     };
 };
+// filterValues: string, title: string
+export const filterData = (payload: { [key: string]: string }) => {
+    return {
+        type: FILTER_DATA,
+        payload,
+    }
+}

@@ -17,14 +17,14 @@ interface Props {
 
 const FormUnits = ({ title }: Props) => {
   const [isDeleted, setIsDeleted] = useState<boolean>(true);
-  const receivedData = useSelector((state: RootState) => state.dataReducer.item);
-  const filteredData = useSelector((state: RootState) => state.dataReducer.data);
+  const receivedData = useSelector((state: RootState) => state.dataReducer.data);
+  const filteredData = useSelector((state: RootState) => state.dataReducer.filteredData);
   const isFilteredData = useSelector((state: RootState) => state.isFilteredReducer);
   const isUpdated = useSelector((state: RootState) => state.IsUpdatedReducer);
   const isAdded = useSelector((state: RootState) => state.isAddNewReducer);
   const data = (isFilteredData && filteredData) || receivedData;
   const dispatch = useDispatch();
-
+  // console.log(receivedData, filteredData)
   useEffect(() => {
     (async function fetchData() {
       const data = await GET(title);

@@ -6,3 +6,4 @@ export const STATUS_RECEIVED = 'STATUS_RECEIVED';
 export const ADD_NEW_TRUE = 'ADD_NEW_TRUE';
 export const ADD_NEW_FALSE = 'ADD_NEW_FALSE';
 export const RERENDER = 'RERENDER';
+export const FILTER_DATA = "FILTER_DATA";
