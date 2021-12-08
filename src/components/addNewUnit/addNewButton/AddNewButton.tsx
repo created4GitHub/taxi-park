@@ -19,29 +19,21 @@ interface Props {
 export default function AddNewButton({ checkFormValues, updateIsAddNewUnit }: Props) {
   const dispatch = useDispatch();
 
-  const buttons: Button[] = [
-    {
-      onClick: () => checkFormValues(),
-      src: addObj,
-    },
-    {
-      onClick: () => dispatch(updateIsAddNewUnit(false)),
-      src: deleteObj,
-    },
-  ];
+  const checkForm = () => checkFormValues();
+  const closeAddingField = () => dispatch(updateIsAddNewUnit(false));
 
   return (
     <div className="table_section_buttons">
-      {buttons?.map(({ src, onClick }: Button) => {
-        return (
-          <Button
-            key={src}
-            onClick={onClick}
-            className="table_section-button"
-            btnText={<img src={src} alt="alt" />}
-          />
-        )
-      })}
+      <Button
+        onClick={checkForm}
+        className="table_section-button"
+        btnText={<img src={addObj} alt="alt" />}
+      />
+      <Button
+        onClick={closeAddingField}
+        className="table_section-button"
+        btnText={<img src={deleteObj} alt="alt" />}
+      />
     </div>
   );
 }

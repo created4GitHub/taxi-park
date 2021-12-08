@@ -30,35 +30,22 @@ const initialState: InitialState = {
     filterValues: {},
     statuses: [],
     isAddNew: false,
-    isRerender: false,
     isDataUpdated: false,
     isDataFiltered: false,
     resetFIlter: false,
 }
 
-type Action = {
-    action?: ActionType<string | boolean |
-    { [key: string]: string } | {
-        data: Data[], statuses: Status[]
-        | InitialState | { payload?: boolean } | { type?: string }
-    }>;
-}
-
-type Result = {
-    [key: string]: string | boolean | { [key: string]: string } | { data: Data[], statuses: Status[] | InitialState }
-};
-
 // interface 
 
-export default function rootReducer(state: InitialState = initialState, action: Action): Result {
-    switch (action.type as action) {
+export default function rootReducer(state: any = initialState, { payload, data, statuses, type }: { [key: string]: any }): any {
+    switch (type) {
         case DATA_RECEIVED:
-            return { ...state, data: action.data, statuses: action.statuses };
+            return { ...state, data: data, statuses: statuses };
 
         case FILTER_DATA:
-            const name = action.payload.name;
-            const value = action.payload.value;
-            const title = (action.payload as FilterData).title;
+            const name = payload.name;
+            const value = payload.value;
+            const title = (payload as FilterData).title;
             const filterValues = state.filterValues;
             filterValues.title = title;
             filterValues[name] = value;
@@ -69,31 +56,26 @@ export default function rootReducer(state: InitialState = initialState, action: 
                 }
                 result = result.filter((item: Data) => {
                     if (key === "status") {
-                        return filterValues[key] ===
-                            (item.status as Status).title
-                            ? true
-                            : false;
-                    }
-                    else {
+                        return filterValues[key] === (item.status as Status).title;
+                    } else {
                         return String(item[key as keyof Data]).toLocaleLowerCase()
-                            .includes(filterValues[key].toLocaleLowerCase())
-                            ? true : false;
+                            .includes(filterValues[key].toLocaleLowerCase());
                     }
                 });
             }
-            return { ...state, filteredData: result, isRerender: !state.isRerender, isDataFiltered: true };
+            return { ...state, filteredData: result, isDataFiltered: true };
 
         case RESET_FILTER:
             return {
                 ...state, filteredData: state.data, isDataFiltered: false,
-                isRerender: !state.isRerender, resetFIlter: true, filterValues: {}
+                resetFIlter: true, filterValues: {}
             };
 
         case UPDATE_IS_ADD_NEW:
-            return { ...state, isAddNew: action.payload };
+            return { ...state, isAddNew: payload };
 
         case IS_DATA_UPDATED:
-            return { ...state, isDataUpdated: action.payload };
+            return { ...state, isDataUpdated: payload };
 
         default:
             return state;

@@ -1,15 +1,10 @@
 import { Data, Status } from "../interfaces/interfaces";
+import { headers } from "../constants/requests";
 
 interface Response {
   is_error: string;
   status: string;
   data: Data[];
-}
-
-interface StatusResponse {
-  is_error: string;
-  status: string;
-  data: Status[];
 }
 
 export const GET = async (title: string, id?: number): Promise<Data[] | Data> => {
@@ -18,12 +13,7 @@ export const GET = async (title: string, id?: number): Promise<Data[] | Data> =>
     `https://edu.evgeniychvertkov.com/v1/${query}/`,
     {
       method: "GET",
-      headers: {
-        Accept: "application/json",
-        "X-Authorization":
-          "api13ea3305989c1bbf4aa08d52b09fb239dbd0c27bd13daa1227861f55af160b34",
-        "Content-Type": "application/json",
-      },
+      headers,
     }
   );
   const jsonData = await response.json();
@@ -44,13 +34,7 @@ export const GET = async (title: string, id?: number): Promise<Data[] | Data> =>
 export const GET_CARS_BY_DRIVER = async (id: string): Promise<Response> => {
   const response = await fetch("https://edu.evgeniychvertkov.com/v1/car/", {
     method: "GET",
-    headers: {
-      Accept: "application/json",
-      "X-Authorization":
-        "api13ea3305989c1bbf4aa08d52b09fb239dbd0c27bd13daa1227861f55af160b34",
-      "Content-Type": "application/json",
-      "E-Driver-Id": id,
-    },
+    headers,
   });
   return await response.json();
 };
@@ -60,12 +44,7 @@ export const GET_STATUS = async (title: string): Promise<Status[]> => {
     `https://edu.evgeniychvertkov.com/v1/${title}-status/`,
     {
       method: "GET",
-      headers: {
-        Accept: "application/json",
-        "X-Authorization":
-          "api13ea3305989c1bbf4aa08d52b09fb239dbd0c27bd13daa1227861f55af160b34",
-        "Content-Type": "application/json",
-      },
+      headers,
     }
   );
   const jsonStatuses = await response.json();
@@ -77,11 +56,7 @@ export const POST = async (title: string, info: Data): Promise<Response> => {
     `https://edu.evgeniychvertkov.com/v1/${title}/`,
     {
       method: "POST",
-      headers: {
-        "X-Authorization":
-          "api13ea3305989c1bbf4aa08d52b09fb239dbd0c27bd13daa1227861f55af160b34",
-        "Content-Type": "application/json",
-      },
+      headers,
       body: JSON.stringify(info),
     }
   );
@@ -97,12 +72,7 @@ export const PATCH = async (
     `https://edu.evgeniychvertkov.com/v1/${title}/` + id + "/",
     {
       method: "PATCH",
-      headers: {
-        Accept: "application/json",
-        "X-Authorization":
-          "api13ea3305989c1bbf4aa08d52b09fb239dbd0c27bd13daa1227861f55af160b34",
-        "Content-Type": "application/json",
-      },
+      headers,
       body: JSON.stringify(info),
     }
   );
@@ -114,11 +84,7 @@ export const REMOVE = async (title: string, id: number): Promise<Response> => {
     `https://edu.evgeniychvertkov.com/v1/${title}/` + id + "/",
     {
       method: "DELETE",
-      headers: {
-        "X-Authorization":
-          "api13ea3305989c1bbf4aa08d52b09fb239dbd0c27bd13daa1227861f55af160b34",
-        "Content-Type": "application/json",
-      },
+      headers,
     }
   );
   return await response.json();

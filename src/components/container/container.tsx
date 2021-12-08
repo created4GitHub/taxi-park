@@ -2,11 +2,11 @@ import SideBar from "../sideBar/SideBar";
 import UnitsRoute from "./unitsRoute/FormRoute";
 
 interface Props {
-  isRerender: boolean;
+  isDataFiltered: boolean;
 }
 
 
-const Container = ({ isRerender }: Props) => {
+const Container = ({ isDataFiltered }: Props) => {
 
   return (
     <div className="container">
