@@ -1,14 +1,13 @@
+import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
 import AddNewUnit from "../../addNewUnit/AddNewUnit";
 import FormUnits from "../../formUnits/FormUnits";
 import { RoutesInfo } from "../../../constants/RoutesInfo"
+import { RootState } from "../../../store/rootReducer";
 
-interface Props {
-    isAddNew: boolean;
-}
-
-export default function UnitsRoute({ isAddNew }: Props) {
+export default function UnitsRoute() {
+    const isAddNew = useSelector((state: RootState) => state.conditionalReducer.isOpen);
 
     return (
         <div className="content__inform">

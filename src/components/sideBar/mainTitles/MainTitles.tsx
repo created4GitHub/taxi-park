@@ -31,7 +31,7 @@ const MainTitles = ({ isActive, setIsActive }: Props) => {
                     dispatch(openAddNewUnit());
                 }
                 return (
-                    <div className="paragraph_element-route">
+                    <div className="paragraph_element-route" key={title}>
                         <Link to={link}>
                             <Button
                                 className={className}

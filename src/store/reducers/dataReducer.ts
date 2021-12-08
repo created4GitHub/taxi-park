@@ -63,4 +63,3 @@ export default function dataReducer(state: any = initialState, action: any): any
             return state;
     }
 }
-
