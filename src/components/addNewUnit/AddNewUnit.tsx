@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import AddNewSection from "./addNewSection/AddNewSection";
 import AddNewButton from "./addNewButton/AddNewButton";
 import Statuses from "../statuses/Statuses";
-import { closeAddNewUnit } from "../../store/actions/actions";
+import { updateIsAddNewUnit } from "../../store/actions/actions";
 import { POST } from "../../requests/requests";
 import { Data, Status } from "../../interfaces/interfaces";
 import { RootState } from "../../store/rootReducer";
@@ -13,7 +13,7 @@ import "./addNewUnit.style.scss";
 
 const AddNewUnit = ({ title }: { title: string }) => {
   const formRef = useRef<HTMLFormElement>(null);
-  const statuses = useSelector((state: RootState) => state.statucesReducer.statusReceived);
+  const statuses = useSelector((state: RootState) => state.statuses);
   const dispatch = useDispatch();
 
   const checkFormValues = () => {
@@ -41,7 +41,7 @@ const AddNewUnit = ({ title }: { title: string }) => {
     }
     if (isFilled) {
       POST(title, (unit as Data));
-      dispatch(closeAddNewUnit());
+      dispatch(updateIsAddNewUnit(false));
     }
   };
 
@@ -50,7 +50,7 @@ const AddNewUnit = ({ title }: { title: string }) => {
       <form className="search-table_section_add" ref={formRef}>
         <AddNewSection title={title} />
         <Statuses />
-        <AddNewButton checkFormValues={checkFormValues} closeAddNewUnit={closeAddNewUnit} />
+        <AddNewButton checkFormValues={checkFormValues} updateIsAddNewUnit={updateIsAddNewUnit} />
       </form>
     </div>
 

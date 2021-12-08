@@ -11,23 +11,25 @@ interface Button {
 
 interface Props {
   checkFormValues: () => void;
-  closeAddNewUnit: () => {
+  updateIsAddNewUnit: (payload: boolean) => {
     type: string;
   };
 }
 
-export default function AddNewButton({ checkFormValues, closeAddNewUnit }: Props) {
+export default function AddNewButton({ checkFormValues, updateIsAddNewUnit }: Props) {
   const dispatch = useDispatch();
+
   const buttons: Button[] = [
     {
       onClick: () => checkFormValues(),
       src: addObj,
     },
     {
-      onClick: () => dispatch(closeAddNewUnit()),
+      onClick: () => dispatch(updateIsAddNewUnit(false)),
       src: deleteObj,
     },
   ];
+
   return (
     <div className="table_section_buttons">
       {buttons?.map(({ src, onClick }: Button) => {

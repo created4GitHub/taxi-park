@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function FilterStatuses({ filter, filterValues }: Props) {
-    const statuses = useSelector((state: RootState) => state.statucesReducer.statusReceived);
+    const statuses = useSelector((state: RootState) => state.statuses);
 
     return (
         <div className='filter_element-inputRadio'>
