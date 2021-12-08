@@ -13,7 +13,7 @@ import "./addNewUnit.style.scss";
 
 const AddNewUnit = ({ title }: { title: string }) => {
   const formRef = useRef<HTMLFormElement>(null);
-  const statuses = useSelector((state: RootState) => state.statusReducer);
+  const statuses = useSelector((state: RootState) => state.statucesReducer.statusReceived);
   const dispatch = useDispatch();
 
   const checkFormValues = () => {

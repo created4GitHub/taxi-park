@@ -18,7 +18,7 @@ interface Props {
 }
 
 const FormSectionTab = ({ value, property, title, data, id }: Props) => {
-  const statuses = useSelector((state: RootState) => state.statusReducer);
+  const statuses = useSelector((state: RootState) => state.statucesReducer.statusReceived);
   const isData = useSelector((state: RootState) => state.IsUpdatedReducer);
   const [selectValue, setSelectValue] = useState<string>((value as Status).title);
   const [isDiv, setIsDiv] = useState<boolean>(true);

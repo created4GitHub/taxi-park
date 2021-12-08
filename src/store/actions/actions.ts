@@ -2,11 +2,14 @@ import { Data, Status } from "../../interfaces/interfaces";
 import {
     ADD_NEW_TRUE,
     ADD_NEW_FALSE,
-    STATUS_RECEIVED,
+    
     DATA_RECEIVED,
     DATA_FILTERED,
+
     IS_DATA_FILTERED,
     IS_DATA_UPDATED,
+
+    STATUS_RECEIVED,
     RERENDER
 } from '../types'
 

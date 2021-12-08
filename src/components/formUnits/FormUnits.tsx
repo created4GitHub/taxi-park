@@ -19,9 +19,9 @@ const FormUnits = ({ title }: Props) => {
   const [isDeleted, setIsDeleted] = useState<boolean>(true);
   const receivedData = useSelector((state: RootState) => state.dataReducer.item);
   const filteredData = useSelector((state: RootState) => state.dataReducer.data);
-  const isFilteredData = useSelector((state: RootState) => state.isFilteredReducer);
-  const isUpdated = useSelector((state: RootState) => state.IsUpdatedReducer);
-  const isAdded = useSelector((state: RootState) => state.isAddNewReducer);
+  const isUpdated = useSelector((state: RootState) => state.conditionalReducer.isDataUpdated);
+  const isFilteredData = useSelector((state: RootState) => state.conditionalReducer.isDataFiltered);
+  const isAdded = useSelector((state: RootState) => state.conditionalReducer.isOpen);
   const data = (isFilteredData && filteredData) || receivedData;
   const dispatch = useDispatch();
 

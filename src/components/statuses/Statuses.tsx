@@ -11,7 +11,7 @@ interface Props {
 
 export default function Statuses({ value, onChange, id }: Props) {
 
-    const statuses = useSelector((state: RootState) => state.statusReducer);
+    const statuses = useSelector((state: RootState) => state.statucesReducer.statusReceived);
 
     return (
         <select

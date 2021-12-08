@@ -7,7 +7,7 @@ const FilterRoutes = () => {
     return (
         <Routes>
             {RoutesInfo.map(({ path, title }) =>
-                <Route path={path} element={<Filter title={title} />} />
+                <Route path={path} key={path} element={<Filter title={title} />} />
             )}
         </Routes>
     );

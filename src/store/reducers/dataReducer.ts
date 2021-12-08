@@ -1,4 +1,5 @@
 import { Data, ActionType } from "../../interfaces/interfaces";
+import { DATA_FILTERED, DATA_RECEIVED } from "../types";
 
 const initialState = {
     item: [],
@@ -6,17 +7,14 @@ const initialState = {
 }
 
 export default function dataReducer(state: any = initialState, action: ActionType<Data[]>): Data[] {
-    console.log(state);
-    
     switch (action.type) {
-        case "DATA_FILTERED":
-            return { ...state, data: state.data = [...action.payload!] }
-        //     // return action.payload!;
-        case "DATA_RECEIVED":
-            return { ...state, item: state.item = [...action.payload!] }
-            // return action.payload!;
+        case DATA_FILTERED:
+            return { ...state, data: [...action.payload!] }
+            
+        case DATA_RECEIVED:
+            return { ...state, item: [...action.payload!] }
+            
         default:
             return state;
     }
 }
-

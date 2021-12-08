@@ -18,7 +18,7 @@ interface Props {
 const Filters = ({ title }: Props) => {
   const data = useSelector((state: any) => state.dataReducer.item);
   const filterValues: MutableRefObject<{ [key: string]: string }> = useRef({});
-  const isRerender = useSelector((state: RootState) => state.rerenderReducer);
+  const isRerender = useSelector((state: RootState) => state.conditionalReducer.rerender);
   const dispatch = useDispatch();
 
   const resetFilters = () => {
