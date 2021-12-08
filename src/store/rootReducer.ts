@@ -7,12 +7,24 @@ import {
     IS_DATA_UPDATED
 } from './types'
 
-
 interface FilterData {
     filterValues: string;
     title: string;
 }
-const initialState = {
+
+interface InitialState {
+    data: never[];
+    filteredData: never[];
+    filterValues: {};
+    statuses: never[];
+    isAddNew: boolean;
+    isRerender: boolean;
+    isDataUpdated: boolean;
+    isDataFiltered: boolean;
+    resetFIlter: boolean;
+}
+
+const initialState: InitialState = {
     data: [],
     filteredData: [],
     filterValues: {},
@@ -24,8 +36,22 @@ const initialState = {
     resetFIlter: false,
 }
 
-export default function rootReducer(state: any = initialState, action: any): any {
-    switch (action.type) {
+type Action = {
+    action?: ActionType<string | boolean |
+    { [key: string]: string } | {
+        data: Data[], statuses: Status[]
+        | InitialState | { payload?: boolean } | { type?: string }
+    }>;
+}
+
+type Result = {
+    [key: string]: string | boolean | { [key: string]: string } | { data: Data[], statuses: Status[] | InitialState }
+};
+
+// interface 
+
+export default function rootReducer(state: InitialState = initialState, action: Action): Result {
+    switch (action.type as action) {
         case DATA_RECEIVED:
             return { ...state, data: action.data, statuses: action.statuses };
 
@@ -74,4 +100,4 @@ export default function rootReducer(state: any = initialState, action: any): any
     }
 }
 
-export type RootState = ReturnType<typeof rootReducer> | any;
+export type RootState = ReturnType<typeof rootReducer>;

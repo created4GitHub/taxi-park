@@ -37,7 +37,7 @@ const FormUnits = ({ title }: Props) => {
     <>
       <UnitsTitles title={title} />
       {data.length ?
-        data.map((item: any) => {
+        data.map(item => {
           return (
             <FormSection
               key={item.id}

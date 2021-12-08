@@ -1,4 +1,4 @@
-import { ChangeEvent, MutableRefObject } from "react";
+import { ChangeEvent } from "react";
 import { useSelector } from "react-redux";
 
 import Input from "../../regularComponents/input/Input";

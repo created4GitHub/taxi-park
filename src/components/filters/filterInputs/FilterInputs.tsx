@@ -1,4 +1,4 @@
-import { ChangeEvent, MutableRefObject } from "react";
+import { ChangeEvent } from "react";
 
 import Input from "../../regularComponents/input/Input";
 import { CarInfo, DriverInfo } from "../../../constants/FilterInputs"
