@@ -24,7 +24,7 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
   const [isDiv, setIsDiv] = useState<boolean>(true);
   const dispatch = useDispatch();
 
-  function updateElement(event: MouseEvent<HTMLElement>) {
+  function updateElementType(event: MouseEvent<HTMLElement>) {
     if (!["id", "date_birth", "date_created", "driver_id"].includes(property)) {
       if (!((event.target as HTMLElement).className === "table_input")) {
         setIsDiv(!isDiv);
@@ -63,7 +63,7 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
       <div className="table-section-tab">
         {property !== "status" ? (
           isDiv ? (
-            <p className="table_paragraph" onClick={updateElement} >
+            <p className="table_paragraph" onClick={updateElementType} >
               {data[property as keyof Data]}
             </p>
           ) : (
@@ -72,7 +72,7 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
               placeholder={String(data[property as keyof Data])}
               className="table_input"
               autoFocus={true}
-              onClick={updateElement}
+              onClick={updateElementType}
               onBlur={onBlurEvent}
               onKeyPress={pressedEnter}
             />)

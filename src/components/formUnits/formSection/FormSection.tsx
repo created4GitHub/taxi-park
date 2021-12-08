@@ -41,7 +41,7 @@ const FormSection = ({ data, title, setIsDeleted }: Props) => {
   return (
     <>
       <div className="table_section">
-        {Object.keys(data).map((property: string) =>
+        {Object.keys(data).map(property =>
           <FormSectionTab
             key={property}
             property={property}

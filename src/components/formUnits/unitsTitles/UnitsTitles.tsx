@@ -7,7 +7,7 @@ export default function UnitsTitles({ title }: { title: string }) {
 
     return (
         <div className='title-section'>
-            {info?.map((item: string) => {
+            {info.map(item => {
                 if (["Drivers", "Cars"].includes(item)) {
                     return (
                         <div key={item} className="title-section-button">

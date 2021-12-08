@@ -9,9 +9,13 @@ type Props = {
   value?: string;
   id?: string;
   checked?: boolean;
+  autoFocus?: boolean;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   onInput?: ChangeEventHandler<HTMLInputElement>;
   onFocus?: FocusEventHandler<HTMLInputElement>;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
+  onKeyPress?: React.KeyboardEventHandler<HTMLInputElement>;
+  onClick?: React.MouseEventHandler<HTMLInputElement>;
 };
 
 const Input: React.FC<Props> = (props) => {
@@ -20,7 +24,7 @@ const Input: React.FC<Props> = (props) => {
       id={props.id}
       maxLength={props.maxLength}
       className={props.className}
-      type={props.type}
+      type={props.type || "text"}
       name={props.name}
       placeholder={props.placeholder}
       value={props.value}
