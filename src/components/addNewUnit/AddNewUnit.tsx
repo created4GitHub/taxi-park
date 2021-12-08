@@ -62,27 +62,26 @@ const AddNewUnit = ({ title }: { title: string }) => {
       dispatch(updateIsAddNewUnit(false));
     }
   };
-  console.log(initialValues)
+
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={Yup.object(validationSchema)}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
-      }}>
+      onSubmit={handleSubmit}>
       <div className="table_section_add">
         <form className="search-table_section_add" ref={formRef}>
-          {info?.map(({ name, length, placeholder }: { name: string, length: number, placeholder: string }) => {
+          {info?.map(({ name, placeholder }: { name: string, placeholder: string }) => {
             return (
               <div key={name} className="table_section-block-input">
-                < Input
-                  className="table_section-input"
+                <ErrorMessage
+                  component="span"
+                  name={name}
+                  className="table_section-error" />
+                <Field
+                  name={name}
                   placeholder={placeholder}
-                  id={name}
-                  {...formik.getFieldProps('lastName')}
+                  className="table_section-input"
+                  type="text"
                 />
               </div >
             )

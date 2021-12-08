@@ -25,6 +25,7 @@ const AddNewButton = ({ checkFormValues, updateIsAddNewUnit }: Props) => {
   return (
     <div className="table_section_buttons">
       <Button
+      type="submit"
         onClick={checkForm}
         className="table_section-button"
         btnText={<img src={addObj} alt="alt" />}

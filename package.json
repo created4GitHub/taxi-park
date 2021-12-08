@@ -27,7 +27,9 @@
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.1.3",
     "sass": "^1.43.4",
+    "save": "^2.4.0",
     "typescript": "^4.4.4",
+    "yap": "^0.0.2",
     "yup": "^0.32.11"
   },
   "scripts": {
