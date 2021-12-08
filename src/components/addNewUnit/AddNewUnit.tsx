@@ -1,20 +1,34 @@
 import { useRef } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
-import AddNewSection from "./addNewSection/AddNewSection";
+import OptionalInfo from "./optionalInfo/OptionalInfo";
 import AddNewButton from "./addNewButton/AddNewButton";
 import Statuses from "../statuses/Statuses";
 import { updateIsAddNewUnit } from "../../store/actions/actions";
 import { POST } from "../../requests/requests";
 import { Data, Status } from "../../interfaces/interfaces";
 import { RootState } from "../../store/rootReducer";
+import { CarInfo, DriverInfo } from "../../constants/AddNewSection"
 
 import "./addNewUnit.style.scss";
+import Input from "../regularComponents/input/Input";
 
 const AddNewUnit = ({ title }: { title: string }) => {
   const formRef = useRef<HTMLFormElement>(null);
   const statuses = useSelector((state: RootState) => state.statuses);
   const dispatch = useDispatch();
+  const info = (title === "car" && CarInfo) || DriverInfo;
+  const initialValues: { [key: string]: string } = {};
+  const validationSchema: any = {}
+  info.forEach(({ name, length }: { name: string, length: number }) => {
+    initialValues[name] = "";
+    validationSchema[name] = Yup.string()
+      .max(length, `Must be ${length} characters or less`)
+      .required('Required');
+  });
+
 
   const checkFormValues = () => {
     const formValues: HTMLFormControlsCollection = (formRef.current as HTMLFormElement).elements;
@@ -48,16 +62,37 @@ const AddNewUnit = ({ title }: { title: string }) => {
       dispatch(updateIsAddNewUnit(false));
     }
   };
-
+  console.log(initialValues)
   return (
-    <div className="table_section_add">
-      <form className="search-table_section_add" ref={formRef}>
-        <AddNewSection title={title} />
-        <Statuses />
-        <AddNewButton checkFormValues={checkFormValues} updateIsAddNewUnit={updateIsAddNewUnit} />
-      </form>
-    </div>
-
+    <Formik
+      initialValues={initialValues}
+      validationSchema={Yup.object(validationSchema)}
+      onSubmit={(values, { setSubmitting }) => {
+        setTimeout(() => {
+          alert(JSON.stringify(values, null, 2));
+          setSubmitting(false);
+        }, 400);
+      }}>
+      <div className="table_section_add">
+        <form className="search-table_section_add" ref={formRef}>
+          {info?.map(({ name, length, placeholder }: { name: string, length: number, placeholder: string }) => {
+            return (
+              <div key={name} className="table_section-block-input">
+                < Input
+                  className="table_section-input"
+                  placeholder={placeholder}
+                  id={name}
+                  {...formik.getFieldProps('lastName')}
+                />
+              </div >
+            )
+          })}
+          <OptionalInfo title={title} />
+          <Statuses />
+          <AddNewButton checkFormValues={checkFormValues} updateIsAddNewUnit={updateIsAddNewUnit} />
+        </form>
+      </div>
+    </Formik>
   );
 };
 

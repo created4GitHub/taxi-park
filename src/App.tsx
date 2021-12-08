@@ -8,12 +8,12 @@ import Container from "./components/container/container";
 import "./app.scss";
 
 const App: React.FC = () => {
-  const isRerender = useSelector((state: RootState) => state.isDataFiltered);
+  const isDataFiltered = useSelector((state: RootState) => state.isDataFiltered);
 
   return (
     <>
       <Header />
-      <Container isRerender={isDataFiltered} />
+      <Container isDataFiltered={isDataFiltered} />
     </>
   );
 };
