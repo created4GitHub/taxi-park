@@ -17,8 +17,8 @@ interface Props {
 
 const FormUnits = ({ title }: Props) => {
   const [isDeleted, setIsDeleted] = useState<boolean>(true);
-  const receivedData = useSelector((state: RootState) => state.dataReducer);
-  const filteredData = useSelector((state: RootState) => state.filteredDataReducer);
+  const receivedData = useSelector((state: RootState) => state.dataReducer.item);
+  const filteredData = useSelector((state: RootState) => state.dataReducer.data);
   const isFilteredData = useSelector((state: RootState) => state.isFilteredReducer);
   const isUpdated = useSelector((state: RootState) => state.IsUpdatedReducer);
   const isAdded = useSelector((state: RootState) => state.isAddNewReducer);
@@ -38,7 +38,7 @@ const FormUnits = ({ title }: Props) => {
     <>
       <UnitsTitles title={title} />
       {data.length ?
-        data.map(item => {
+        data.map((item: any) => {
           return (
             <FormSection
               key={item.id}
