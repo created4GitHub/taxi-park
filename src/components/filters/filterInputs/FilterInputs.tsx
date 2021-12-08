@@ -6,7 +6,7 @@ import { CarInfo, DriverInfo } from "../../../constants/FilterInputs"
 interface Props {
     filter: (event: ChangeEvent<HTMLInputElement>) => void;
     title: string;
-    filterValues: MutableRefObject<{ [key: string]: string }>;
+    filterValues: any;
 }
 
 export default function FilterInputs({ filter, title, filterValues }: Props) {
@@ -20,7 +20,7 @@ export default function FilterInputs({ filter, title, filterValues }: Props) {
                         key={name}
                         name={name}
                         placeholder={placeholder}
-                        value={(filterValues.current as { [key: string]: string })[name] || ""}
+                        value={filterValues[name] || ""}
                     />
                 )}
             </div>

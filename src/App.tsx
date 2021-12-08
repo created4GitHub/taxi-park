@@ -8,7 +8,7 @@ import Container from "./components/container/container";
 import "./app.scss";
 
 const App: React.FC = () => {
-  const isRerender = useSelector((state: RootState) => state.conditionalReducer.rerender);
+  const isRerender = useSelector((state: RootState) => state.dataReducer.isRerender);
 
   return (
     <>

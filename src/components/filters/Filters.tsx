@@ -1,11 +1,13 @@
-import { useRef, MutableRefObject } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import FilterStatuses from "./filterStatuses/FilterStatuses";
 import FilterInputs from "./filterInputs/FilterInputs";
 import ResetButton from "./resetButton/ResetButton";
 import YearSelect from "../yearSelect/YearSelect";
-import { dispatchFilteredData, dispatchIsDataFiltered, dispatchRerender } from "../../store/actions/actions";
+import {
+  dispatchFilteredData, dispatchIsDataFiltered,
+  dispatchRerender, filterData, resetFilter
+} from "../../store/actions/actions";
 import { RootState } from "../../store/rootReducer";
 import { Data, Status } from "../../interfaces/interfaces";
 
@@ -17,61 +19,37 @@ interface Props {
 
 const Filters = ({ title }: Props) => {
   const data = useSelector((state: any) => state.dataReducer.item);
-  const filterValues: MutableRefObject<{ [key: string]: string }> = useRef({});
-  const isRerender = useSelector((state: RootState) => state.conditionalReducer.rerender);
+  const isRerender = useSelector((state: RootState) => state.dataReducer.rerender);
+  const filterValues = useSelector((state: RootState) => state.dataReducer.filterValues);
   const dispatch = useDispatch();
 
-  const resetFilters = () => {
-    filterValues.current = {};
-    dispatch(dispatchIsDataFiltered(false));
-    dispatch(dispatchFilteredData(data));
-    dispatch(dispatchRerender(!isRerender));
+  const reset = () => {
+    dispatch(resetFilter());
   };
 
-  if (filterValues.current.title && filterValues.current.title !== title) {
-    resetFilters();
+  if (filterValues.title && filterValues.title !== title) {
+    reset();
   }
 
   const filter = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    filterValues.current.title = title;
-    filterValues.current[event.target.name] = event.target.value;
-    let result = data;
-
-    for (let key in filterValues.current) {
-      if (key === "title") {
-        continue;
-      }
-      result = result.filter((item: Data) => {
-        if (key === "status") {
-          return (filterValues.current)[key] ===
-            (item.status as Status).title
-            ? true
-            : false;
-        }
-        else {
-          return String(item[key as keyof Data]).toLocaleLowerCase()
-            .includes(filterValues.current[key].toLocaleLowerCase())
-            ? true : false;
-        }
-      });
-    }
-    dispatch(dispatchIsDataFiltered(true));
-    dispatch(dispatchFilteredData(result));
-    dispatch(dispatchRerender(!isRerender));
+    const name = event.target.name;
+    const value = event.target.value;
+    dispatch(filterData({ name, value, title }));
   };
 
-  const optionElement = title === "car" && (
-    <div className="filter_element-yearSelect">
-      <YearSelect onChange={filter} name="year" defaultValue={"2018"} />
-    </div>
-  );
+  const optionalElement = title === "car" &&
+    (
+      <div className="filter_element-yearSelect">
+        <YearSelect onChange={filter} name="year" defaultValue={"2018"} />
+      </div>
+    );
 
   return (
     <form className="content__options-filter">
       <FilterInputs filter={filter} title={title} filterValues={filterValues} />
-      {optionElement}
+      {optionalElement}
       <FilterStatuses filter={filter} filterValues={filterValues} />
-      <ResetButton resetFilters={resetFilters} />
+      <ResetButton resetFilters={reset} />
     </form>
   );
 };

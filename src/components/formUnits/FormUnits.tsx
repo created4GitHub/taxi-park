@@ -19,12 +19,12 @@ const FormUnits = ({ title }: Props) => {
   const [isDeleted, setIsDeleted] = useState<boolean>(true);
   const receivedData = useSelector((state: RootState) => state.dataReducer.data);
   const filteredData = useSelector((state: RootState) => state.dataReducer.filteredData);
-  const isFilteredData = useSelector((state: RootState) => state.isFilteredReducer);
-  const isUpdated = useSelector((state: RootState) => state.IsUpdatedReducer);
-  const isAdded = useSelector((state: RootState) => state.isAddNewReducer);
+  const isFilteredData = useSelector((state: RootState) => state.dataReducer.isDataFiltered);
+  const isUpdated = useSelector((state: RootState) => state.dataReducer.isDataUpdated);
+  const isAddedNew = useSelector((state: RootState) => state.dataReducer.isAddedNew);
   const data = (isFilteredData && filteredData) || receivedData;
   const dispatch = useDispatch();
-  // console.log(receivedData, filteredData)
+  console.log(filteredData, isFilteredData)
   useEffect(() => {
     (async function fetchData() {
       const data = await GET(title);
@@ -32,7 +32,7 @@ const FormUnits = ({ title }: Props) => {
       dispatch(dispatchStatuses(statuses.data));
       dispatch(dispatchData(data as Data[]));
     })();
-  }, [isDeleted, title, isUpdated, isAdded]);
+  }, [isDeleted, title, isUpdated, isAddedNew]);
 
   return (
     <>

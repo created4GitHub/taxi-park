@@ -7,11 +7,12 @@ interface Props {
 
 
 const Container = ({ isRerender }: Props) => {
+
   return (
     <div className="container">
       <div className="content">
         <SideBar />
-        <UnitsRoute/>
+        <UnitsRoute />
       </div>
     </div>
   )

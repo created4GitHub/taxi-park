@@ -7,7 +7,7 @@ import { RoutesInfo } from "../../../constants/RoutesInfo"
 import { RootState } from "../../../store/rootReducer";
 
 export default function UnitsRoute() {
-    const isAddNew = useSelector((state: RootState) => state.conditionalReducer.isOpen);
+    const isAddNew = useSelector((state: RootState) => state.dataReducer.isOpen);
 
     return (
         <div className="content__inform">

@@ -6,7 +6,7 @@ import { RootState } from "../../../store/rootReducer";
 
 interface Props {
     filter: (event: ChangeEvent<HTMLInputElement>) => void;
-    filterValues: MutableRefObject<{ [key: string]: string }>;
+    filterValues: any;
 }
 
 export default function FilterStatuses({ filter, filterValues }: Props) {
@@ -23,7 +23,7 @@ export default function FilterStatuses({ filter, filterValues }: Props) {
                             id={"status" + title}
                             onChange={filter}
                             value={title}
-                            checked={(filterValues.current as { [key: string]: string }).status === title}
+                            checked={filterValues.status === title}
                         />
                         <label htmlFor={"status" + title}>{title}</label>
                     </div>

@@ -7,3 +7,5 @@ export const ADD_NEW_TRUE = 'ADD_NEW_TRUE';
 export const ADD_NEW_FALSE = 'ADD_NEW_FALSE';
 export const RERENDER = 'RERENDER';
 export const FILTER_DATA = "FILTER_DATA";
+export const RESET_FILTER = "RESET_FILTER";
+
