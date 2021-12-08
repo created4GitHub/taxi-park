@@ -6,7 +6,7 @@ import FormUnits from "../../formUnits/FormUnits";
 import { RoutesInfo } from "../../../constants/RoutesInfo"
 import { RootState } from "../../../store/rootReducer";
 
-export default function UnitsRoute() {
+const UnitsRoute = () => {
     const isAddNew = useSelector((state: RootState) => state.isAddNew);
 
     return (
@@ -28,3 +28,5 @@ export default function UnitsRoute() {
         </div>
     )
 }
+
+export default UnitsRoute;

@@ -16,7 +16,7 @@ interface Props {
   };
 }
 
-export default function AddNewButton({ checkFormValues, updateIsAddNewUnit }: Props) {
+const AddNewButton = ({ checkFormValues, updateIsAddNewUnit }: Props) => {
   const dispatch = useDispatch();
 
   const buttons: Button[] = [
@@ -45,3 +45,5 @@ export default function AddNewButton({ checkFormValues, updateIsAddNewUnit }: Pr
     </div>
   );
 }
+
+export default AddNewButton;

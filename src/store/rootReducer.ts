@@ -1,9 +1,9 @@
-import { Data, ActionType, Status, Filter } from "../interfaces/interfaces";
+import { Data, Status, Filter } from "../interfaces/interfaces";
 import {
     DATA_RECEIVED,
     FILTER_DATA,
     RESET_FILTER,
-    UPDATE_IS_ADD_NEW,
+    SET_IS_OPEN,
     IS_DATA_UPDATED
 } from './types'
 
@@ -26,8 +26,6 @@ interface InitialState {
     resetFIlter: boolean;
 }
 
-
-
 interface Action {
     payload: FilterData;
     data: Data[],
@@ -47,7 +45,7 @@ const initialState: InitialState = {
     resetFIlter: false,
 }
 
-export default function rootReducer(state: InitialState = initialState, action: Action): InitialState {
+const RootReducer = (state: InitialState = initialState, action: Action): InitialState => {
     switch (action.type) {
         case DATA_RECEIVED:
             return { ...state, data: action.data, statuses: action.statuses };
@@ -59,23 +57,18 @@ export default function rootReducer(state: InitialState = initialState, action: 
             const filterValues: Filter = state.filterValues;
             filterValues.title = title;
             filterValues[name as keyof Filter] = value;
-            
+
             let result = state.data;
             for (let key in filterValues) {
                 if (key === "title") {
                     continue;
                 }
-                result = (result as Data[]).filter((item: Data) => {
+                result = result.filter(item => {
                     if (key === "status") {
-                        return filterValues[key] ===
-                            (item.status as Status).title
-                            ? true
-                            : false;
-                    }
-                    else {
+                        return filterValues[key] === (item.status as Status).title;
+                    } else {
                         return String(item[key as keyof Data]).toLocaleLowerCase()
                             .includes(filterValues[name as keyof Filter]!.toLocaleLowerCase())
-                            ? true : false;
                     }
                 });
             }
@@ -87,7 +80,7 @@ export default function rootReducer(state: InitialState = initialState, action: 
                 isRerender: !state.isRerender, resetFIlter: true, filterValues: {}
             };
 
-        case UPDATE_IS_ADD_NEW:
+        case SET_IS_OPEN:
             return { ...state, isAddNew: action.payload };
 
         case IS_DATA_UPDATED:
@@ -98,4 +91,6 @@ export default function rootReducer(state: InitialState = initialState, action: 
     }
 }
 
-export type RootState = ReturnType<typeof rootReducer>;
+export type RootState = ReturnType<typeof RootReducer>;
+
+export default RootReducer;

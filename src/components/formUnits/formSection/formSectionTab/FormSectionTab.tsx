@@ -24,7 +24,7 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
   const [isDiv, setIsDiv] = useState<boolean>(true);
   const dispatch = useDispatch();
 
-  function updateElementType(event: MouseEvent<HTMLElement>) {
+  const updateElementType = (event: MouseEvent<HTMLElement>) => {
     if (!["id", "date_birth", "date_created", "driver_id"].includes(property)) {
       if (!((event.target as HTMLElement).className === "table_input")) {
         setIsDiv(!isDiv);

@@ -33,6 +33,10 @@ const AddNewUnit = ({ title }: { title: string }) => {
         isFilled = false;
         continue;
       }
+      else if (value !== "") {
+        item.classList.remove("warning");
+        continue;
+      }
       else if (name === "status") {
         unit.status = statuses.find((status: Status) => status.title === value)!;
         continue;

@@ -3,14 +3,13 @@ import { useSelector } from "react-redux";
 
 import Input from "../../regularComponents/input/Input";
 import { RootState } from "../../../store/rootReducer";
-import { Data } from "../../../interfaces/interfaces";
 
 interface Props {
     filter: (event: ChangeEvent<HTMLInputElement>) => void;
     filterValues: any;
 }
 
-export default function FilterStatuses({ filter, filterValues }: Props) {
+const FilterStatuses = ({ filter, filterValues }: Props) => {
     const statuses = useSelector((state: RootState) => state.statuses);
 
     return (
@@ -33,3 +32,5 @@ export default function FilterStatuses({ filter, filterValues }: Props) {
         </div>
     )
 }
+
+export default FilterStatuses;

@@ -10,7 +10,7 @@ interface Props {
     filterValues: Filter | Filter[];
 }
 
-export default function FilterInputs({ filter, title, filterValues }: Props) {
+const FilterInputs = ({ filter, title, filterValues }: Props) => {
     const inputInfo = (title === "car" && CarInfo) || DriverInfo;
 
     return (
@@ -28,3 +28,5 @@ export default function FilterInputs({ filter, title, filterValues }: Props) {
         </>
     );
 }
+
+export default FilterInputs;

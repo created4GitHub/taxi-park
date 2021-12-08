@@ -7,9 +7,10 @@ interface Props {
     title: string;
 }
 
-export default function AddNewSection({ title }: Props) {
+const AddNewSection = ({ title }: Props) => {
     const isCar = title === "car";
     const info = (isCar && CarInfo) || DriverInfo;
+
     const optionalInfo: JSX.Element = (isCar &&
         <>
             <YearSelect name="year" />
@@ -18,19 +19,10 @@ export default function AddNewSection({ title }: Props) {
     ) || (
             <Input
                 type="date"
-                onFocus={isWarning}
                 className='table_section-input-date'
                 name="date_birth"
             />
         );
-
-    function isWarning(event: React.FocusEvent<HTMLInputElement>) {
-        event.target.classList.forEach(item => {
-            if (item === "warning") {
-                event.target.classList.remove("warning");
-            }
-        });
-    };
 
     return (
         <>
@@ -42,7 +34,6 @@ export default function AddNewSection({ title }: Props) {
                             placeholder={item.placeholder}
                             name={item.name}
                             maxLength={item.length}
-                            onFocus={isWarning}
                         />
                     </div >
                 )
@@ -51,3 +42,5 @@ export default function AddNewSection({ title }: Props) {
         </>
     )
 }
+
+export default AddNewSection;

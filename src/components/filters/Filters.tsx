@@ -21,10 +21,6 @@ const Filters = ({ title }: Props) => {
     dispatch(resetFilter());
   };
 
-  if (filterValues.title && filterValues.title !== title) {
-    reset();
-  }
-
   const filter = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -37,7 +33,6 @@ const Filters = ({ title }: Props) => {
         <YearSelect onChange={filter} name="year" defaultValue={"2018"} />
       </div>
     );
-
   return (
     <form className="content__options-filter">
       <FilterInputs filter={filter} title={title} filterValues={filterValues} />

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 
-import { updateIsAddNewUnit } from "../../../store/actions/actions";
+import { resetFilter, updateIsAddNewUnit } from "../../../store/actions/actions";
 import { Button } from "../../regularComponents/button/Button";
 import { Info } from "../../../constants/MainTitles";
 
@@ -25,10 +25,13 @@ const MainTitles = ({ isActive, setIsActive }: Props) => {
                 const closeUnit = () => {
                     setIsActive(title);
                     dispatch(updateIsAddNewUnit(false));
+                    dispatch(resetFilter());
                 }
+
                 const openUnit = () => {
                     setIsActive(title);
                     dispatch(updateIsAddNewUnit(true));
+                    dispatch(resetFilter());
                 }
                 return (
                     <div className="paragraph_element-route" key={title}>

@@ -2,7 +2,7 @@ import { CarInfo, DriverInfo } from "../../../constants/UnitsTitles"
 
 import './unitsTitles.style.scss'
 
-export default function UnitsTitles({ title }: { title: string }) {
+const UnitsTitles = ({ title }: { title: string }) => {
     const info = (title === "car" && CarInfo) || DriverInfo;
 
     return (
@@ -23,3 +23,5 @@ export default function UnitsTitles({ title }: { title: string }) {
         </div>
     )
 }
+
+export default UnitsTitles;
