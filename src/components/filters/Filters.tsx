@@ -6,7 +6,6 @@ import ResetButton from "./resetButton/ResetButton";
 import YearSelect from "../yearSelect/YearSelect";
 import { filterData, resetFilter } from "../../store/actions/actions";
 import { RootState } from "../../store/rootReducer";
-import { Data, Status } from "../../interfaces/interfaces";
 
 import "./filters.style.scss";
 

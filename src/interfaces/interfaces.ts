@@ -29,3 +29,16 @@ export interface Route {
   path: string;
   title: string;
 }
+
+export interface Filter {
+  driver_id?: string,
+  id?: string,
+  mark?: string,
+  model?: string,
+  number?: string,
+  status?: string,
+  title?: string,
+  year?: string,
+  first_name?: string,
+  last_name?: string,
+}

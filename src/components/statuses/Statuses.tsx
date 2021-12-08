@@ -21,7 +21,7 @@ export default function Statuses({ value, onChange, id }: Props) {
             onChange={onChange}
             id={id}
         >
-            {statuses?.map((item: Status) => {
+            {statuses.map((item: Status) => {
                 return (
                     <option key={item.title} >
                         {item.title}

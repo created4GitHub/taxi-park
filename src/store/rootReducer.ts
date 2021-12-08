@@ -1,4 +1,4 @@
-import { Data, ActionType, Status } from "../interfaces/interfaces";
+import { Data, ActionType, Status, Filter } from "../interfaces/interfaces";
 import {
     DATA_RECEIVED,
     FILTER_DATA,
@@ -10,18 +10,29 @@ import {
 interface FilterData {
     filterValues: string;
     title: string;
+    name: string,
+    value: string,
 }
 
 interface InitialState {
-    data: never[];
-    filteredData: never[];
-    filterValues: {};
-    statuses: never[];
-    isAddNew: boolean;
+    data: Data[];
+    filteredData: Data[];
+    filterValues: Filter;
+    statuses: Status[];
+    isAddNew: FilterData | boolean;
     isRerender: boolean;
-    isDataUpdated: boolean;
+    isDataUpdated: FilterData | boolean;
     isDataFiltered: boolean;
     resetFIlter: boolean;
+}
+
+
+
+interface Action {
+    payload: FilterData;
+    data: Data[],
+    statuses: Status[],
+    type: string,
 }
 
 const initialState: InitialState = {
@@ -36,28 +47,7 @@ const initialState: InitialState = {
     resetFIlter: false,
 }
 
-type Result = {
-    [key: string]: string | boolean | { [key: string]: string } | { data: Data[], statuses: Status[] | InitialState }
-};
-
-// interface 
-
-interface Filter {
-    driver_id?: string,
-    id?: string,
-    mark?: string,
-    model?: string,
-    number?: string,
-    status?: string,
-    title?: string,
-    year?: string,
-    first_name?: string,
-    last_name?: string,
-}
-
-export default function rootReducer(state: InitialState = initialState, action: any): any {
-console.log(action);
-
+export default function rootReducer(state: InitialState = initialState, action: Action): InitialState {
     switch (action.type) {
         case DATA_RECEIVED:
             return { ...state, data: action.data, statuses: action.statuses };
@@ -65,7 +55,7 @@ console.log(action);
         case FILTER_DATA:
             const name = action.payload.name;
             const value = action.payload.value;
-            const title = (action.payload as FilterData).title;
+            const title = action.payload.title;
             const filterValues: Filter = state.filterValues;
             filterValues.title = title;
             filterValues[name as keyof Filter] = value;
@@ -75,7 +65,7 @@ console.log(action);
                 if (key === "title") {
                     continue;
                 }
-                result = result.filter((item: Data) => {
+                result = (result as Data[]).filter((item: Data) => {
                     if (key === "status") {
                         return filterValues[key] ===
                             (item.status as Status).title
