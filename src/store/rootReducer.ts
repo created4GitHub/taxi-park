@@ -1,27 +1,36 @@
-import { Data, ActionType, Status } from "../interfaces/interfaces";
+import { Data, Status, Filter } from "../interfaces/interfaces";
 import {
     DATA_RECEIVED,
     FILTER_DATA,
     RESET_FILTER,
-    UPDATE_IS_ADD_NEW,
+    SET_IS_OPEN,
     IS_DATA_UPDATED
 } from './types'
 
 interface FilterData {
     filterValues: string;
     title: string;
+    name: string,
+    value: string,
 }
 
 interface InitialState {
-    data: never[];
-    filteredData: never[];
-    filterValues: {};
-    statuses: never[];
-    isAddNew: boolean;
+    data: Data[];
+    filteredData: Data[];
+    filterValues: Filter;
+    statuses: Status[];
+    isAddNew: FilterData | boolean;
     isRerender: boolean;
-    isDataUpdated: boolean;
+    isDataUpdated: FilterData | boolean;
     isDataFiltered: boolean;
     resetFIlter: boolean;
+}
+
+interface Action {
+    payload: FilterData;
+    data: Data[],
+    statuses: Status[],
+    type: string,
 }
 
 const initialState: InitialState = {
@@ -35,31 +44,30 @@ const initialState: InitialState = {
     resetFIlter: false,
 }
 
-// interface 
-
-export default function rootReducer(state: any = initialState, { payload, data, statuses, type }: { [key: string]: any }): any {
-    switch (type) {
+const RootReducer = (state: InitialState = initialState, action: Action): InitialState => {
+    switch (action.type) {
         case DATA_RECEIVED:
             return { ...state, data: data, statuses: statuses };
 
         case FILTER_DATA:
-            const name = payload.name;
-            const value = payload.value;
-            const title = (payload as FilterData).title;
-            const filterValues = state.filterValues;
+            const name = action.payload.name;
+            const value = action.payload.value;
+            const title = action.payload.title;
+            const filterValues: Filter = state.filterValues;
             filterValues.title = title;
-            filterValues[name] = value;
+            filterValues[name as keyof Filter] = value;
+
             let result = state.data;
             for (let key in filterValues) {
                 if (key === "title") {
                     continue;
                 }
-                result = result.filter((item: Data) => {
+                result = result.filter(item => {
                     if (key === "status") {
                         return filterValues[key] === (item.status as Status).title;
                     } else {
                         return String(item[key as keyof Data]).toLocaleLowerCase()
-                            .includes(filterValues[key].toLocaleLowerCase());
+                            .includes(filterValues[name as keyof Filter]!.toLocaleLowerCase())
                     }
                 });
             }
@@ -71,8 +79,8 @@ export default function rootReducer(state: any = initialState, { payload, data, 
                 resetFIlter: true, filterValues: {}
             };
 
-        case UPDATE_IS_ADD_NEW:
-            return { ...state, isAddNew: payload };
+        case SET_IS_OPEN:
+            return { ...state, isAddNew: action.payload };
 
         case IS_DATA_UPDATED:
             return { ...state, isDataUpdated: payload };
@@ -82,4 +90,6 @@ export default function rootReducer(state: any = initialState, { payload, data, 
     }
 }
 
-export type RootState = ReturnType<typeof rootReducer>;
+export type RootState = ReturnType<typeof RootReducer>;
+
+export default RootReducer;

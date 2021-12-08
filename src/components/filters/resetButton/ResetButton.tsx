@@ -4,7 +4,7 @@ interface Props {
     resetFilters: () => void;
 }
 
-export default function ResetButton({ resetFilters }: Props) {
+const ResetButton = ({ resetFilters }: Props) => {
     return (
         <div className="reset-filter-button">
             <Button
@@ -14,3 +14,5 @@ export default function ResetButton({ resetFilters }: Props) {
         </div>
     );
 }
+
+export default ResetButton;

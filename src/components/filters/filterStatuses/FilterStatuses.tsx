@@ -9,12 +9,12 @@ interface Props {
     filterValues: any;
 }
 
-export default function FilterStatuses({ filter, filterValues }: Props) {
+const FilterStatuses = ({ filter, filterValues }: Props) => {
     const statuses = useSelector((state: RootState) => state.statuses);
 
     return (
         <div className='filter_element-inputRadio'>
-            {statuses?.map(({ title }: { title: string }) => {
+            {statuses.map(({ title }: { title: string }) => {
                 return (
                     <div className="filter-element" key={title}>
                         <Input
@@ -32,3 +32,5 @@ export default function FilterStatuses({ filter, filterValues }: Props) {
         </div>
     )
 }
+
+export default FilterStatuses;

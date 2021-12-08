@@ -9,7 +9,7 @@ interface Props {
     onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-export default function Statuses({ value, onChange, id }: Props) {
+const Statuses = ({ value, onChange, id }: Props) => {
 
     const statuses = useSelector((state: RootState) => state.statuses);
 
@@ -21,7 +21,7 @@ export default function Statuses({ value, onChange, id }: Props) {
             onChange={onChange}
             id={id}
         >
-            {statuses?.map((item: Status) => {
+            {statuses.map((item: Status) => {
                 return (
                     <option key={item.title} >
                         {item.title}
@@ -31,3 +31,5 @@ export default function Statuses({ value, onChange, id }: Props) {
         </select>
     )
 }
+
+export default Statuses;

@@ -13,11 +13,13 @@ type Props = {
 const DriverIDList: React.FC<Props> = ({ name, onChange }: Props) => {
   const [drivers, setDrivers] = useState(Array<Data>());
 
+  const fetchData = async () => {
+    const drivers = await GET("driver");
+    setDrivers(drivers as Data[]);
+  };
+
   useEffect(() => {
-    (async function fetchData() {
-      const drivers = await GET("driver");
-      setDrivers(drivers as Data[]);
-    })();
+    fetchData();
   }, []);
 
   return (

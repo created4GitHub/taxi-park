@@ -6,7 +6,6 @@ import ResetButton from "./resetButton/ResetButton";
 import YearSelect from "../yearSelect/YearSelect";
 import { filterData, resetFilter } from "../../store/actions/actions";
 import { RootState } from "../../store/rootReducer";
-import { Data, Status } from "../../interfaces/interfaces";
 
 import "./filters.style.scss";
 
@@ -22,10 +21,6 @@ const Filters = ({ title }: Props) => {
     dispatch(resetFilter());
   };
 
-  if (filterValues.title && filterValues.title !== title) {
-    reset();
-  }
-
   const filter = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -38,7 +33,6 @@ const Filters = ({ title }: Props) => {
         <YearSelect onChange={filter} name="year" defaultValue={"2018"} />
       </div>
     );
-
   return (
     <form className="content__options-filter">
       <FilterInputs filter={filter} title={title} filterValues={filterValues} />
