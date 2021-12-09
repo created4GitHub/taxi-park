@@ -3,7 +3,7 @@ import {
     DATA_RECEIVED,
     FILTER_DATA,
     RESET_FILTER,
-    SET_IS_OPEN,
+    SET_IS_ADD_NEW_UNIT,
     IS_DATA_UPDATED
 } from './types'
 
@@ -19,8 +19,8 @@ interface InitialState {
     filteredData: Data[];
     filterValues: Filter;
     statuses: Status[];
-    isAddNew: FilterData | boolean;
-    isDataUpdated: boolean;
+    isAddNewUnit: FilterData | boolean;
+    isDataUpdated: FilterData | boolean;
     isDataFiltered: boolean;
 }
 
@@ -36,7 +36,7 @@ const initialState: InitialState = {
     filteredData: [],
     filterValues: {},
     statuses: [],
-    isAddNew: false,
+    isAddNewUnit: false,
     isDataUpdated: false,
     isDataFiltered: false,
 }
@@ -50,12 +50,6 @@ const RootReducer = (state: InitialState = initialState, { type, payload, data, 
             const { name, value } = payload;
             const filterValues: Filter = state.filterValues;
             filterValues[name as keyof Filter] = value;
-
-
-            // return {
-            //     ...state,
-            //     filterValues: { ...state.filterValues, [name]: value }
-            // }
 
             let result = state.data;
             for (let key in filterValues) {
@@ -75,8 +69,8 @@ const RootReducer = (state: InitialState = initialState, { type, payload, data, 
                 ...state, filteredData: state.data, isDataFiltered: false, filterValues: {}
             };
 
-        case SET_IS_OPEN:
-            return { ...state, isAddNew: payload };
+        case SET_IS_ADD_NEW_UNIT:
+            return { ...state, isAddNewUnit: payload };
 
         case IS_DATA_UPDATED:
             return { ...state, isDataUpdated: !state.isDataUpdated };

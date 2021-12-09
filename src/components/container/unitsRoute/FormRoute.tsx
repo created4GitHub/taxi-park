@@ -7,23 +7,22 @@ import { RoutesInfo } from "../../../constants/RoutesInfo"
 import { RootState } from "../../../store/rootReducer";
 
 const UnitsRoute = () => {
-    const isAddNew = useSelector((state: RootState) => state.isAddNew);
+    const isAddNewUnit = useSelector((state: RootState) => state.isAddNewUnit);
 
     return (
         <div className="content__inform">
             <div className="table">
-                {RoutesInfo.map(({ path, title }) =>
-                    <Routes key={title}>
-                        <Route
-                            path={path}
-                            element={
-                                <>
-                                    {isAddNew && <AddNewUnit title={title} />}
-                                    <FormUnits title={title} />
-                                </>}
-                        /><Route />
-                    </Routes>
-                )}
+                <Routes>
+                {RoutesInfo.map(({ path, title }) => 
+                        <Route key={title} path={path} element={
+                            <>
+                            {console.log(1234)}
+                                {isAddNewUnit && <AddNewUnit title={title} />}
+                                <FormUnits title={title} />
+                            </>
+                        }/>
+                        )}
+                </Routes>
             </div>
         </div>
     )

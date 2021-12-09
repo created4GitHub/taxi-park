@@ -57,10 +57,12 @@ const AddNewUnit = ({ title }: { title: string }) => {
     //   (unit[name as keyof Data] as string) = value;
     // }
     if (isFilled) {
-      POST(title, (unit as Data));
-      dispatch(updateIsAddNewUnit(false));
+      POST(title, (unit as unknown as Data));
     }
   };
+
+  console.log(1234);
+
 
   return (
     <Formik
@@ -100,3 +102,7 @@ const AddNewUnit = ({ title }: { title: string }) => {
 };
 
 export default AddNewUnit;
+function closeAddNewUnit(): any {
+  throw new Error("Function not implemented.");
+}
+

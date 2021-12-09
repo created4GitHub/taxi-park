@@ -20,8 +20,8 @@ const FormUnits = ({ title }: Props) => {
   const receivedData = useSelector((state: RootState) => state.data);
   const filteredData = useSelector(selector);
   const isFilteredData = useSelector((state: RootState) => state.isDataFiltered);
-  const isUpdated = useSelector((state: RootState) => state.isDataUpdated);
-  const isAddNew = useSelector((state: RootState) => state.isAddNew);
+  const isDataUpdated = useSelector((state: RootState) => state.isDataUpdated);
+  const isAddNewUnit = useSelector((state: RootState) => state.isAddNewUnit);
   const data = (isFilteredData && filteredData) || receivedData;
   const dispatch = useDispatch();
 
@@ -33,7 +33,7 @@ const FormUnits = ({ title }: Props) => {
 
   useEffect(() => {
     fetchData();
-  }, [isDeleted, title, isUpdated, isAddNew]);
+  }, [isDeleted, title, isDataUpdated, isAddNewUnit]);  
 
   const mapItems = (item: Data) => {
     return (
