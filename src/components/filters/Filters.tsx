@@ -11,9 +11,10 @@ import "./filters.style.scss";
 
 interface Props {
   title: string;
+  isDataUpdated: boolean;
 }
 
-const Filters = ({ title }: Props) => {
+const Filters = ({ title, isDataUpdated }: Props) => {
   const filterValues = useSelector((state: RootState) => state.filterValues);
   const dispatch = useDispatch();
 
@@ -33,6 +34,7 @@ const Filters = ({ title }: Props) => {
         <YearSelect onChange={filter} name="year" defaultValue={"2018"} />
       </div>
     );
+
   return (
     <form className="content__options-filter">
       <FilterInputs filter={filter} title={title} filterValues={filterValues} />

@@ -10,7 +10,7 @@ import { RootState } from "../../store/rootReducer";
 import { Data } from "../../interfaces/interfaces";
 
 import "./formUnits.style.scss";
-
+const selector = (state: RootState) => state.filteredData
 interface Props {
   title: string;
 }
@@ -18,7 +18,7 @@ interface Props {
 const FormUnits = ({ title }: Props) => {
   const [isDeleted, setIsDeleted] = useState<boolean>(true);
   const receivedData = useSelector((state: RootState) => state.data);
-  const filteredData = useSelector((state: RootState) => state.filteredData);
+  const filteredData = useSelector(selector);
   const isFilteredData = useSelector((state: RootState) => state.isDataFiltered);
   const isUpdated = useSelector((state: RootState) => state.isDataUpdated);
   const isAddNew = useSelector((state: RootState) => state.isAddNew);
@@ -35,20 +35,24 @@ const FormUnits = ({ title }: Props) => {
     fetchData();
   }, [isDeleted, title, isUpdated, isAddNew]);
 
+  const mapItems = (item: Data) => {
+    return (
+      <FormSection
+        key={item.id}
+        title={title}
+        data={item}
+        setIsDeleted={setIsDeleted}
+      />
+    );
+  }
+
+  const mappedItems = data.map(mapItems)
+
   return (
     <>
       <UnitsTitles title={title} />
       {data.length ?
-        data.map((item: Data) => {
-          return (
-            <FormSection
-              key={item.id}
-              title={title}
-              data={item}
-              setIsDeleted={setIsDeleted}
-            />
-          );
-        })
+        mappedItems
         : <>{!isFilteredData && <div><Loader /></div>}</>
       }
     </>

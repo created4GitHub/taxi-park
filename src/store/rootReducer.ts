@@ -20,9 +20,8 @@ interface InitialState {
     filterValues: Filter;
     statuses: Status[];
     isAddNew: FilterData | boolean;
-    isDataUpdated: FilterData | boolean;
+    isDataUpdated: boolean;
     isDataFiltered: boolean;
-    resetFIlter: boolean;
 }
 
 interface Action {
@@ -40,7 +39,6 @@ const initialState: InitialState = {
     isAddNew: false,
     isDataUpdated: false,
     isDataFiltered: false,
-    resetFIlter: false,
 }
 
 const RootReducer = (state: InitialState = initialState, { type, payload, data, statuses }: Action): InitialState => {
@@ -49,38 +47,39 @@ const RootReducer = (state: InitialState = initialState, { type, payload, data, 
             return { ...state, data: data, statuses: statuses };
 
         case FILTER_DATA:
-            const { name, value, title } = payload;
+            const { name, value } = payload;
             const filterValues: Filter = state.filterValues;
-            filterValues.title = title;
             filterValues[name as keyof Filter] = value;
+
+
+            // return {
+            //     ...state,
+            //     filterValues: { ...state.filterValues, [name]: value }
+            // }
 
             let result = state.data;
             for (let key in filterValues) {
-                if (key === "title") {
-                    continue;
-                }
                 result = result.filter(item => {
                     if (key === "status") {
                         return filterValues[key] === (item.status as Status).title;
                     } else {
                         return String(item[key as keyof Data]).toLocaleLowerCase()
-                            .includes(filterValues[name as keyof Filter]!.toLocaleLowerCase())
+                            .includes(filterValues[name as keyof Filter]!.toLocaleLowerCase());
                     }
                 });
             }
-            return { ...state, filteredData: result, isDataFiltered: true };
+            return { ...state, filteredData: result, isDataFiltered: true, isDataUpdated: !state.isDataUpdated };
 
         case RESET_FILTER:
             return {
-                ...state, filteredData: state.data, isDataFiltered: false,
-                resetFIlter: true, filterValues: {}
+                ...state, filteredData: state.data, isDataFiltered: false, filterValues: {}
             };
 
         case SET_IS_OPEN:
             return { ...state, isAddNew: payload };
 
         case IS_DATA_UPDATED:
-            return { ...state, isDataUpdated: payload };
+            return { ...state, isDataUpdated: !state.isDataUpdated };
 
         default:
             return state;

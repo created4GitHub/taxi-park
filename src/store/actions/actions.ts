@@ -35,9 +35,8 @@ export const updateIsAddNewUnit = (payload: boolean) => {
     };
 };
 
-export const dispatchIsDataUpdated = (isUpdated: boolean) => {
+export const dispatchIsDataUpdated = () => {
     return {
-        type: IS_DATA_UPDATED,
-        payload: isUpdated
+        type: IS_DATA_UPDATED
     };
 };

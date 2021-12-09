@@ -19,7 +19,6 @@ interface Props {
 
 const FormSectionTab = ({ value, property, title, data, id }: Props) => {
   const statuses = useSelector((state: RootState) => state.statuses);
-  const isData = useSelector((state: RootState) => state.isDataUpdated);
   const [selectValue, setSelectValue] = useState<string>((value as Status).title);
   const [isDiv, setIsDiv] = useState<boolean>(true);
   const dispatch = useDispatch();
@@ -36,7 +35,7 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
     (data[property as keyof Data] as string | Status) = newValue;
     setIsDiv(!isDiv);
     PATCH(title, id, { [property]: newValue });
-    dispatch(dispatchIsDataUpdated(!isData));
+    dispatch(dispatchIsDataUpdated());
   };
 
   const pressedEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {

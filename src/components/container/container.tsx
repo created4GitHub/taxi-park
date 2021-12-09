@@ -1,12 +1,7 @@
 import SideBar from "../sideBar/SideBar";
 import UnitsRoute from "./unitsRoute/FormRoute";
 
-interface Props {
-  isDataFiltered: boolean;
-}
-
-
-const Container = ({ isDataFiltered }: Props) => {
+const Container = () => {
 
   return (
     <div className="container">

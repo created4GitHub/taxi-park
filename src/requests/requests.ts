@@ -52,6 +52,8 @@ export const GET_STATUS = async (title: string): Promise<Status[]> => {
 };
 
 export const POST = async (title: string, info: Data): Promise<Response> => {
+  console.log(info)
+
   const response = await fetch(
     `https://edu.evgeniychvertkov.com/v1/${title}/`,
     {
