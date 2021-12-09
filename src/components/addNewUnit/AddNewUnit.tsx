@@ -16,36 +16,33 @@ const AddNewUnit = ({ title }: { title: string }) => {
   const statuses = useSelector((state: RootState) => state.statuses);
   const dispatch = useDispatch();
 
-  const checkFormValues = () => {
-    const formValues: HTMLFormControlsCollection = (formRef.current as HTMLFormElement).elements;
-    const unit: Data = {};
+  const checkForm = () => {
+    type Unit = { [key: string]: string | number | Status };
+    type InputValue = HTMLInputElement;
 
+    const formValues: HTMLFormControlsCollection = (formRef.current as HTMLFormElement).elements;
+    const unit: Unit = {};
     let isFilled: boolean = true;
 
     for (const item of Object.values(formValues)) {
-      const value = (item as HTMLInputElement).value;
-      const name = (item as HTMLInputElement).name;
       if (item.nodeName === "BUTTON") {
         break;
-      }
-      else if (value === "") {
+      } else if ((item as InputValue).value === "") {
         item.classList.add("warning");
         isFilled = false;
         continue;
-      }
-      else if (value !== "") {
-        item.classList.remove("warning");
+      } else if ((item as InputValue).name === "status") {
+        unit.status = statuses.find((status: Status) => status.title === (item as InputValue).value)!;
         continue;
       }
-      else if (name === "status") {
-        unit.status = statuses.find((status: Status) => status.title === value)!;
-        continue;
-      }
-      (unit[name as keyof Data] as string) = value;
+      
+      unit[(item as InputValue).name as keyof Data] = (item as InputValue).value;
     }
+
     if (isFilled) {
-      POST(title, (unit as Data));
-      dispatch(updateIsAddNewUnit(false));
+      POST(title, (unit as unknown as Data));
+      console.log(unit);
+      
     }
   };
 
@@ -54,7 +51,7 @@ const AddNewUnit = ({ title }: { title: string }) => {
       <form className="search-table_section_add" ref={formRef}>
         <AddNewSection title={title} />
         <Statuses />
-        <AddNewButton checkFormValues={checkFormValues} updateIsAddNewUnit={updateIsAddNewUnit} />
+        <AddNewButton checkFormValues={checkForm} updateIsAddNewUnit={updateIsAddNewUnit} />
       </form>
     </div>
 
@@ -62,3 +59,7 @@ const AddNewUnit = ({ title }: { title: string }) => {
 };
 
 export default AddNewUnit;
+function closeAddNewUnit(): any {
+  throw new Error("Function not implemented.");
+}
+
