@@ -25,7 +25,7 @@ const FormUnits = ({ title }: Props) => {
   const data = (isFilteredData && filteredData) || receivedData;
   const dispatch = useDispatch();
 
-  const fetchData = async() => {
+  async function fetchData() {
     const data = await GET(title) as Data[];
     const statuses = await GET_STATUS(title);
     dispatch(dispatchData({ data, statuses }));
@@ -33,7 +33,7 @@ const FormUnits = ({ title }: Props) => {
 
   useEffect(() => {
     fetchData();
-  }, [isDeleted, title, isDataUpdated, isAddNewUnit]);
+  }, [isDeleted, title, isDataUpdated, isAddNewUnit]);  
 
   return (
     <>

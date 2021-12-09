@@ -43,15 +43,13 @@ const initialState: InitialState = {
     resetFIlter: false,
 }
 
-const RootReducer = (state: InitialState = initialState, action: Action): InitialState => {
-    switch (action.type) {
+const RootReducer = (state: InitialState = initialState, { type, payload, data, statuses }: Action): InitialState => {
+    switch (type) {
         case DATA_RECEIVED:
-            return { ...state, data: action.data, statuses: action.statuses };
+            return { ...state, data: data, statuses: statuses };
 
         case FILTER_DATA:
-            const name = action.payload.name;
-            const value = action.payload.value;
-            const title = action.payload.title;
+            const { name, value, title } = payload;
             const filterValues: Filter = state.filterValues;
             filterValues.title = title;
             filterValues[name as keyof Filter] = value;
@@ -79,7 +77,7 @@ const RootReducer = (state: InitialState = initialState, action: Action): Initia
             };
 
         case SET_IS_ADD_NEW_UNIT:
-            return { ...state, isAddNewUnit: action.payload };
+            return { ...state, isAddNewUnit: payload };
 
         case IS_DATA_UPDATED:
             return { ...state, isDataUpdated: !state.isDataUpdated };

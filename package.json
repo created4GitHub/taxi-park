@@ -11,6 +11,7 @@
     "@types/node": "^16.11.7",
     "@types/react": "^17.0.35",
     "@types/react-dom": "^17.0.11",
+    "formik": "^2.2.9",
     "jest": "^26.6.0",
     "jest-dom": "^4.0.0",
     "react": "^17.0.2",
@@ -26,7 +27,10 @@
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.1.3",
     "sass": "^1.43.4",
-    "typescript": "^4.4.4"
+    "save": "^2.4.0",
+    "typescript": "^4.4.4",
+    "yap": "^0.0.2",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
