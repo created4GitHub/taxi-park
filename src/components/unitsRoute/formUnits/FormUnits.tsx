@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import Loader from "../loader/loader";
+import Loader from "../../loader/loader";
 import FormSection from "./formSection/FormSection";
 import UnitsTitles from "./unitsTitles/UnitsTitles";
-import { dispatchData } from "../../store/actions/actions";
-import { GET, GET_STATUS } from "../../requests/requests";
-import { RootState } from "../../store/rootReducer";
-import { Data } from "../../interfaces/interfaces";
+import { dispatchData } from "../../../store/actions/actions";
+import { GET, GET_STATUS } from "../../../requests/requests";
+import { RootState } from "../../../store/rootReducer";
+import { Data } from "../../../interfaces/interfaces";
 
 import "./formUnits.style.scss";
 const selector = (state: RootState) => state.filteredData

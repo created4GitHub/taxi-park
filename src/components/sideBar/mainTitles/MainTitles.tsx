@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { resetFilter, updateIsAddNewUnit } from "../../../store/actions/actions";
 import { Button } from "../../regularComponents/button/Button";
-import { Info } from "../../../constants/MainTitles";
+import { TitlesLinks } from "../../../constants/mainTitles";
 
 import drivers from "../../../img/drivers.svg";
 import cars from "../../../img/cars.svg";
@@ -18,7 +18,7 @@ const MainTitles = ({ isActive, setIsActive }: Props) => {
 
     return (
         <div className="content__options-paragraph">
-            {Info.map(({ title, link }) => {
+            {TitlesLinks.map(({ title, path }) => {
                 const className = isActive !== title ? "route-button path" : "route-button path active";
                 const src = title === "Drivers" ? drivers : cars;
 
@@ -35,7 +35,7 @@ const MainTitles = ({ isActive, setIsActive }: Props) => {
                 }
                 return (
                     <div className="paragraph_element-route" key={title}>
-                        <Link to={link}>
+                        <Link to={path}>
                             <Button
                                 className={className}
                                 onClick={closeUnit}

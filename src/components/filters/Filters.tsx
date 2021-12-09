@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import FilterStatuses from "./filterStatuses/FilterStatuses";
 import FilterInputs from "./filterInputs/FilterInputs";
 import ResetButton from "./resetButton/ResetButton";
-import { years } from "../../constants/years";
+import { Years } from "../../constants/years";
 import { filterData, resetFilter } from "../../store/actions/actions";
 import { RootState } from "../../store/rootReducer";
 
@@ -32,7 +32,7 @@ const Filters = ({ title, isDataUpdated }: Props) => {
     (
       <div className="filter_element-yearSelect">
         <select name="year" onChange={filter}>
-          {years.map((item: number) => {
+          {Years.map((item: number) => {
             return (
               <option key={item} value={item}>
                 {item}

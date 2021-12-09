@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 import FormSectionTab from "./formSectionTab/FormSectionTab";
-import { Button } from "../../regularComponents/button/Button";
+import { Button } from "../../../regularComponents/button/Button";
 import AdditionalData from "./additionalInfo/AdditionalInfo";
-import { Data } from "../../../interfaces/interfaces";
-import { GET, REMOVE, GET_CARS_BY_DRIVER } from "../../../requests/requests";
+import { Data } from "../../../../interfaces/interfaces";
+import { GET, REMOVE, GET_CARS_BY_DRIVER } from "../../../../requests/requests";
 
 import "./formSection.style.scss";
 

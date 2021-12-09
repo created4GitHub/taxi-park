@@ -1,4 +1,4 @@
-export const years: number[] = [];
+export const Years: number[] = [];
 for (let index: number = 2021; index >= 1960; index--) {
-    years.push(index);
+    Years.push(index);
 }

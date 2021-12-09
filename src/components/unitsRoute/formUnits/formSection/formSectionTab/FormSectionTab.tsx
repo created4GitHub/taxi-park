@@ -1,11 +1,11 @@
 import { useState, MouseEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import Statuses from "../../../statuses/Statuses";
-import { PATCH } from "../../../../requests/requests";
-import { RootState } from "../../../../store/rootReducer";
-import { Data, Status } from "../../../../interfaces/interfaces";
-import { dispatchIsDataUpdated } from "../../../../store/actions/actions";
+import Statuses from "../../../../statuses/Statuses";
+import { PATCH } from "../../../../../requests/requests";
+import { RootState } from "../../../../../store/rootReducer";
+import { Data, Status } from "../../../../../interfaces/interfaces";
+import { dispatchIsDataUpdated } from "../../../../../store/actions/actions";
 
 import "./formSectionTab.style.scss";
 

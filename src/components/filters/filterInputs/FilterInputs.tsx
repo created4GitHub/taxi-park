@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
 
 import Input from "../../regularComponents/input/Input";
-import { CarInfo, DriverInfo } from "../../../constants/FilterInputs"
+import { CarInfo, DriverInfo } from "../../../constants/filterInputs"
 import { Filter } from "../../../interfaces/interfaces";
 
 interface Props {

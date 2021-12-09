@@ -1,7 +1,7 @@
-import { Data, Status } from "../../../../interfaces/interfaces";
-import { driverTitles, carTitles } from "../../../../constants/AdditionalInfo";
+import { Data, Status } from "../../../../../interfaces/interfaces";
+import { DriverTitles, CarTitles } from "../../../../../constants/additionalInfo";
 
-import icons from "../../../../img/IconsDirection.svg";
+import icons from "../../../../../img/IconsDirection.svg";
 
 const AdditionalData = ({ additionalData, title }: { additionalData: Data[], title: string }) => {
     const renderTitles = (array: string[]) => {
@@ -13,7 +13,7 @@ const AdditionalData = ({ additionalData, title }: { additionalData: Data[], tit
     return (
         <div className="table_section_isActive">
             <div className="block">
-                {title === 'car' ? renderTitles(driverTitles) : renderTitles(carTitles)}
+                {title === 'car' ? renderTitles(DriverTitles) : renderTitles(CarTitles)}
             </div>
             {additionalData?.map((item: Data) => {
                 return (

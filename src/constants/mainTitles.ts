@@ -1,16 +1,16 @@
 import { DriversPath, CarsPath } from "./pathes";
-interface Route {
+interface Titles {
     path: string;
     title: string;
 }
 
-export const RoutesInfo: Route[] = [
+export const TitlesLinks: Titles[] = [
     {
         path: DriversPath,
-        title: "driver"
+        title: "Driver"
     },
     {
         path: CarsPath,
-        title: "car"
+        title: "Car"
     }
 ]

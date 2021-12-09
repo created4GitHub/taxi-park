@@ -1,7 +1,7 @@
 import React from "react";
 
 import { ErrorMessage, Field } from "formik";
-import { years } from "../../../constants/years";
+import { Years } from "../../../constants/years";
 import DriverIDList from "../../driverListById/DriverListById";
 
 interface Props {
@@ -18,8 +18,8 @@ const OptionalInfo = ({ isCar }: Props) => {
                     name="year"
                     className="table_section-error" />
                 <Field as="select" name="year" className="filter_element-yearSelect">
-                    <option value="none" selected hidden>Select</option>
-                    {years.map((item: number) => {
+                    <option value="none" hidden>Select</option>
+                    {Years.map((item: number) => {
                         return (
                             <option key={item} value={item}>
                                 {item}

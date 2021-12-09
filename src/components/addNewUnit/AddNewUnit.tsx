@@ -9,7 +9,7 @@ import { updateIsAddNewUnit } from "../../store/actions/actions";
 import { POST } from "../../requests/requests";
 import { Data, Status } from "../../interfaces/interfaces";
 import { RootState } from "../../store/rootReducer";
-import { CarInfo, DriverInfo } from "../../constants/AddNewSection";
+import { CarInfo, DriverInfo } from "../../constants/addNewSection";
 import OptionalInfo from "./optionalInfo/OptionalInfo";
 
 import "./addNewUnit.style.scss";
@@ -31,7 +31,7 @@ const AddNewUnit = ({ title }: { title: string }) => {
   const check = {
     model: Yup.string().required('Required'), year: Yup.string().required('Required')
   }
-  console.log("re")
+
   return (
     <Formik
       initialValues={{ ...initialValues, year: "" }}

@@ -1,4 +1,4 @@
-import { CarInfo, DriverInfo } from "../../../constants/UnitsTitles"
+import { CarInfo, DriverInfo } from "../../../../constants/unitsTitles"
 
 import './unitsTitles.style.scss'
 

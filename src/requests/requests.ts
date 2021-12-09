@@ -1,5 +1,5 @@
 import { Data, Status } from "../interfaces/interfaces";
-import { headers } from "../constants/requests";
+import { headers, url, body } from "../constants/requests";
 
 interface Response {
   is_error: string;
@@ -10,7 +10,7 @@ interface Response {
 export const GET = async (title: string, id?: number): Promise<Data[] | Data> => {
   const query = (id && `${title}/${id}`) || `${title}`;
   const response = await fetch(
-    `https://edu.evgeniychvertkov.com/v1/${query}/`,
+    url + `${query}/`,
     {
       method: "GET",
       headers,
@@ -32,7 +32,7 @@ export const GET = async (title: string, id?: number): Promise<Data[] | Data> =>
 };
 
 export const GET_CARS_BY_DRIVER = async (id: string): Promise<Response> => {
-  const response = await fetch("https://edu.evgeniychvertkov.com/v1/car/", {
+  const response = await fetch(url + "car/", {
     method: "GET",
     headers,
   });
@@ -41,7 +41,7 @@ export const GET_CARS_BY_DRIVER = async (id: string): Promise<Response> => {
 
 export const GET_STATUS = async (title: string): Promise<Status[]> => {
   const response = await fetch(
-    `https://edu.evgeniychvertkov.com/v1/${title}-status/`,
+    url + `${title}-status/`,
     {
       method: "GET",
       headers,
@@ -52,14 +52,13 @@ export const GET_STATUS = async (title: string): Promise<Status[]> => {
 };
 
 export const POST = async (title: string, info: Data): Promise<Response> => {
-  console.log(info)
 
   const response = await fetch(
-    `https://edu.evgeniychvertkov.com/v1/${title}/`,
+    url + `${title}/`,
     {
       method: "POST",
       headers,
-      body: JSON.stringify(info),
+      ...body(info),
     }
   );
   return await response.json();
@@ -71,11 +70,11 @@ export const PATCH = async (
   info: { [key: string]: string | number | Status }
 ): Promise<Response> => {
   const response = await fetch(
-    `https://edu.evgeniychvertkov.com/v1/${title}/` + id + "/",
+    url + `${title}/` + id + "/",
     {
       method: "PATCH",
       headers,
-      body: JSON.stringify(info),
+      ...body(info),
     }
   );
   return await response.json();
@@ -83,7 +82,7 @@ export const PATCH = async (
 
 export const REMOVE = async (title: string, id: number): Promise<Response> => {
   const response = await fetch(
-    `https://edu.evgeniychvertkov.com/v1/${title}/` + id + "/",
+    url + `${title}/` + id + "/",
     {
       method: "DELETE",
       headers,
