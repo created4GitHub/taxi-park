@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import { Status } from "../../interfaces/interfaces";
 import { RootState } from "../../store/rootReducer";
 
+import './statuses.style.scss'
+
 interface Props {
     value?: string;
     id?: string;
