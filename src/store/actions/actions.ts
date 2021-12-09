@@ -1,7 +1,7 @@
 import { Data, Status } from "../../interfaces/interfaces";
 import {
     DATA_RECEIVED,
-    SET_IS_OPEN,
+    SET_IS_ADD_NEW_UNIT,
     IS_DATA_UPDATED,
     FILTER_DATA,
     RESET_FILTER
@@ -30,14 +30,13 @@ export const resetFilter = () => {
 
 export const updateIsAddNewUnit = (payload: boolean) => {
     return {
-        type: SET_IS_OPEN,
+        type: SET_IS_ADD_NEW_UNIT,
         payload
     };
 };
 
-export const dispatchIsDataUpdated = (isUpdated: boolean) => {
+export const dispatchIsDataUpdated = () => {
     return {
         type: IS_DATA_UPDATED,
-        payload: isUpdated
     };
 };

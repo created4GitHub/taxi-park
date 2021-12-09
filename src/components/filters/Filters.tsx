@@ -11,9 +11,10 @@ import "./filters.style.scss";
 
 interface Props {
   title: string;
+  renderForm: any;
 }
 
-const Filters = ({ title }: Props) => {
+const Filters = ({ title, renderForm }: Props) => {
   const filterValues = useSelector((state: RootState) => state.filterValues);
   const dispatch = useDispatch();
 

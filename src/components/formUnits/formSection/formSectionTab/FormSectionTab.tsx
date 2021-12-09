@@ -36,7 +36,7 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
     (data[property as keyof Data] as string | Status) = newValue;
     setIsDiv(!isDiv);
     PATCH(title, id, { [property]: newValue });
-    dispatch(dispatchIsDataUpdated(!isData));
+    dispatch(dispatchIsDataUpdated());
   };
 
   const pressedEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {

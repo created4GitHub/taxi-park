@@ -7,7 +7,7 @@ import { RoutesInfo } from "../../../constants/RoutesInfo"
 import { RootState } from "../../../store/rootReducer";
 
 const UnitsRoute = () => {
-    const isAddNew = useSelector((state: RootState) => state.isAddNew);
+    const isAddNewUnit = useSelector((state: RootState) => state.isAddNewUnit);
 
     return (
         <div className="content__inform">
@@ -18,7 +18,7 @@ const UnitsRoute = () => {
                             path={path}
                             element={
                                 <>
-                                    {isAddNew && <AddNewUnit title={title} />}
+                                    {isAddNewUnit && <AddNewUnit title={title} />}
                                     <FormUnits title={title} />
                                 </>}
                         /><Route />

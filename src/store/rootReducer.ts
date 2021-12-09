@@ -3,7 +3,7 @@ import {
     DATA_RECEIVED,
     FILTER_DATA,
     RESET_FILTER,
-    SET_IS_OPEN,
+    SET_IS_ADD_NEW_UNIT,
     IS_DATA_UPDATED
 } from './types'
 
@@ -19,8 +19,7 @@ interface InitialState {
     filteredData: Data[];
     filterValues: Filter;
     statuses: Status[];
-    isAddNew: FilterData | boolean;
-    isRerender: boolean;
+    isAddNewUnit: FilterData | boolean;
     isDataUpdated: FilterData | boolean;
     isDataFiltered: boolean;
     resetFIlter: boolean;
@@ -38,8 +37,7 @@ const initialState: InitialState = {
     filteredData: [],
     filterValues: {},
     statuses: [],
-    isAddNew: false,
-    isRerender: false,
+    isAddNewUnit: false,
     isDataUpdated: false,
     isDataFiltered: false,
     resetFIlter: false,
@@ -72,19 +70,19 @@ const RootReducer = (state: InitialState = initialState, action: Action): Initia
                     }
                 });
             }
-            return { ...state, filteredData: result, isRerender: !state.isRerender, isDataFiltered: true };
+            return { ...state, filteredData: result, isDataUpdated: !state.isDataUpdated , isDataFiltered: true };
 
         case RESET_FILTER:
             return {
                 ...state, filteredData: state.data, isDataFiltered: false,
-                isRerender: !state.isRerender, resetFIlter: true, filterValues: {}
+                isDataUpdated: !state.isDataUpdated, resetFIlter: true, filterValues: {}
             };
 
-        case SET_IS_OPEN:
-            return { ...state, isAddNew: action.payload };
+        case SET_IS_ADD_NEW_UNIT:
+            return { ...state, isAddNewUnit: action.payload };
 
         case IS_DATA_UPDATED:
-            return { ...state, isDataUpdated: action.payload };
+            return { ...state, isDataUpdated: !state.isDataUpdated };
 
         default:
             return state;
