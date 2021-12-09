@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store/rootReducer";
 
 const FilterRoutes = () => {
-    const renderForm = useSelector((state: RootState) => state.resetForm);
+    const renderForm = useSelector((state: RootState) => state.isDataUpdated);
 
     return (
         <Routes>
