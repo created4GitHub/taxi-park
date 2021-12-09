@@ -33,7 +33,7 @@ const FormUnits = ({ title }: Props) => {
 
   useEffect(() => {
     fetchData();
-  }, [isDeleted, title, isDataUpdated, isAddNewUnit]);  
+  }, [isDeleted, title, isDataUpdated, isAddNewUnit]);
 
   const mapItems = (item: Data) => {
     return (

@@ -1,29 +1,39 @@
-import Input from "../../regularComponents/input/Input";
-import YearSelect from "../../yearSelect/YearSelect";
+import React from "react";
+
+import { ErrorMessage, Field } from "formik";
+import { years } from "../../../constants/years";
 import DriverIDList from "../../driverListById/DriverListById";
 
 interface Props {
-    title: string;
+    isCar: boolean;
 }
 
-const OptionalInfo = ({ title }: Props) => {
-    const optionalInfo: JSX.Element = (title === "car" &&
-        <>
-            <YearSelect name="year" />
-            <DriverIDList name="driver_id" />
-        </>
-    ) || (
-            <Input
+const OptionalInfo = ({ isCar }: Props) => {
+
+    return (
+        isCar ?
+            <>
+                <ErrorMessage
+                    component="span"
+                    name="year"
+                    className="table_section-error" />
+                <Field as="select" name="year" className="filter_element-yearSelect">
+                    <option value="none" selected hidden>Select</option>
+                    {years.map((item: number) => {
+                        return (
+                            <option key={item} value={item}>
+                                {item}
+                            </option>
+                        )
+                    })}
+                </Field>
+                <DriverIDList />
+            </>
+            : <Field
                 type="date"
                 className='table_section-input-date'
                 name="date_birth"
             />
-        );
-
-    return (
-        <>
-            {optionalInfo}
-        </>
     )
 }
 

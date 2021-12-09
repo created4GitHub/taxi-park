@@ -13,15 +13,14 @@ const UnitsRoute = () => {
         <div className="content__inform">
             <div className="table">
                 <Routes>
-                {RoutesInfo.map(({ path, title }) => 
+                    {RoutesInfo.map(({ path, title }) =>
                         <Route key={title} path={path} element={
                             <>
-                            {console.log(1234)}
                                 {isAddNewUnit && <AddNewUnit title={title} />}
                                 <FormUnits title={title} />
                             </>
-                        }/>
-                        )}
+                        } />
+                    )}
                 </Routes>
             </div>
         </div>

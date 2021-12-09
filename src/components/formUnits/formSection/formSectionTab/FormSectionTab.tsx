@@ -76,11 +76,15 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
               onKeyPress={pressedEnter}
             />)
         ) : (
-          <Statuses
+          <select
+            name="status"
+            className="table_section-tab-select"
             value={selectValue}
             onChange={saveStatus}
             id={property}
-          />
+          >
+            <Statuses />
+          </select>
         )}
       </div>
     </>

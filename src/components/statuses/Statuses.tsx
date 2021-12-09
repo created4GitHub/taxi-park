@@ -14,13 +14,7 @@ const Statuses = ({ value, onChange, id }: Props) => {
     const statuses = useSelector((state: RootState) => state.statuses);
 
     return (
-        <select
-            name="status"
-            className="table_section-tab-select"
-            value={value}
-            onChange={onChange}
-            id={id}
-        >
+        <>
             {statuses.map((item: Status) => {
                 return (
                     <option key={item.title} >
@@ -28,7 +22,7 @@ const Statuses = ({ value, onChange, id }: Props) => {
                     </option>
                 )
             })}
-        </select>
+        </>
     )
 }
 
