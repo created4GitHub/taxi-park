@@ -52,7 +52,6 @@ export const GET_STATUS = async (title: string): Promise<Status[]> => {
 };
 
 export const POST = async (title: string, info: Data): Promise<Response> => {
-
   const response = await fetch(
     url + `${title}/`,
     {

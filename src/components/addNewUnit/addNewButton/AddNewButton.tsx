@@ -5,7 +5,7 @@ import deleteObj from "../../../img/deleteObj.svg";
 import { Button } from "../../regularComponents/button/Button";
 
 interface Props {
-  updateIsAddNewUnit: (payload: boolean) => {
+  updateIsAddNewUnit: (payload: boolean | null) => {
     type: string;
   };
 }
@@ -13,7 +13,7 @@ interface Props {
 const AddNewButton = ({ updateIsAddNewUnit }: Props) => {
   const dispatch = useDispatch();
 
-  const closeAddingField = () => dispatch(updateIsAddNewUnit(false));
+  const closeAddingField = () => dispatch(updateIsAddNewUnit(null));
 
   return (
     <div className="table_section_buttons">

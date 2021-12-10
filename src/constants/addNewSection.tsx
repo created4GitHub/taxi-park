@@ -1,36 +1,30 @@
-interface Info {
+export interface Info {
     name: string;
     placeholder: string;
-    length: number;
 };
 
 export const CarInfo: Info[] = [
     {
         name: "model",
-        placeholder: "Model",
-        length: 15
+        placeholder: "Model"
     },
     {
         name: "mark",
-        placeholder: "Mark",
-        length: 10
+        placeholder: "Mark"
     },
     {
         name: "number",
-        placeholder: "Number",
-        length: 8
+        placeholder: "Number"
     }
 ];
 
 export const DriverInfo: Info[] = [
     {
         name: "first_name",
-        placeholder: "Name",
-        length: 15
+        placeholder: "Name"
     },
     {
         name: "last_name",
-        placeholder: "Surname",
-        length: 15
+        placeholder: "Surname"
     },
 ];

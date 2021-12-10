@@ -24,13 +24,13 @@ const MainTitles = ({ isActive, setIsActive }: Props) => {
 
                 const closeUnit = () => {
                     setIsActive(title);
-                    dispatch(updateIsAddNewUnit(false));
+                    dispatch(updateIsAddNewUnit(title));
                     dispatch(resetFilter());
                 }
 
                 const openUnit = () => {
                     setIsActive(title);
-                    dispatch(updateIsAddNewUnit(true));
+                    dispatch(updateIsAddNewUnit(title));
                     dispatch(resetFilter());
                 }
                 return (

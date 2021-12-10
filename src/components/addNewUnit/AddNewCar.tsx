@@ -3,9 +3,11 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { DriverInfo } from "../../constants/addNewSection";
+import { CarInfo } from "../../constants/addNewSection";
 import FormikInput from "../formikComponents/FormikInput";
 import FormikSelect from "../formikComponents/FormikSelect"
+import YearsOptions from "../../constants/years";
+import DriverListById from '../driverListById/DriverListById';
 import Statuses from '../statuses/Statuses';
 import AddNewButton from './addNewButton/AddNewButton';
 import { updateIsAddNewUnit } from "../../store/actions/actions";
@@ -15,10 +17,12 @@ import { POST } from '../../requests/requests';
 
 import "./addNewUnit.style.scss";
 
-export interface Driver {
-    first_name: string;
-    last_name: string;
-    date_birth: number | string;
+export interface Car {
+    mark: string;
+    model: string;
+    number: string;
+    driver_id: string | number;
+    year: string | number;
     status: {
         title: string;
         code: string;
@@ -26,26 +30,33 @@ export interface Driver {
 }
 
 
-const AddNewDriver: React.FC = () => {
+const AddNewCar: React.FC = () => {
     const statuses = useSelector((state: RootState) => state.statuses);
     const dispatch = useDispatch();
-    const initialValues: Driver = {
-        first_name: "",
-        last_name: "",
-        date_birth: "",
-        status: ""
+    const initialValues: Car = {
+        mark: '',
+        model: '',
+        year: '',
+        number: '',
+        driver_id: '',
+        status: '',
     };
     return (
         <Formik
             initialValues={initialValues}
             validationSchema={Yup.object({
-                first_name: Yup.string()
-                    .max(15, 'Must be 20 characters or less')
+                mark: Yup.string()
+                    .max(10, 'Must be 20 characters or less')
                     .required('Required'),
-                last_name: Yup.string()
+                model: Yup.string()
                     .max(15, 'Must be 15 characters or less')
                     .required('Required'),
-                date_birth: Yup.string()
+                number: Yup.string()
+                    .max(8, 'Must be 20 characters or less')
+                    .required('Required'),
+                year: Yup.string()
+                    .required('Required'),
+                driver_id: Yup.string()
                     .required('Required'),
                 status: Yup.string()
                     .required('Required'),
@@ -53,24 +64,29 @@ const AddNewDriver: React.FC = () => {
             onSubmit={(values, { setSubmitting }) => {
                 const status = statuses.find((status: Status) => status.title === values.status)!;
                 values.status = status;
-                POST("driver", (values as Data));
-                dispatch(updateIsAddNewUnit(null));
+                POST("car", (values as Data));
+                dispatch(updateIsAddNewUnit(false));
             }}
         >
             <div className="table_section_add">
                 <Form className="search-table_section_add">
-                    {DriverInfo.map(({ name, placeholder }) =>
-                        <FormikInput {...{ name, placeholder, type: "text" }} />
+                    {CarInfo.map(({ name, placeholder }) =>
+                        <FormikInput key={name} {...{ name, placeholder, type: "text" }} />
                     )}
-                    <FormikInput {...{ name: "date_birth", type: "date" }} />
+                    <FormikSelect name="year">
+                        <YearsOptions />
+                    </FormikSelect>
+                    <FormikSelect name="driver_id">
+                        <DriverListById />
+                    </FormikSelect>
                     <FormikSelect name="status">
                         <Statuses />
                     </FormikSelect>
                     <AddNewButton updateIsAddNewUnit={updateIsAddNewUnit} />
                 </Form>
-            </div>
-        </Formik>
+            </div >
+        </Formik >
     );
 };
 
-export default AddNewDriver;
+export default AddNewCar;

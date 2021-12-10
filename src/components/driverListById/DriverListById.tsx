@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Field } from 'formik';
 
 import { GET } from "../../requests/requests";
 import { Data } from "../../interfaces/interfaces";
@@ -19,8 +18,8 @@ const DriverIDList: React.FC = () => {
   }, []);
 
   return (
-    <Field as="select" name="driver_id">
-      <option value="none" selected hidden>Select</option>
+    <>
+      <option value="" hidden>Select</option>
       {drivers?.map(item => {
         return (
           <option key={item.id} value={item.id}>
@@ -28,7 +27,7 @@ const DriverIDList: React.FC = () => {
           </option>
         )
       })}
-    </Field>
+    </>
   )
 };
 

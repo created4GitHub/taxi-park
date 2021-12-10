@@ -1,9 +1,8 @@
 import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
-import AddNewUnit from "../addNewUnit/AddNewUnit";
 import AddNewDriver from "../addNewUnit/AddNewDriver";
-import { AddNewCar } from "../addNewUnit/AddNewCar";
+import AddNewCar from "../addNewUnit/AddNewCar";
 import FormUnits from "../formUnits/FormUnits";
 import { RoutesInfo } from "../../constants/routesInfo"
 import { RootState } from "../../store/rootReducer";
@@ -18,7 +17,7 @@ const UnitsRoute = () => {
                     {RoutesInfo.map(({ path, title }) =>
                         <Route key={title} path={path} element={
                             <>
-                                {isAddNewUnit}
+                                {isAddNewUnit && <AddNewDriver />}
                                 <FormUnits title={title} />
                             </>
                         } />

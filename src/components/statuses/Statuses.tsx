@@ -17,6 +17,7 @@ const Statuses = ({ value, onChange, id }: Props) => {
 
     return (
         <>
+            <option value="" hidden>Select</option>
             {statuses.map((item: Status) => {
                 return (
                     <option key={item.title} >

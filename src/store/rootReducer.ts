@@ -19,13 +19,13 @@ interface InitialState {
     filteredData: Data[];
     filterValues: Filter;
     statuses: Status[];
-    isAddNewUnit: boolean;
+    isAddNewUnit: string | null;
     isDataUpdated: boolean;
     isDataFiltered: boolean;
 }
 
 interface Action {
-    payload: FilterData | boolean;
+    payload: FilterData | string;
     data: Data[],
     statuses: Status[],
     type: string,
@@ -36,7 +36,7 @@ const initialState: InitialState = {
     filteredData: [],
     filterValues: {},
     statuses: [],
-    isAddNewUnit: false,
+    isAddNewUnit: null,
     isDataUpdated: false,
     isDataFiltered: false,
 }
@@ -70,7 +70,7 @@ const RootReducer = (state: InitialState = initialState, { type, payload, data, 
             };
 
         case SET_IS_ADD_NEW_UNIT:
-            return { ...state, isAddNewUnit: (payload as boolean) };
+            return { ...state, isAddNewUnit: (payload as string) };
 
         case IS_DATA_UPDATED:
             return { ...state, isDataUpdated: !state.isDataUpdated };

@@ -10,6 +10,7 @@ import { RootState } from "../../store/rootReducer";
 import { Data } from "../../interfaces/interfaces";
 
 import "./formUnits.style.scss";
+
 const selector = (state: RootState) => state.filteredData
 interface Props {
   title: string;
