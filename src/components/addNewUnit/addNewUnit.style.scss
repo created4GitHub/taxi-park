@@ -38,6 +38,8 @@
             cursor: pointer;
             display: flex;
             align-items: center;
+            .addUnit{}
+            .closeUnit{}
         }
 
         .table_section-button:hover {
@@ -69,7 +71,7 @@
     }
 
     select {
-        height: 25px;
+        height: 30px;
         border-radius: 8px;
         border: solid silver 1px;
     }

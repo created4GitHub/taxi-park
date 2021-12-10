@@ -20,12 +20,12 @@ const AddNewButton = ({ updateIsAddNewUnit }: Props) => {
       <Button
         type="submit"
         className="table_section-button"
-        btnText={<img src={addObj} alt="alt" />}
+        btnText={<img src={addObj} className="addUnit" alt="alt" />}
       />
       <Button
         onClick={closeAddingField}
         className="table_section-button"
-        btnText={<img src={deleteObj} alt="alt" />}
+        btnText={<img src={deleteObj} className="closeUnit" alt="alt" />}
       />
     </div>
   );

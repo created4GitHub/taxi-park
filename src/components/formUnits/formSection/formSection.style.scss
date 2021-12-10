@@ -46,6 +46,12 @@
             margin-top: 10px;
         }
     }
+    .table_section-deleteButton:hover{
+        box-shadow: 0 0 10px 1px #ff9c9cab;
+    }
+    .table_section-deleteButton:active{
+        box-shadow: 0 0 8px 0 #ff9c9cab;
+    }
     .table_section-showButton {
         min-width: 55px;
         margin-left: 30px;
@@ -64,6 +70,12 @@
             margin-left: 0;
             margin-top: 10px;
         }
+    }
+    .table_section-showButton:hover{
+        box-shadow: 0 0 10px 1px #a5fcb0ab;
+    }
+    .table_section-showButton:active{
+        box-shadow: 0 0 8px 0 #afffb996;
     }
 }
 .table_section_isActive {

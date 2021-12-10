@@ -43,9 +43,7 @@
             .paragraph_element-route {
                 border-bottom: solid #c0c0c04d 1px;
                 align-items: center;
-                .addNewUnit {
-                    border-radius: 8px;
-                }
+
             }
         }
         @media (max-width: 690px) {
@@ -70,18 +68,32 @@
         .addNewUnit {
             width: 40px;
             height: 40px;
-            border-color: #3498db;
             color: white;
-            box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
+            background:  #3498db;
             cursor: pointer;
             outline: none;
             border: 1px solid #3498db;
-            font-size: 30px;
-            font-family: Gilroy;
-        }
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            box-shadow: 0 0 8px 2px #c0c0c0c2;;
 
+            .addNewUnit-paragraph{
+                font-size: 30px;
+            }
+        }
         .addNewUnit:hover {
-            font-weight: 600;
+            .addNewUnit-paragraph{
+                font-weight: 600;
+            }
+        }
+        .addNewUnit:active {
+            box-shadow: 0 0 8px 2px rgb(134 138 216 / 36%);
+
+            .addNewUnit-paragraph{
+                font-weight: 100;
+            }
         }
 
         .route-button {
@@ -225,6 +237,9 @@
             }
             .filter-element {
                 font-size: 14px;
+                label, input{
+                    cursor: pointer;
+                }
             }
         }
 
@@ -240,6 +255,8 @@
                 border-radius: 8px;
                 color: black;
                 border: solid silver 1px;
+                cursor: pointer;
+                
                 @media (max-width: 1080px) {
                     height: 25px;
                     width: 60px;
@@ -261,6 +278,7 @@
             align-items: center;
             justify-content: center;
 
+      
             @media (max-width: 1080px) {
                 height: 100%;
             }
@@ -284,6 +302,16 @@
                     width: 300px;
                     height: 45px;
                 }
+            }
+        }
+        .reset-filter-button:hover{
+            button{
+                box-shadow: 0 0 14px 1px #e2dfbb;
+            }
+        }
+        .reset-filter-button:active{
+            button{
+                box-shadow: 0 0 8px 0 #e2dfbb;
             }
         }
     }

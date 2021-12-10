@@ -10,4 +10,11 @@
     font-size: 12px;
     line-height: 16px;
     color: #D09700;
+    cursor: pointer;
+}
+.table_section-tab-select:hover {
+    box-shadow: 0 0 8px 1px #e0dda0d1;
+}
+.table_section-tab-select:active {
+    box-shadow: 0 0 2px 1px #e0dda0d1;
 }

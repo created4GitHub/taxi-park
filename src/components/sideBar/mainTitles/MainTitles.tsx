@@ -51,7 +51,7 @@ const MainTitles = ({ isActive, setIsActive }: Props) => {
                             />
                             <Button
                                 onClick={openUnit}
-                                btnText="+"
+                                btnText={<p className='addNewUnit-paragraph'>+</p>}
                                 className="addNewUnit"
                             />
                         </Link>
