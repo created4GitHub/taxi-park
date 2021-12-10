@@ -1,5 +1,6 @@
 import { CarInfo, DriverInfo } from "../../../constants/unitsTitles"
 
+import IconsDirection from '../../../img/IconsDirection.svg'
 import './unitsTitles.style.scss'
 
 const UnitsTitles = ({ title }: { title: string }) => {
@@ -11,13 +12,13 @@ const UnitsTitles = ({ title }: { title: string }) => {
                 if (["Drivers", "Cars"].includes(item)) {
                     return (
                         <div key={item} className="title-section-button">
-                            <div className='title-section-title'>{item}</div>
-                            <div className='title-section-title'>Delete</div>
+                            <div className='title-section-title'>{item}  <img src={IconsDirection} alt="alt"/></div>
+                            <div className='title-section-title'>Delete  <img src={IconsDirection} alt="alt"/></div>
                         </div>
                     )
                 }
                 else {
-                    return <div key={item} className='title-section-title'>{item}</div>
+                    return <div key={item} className='title-section-title'>{item}  <img src={IconsDirection} alt="alt"/></div>
                 }
             })}
         </div>

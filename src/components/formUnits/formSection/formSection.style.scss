@@ -17,6 +17,7 @@
     background-color: white;
     justify-content: space-evenly;
     align-items: center;
+
     @media (max-width: 840px) {
         height: 100%;
         min-width: 150px;
@@ -27,37 +28,54 @@
         border-right: 1px solid #eeeeee;
         border-bottom: none;
     }
-
     .table_section-deleteButton {
         margin-left: 30px;
         height: 30px;
-        border-color: #e22721;
-        color: white;
-        box-shadow: 0 0 40px 40px #e22721 inset, 0 0 0 0 #e22721;
         cursor: pointer;
         outline: none;
-        border: 1px solid #e22721;
-        border-radius: 10px;
+        border: none;
+        border-radius: 8px;
+        background: #FDEBEB;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 16px;
+        color: #F00404;
+
         @media (max-width: 840px) {
             margin-left: 0;
             margin-top: 10px;
         }
     }
+    .table_section-deleteButton:hover{
+        box-shadow: 0 0 10px 1px #ff9c9cab;
+    }
+    .table_section-deleteButton:active{
+        box-shadow: 0 0 8px 0 #ff9c9cab;
+    }
     .table_section-showButton {
         min-width: 55px;
         margin-left: 30px;
         height: 30px;
-        border-color: #21e22b;
-        color: white;
-        box-shadow: 0 0 40px 40px #21e22b inset, 0 0 0 0 #21e22b;
         cursor: pointer;
         outline: none;
-        border: 1px solid #21e22b;
-        border-radius: 10px;
+        border: none;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 16px;
+        color: #26C124;
+        background: #EBF9EB;
+        border-radius: 8px;
+
         @media (max-width: 840px) {
             margin-left: 0;
             margin-top: 10px;
         }
+    }
+    .table_section-showButton:hover{
+        box-shadow: 0 0 10px 1px #a5fcb0ab;
+    }
+    .table_section-showButton:active{
+        box-shadow: 0 0 8px 0 #afffb996;
     }
 }
 .table_section_isActive {

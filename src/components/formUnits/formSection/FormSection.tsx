@@ -59,7 +59,7 @@ const FormSection = ({ data, title, setIsDeleted }: Props) => {
         <Button
           onClick={deleteEl}
           className="table_section-deleteButton"
-          btnText="delete"
+          btnText="Delete"
         />
       </div>
       {isAdditionalData && <AdditionalData additionalData={additionalData} title={title} />}
