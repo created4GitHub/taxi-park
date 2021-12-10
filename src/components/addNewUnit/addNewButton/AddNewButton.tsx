@@ -5,7 +5,7 @@ import deleteObj from "../../../img/deleteObj.svg";
 import { Button } from "../../regularComponents/button/Button";
 
 interface Props {
-  updateIsAddNewUnit: (payload: boolean | null) => {
+  updateIsAddNewUnit: (payload: string | null) => {
     type: string;
   };
 }
