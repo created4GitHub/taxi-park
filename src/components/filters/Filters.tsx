@@ -4,8 +4,9 @@ import FilterStatuses from "./filterStatuses/FilterStatuses";
 import FilterInputs from "./filterInputs/FilterInputs";
 import ResetButton from "./resetButton/ResetButton";
 import YearSelect from "../yearSelect/YearSelect";
-import { filterData, resetFilter } from "../../store/actions/actions";
-import { RootState } from "../../store/rootReducer";
+import { filterData, resetFilter } from "../../redux/actions/actions";
+import { filterValuesSelector } from "../../constants/selectors/selector";
+import { RootState } from "../../redux/rootReducer";
 
 import "./filters.style.scss";
 
@@ -15,7 +16,7 @@ interface Props {
 }
 
 const Filters = ({ title, isDataUpdated }: Props) => {
-  const filterValues = useSelector((state: RootState) => state.filterValues);
+  const filterValues = useSelector(filterValuesSelector);
   const dispatch = useDispatch();
 
   const reset = () => {

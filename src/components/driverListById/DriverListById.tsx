@@ -22,15 +22,19 @@ const DriverIDList: React.FC<Props> = ({ name, onChange }: Props) => {
     fetchData();
   }, []);
 
+  const mapItems = (item: Data) => {
+    return (
+      <option key={item.id} value={item.id}>
+        {item.first_name + " " + item.last_name}
+      </option>
+    )
+  }
+
+  const mappedItems = drivers?.map(mapItems)
+
   return (
     <select name={name} onChange={onChange}>
-      {drivers?.map((item: Data) => {
-        return (
-          <option key={item.id} value={item.id}>
-            {item.first_name + " " + item.last_name}
-          </option>
-        )
-      })}
+      {mappedItems}
     </select>
   );
 };

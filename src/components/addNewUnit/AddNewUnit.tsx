@@ -6,18 +6,19 @@ import * as Yup from 'yup';
 import OptionalInfo from "./optionalInfo/OptionalInfo";
 import AddNewButton from "./addNewButton/AddNewButton";
 import Statuses from "../statuses/Statuses";
-import { updateIsAddNewUnit } from "../../store/actions/actions";
+import { updateIsAddNewUnit } from "../../redux/actions/actions";
 import { POST } from "../../requests/requests";
 import { Data, Status } from "../../interfaces/interfaces";
-import { RootState } from "../../store/rootReducer";
+import { RootState } from "../../redux/rootReducer";
 import { CarInfo, DriverInfo } from "../../constants/AddNewSection"
 import Input from "../regularComponents/input/Input";
 
 import "./addNewUnit.style.scss";
+import { statusesSelector } from "../../constants/selectors/selector";
 
 const AddNewUnit = ({ title }: { title: string }) => {
   // const formRef = useRef<HTMLFormElement>(null);
-  const statuses = useSelector((state: RootState) => state.statuses);
+  const statuses = useSelector(statusesSelector);
   const dispatch = useDispatch();
   const info = (title === "car" && CarInfo) || DriverInfo;
   const initialValues: { [key: string]: string } = {};
@@ -61,9 +62,6 @@ const AddNewUnit = ({ title }: { title: string }) => {
     }
   };
 
-  console.log(1234);
-
-
   return (
     <Formik
       initialValues={initialValues}
@@ -105,4 +103,3 @@ export default AddNewUnit;
 function closeAddNewUnit(): any {
   throw new Error("Function not implemented.");
 }
-

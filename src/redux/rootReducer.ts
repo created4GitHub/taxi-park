@@ -36,8 +36,11 @@ const initialState: InitialState = {
     filteredData: [],
     filterValues: {},
     statuses: [],
+
     isAddNewUnit: false,
+
     isDataUpdated: false,
+
     isDataFiltered: false,
 }
 

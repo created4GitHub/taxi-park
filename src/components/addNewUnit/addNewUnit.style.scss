@@ -35,11 +35,13 @@
             height: 40px;
             border: none;
             background-color: white;
-            cursor: pointer;
             display: flex;
             align-items: center;
-            .addUnit{}
-            .closeUnit{}
+            
+            .closeUnit, .addUnit{
+                width: 100%;
+                cursor: pointer;
+            }
         }
 
         .table_section-button:hover {
