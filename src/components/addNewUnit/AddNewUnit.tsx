@@ -9,7 +9,7 @@ import { updateIsAddNewUnit } from "../../store/actions/actions";
 import { POST } from "../../requests/requests";
 import { Data, Status } from "../../interfaces/interfaces";
 import { RootState } from "../../store/rootReducer";
-import { CarInfo, DriverInfo } from "../../constants/addNewSection";
+import { CarInfo, DriverInfo } from "../../constants/addNewSection"
 import OptionalInfo from "./optionalInfo/OptionalInfo";
 
 import "./addNewUnit.style.scss";

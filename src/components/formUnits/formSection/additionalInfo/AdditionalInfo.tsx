@@ -1,7 +1,7 @@
 import { Data, Status } from "../../../../interfaces/interfaces";
-import { DriverTitles, CarTitles } from "../../../../../constants/additionalInfo";
+import { DriverTitles, CarTitles } from "../../../../constants/additionalInfo";
 
-import icons from "../../../../../img/IconsDirection.svg";
+import icons from "../../../../img/IconsDirection.svg";
 
 const AdditionalData = ({ additionalData, title }: { additionalData: Data[], title: string }) => {
     const renderTitles = (array: string[]) => {
