@@ -4,8 +4,8 @@ import { Routes, Route } from "react-router-dom";
 import AddNewUnit from "../addNewUnit/AddNewUnit";
 import AddNewDriver from "../addNewUnit/AddNewDriver";
 import { AddNewCar } from "../addNewUnit/AddNewCar";
-import FormUnits from "./formUnits/FormUnits";
-import { RoutesInfo } from "../../constants/routesInfo"
+import FormUnits from "../formUnits/FormUnits";
+import { RoutesInfo } from "./../../constants/RoutesInfo"
 import { RootState } from "../../store/rootReducer";
 
 const UnitsRoute = () => {
