@@ -1,36 +1,39 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 import FormSectionTab from "./formSectionTab/FormSectionTab";
 import { Button } from "../../regularComponents/button/Button";
 import AdditionalData from "./additionalInfo/AdditionalInfo";
 import { Data } from "../../../interfaces/interfaces";
 import { GET, REMOVE, GET_CARS_BY_DRIVER } from "../../../requests/requests";
+import { dispatchIsDataUpdated } from "../../../redux/actions/actions";
 
 import "./formSection.style.scss";
 
 type Props = {
   data: Data;
   title: string;
-  setIsDeleted: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const FormSection = ({ data, title, setIsDeleted }: Props) => {
+const FormSection = ({ data, title }: Props) => {
   const [isAdditionalData, setIsAdditionalData] = useState<boolean>(false);
-  const [additionalData, setadditionalData] = useState<Data[]>([]);
+  const [additionalData, setAdditionalData] = useState<Data[]>([]);
+  const dispatch = useDispatch();
+
 
   const search = async () => {
     if (title === "driver") {
       const cars = await GET_CARS_BY_DRIVER(String(data.id));
-      setadditionalData(cars.data);
+      setAdditionalData(cars.data);
     } else {
       const driver = await GET("driver", data.driver_id);
-      setadditionalData([driver] as Data[]);
+      setAdditionalData([driver] as Data[]);
     }
   };
 
   const deleteEl = async () => {
     await REMOVE(title, data.id!);
-    setIsDeleted((isDeleted) => !isDeleted);
+    dispatch(dispatchIsDataUpdated());
   };
 
   const showClick = () => {
@@ -38,19 +41,25 @@ const FormSection = ({ data, title, setIsDeleted }: Props) => {
     search();
   }
 
+  const mapItems = (property: string) => {
+    return (
+      <FormSectionTab
+        key={property}
+        property={property}
+        value={data[property as keyof Data]!}
+        id={String(data.id)}
+        title={title}
+        data={data}
+      />
+    )
+  }
+
+  const mappedItems = Object.keys(data).map(mapItems)
+
   return (
     <>
       <div className="table_section">
-        {Object.keys(data).map(property =>
-          <FormSectionTab
-            key={property}
-            property={property}
-            value={data[property as keyof Data]!}
-            id={String(data.id)}
-            title={title}
-            data={data}
-          />
-        )}
+        {mappedItems}
         <Button
           onClick={showClick}
           className="table_section-showButton"

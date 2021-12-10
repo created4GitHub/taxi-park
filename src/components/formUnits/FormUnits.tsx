@@ -4,25 +4,29 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../loader/loader";
 import FormSection from "./formSection/FormSection";
 import UnitsTitles from "./unitsTitles/UnitsTitles";
-import { dispatchData } from "../../store/actions/actions";
+import { dispatchData } from "../../redux/actions/actions";
 import { GET, GET_STATUS } from "../../requests/requests";
-import { RootState } from "../../store/rootReducer";
 import { Data } from "../../interfaces/interfaces";
 
 import "./formUnits.style.scss";
+import {
+  filteredDataSelector,
+  isDataUpdatedSelector,
+  isDataFilteredSelector,
+  dataSelector,
+  isAddNewUnitSelector
+} from "../../constants/selectors/selector";
 
-const selector = (state: RootState) => state.filteredData
 interface Props {
   title: string;
 }
 
 const FormUnits = ({ title }: Props) => {
-  const [isDeleted, setIsDeleted] = useState<boolean>(true);
-  const receivedData = useSelector((state: RootState) => state.data);
-  const filteredData = useSelector(selector);
-  const isFilteredData = useSelector((state: RootState) => state.isDataFiltered);
-  const isDataUpdated = useSelector((state: RootState) => state.isDataUpdated);
-  const isAddNewUnit = useSelector((state: RootState) => state.isAddNewUnit);
+  const receivedData = useSelector(dataSelector);
+  const filteredData = useSelector(filteredDataSelector);
+  const isFilteredData = useSelector(isDataFilteredSelector);
+  const isDataUpdated = useSelector(isDataUpdatedSelector);
+  const isAddNewUnit = useSelector(isAddNewUnitSelector);
   const data = (isFilteredData && filteredData) || receivedData;
   const dispatch = useDispatch();
 
@@ -34,7 +38,7 @@ const FormUnits = ({ title }: Props) => {
 
   useEffect(() => {
     fetchData();
-  }, [isDeleted, title, isDataUpdated, isAddNewUnit]);
+  }, [isDataUpdated, isAddNewUnit]);
 
   const mapItems = (item: Data) => {
     return (
@@ -42,7 +46,7 @@ const FormUnits = ({ title }: Props) => {
         key={item.id}
         title={title}
         data={item}
-        setIsDeleted={setIsDeleted}
+
       />
     );
   }

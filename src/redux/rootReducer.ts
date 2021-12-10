@@ -38,6 +38,7 @@ const initialState: InitialState = {
     statuses: [],
     isAddNewUnit: null,
     isDataUpdated: false,
+
     isDataFiltered: false,
 }
 

@@ -10,23 +10,27 @@ const AdditionalData = ({ additionalData, title }: { additionalData: Data[], tit
         });
     }
 
+    const mapItems = (item: Data) => {
+        return (
+            <div className="block" key={item.id}>
+                {Object.values(item).map((item: Status | string | number) => {
+                    if (item.hasOwnProperty("title")) {
+                        return <p key={(item as Status).title}>{(item as Status).title}</p>;
+                    }
+                    return <p key={(item as string | number)}>{item}</p>
+                })}
+            </div>
+        )
+    }
+
+    const mappedItems = additionalData?.map(mapItems)
+
     return (
         <div className="table_section_isActive">
             <div className="block">
                 {title === 'car' ? renderTitles(DriverTitles) : renderTitles(CarTitles)}
             </div>
-            {additionalData?.map((item: Data) => {
-                return (
-                    <div className="block" key={item.id}>
-                        {Object.values(item).map((item: Status | string | number) => {
-                            if (item.hasOwnProperty("title")) {
-                                return <p key={(item as Status).title}>{(item as Status).title}</p>;
-                            }
-                            return <p key={(item as string | number)}>{item}</p>
-                        })}
-                    </div>
-                )
-            })}
+            {mappedItems}
         </div>
     )
 }

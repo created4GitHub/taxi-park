@@ -17,6 +17,16 @@ const DriverIDList: React.FC = () => {
     fetchData();
   }, []);
 
+  const mapItems = (item: Data) => {
+    return (
+      <option key={item.id} value={item.id}>
+        {item.first_name + " " + item.last_name}
+      </option>
+    )
+  }
+
+  const mappedItems = drivers?.map(mapItems)
+
   return (
     <>
       <option value="" hidden>Select</option>

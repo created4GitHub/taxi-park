@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
+import { statusesSelector } from "../../constants/selectors/selector";
 
 import { Status } from "../../interfaces/interfaces";
-import { RootState } from "../../store/rootReducer";
+import { RootState } from "../../redux/rootReducer";
 
 import './statuses.style.scss'
 
@@ -13,7 +14,17 @@ interface Props {
 
 const Statuses = ({ value, onChange, id }: Props) => {
 
-    const statuses = useSelector((state: RootState) => state.statuses);
+    const statuses = useSelector(statusesSelector);
+
+    const mapItems = (item: Status) => {
+        return (
+            <option key={item.title} >
+                {item.title}
+            </option>
+        )
+    }
+    
+    const mappedItems = statuses.map(mapItems)
 
     return (
         <>
