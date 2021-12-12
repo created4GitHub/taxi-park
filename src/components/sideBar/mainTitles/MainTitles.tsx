@@ -15,17 +15,18 @@ interface Props {
 
 interface Titles {
     title: string;
-    link: string;
+    path: string;
+    name: string;
 }
 
 const MainTitles = ({ isActive, setIsActive }: Props) => {
     const dispatch = useDispatch();
 
-    const mapItems = ({ title, link }: Titles) => {
+    const mapItems = (({ name, title, path }: Titles) => {
         const className = isActive !== title ? "route-button path" : "route-button path active";
         const src = title === "Drivers" ? drivers : cars;
 
-        const openUnit = ({ title, link }: any) => {
+        const openUnit = ({ title }: any) => {
             setIsActive(title);
             dispatch(updateIsAddNewUnit(null));
             dispatch(resetFilter());
@@ -40,7 +41,7 @@ const MainTitles = ({ isActive, setIsActive }: Props) => {
         }
         return (
             <div className="paragraph_element-route" key={title}>
-                <Link to={link}>
+                <Link to={path}>
                     <Button
                         className={className}
                         onClick={openUnit}
@@ -50,7 +51,7 @@ const MainTitles = ({ isActive, setIsActive }: Props) => {
                                     className="options-img"
                                     src={src}
                                     alt="alt" />
-                                {title}
+                                {name}
                             </p>
                         }
                     />
@@ -62,13 +63,13 @@ const MainTitles = ({ isActive, setIsActive }: Props) => {
                 </Link>
             </div>
         )
-    }
+    })
 
-    // const mappedItems = TitlesLinks.map(mapItems);
+    const mappedItems = TitlesLinks.map(mapItems);
 
     return (
         <div className="content__options-paragraph">
-            {/* {mappedItems} */}
+            {mappedItems}
         </div>
     )
 }

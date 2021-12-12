@@ -6,13 +6,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CarInfo } from "../../constants/addNewSection";
 import FormikInput from "../formikComponents/FormikInput";
 import FormikSelect from "../formikComponents/FormikSelect"
-import YearsOptions from "../../constants/years";
+import YearsSelect from "../YearsSelect/YearsSelect";
 import DriverListById from '../driverListById/DriverListById';
 import Statuses from '../statuses/Statuses';
 import AddNewButton from './addNewButton/AddNewButton';
-import { updateIsAddNewUnit } from "../../store/actions/actions";
+import { updateIsAddNewUnit } from "../../redux/actions/actions";
 import { Status, Data } from '../../interfaces/interfaces';
-import { RootState } from '../../store/rootReducer';
+import { RootState } from '../../redux/rootReducer';
 import { POST } from '../../requests/requests';
 
 import "./addNewUnit.style.scss";
@@ -41,18 +41,21 @@ const AddNewCar: React.FC = () => {
         driver_id: '',
         status: '',
     };
+    const setLength = (length: string): string => `Must be ${length} characters or less`;
     return (
         <Formik
             initialValues={initialValues}
             validationSchema={Yup.object({
                 mark: Yup.string()
-                    .max(10, 'Must be 20 characters or less')
+                    .max(10, setLength("1-10"))
+                    .min(10, setLength("1-10"))
                     .required('Required'),
                 model: Yup.string()
-                    .max(15, 'Must be 15 characters or less')
+                    .max(10, setLength("1-15"))
+                    .min(10, setLength("1-15"))
                     .required('Required'),
                 number: Yup.string()
-                    .max(8, 'Must be 20 characters or less')
+                    .max(8, 'Must be 8 characters or less')
                     .required('Required'),
                 year: Yup.string()
                     .required('Required'),
@@ -61,7 +64,7 @@ const AddNewCar: React.FC = () => {
                 status: Yup.string()
                     .required('Required'),
             })}
-            onSubmit={(values, { setSubmitting }) => {
+            onSubmit={(values) => {
                 const status = statuses.find((status: Status) => status.title === values.status)!;
                 values.status = status;
                 POST("car", (values as Data));
@@ -74,7 +77,7 @@ const AddNewCar: React.FC = () => {
                         <FormikInput key={name} {...{ name, placeholder, type: "text" }} />
                     )}
                     <FormikSelect name="year">
-                        <YearsOptions />
+                        <YearsSelect />
                     </FormikSelect>
                     <FormikSelect name="driver_id">
                         <DriverListById />

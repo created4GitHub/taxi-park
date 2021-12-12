@@ -5,7 +5,8 @@ import FormUnits from "../formUnits/FormUnits";
 import { RoutesInfo } from "../../constants/routesInfo"
 import { RootState } from "../../redux/rootReducer";
 import { isAddNewUnitSelector } from "../../constants/selectors/selector";
-
+import AddNewCar from "../addNewUnit/AddNewCar";
+import AddNewDriver from "../addNewUnit/AddNewDriver";
 interface RouteProp {
     path: string;
     title: string;
@@ -13,12 +14,11 @@ interface RouteProp {
 
 const UnitsRoute = () => {
     const isAddNewUnit = useSelector(isAddNewUnitSelector);
-
     const mapItems = ({ path, title }: RouteProp) => {
         return (
             <Route key={title} path={path} element={
                 <>
-                    {isAddNewUnit}
+                    {isAddNewUnit && (isAddNewUnit === "car" ? <AddNewCar /> : <AddNewDriver />)}
                     <FormUnits title={title} />
                 </>
             } />

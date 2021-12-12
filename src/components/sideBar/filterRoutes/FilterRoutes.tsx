@@ -20,7 +20,7 @@ const FilterRoutes = () => {
         )
     }
 
-    const mappedItems = RoutesInfo.map(mapItems)
+    const mappedItems = RoutesInfo.map(mapItems);
 
     return (
         <Routes>

@@ -51,7 +51,7 @@ const FormUnits = ({ title }: Props) => {
     );
   }
 
-  const mappedItems = data.map(mapItems)
+  const mappedItems = data.map(mapItems);
 
   return (
     <>

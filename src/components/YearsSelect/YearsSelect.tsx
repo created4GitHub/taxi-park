@@ -1,9 +1,6 @@
-export const Years: number[] = [];
-for (let index: number = 2021; index >= 1960; index--) {
-    Years.push(index);
-}
+import { Years } from "../../constants/years";
 
-const YearsOptions = () => {
+const YearsSelect = () => {
     return (
         <>
             <option value="" hidden>Select</option>
@@ -13,4 +10,4 @@ const YearsOptions = () => {
         </>
     )
 }
-export default YearsOptions;
+export default YearsSelect;
