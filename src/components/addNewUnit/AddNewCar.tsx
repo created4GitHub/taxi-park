@@ -76,15 +76,21 @@ const AddNewCar: React.FC = () => {
                     {CarInfo.map(({ name, placeholder }) =>
                         <FormikInput key={name} {...{ name, placeholder, type: "text" }} />
                     )}
-                    <FormikSelect name="year">
-                        <YearsSelect />
-                    </FormikSelect>
-                    <FormikSelect name="driver_id">
-                        <DriverListById />
-                    </FormikSelect>
-                    <FormikSelect name="status">
-                        <Statuses />
-                    </FormikSelect>
+                    <div className='table_section_add-select'>
+                        <FormikSelect name="year">
+                            <YearsSelect />
+                        </FormikSelect>
+                    </div>
+                    <div className='table_section_add-select'>
+                        <FormikSelect name="driver_id">
+                            <DriverListById />
+                        </FormikSelect>
+                    </div>
+                    <div className='table_section_add-select'>
+                        <FormikSelect name="status">
+                            <Statuses />
+                        </FormikSelect>
+                    </div>
                     <AddNewButton updateIsAddNewUnit={updateIsAddNewUnit} />
                 </Form>
             </div >

@@ -28,7 +28,7 @@ export const resetFilter = () => {
     }
 }
 
-export const updateIsAddNewUnit = (payload: string | null) => {
+export const updateIsAddNewUnit = (payload: string | null ) => {
     return {
         type: SET_IS_ADD_NEW_UNIT,
         payload

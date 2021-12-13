@@ -5,9 +5,6 @@ import { dispatchIsDataUpdated, resetFilter, updateIsAddNewUnit } from "../../..
 import { Button } from "../../regularComponents/button/Button";
 import { TitlesLinks } from "../../../constants/mainTitles";
 
-import drivers from "../../../img/drivers.svg";
-import cars from "../../../img/cars.svg";
-
 interface Props {
     isActive: string;
     setIsActive: React.Dispatch<React.SetStateAction<string>>;
@@ -17,16 +14,16 @@ interface Titles {
     title: string;
     path: string;
     name: string;
+    src: string;
 }
 
 const MainTitles = ({ isActive, setIsActive }: Props) => {
     const dispatch = useDispatch();
 
-    const mapItems = (({ name, title, path }: Titles) => {
+    const mapItems = (({ name, title, path, src }: Titles) => {
         const className = isActive !== title ? "route-button path" : "route-button path active";
-        const src = title === "Drivers" ? drivers : cars;
 
-        const openUnit = ({ title }: any) => {
+        const openUnit = () => {
             setIsActive(title);
             dispatch(updateIsAddNewUnit(null));
             dispatch(resetFilter());

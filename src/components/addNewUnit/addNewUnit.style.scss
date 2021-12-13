@@ -13,18 +13,6 @@
         justify-content: center;
         flex-direction: column;
     }
-
-    .table_section-input-date {
-        box-shadow: none;
-        width: 110px;
-        height: 23px;
-        border-radius: 8px;
-        border: solid silver 1px;
-    }
-    .table_section-input-date::-webkit-calendar-picker-indicator {
-        padding: 0;
-        margin: 2px 5px 0 0;
-    }
     .table_section_buttons {
         display: flex;
         align-items: center;
@@ -37,8 +25,9 @@
             background-color: white;
             display: flex;
             align-items: center;
-            
-            .closeUnit, .addUnit{
+
+            .closeUnit,
+            .addUnit {
                 width: 100%;
                 cursor: pointer;
             }
@@ -63,12 +52,17 @@
             border-radius: 8px;
             border: solid silver 1px;
         }
+
         .table_section-input-numbers {
             box-shadow: none;
             width: 110px;
             height: 23px;
             border-radius: 8px;
             border: solid silver 1px;
+        }
+        .table_section-input::-webkit-calendar-picker-indicator {
+            padding: 0;
+            margin: 2px 5px 0 0;
         }
     }
 
@@ -77,11 +71,45 @@
         border-radius: 8px;
         border: solid silver 1px;
     }
+
+    .table_section_add-select {
+        div {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    .table_section-tab-select{
+        background-color: white;
+        color: #7a7a7a;
+    }
 }
 
-.table_section-error{
+.table_section-error {
+    display: flex;
+    height: 25px;
+    width: 80px;
+    border-radius: 8px;
+    background-color: white;
+    border: solid #c0c0c054 1px;
     font-size: 12px;
     color: red;
     position: absolute;
-    top: 15px;
+    top: 55px;
+    align-items: center;
+    justify-content: center;
+    @media (max-width: 840px) {
+        display: none;
+    }
+}
+.table_section-error:before {
+    content: "";
+    height: 0;
+    width: 0;
+    position: absolute;
+    left: 38%;
+    top: -10px;
+    border-bottom: 10px solid #dadada;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
 }
