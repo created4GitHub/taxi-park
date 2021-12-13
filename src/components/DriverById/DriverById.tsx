@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { GET } from "../../requests/requests";
 import { Data } from "../../interfaces/interfaces";
 
-import "./driverListById.style.scss";
+import "./driverById.style.scss";
 
 const DriverIDList: React.FC = () => {
   const [drivers, setDrivers] = useState(Array<Data>());

@@ -1,14 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Loader from "../loader/loader";
 import FormSection from "./formSection/FormSection";
 import UnitsTitles from "./unitsTitles/UnitsTitles";
-import { dispatchData } from "../../redux/actions/actions";
-import { GET, GET_STATUS } from "../../requests/requests";
+import { getData } from "../../redux/actions/actions";
 import { Data } from "../../interfaces/interfaces";
-
-import "./formUnits.style.scss";
 import {
   filteredDataSelector,
   isDataUpdatedSelector,
@@ -16,6 +13,8 @@ import {
   dataSelector,
   isAddNewUnitSelector
 } from "../../constants/selectors/selector";
+
+import "./formUnits.style.scss";
 
 interface Props {
   title: string;
@@ -30,15 +29,9 @@ const FormUnits = ({ title }: Props) => {
   const data = (isFilteredData && filteredData) || receivedData;
   const dispatch = useDispatch();
 
-  async function fetchData() {
-    const data = await GET(title) as Data[];
-    const statuses = await GET_STATUS(title);
-    dispatch(dispatchData({ data, statuses }));
-  }
-
   useEffect(() => {
-    fetchData();
-  }, [isDataUpdated, isAddNewUnit]);
+    dispatch(getData(title));
+  }, []);
 
   const mapItems = (item: Data) => {
     return (

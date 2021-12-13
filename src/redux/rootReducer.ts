@@ -25,9 +25,9 @@ interface InitialState {
 }
 
 interface Action {
-    payload: FilterData | string;
-    data: Data[],
-    statuses: Status[],
+    payload?: FilterData | string;
+    data?: Data[],
+    statuses?: Status[],
     type: string,
 }
 
@@ -43,9 +43,13 @@ const initialState: InitialState = {
 }
 
 const RootReducer = (state: InitialState = initialState, { type, payload, data, statuses }: Action): InitialState => {
+
     switch (type) {
         case DATA_RECEIVED:
-            return { ...state, data: data, statuses: statuses };
+            return { ...state, data: data!, statuses: statuses! };
+
+        case 'GET_NEWS':
+            return { ...state };
 
         case FILTER_DATA:
             const { name, value } = payload as FilterData;
