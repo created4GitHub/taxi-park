@@ -26,8 +26,7 @@
             display: flex;
             align-items: center;
 
-            .closeUnit,
-            .addUnit {
+            .closeUnit, .addUnit {
                 width: 100%;
                 cursor: pointer;
             }
@@ -73,15 +72,28 @@
     }
 
     .table_section_add-select {
+        display: flex;
         div {
             display: flex;
             justify-content: center;
+            @media (max-width: 840px) {
+                align-items: center;
+                flex-direction: column;
+                order: 1;
+            }
         }
     }
 
     .table_section-tab-select{
         background-color: white;
         color: #7a7a7a;
+        padding: 0;
+        @media (max-width: 840px) {
+            width: 115px;
+            height: 26px;
+            order: 1;
+            margin-bottom: 10px;
+        }
     }
 }
 
@@ -99,7 +111,10 @@
     align-items: center;
     justify-content: center;
     @media (max-width: 840px) {
-        display: none;
+        height: 15px;
+        top: auto;
+        position: relative;
+        order: 2;
     }
 }
 .table_section-error:before {

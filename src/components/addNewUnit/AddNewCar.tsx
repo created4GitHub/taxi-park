@@ -48,11 +48,11 @@ const AddNewCar: React.FC = () => {
             validationSchema={Yup.object({
                 mark: Yup.string()
                     .max(10, setLength("1-10"))
-                    .min(10, setLength("1-10"))
+                    .min(2, setLength("1-10"))
                     .required('Required'),
                 model: Yup.string()
                     .max(10, setLength("1-15"))
-                    .min(10, setLength("1-15"))
+                    .min(2, setLength("1-15"))
                     .required('Required'),
                 number: Yup.string()
                     .max(8, 'Must be 8 characters or less')
