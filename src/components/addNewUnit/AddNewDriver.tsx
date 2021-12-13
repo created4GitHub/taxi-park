@@ -66,9 +66,12 @@ const AddNewDriver: React.FC = () => {
                         <FormikInput key={name} {...{ name, placeholder, type: "text" }} />
                     )}
                     <FormikInput {...{ name: "date_birth", type: "date" }} />
-                    <FormikSelect name="status">
-                        <Statuses />
-                    </FormikSelect>
+                    
+                    <div className='table_section_add-select'>
+                        <FormikSelect name="status">
+                            <Statuses />
+                        </FormikSelect>
+                    </div>
                     <AddNewButton updateIsAddNewUnit={updateIsAddNewUnit} />
                 </Form>
             </div>
