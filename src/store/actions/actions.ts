@@ -1,11 +1,5 @@
+import { title } from "process";
 import { Data, Status } from "../../interfaces/interfaces";
-// import {
-//     DATA_RECEIVED,
-//     SET_IS_ADD_NEW_UNIT,
-//     IS_DATA_UPDATED,
-//     FILTER_DATA,
-//     RESET_FILTER
-// } from '../types'
 import * as types from '../types'
 
 export const dispatchData = ({ data, statuses }: { data: Data[], statuses: Status[] }) => {
@@ -15,6 +9,22 @@ export const dispatchData = ({ data, statuses }: { data: Data[], statuses: Statu
         statuses
     };
 };
+
+// export const dispatchDataFail = ({ data, statuses }: { data: Data[], statuses: Status[] }) => {
+//     return {
+//         type: types.DATA_FAIL,
+//         data,
+//         statuses
+//     };
+// };
+
+// export const dispatchDataSuccess = ({ data, statuses }: { data: Data[], statuses: Status[] }) => {
+//     return {
+//         type: types.DATA_SUCCESS,
+//         data,
+//         statuses
+//     };
+// };
 
 export const filterData = (payload: { [key: string]: string }) => {
     return {
@@ -39,5 +49,17 @@ export const updateIsAddNewUnit = (payload: string | null) => {
 export const dispatchIsDataUpdated = () => {
     return {
         type: types.IS_DATA_UPDATED
+    };
+};
+
+export const dispatchIsDataUpdatedSuccess = () => {
+    return {
+        type: types.IS_DATA_SUCCESS
+    };
+};
+
+export const dispatchIsDataFailed= () => {
+    return {
+        type: types.IS_DATA_FAILED
     };
 };

@@ -1,11 +1,5 @@
 import { Data, Status, Filter } from "../interfaces/interfaces";
-import {
-    DATA_RECEIVED,
-    FILTER_DATA,
-    RESET_FILTER,
-    SET_IS_ADD_NEW_UNIT,
-    IS_DATA_UPDATED
-} from './types'
+import * as types from './types';
 
 interface FilterData {
     filterValues: string;
@@ -43,10 +37,10 @@ const initialState: InitialState = {
 
 const RootReducer = (state: InitialState = initialState, { type, payload, data, statuses }: Action): InitialState => {
     switch (type) {
-        case DATA_RECEIVED:
+        case types.DATA_RECEIVED:
             return { ...state, data: data, statuses: statuses };
 
-        case FILTER_DATA:
+        case types.FILTER_DATA:
             const { name, value } = payload as FilterData;
             const filterValues: Filter = state.filterValues;
             filterValues[name as keyof Filter] = value;
@@ -64,15 +58,15 @@ const RootReducer = (state: InitialState = initialState, { type, payload, data, 
             }
             return { ...state, filteredData: result, isDataFiltered: true, isDataUpdated: !state.isDataUpdated };
 
-        case RESET_FILTER:
+        case types.RESET_FILTER:
             return {
                 ...state, filteredData: state.data, isDataFiltered: false, filterValues: {}
             };
 
-        case SET_IS_ADD_NEW_UNIT:
+        case types.SET_IS_ADD_NEW_UNIT:
             return { ...state, isAddNewUnit: (payload as string) };
 
-        case IS_DATA_UPDATED:
+        case types.IS_DATA_UPDATED:
             return { ...state, isDataUpdated: !state.isDataUpdated };
 
         default:
