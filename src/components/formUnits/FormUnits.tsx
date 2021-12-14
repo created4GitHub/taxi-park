@@ -35,7 +35,8 @@ const FormUnits = ({ title }: Props) => {
   console.log(isDataFetching)
   useEffect(() => {
     dispatch(getData(title));
-  }, []);
+  }, [isDataUpdated, isAddNewUnit]);
+
 
   const mapItems = (item: Data) => {
     return (

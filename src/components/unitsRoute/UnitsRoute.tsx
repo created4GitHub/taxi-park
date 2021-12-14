@@ -18,7 +18,8 @@ const UnitsRoute = () => {
         return (
             <Route key={title} path={path} element={
                 <>
-                    {isAddNewUnit && (isAddNewUnit === "car" ? <AddNewCar /> : <AddNewDriver />)}
+                    {isAddNewUnit && (isAddNewUnit === "car" ? <AddNewCar title={title} />
+                        : <AddNewDriver title={title} />)}
                     <FormUnits title={title} />
                 </>
             } />

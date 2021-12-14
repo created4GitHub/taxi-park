@@ -42,10 +42,11 @@ export const switchPage = (title: string) => {
     }
 }
 
-export const addNewUnit = (title: string) => {
+export const addNewUnit = (title: string, isPost: boolean) => {
     return {
         type: ADD_NEW_UNIT,
-        title
+        title,
+        isPost
     }
 }
 
