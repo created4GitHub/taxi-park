@@ -1,3 +1,4 @@
+import { title } from "process";
 import { Data, Status } from "../../interfaces/interfaces";
 import {
     DATA_RECEIVED,
