@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector, connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 
 import Loader from "../loader/loader";
 import FormSection from "./formSection/FormSection";
 import UnitsTitles from "./unitsTitles/UnitsTitles";
-import { getData } from "../../redux/actions/actions";
+import { getData, setIsDataFetching } from "../../redux/actions/actions";
 import { Data } from "../../interfaces/interfaces";
 import {
   filteredDataSelector,
@@ -20,10 +20,25 @@ import "./formUnits.style.scss";
 
 interface Props {
   title: string;
+  payload: boolean;
 }
 
-const mapDispatchToProps = {
-  data: getData,
+function mapStateToProps(state) {
+  return { 
+    selector: state.selector
+  }
+}
+
+// function mapDispatchToProps = dispatch => {
+//   return {
+//     buySelector: () => dispatch(setIsDataFetching())
+//   }
+// }
+
+const mapDispatchToProps = (dispatch: any, { payload }: Props) => {
+  return {
+    buySelector: () => dispatch(setIsDataFetching(payload))
+  }
 }
 
 const FormUnits = ({ title }: Props) => {
@@ -36,17 +51,10 @@ const FormUnits = ({ title }: Props) => {
   const isDataFetchError = useSelector(isDataFetchErrorSelector);
   const data = (isFilteredData && filteredData) || receivedData;
   const dispatch = useDispatch();
-<<<<<<< HEAD
-  
-  // useEffect(() => {
-  //   dispatch(getData(title));
-  // }, []);
-=======
-  console.log(isDataFetchError)
+  console.log(isDataFetching)
   useEffect(() => {
     dispatch(getData(title));
   }, []);
->>>>>>> origin/dev
 
   const mapItems = (item: Data) => {
     return (
@@ -71,4 +79,4 @@ const FormUnits = ({ title }: Props) => {
   );
 };
 
-export default connect(null, mapDispatchToProps)(FormUnits);
+export default connect() (FormUnits);

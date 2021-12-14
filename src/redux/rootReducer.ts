@@ -1,7 +1,4 @@
 import { Data, Status, Filter } from "../interfaces/interfaces";
-<<<<<<< HEAD
-import * as types from './types';
-=======
 import {
     DATA_RECEIVED,
     FILTER_DATA,
@@ -11,7 +8,6 @@ import {
     IS_DATA_FETCHING,
     IS_DATA_FETCH_ERROR
 } from './types'
->>>>>>> origin/dev
 
 interface FilterData {
     filterValues: string;
@@ -53,10 +49,10 @@ const initialState: InitialState = {
 
 const RootReducer = (state: InitialState = initialState, { type, payload, data, statuses }: Action): InitialState => {
     switch (type) {
-        case types.DATA_RECEIVED:
+        case DATA_RECEIVED:
             return { ...state, data: data!, statuses: statuses! };
 
-        case types.FILTER_DATA:
+        case FILTER_DATA:
             const { name, value } = payload as FilterData;
             const filterValues: Filter = state.filterValues;
             filterValues[name as keyof Filter] = value;
@@ -73,15 +69,15 @@ const RootReducer = (state: InitialState = initialState, { type, payload, data, 
             }
             return { ...state, filteredData: result, isDataFiltered: true, isDataUpdated: !state.isDataUpdated };
 
-        case types.RESET_FILTER:
+        case RESET_FILTER:
             return {
                 ...state, filteredData: state.data, isDataFiltered: false, filterValues: {}
             };
 
-        case types.SET_IS_ADD_NEW_UNIT:
+        case SET_IS_ADD_NEW_UNIT:
             return { ...state, isAddNewUnit: (payload as string) };
 
-        case types.IS_DATA_UPDATED:
+        case IS_DATA_UPDATED:
             return { ...state, isDataUpdated: !state.isDataUpdated };
 
         case IS_DATA_FETCHING:
