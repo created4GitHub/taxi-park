@@ -1,6 +1,6 @@
 import { useIntl } from "react-intl";
 import { useSelector } from "react-redux";
-import { statusesSelector } from "../../constants/selectors/selector";
+import { statusesSelector } from "../../redux/selectors/selector";
 
 import { Status } from "../../interfaces/interfaces";
 import { RootState } from "../../redux/rootReducer";
@@ -19,7 +19,7 @@ const Statuses = () => {
             </option>
         )
     }
-    
+
     const mappedItems = statuses.map(mapItems)
 
     return (

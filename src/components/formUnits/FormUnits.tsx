@@ -14,7 +14,7 @@ import {
   isAddNewUnitSelector,
   isDataFetchingSelector,
   isDataFetchErrorSelector
-} from "../../constants/selectors/selector";
+} from "../../redux/selectors/selector";
 
 import "./formUnits.style.scss";
 

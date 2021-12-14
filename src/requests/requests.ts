@@ -1,5 +1,6 @@
 import { Data, Status } from "../interfaces/interfaces";
 import { headers, url, body } from "../constants/requests";
+import { string } from "yup/lib/locale";
 
 interface Response {
   is_error: string;
@@ -32,10 +33,10 @@ export const GET = async (title: string, id?: number): Promise<Data[] | Data> =>
 };
 
 export const GET_CARS_BY_DRIVER = async (id: string): Promise<Response> => {
-  (headers as any)["E-Driver-Id"] = id
+  const currentHeader: HeadersInit = { ...headers, "E-Driver-Id": id };
   const response = await fetch(url + "car/", {
     method: "GET",
-    headers,
+    headers: currentHeader
   });
   return await response.json();
 };

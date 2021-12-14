@@ -1,5 +1,4 @@
 import { Data } from "../interfaces/interfaces";
-
 type Body = (info: Data) => { body: string; };
 
 export const headers: HeadersInit = {

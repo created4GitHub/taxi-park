@@ -2,7 +2,7 @@ import { ChangeEvent } from "react";
 import { useSelector } from "react-redux";
 
 import Input from "../../regularComponents/input/Input";
-import { statusesSelector } from "../../../constants/selectors/selector";
+import { statusesSelector } from "../../../redux/selectors/selector";
 import { RootState } from "../../../redux/rootReducer";
 
 interface Props {

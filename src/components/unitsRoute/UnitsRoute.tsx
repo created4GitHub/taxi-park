@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import FormUnits from "../formUnits/FormUnits";
 import { RoutesInfo } from "../../constants/routesInfo"
 import { RootState } from "../../redux/rootReducer";
-import { isAddNewUnitSelector } from "../../constants/selectors/selector";
+import { isAddNewUnitSelector } from "../../redux/selectors/selector";
 import AddNewCar from "../addNewUnit/AddNewCar";
 import AddNewDriver from "../addNewUnit/AddNewDriver";
 interface RouteProp {

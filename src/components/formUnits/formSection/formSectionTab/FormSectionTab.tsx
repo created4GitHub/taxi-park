@@ -6,7 +6,7 @@ import { PATCH } from "../../../../requests/requests";
 import { RootState } from "../../../../redux/rootReducer";
 import { Data, Status } from "../../../../interfaces/interfaces";
 import { dispatchIsDataUpdated } from "../../../../redux/actions/actions";
-import { statusesSelector } from "../../../../constants/selectors/selector";
+import { statusesSelector } from "../../../../redux/selectors/selector";
 
 import "./formSectionTab.style.scss";
 
