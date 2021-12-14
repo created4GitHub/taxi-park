@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Statuses from "../../../statuses/Statuses";
 import { PATCH } from "../../../../requests/requests";
-import { RootState } from "../../../../store/rootReducer";
+import { RootState } from "../../../../redux/rootReducer";
 import { Data, Status } from "../../../../interfaces/interfaces";
-import { dispatchIsDataUpdated } from "../../../../store/actions/actions";
+import { dispatchIsDataUpdated } from "../../../../redux/actions/actions";
+import { statusesSelector } from "../../../../constants/selectors/selector";
 
 import "./formSectionTab.style.scss";
 
@@ -18,7 +19,7 @@ interface Props {
 }
 
 const FormSectionTab = ({ value, property, title, data, id }: Props) => {
-  const statuses = useSelector((state: RootState) => state.statuses);
+  const statuses = useSelector(statusesSelector);
   const [selectValue, setSelectValue] = useState<string>((value as Status).title);
   const [isDiv, setIsDiv] = useState<boolean>(true);
   const dispatch = useDispatch();

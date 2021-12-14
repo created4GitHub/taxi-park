@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { GET } from "../../requests/requests";
 import { Data } from "../../interfaces/interfaces";
 
-import "./driverListById.style.scss";
+import "./driverById.style.scss";
 
 const DriverIDList: React.FC = () => {
   const [drivers, setDrivers] = useState(Array<Data>());
@@ -16,6 +16,16 @@ const DriverIDList: React.FC = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const mapItems = (item: Data) => {
+    return (
+      <option key={item.id} value={item.id}>
+        {item.first_name + " " + item.last_name}
+      </option>
+    )
+  }
+
+  const mappedItems = drivers?.map(mapItems)
 
   return (
     <>

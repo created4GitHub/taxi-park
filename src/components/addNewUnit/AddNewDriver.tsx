@@ -8,9 +8,9 @@ import FormikInput from "../formikComponents/FormikInput";
 import FormikSelect from "../formikComponents/FormikSelect"
 import Statuses from '../statuses/Statuses';
 import AddNewButton from './addNewButton/AddNewButton';
-import { updateIsAddNewUnit } from "../../store/actions/actions";
+import { updateIsAddNewUnit } from "../../redux/actions/actions";
 import { Status, Data } from '../../interfaces/interfaces';
-import { RootState } from '../../store/rootReducer';
+import { RootState } from '../../redux/rootReducer';
 import { POST } from '../../requests/requests';
 
 import "./addNewUnit.style.scss";
@@ -25,7 +25,6 @@ export interface Driver {
     } | string;
 }
 
-
 const AddNewDriver: React.FC = () => {
     const statuses = useSelector((state: RootState) => state.statuses);
     const dispatch = useDispatch();
@@ -35,24 +34,28 @@ const AddNewDriver: React.FC = () => {
         date_birth: "",
         status: ""
     };
+    const setLength = (length: string): string => `Must be ${length} characters or less`;
     return (
         <Formik
             initialValues={initialValues}
             validationSchema={Yup.object({
                 first_name: Yup.string()
-                    .max(15, 'Must be 20 characters or less')
+                    .max(15, setLength("3-20"))
+                    .min(3, setLength("3-20"))
                     .required('Required'),
                 last_name: Yup.string()
-                    .max(15, 'Must be 15 characters or less')
+                    .max(15, setLength("3-15"))
+                    .min(3, setLength("3-15"))
                     .required('Required'),
                 date_birth: Yup.string()
                     .required('Required'),
                 status: Yup.string()
                     .required('Required'),
             })}
-            onSubmit={(values, { setSubmitting }) => {
+            onSubmit={(values) => {
                 const status = statuses.find((status: Status) => status.title === values.status)!;
                 values.status = status;
+                values.date_birth = new Date(values.date_birth).getTime();
                 POST("driver", (values as Data));
                 dispatch(updateIsAddNewUnit(null));
             }}
@@ -60,12 +63,15 @@ const AddNewDriver: React.FC = () => {
             <div className="table_section_add">
                 <Form className="search-table_section_add">
                     {DriverInfo.map(({ name, placeholder }) =>
-                        <FormikInput {...{ name, placeholder, type: "text" }} />
+                        <FormikInput key={name} {...{ name, placeholder, type: "text" }} />
                     )}
                     <FormikInput {...{ name: "date_birth", type: "date" }} />
-                    <FormikSelect name="status">
-                        <Statuses />
-                    </FormikSelect>
+                    
+                    <div className='table_section_add-select'>
+                        <FormikSelect name="status">
+                            <Statuses />
+                        </FormikSelect>
+                    </div>
                     <AddNewButton updateIsAddNewUnit={updateIsAddNewUnit} />
                 </Form>
             </div>
