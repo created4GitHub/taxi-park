@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { FormattedMessage } from "react-intl";
 import { useDispatch } from "react-redux";
 
+import { useStateIfMounted } from "use-state-if-mounted";
 import FormSectionTab from "./formSectionTab/FormSectionTab";
 import { Button } from "../../regularComponents/button/Button";
 import AdditionalData from "./additionalInfo/AdditionalInfo";
@@ -9,7 +11,6 @@ import { GET, REMOVE, GET_CARS_BY_DRIVER } from "../../../requests/requests";
 import { dispatchIsDataUpdated } from "../../../redux/actions/actions";
 
 import "./formSection.style.scss";
-import { FormattedMessage } from "react-intl";
 
 type Props = {
   data: Data;
@@ -18,7 +19,7 @@ type Props = {
 
 const FormSection = ({ data, title }: Props) => {
   const [isAdditionalData, setIsAdditionalData] = useState<boolean>(false);
-  const [additionalData, setAdditionalData] = useState<Data[]>([]);
+  const [additionalData, setAdditionalData] = useStateIfMounted<Data[]>([]);
   const className = additionalData.length !== 0 ? 'table_section-showButton' : 'table_section-showButton isActive';
 
   const dispatch = useDispatch();
@@ -26,13 +27,13 @@ const FormSection = ({ data, title }: Props) => {
   const search = async () => {
     if (title === "driver") {
       const cars = await GET_CARS_BY_DRIVER(String(data.id));   
-      setAdditionalData(cars.data);
+      return setAdditionalData(cars.data);
     } else {
       const driver = await GET("driver", data.driver_id);
-      setAdditionalData([driver] as Data[]);
+      return setAdditionalData([driver] as Data[]);
     }
   };
-
+  
   useEffect(() => {
     search()
   }, [])

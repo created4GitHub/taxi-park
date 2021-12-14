@@ -14,6 +14,7 @@ import { RootState } from '../../redux/rootReducer';
 import { POST } from '../../requests/requests';
 
 import "./addNewUnit.style.scss";
+import { useIntl } from 'react-intl';
 
 export interface Driver {
     first_name: string;
@@ -31,7 +32,8 @@ interface Props {
 
 const AddNewDriver = ({ title }: Props) => {
     const statuses = useSelector((state: RootState) => state.statuses);
-    
+      const intl = useIntl();
+
     const dispatch = useDispatch();
     const initialValues: Driver = {
         first_name: "",
@@ -39,7 +41,8 @@ const AddNewDriver = ({ title }: Props) => {
         date_birth: "",
         status: ""
     };    
-    const setLength = (length: string): string => `Must be ${length} characters or less`;
+    
+    const setLength = (length: string): string => `${intl.formatMessage({ id: `Must be ${length} characters or less` })}`;
     return (
         <Formik
             initialValues={initialValues}
