@@ -32,7 +32,7 @@ const FormUnits = ({ title }: Props) => {
   const isDataFetchError = useSelector(isDataFetchErrorSelector);
   const data = (isFilteredData && filteredData) || receivedData;
   const dispatch = useDispatch();
-  console.log(isDataFetching)
+
   useEffect(() => {
     dispatch(getData(title));
   }, [isDataUpdated, isAddNewUnit]);
@@ -62,4 +62,3 @@ const FormUnits = ({ title }: Props) => {
 };
 
 export default FormUnits;
-

@@ -16,7 +16,7 @@ interface Props {
 
 const Filters = ({ title }: Props) => {
   const filterValues = useSelector(filterValuesSelector);
-  const isDataUpdated = useSelector(isDataUpdatedSelector);
+  // const isDataUpdated = useSelector(isDataUpdatedSelector);
   const dispatch = useDispatch();
 
   const reset = () => {
