@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FormattedMessage } from "react-intl";
 import { useDispatch } from "react-redux";
 import { useStateIfMounted } from "use-state-if-mounted";
 
@@ -10,7 +11,6 @@ import { GET, REMOVE, GET_CARS_BY_DRIVER } from "../../../requests/requests";
 import { dispatchIsDataUpdated } from "../../../redux/actions/actions";
 
 import "./formSection.style.scss";
-import { FormattedMessage } from "react-intl";
 
 type Props = {
   data: Data;
@@ -62,7 +62,7 @@ const FormSection = ({ data, title }: Props) => {
     )
   }
 
-  const mappedItems = Object.keys(data).map(mapItems)
+  const mappedItems = Object.keys(data).map(mapItems);
 
   const btnText = () => {
     if (additionalData.length === 0) {
@@ -73,7 +73,7 @@ const FormSection = ({ data, title }: Props) => {
     return <FormattedMessage id='Show' />
   }
 
-  const checkBtntext = btnText()
+  const checkBtntext = btnText();
 
   return (
     <>

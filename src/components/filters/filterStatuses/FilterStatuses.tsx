@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 import Input from "../../regularComponents/input/Input";
 import { statusesSelector } from "../../../redux/selectors/selector";
+import { useIntl } from "react-intl";
 
 interface Props {
     filter: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -11,6 +12,7 @@ interface Props {
 
 const FilterStatuses = ({ filter, filterValues }: Props) => {
     const statuses = useSelector(statusesSelector);
+    const intl = useIntl();
 
     const mapItems = ({ title }: { title: string }) => {
         return (
@@ -23,7 +25,7 @@ const FilterStatuses = ({ filter, filterValues }: Props) => {
                     value={title}
                     checked={filterValues.status === title}
                 />
-                <label htmlFor={"status" + title}>{title}</label>
+                <label htmlFor={"status" + title}>{intl.formatMessage({ id: title })}</label>
             </div>
         )
     }
