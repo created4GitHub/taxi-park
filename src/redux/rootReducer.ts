@@ -43,19 +43,14 @@ const initialState: InitialState = {
 }
 
 const RootReducer = (state: InitialState = initialState, { type, payload, data, statuses }: Action): InitialState => {
-
     switch (type) {
         case DATA_RECEIVED:
             return { ...state, data: data!, statuses: statuses! };
-
-        case 'GET_NEWS':
-            return { ...state };
 
         case FILTER_DATA:
             const { name, value } = payload as FilterData;
             const filterValues: Filter = state.filterValues;
             filterValues[name as keyof Filter] = value;
-
             let result = state.data;
             for (let key in filterValues) {
                 result = result.filter(item => {

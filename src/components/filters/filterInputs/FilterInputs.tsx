@@ -7,7 +7,7 @@ import { Filter } from "../../../interfaces/interfaces";
 interface Props {
     filter: (event: ChangeEvent<HTMLInputElement>) => void;
     title: string;
-    filterValues: Filter | Filter[];
+    filterValues?: Filter | Filter[];
 }
 
 interface Info {

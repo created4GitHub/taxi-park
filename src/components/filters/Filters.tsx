@@ -12,7 +12,7 @@ import "./filters.style.scss";
 
 interface Props {
   title: string;
-  isDataUpdated: string | null;
+  isDataUpdated: boolean;
 }
 
 const Filters = ({ title, isDataUpdated }: Props) => {
