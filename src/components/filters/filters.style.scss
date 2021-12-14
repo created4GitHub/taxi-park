@@ -104,12 +104,14 @@
                 width: 180px;
                 height: 40px;
                 margin: 0;
-                // font-size: 16px;
                 line-height: 24px;
                 display: flex;
                 align-items: center;
                 cursor: pointer;
 
+                @media (max-width: 840px) {
+                    width: 145px;
+                }
                 @media (max-width: 550px) {
                     width: 130px;
                 }
@@ -259,7 +261,7 @@
                 
                 @media (max-width: 1080px) {
                     height: 25px;
-                    width: 60px;
+                    width: 74px;
                 }
             }
             @media (max-width: 445px) {
@@ -296,7 +298,7 @@
 
                 @media (max-width: 1080px) {
                     height: 100%;
-                    width: 50px;
+                    width: 62px;
                 }
                 @media (max-width: 445px) {
                     width: 300px;

@@ -77,6 +77,17 @@
     .table_section-showButton:active{
         box-shadow: 0 0 8px 0 #afffb996;
     }
+    .isActive{
+        background: #DFE0E4;
+        color: #292D45;
+        cursor: default;
+    }
+    .isActive:hover{
+        box-shadow: none;
+    }
+    .isActive:active{
+        box-shadow: none;
+    }
 }
 .table_section_isActive {
     padding: 0 40px;

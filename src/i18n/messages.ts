@@ -30,11 +30,12 @@ export const messages: any = {
     "Search by surname": "Search by surname",
     "Reset": "Reset",
     "Class": "Class",
-    "Driver ID": "Driver ID"
+    "Driver ID": "Driver ID",
+    "Select": "Select"
   },
   [LOCALES.RUSSIAN]: {
     "ID": "ID",
-    "Model": "Модуль",
+    "Model": "Модель",
     "Mark": "Марка",
     "Number": "Номер",
     "Year": "Год",
@@ -61,12 +62,14 @@ export const messages: any = {
     "Search by surname": "Поиск по фамилии",
     "Reset": "Скинуть",
     "Class": "Класс",
-    "Driver ID": "ID водителя"
+    "Driver ID": "ID водителя",
+    "Select": "Выбрать"
+
   },
   [LOCALES.UKRAINE]: {
     "ID": "ID",
     "Model": "Модель",
-    "Mark": "Марк",
+    "Mark": "Марка",
     "Number": "Номер",
     "Year": "Рік",
     "Driver's ID": "Водій",
@@ -92,6 +95,7 @@ export const messages: any = {
     "Search by surname": "Пошук за прізвищем",
     "Reset": "Скинути",
     "Class": "Класс",
-    "Driver ID": "ID Водiя"
+    "Driver ID": "ID Водiя",
+    "Select": "Оберіть"
   },
 }

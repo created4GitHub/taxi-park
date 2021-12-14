@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import FormSectionTab from "./formSectionTab/FormSectionTab";
@@ -19,15 +19,13 @@ type Props = {
 const FormSection = ({ data, title }: Props) => {
   const [isAdditionalData, setIsAdditionalData] = useState<boolean>(false);
   const [additionalData, setAdditionalData] = useState<Data[]>([]);
-  const dispatch = useDispatch();
+  // const className = additionalData.length !== 0 ? 'table_section-showButton' : 'table_section-showButton isActive'
 
+  const dispatch = useDispatch();
 
   const search = async () => {
     if (title === "driver") {
-      // const cars: any = await GET("cars", data.id);
-      const cars = await GET_CARS_BY_DRIVER(String(data.id));
-      console.log(cars);
-      
+      const cars = await GET_CARS_BY_DRIVER(String(data.id));      
       setAdditionalData(cars.data);
     } else {
       const driver = await GET("driver", data.driver_id);
@@ -35,14 +33,17 @@ const FormSection = ({ data, title }: Props) => {
     }
   };
 
+
   const deleteEl = async () => {
     await REMOVE(title, data.id!);
     dispatch(dispatchIsDataUpdated());
   };
 
   const showClick = () => {
-    setIsAdditionalData((prevState) => !prevState);
-    search();
+    // if(additionalData.length !== 0){
+      setIsAdditionalData((prevState) => !prevState);
+      search()
+    // }
   }
 
   const mapItems = (property: string) => {
@@ -60,14 +61,23 @@ const FormSection = ({ data, title }: Props) => {
 
   const mappedItems = Object.keys(data).map(mapItems)
 
+  const btnText = () => {
+    if(isAdditionalData){
+    return <FormattedMessage id='Hide' /> 
+    }
+    return <FormattedMessage id='Show' />
+  }
+
+  const checkBtntext = btnText()
+
   return (
     <>
       <div className="table_section">
         {mappedItems}
         <Button
           onClick={showClick}
-          className="table_section-showButton"
-          btnText={isAdditionalData ? <FormattedMessage id='Hide' /> : <FormattedMessage id='Show' />}
+          className={'table_section-showButton'}
+          btnText={checkBtntext}
         />
         <Button
           onClick={deleteEl}
