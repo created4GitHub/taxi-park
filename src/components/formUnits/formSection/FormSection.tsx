@@ -73,7 +73,7 @@ const FormSection = ({ data, title }: Props) => {
     return <FormattedMessage id='Show' />
   }
 
-  const checkBtntext = btnText()
+  const checkBtntext = btnText();
 
   return (
     <>

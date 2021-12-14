@@ -1,8 +1,9 @@
+import { FormattedMessage } from "react-intl";
+
 import { Data, Status } from "../../../../interfaces/interfaces";
 import { DriverTitles, CarTitles } from "../../../../constants/additionalInfo";
 
 import icons from "../../../../img/IconsDirection.svg";
-import { FormattedMessage } from "react-intl";
 
 const AdditionalData = ({ additionalData, title }: { additionalData: Data[], title: string }) => {
     const renderTitles = (array: string[]) => {
@@ -24,7 +25,7 @@ const AdditionalData = ({ additionalData, title }: { additionalData: Data[], tit
         )
     }
 
-    const mappedItems = additionalData?.map(mapItems)
+    const mappedItems = additionalData.map(mapItems);
 
     return (
         <div className="table_section_isActive">
