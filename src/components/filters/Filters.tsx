@@ -5,18 +5,18 @@ import FilterInputs from "./filterInputs/FilterInputs";
 import ResetButton from "./resetButton/ResetButton";
 import YearSelect from "../YearsSelect/YearsSelect";
 import { filterData, resetFilter } from "../../redux/actions/actions";
-import { filterValuesSelector } from "../../constants/selectors/selector";
+import { filterValuesSelector, isDataUpdatedSelector } from "../../constants/selectors/selector";
 import { RootState } from "../../redux/rootReducer";
 
 import "./filters.style.scss";
 
 interface Props {
   title: string;
-  isDataUpdated: boolean;
 }
 
-const Filters = ({ title, isDataUpdated }: Props) => {
+const Filters = ({ title }: Props) => {
   const filterValues = useSelector(filterValuesSelector);
+  const isDataUpdated = useSelector(isDataUpdatedSelector);
   const dispatch = useDispatch();
 
   const reset = () => {

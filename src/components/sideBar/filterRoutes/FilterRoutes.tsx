@@ -11,11 +11,10 @@ interface RouteProps {
 }
 
 const FilterRoutes = () => {
-    const isDataUpdated = useSelector(isDataUpdatedSelector);
 
     const mapItems = ({ path, title }: RouteProps) => {
         return (
-            <Route path={path} key={path} element={<Filter title={title} isDataUpdated={isDataUpdated} />} />
+            <Route path={path} key={path} element={<Filter title={title} />} />
         )
     }
 
