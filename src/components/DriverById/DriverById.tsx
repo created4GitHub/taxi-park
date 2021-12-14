@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import { useIntl } from "react-intl";
 
 import { GET } from "../../requests/requests";
 import { Data } from "../../interfaces/interfaces";
