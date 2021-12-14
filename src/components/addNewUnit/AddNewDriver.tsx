@@ -8,7 +8,7 @@ import FormikInput from "../formikComponents/FormikInput";
 import FormikSelect from "../formikComponents/FormikSelect"
 import Statuses from '../statuses/Statuses';
 import AddNewButton from './addNewButton/AddNewButton';
-import { updateIsAddNewUnit } from "../../redux/actions/actions";
+import { addNewUnit, updateIsAddNewUnit } from "../../redux/actions/actions";
 import { Status, Data } from '../../interfaces/interfaces';
 import { RootState } from '../../redux/rootReducer';
 import { POST } from '../../requests/requests';
@@ -25,15 +25,20 @@ export interface Driver {
     } | string;
 }
 
-const AddNewDriver: React.FC = () => {
+interface Props {
+    title: string;
+}
+
+const AddNewDriver = ({ title }: Props) => {
     const statuses = useSelector((state: RootState) => state.statuses);
+    
     const dispatch = useDispatch();
     const initialValues: Driver = {
         first_name: "",
         last_name: "",
         date_birth: "",
         status: ""
-    };
+    };    
     const setLength = (length: string): string => `Must be ${length} characters or less`;
     return (
         <Formik
@@ -53,11 +58,11 @@ const AddNewDriver: React.FC = () => {
                     .required('Required'),
             })}
             onSubmit={(values) => {
-                const status = statuses.find((status: Status) => status.title === values.status)!;
+                const status = statuses.find((status: Status) => status.title === values.status)!;  
                 values.status = status;
                 values.date_birth = new Date(values.date_birth).getTime();
                 POST("driver", (values as Data));
-                dispatch(updateIsAddNewUnit(null));
+                dispatch(addNewUnit(title, true));
             }}
         >
             <div className="table_section_add">
@@ -66,7 +71,7 @@ const AddNewDriver: React.FC = () => {
                         <FormikInput key={name} {...{ name, placeholder, type: "text" }} />
                     )}
                     <FormikInput {...{ name: "date_birth", type: "date" }} />
-                    
+
                     <div className='table_section_add-select'>
                         <FormikSelect name="status">
                             <Statuses />

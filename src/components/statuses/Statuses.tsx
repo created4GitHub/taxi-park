@@ -9,12 +9,11 @@ import './statuses.style.scss'
 
 const Statuses = () => {
     const intl = useIntl();
-
     const statuses = useSelector(statusesSelector);
 
     const mapItems = (item: Status) => {
         return (
-            <option key={item.title} >
+            <option key={item.title}>
                 {item.title}
             </option>
         )

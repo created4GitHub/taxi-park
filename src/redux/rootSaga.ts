@@ -7,6 +7,9 @@ import { deleteUnitWatcher } from './sagas/deleteUnit';
 
 export default function* rootSaga() {
     yield all([
-        fetchDataWatcher(), switchPageWatcher(), addNewUnitWatcher(), deleteUnitWatcher()
+        fetchDataWatcher(), 
+        switchPageWatcher(), 
+        addNewUnitWatcher(), 
+        deleteUnitWatcher(),
     ]);
 }
