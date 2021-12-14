@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, connect } from "react-redux";
 
 import Loader from "../loader/loader";
 import FormSection from "./formSection/FormSection";
@@ -20,6 +20,10 @@ interface Props {
   title: string;
 }
 
+const mapDispatchToProps = {
+  data: getData,
+}
+
 const FormUnits = ({ title }: Props) => {
   const receivedData = useSelector(dataSelector);
   const filteredData = useSelector(filteredDataSelector);
@@ -29,9 +33,9 @@ const FormUnits = ({ title }: Props) => {
   const data = (isFilteredData && filteredData) || receivedData;
   const dispatch = useDispatch();
   
-  useEffect(() => {
-    dispatch(getData(title));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getData(title));
+  // }, []);
 
   const mapItems = (item: Data) => {
     return (
@@ -57,4 +61,4 @@ const FormUnits = ({ title }: Props) => {
   );
 };
 
-export default FormUnits;
+export default connect(null, mapDispatchToProps)(FormUnits);
