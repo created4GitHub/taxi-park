@@ -10,7 +10,7 @@ import YearsSelect from "../YearsSelect/YearsSelect";
 import DriverListById from '../DriverById/DriverById';
 import Statuses from '../statuses/Statuses';
 import AddNewButton from './addNewButton/AddNewButton';
-import { updateIsAddNewUnit } from "../../redux/actions/actions";
+import { addNewUnit, updateIsAddNewUnit } from "../../redux/actions/actions";
 import { Status, Data } from '../../interfaces/interfaces';
 import { RootState } from '../../redux/rootReducer';
 import { POST } from '../../requests/requests';
@@ -29,8 +29,11 @@ export interface Car {
     } | string;
 }
 
+interface Props {
+    title: string;
+}
 
-const AddNewCar: React.FC = () => {
+const AddNewCar = ({ title }: Props) => {
     const statuses = useSelector((state: RootState) => state.statuses);
     const dispatch = useDispatch();
     const initialValues: Car = {
@@ -68,7 +71,7 @@ const AddNewCar: React.FC = () => {
                 const status = statuses.find((status: Status) => status.title === values.status)!;
                 values.status = status;
                 POST("car", (values as Data));
-                dispatch(updateIsAddNewUnit(null));
+                dispatch(addNewUnit(title, true));
             }}
         >
             <div className="table_section_add">

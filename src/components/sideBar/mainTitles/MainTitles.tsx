@@ -31,7 +31,7 @@ const MainTitles = ({ isActive, setIsActive }: Props) => {
 
         const addUnit = () => {
             setIsActive(title);
-            dispatch(addNewUnit(title));
+            dispatch(addNewUnit(title, false));
         }
 
         return (
