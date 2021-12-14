@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { switchPage, addNewUnit } from "../../../redux/actions/actions";
 import { Button } from "../../regularComponents/button/Button";
 import { TitlesLinks } from "../../../constants/mainTitles";
+import { FormattedMessage } from "react-intl";
 
 interface Props {
     isActive: string;
@@ -45,7 +46,7 @@ const MainTitles = ({ isActive, setIsActive }: Props) => {
                                     className="options-img"
                                     src={src}
                                     alt="alt" />
-                                {name}
+                                <FormattedMessage id={name} />
                             </p>
                         }
                     />

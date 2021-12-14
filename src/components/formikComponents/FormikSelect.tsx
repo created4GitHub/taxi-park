@@ -2,6 +2,7 @@ import { useField } from 'formik';
 
 const MySelect = ({ ...props }: any) => {
     const [field, meta] = useField(props);
+    
     return (
         <div>
             {meta.touched && meta.error ? (

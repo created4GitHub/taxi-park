@@ -53,7 +53,7 @@
         box-shadow: 0 0 8px 0 #ff9c9cab;
     }
     .table_section-showButton {
-        min-width: 55px;
+        min-width: 63px;
         margin-left: 30px;
         height: 30px;
         cursor: pointer;
@@ -76,6 +76,17 @@
     }
     .table_section-showButton:active{
         box-shadow: 0 0 8px 0 #afffb996;
+    }
+    .isActive{
+        background: #DFE0E4;
+        color: #292D45;
+        cursor: default;
+    }
+    .isActive:hover{
+        box-shadow: none;
+    }
+    .isActive:active{
+        box-shadow: none;
     }
 }
 .table_section_isActive {
@@ -116,6 +127,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            text-align: center;
+            
             @media (max-width: 840px) {
                 width: 120px;
             }

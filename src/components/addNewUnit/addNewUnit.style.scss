@@ -10,8 +10,9 @@
 
     @media (max-width: 840px) {
         width: 130px;
-        justify-content: center;
+        height: 95%;
         flex-direction: column;
+        justify-content: space-between;
     }
     .table_section_buttons {
         display: flex;
@@ -44,6 +45,9 @@
         background-color: white;
         justify-content: space-evenly;
         align-items: center;
+        @media (max-width: 840px) {
+            height: auto;
+        }
 
         .table_section-input {
             width: 110px;
@@ -92,7 +96,7 @@
             width: 115px;
             height: 26px;
             order: 1;
-            margin-bottom: 10px;
+            // margin-bottom: 10px;
         }
     }
 }

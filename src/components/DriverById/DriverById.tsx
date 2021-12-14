@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { FormattedMessage, useIntl } from "react-intl";
 
 import { GET } from "../../requests/requests";
 import { Data } from "../../interfaces/interfaces";
@@ -7,6 +8,7 @@ import "./driverById.style.scss";
 
 const DriverIDList: React.FC = () => {
   const [drivers, setDrivers] = useState(Array<Data>());
+  const intl = useIntl();
 
   const fetchData = async () => {
     const drivers = await GET("driver");
@@ -29,14 +31,8 @@ const DriverIDList: React.FC = () => {
 
   return (
     <>
-      <option value="" hidden>Select</option>
-      {drivers?.map(item => {
-        return (
-          <option key={item.id} value={item.id}>
-            {item.first_name + " " + item.last_name}
-          </option>
-        )
-      })}
+      <option value="" hidden>{intl.formatMessage({ id: "Select" })}</option>
+      {mappedItems}
     </>
   )
 };

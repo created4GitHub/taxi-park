@@ -1,3 +1,4 @@
+import { FormattedMessage } from "react-intl";
 import { Button } from "../../regularComponents/button/Button";
 
 interface Props {
@@ -9,7 +10,7 @@ const ResetButton = ({ resetFilters }: Props) => {
         <div className="reset-filter-button">
             <Button
                 onClick={resetFilters}
-                btnText={"Reset"}
+                btnText={<FormattedMessage id='Reset' />}
             />
         </div>
     );

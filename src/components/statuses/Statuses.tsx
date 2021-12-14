@@ -1,3 +1,4 @@
+import { useIntl } from "react-intl";
 import { useSelector } from "react-redux";
 import { statusesSelector } from "../../redux/selectors/selector";
 
@@ -6,13 +7,8 @@ import { RootState } from "../../redux/rootReducer";
 
 import './statuses.style.scss'
 
-interface Props {
-    value?: string;
-    id?: string;
-    onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-}
-
-const Statuses = ({ value, onChange, id }: Props) => {
+const Statuses = () => {
+    const intl = useIntl();
 
     const statuses = useSelector(statusesSelector);
 
@@ -28,14 +24,8 @@ const Statuses = ({ value, onChange, id }: Props) => {
 
     return (
         <>
-            <option value="" hidden>Select</option>
-            {statuses.map((item: Status) => {
-                return (
-                    <option key={item.title} >
-                        {item.title}
-                    </option>
-                )
-            })}
+            <option value="" hidden>{intl.formatMessage({ id: "Select" })}</option>
+            {mappedItems}
         </>
     )
 }
