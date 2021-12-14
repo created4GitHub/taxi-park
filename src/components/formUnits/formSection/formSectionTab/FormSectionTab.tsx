@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Statuses from "../../../statuses/Statuses";
 import { PATCH } from "../../../../requests/requests";
-import { RootState } from "../../../../redux/rootReducer";
 import { Data, Status } from "../../../../interfaces/interfaces";
 import { dispatchIsDataUpdated } from "../../../../redux/actions/actions";
 import { statusesSelector } from "../../../../redux/selectors/selector";

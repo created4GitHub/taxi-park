@@ -3,8 +3,7 @@ import { ChangeEvent } from "react";
 import Input from "../../regularComponents/input/Input";
 import { CarInfo, DriverInfo } from "../../../constants/filterInputs"
 import { Filter } from "../../../interfaces/interfaces";
-import { FormattedMessage, injectIntl, useIntl } from "react-intl";
-import { messages } from "../../../i18n/messages";
+import { useIntl } from "react-intl";
 
 interface Props {
     filter: (event: ChangeEvent<HTMLInputElement>) => void;

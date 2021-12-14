@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 
 import Input from "../../regularComponents/input/Input";
 import { statusesSelector } from "../../../redux/selectors/selector";
-import { RootState } from "../../../redux/rootReducer";
 
 interface Props {
     filter: (event: ChangeEvent<HTMLInputElement>) => void;
