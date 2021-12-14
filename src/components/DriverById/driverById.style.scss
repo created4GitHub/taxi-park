@@ -22,10 +22,29 @@
     align-items: center;
     flex-direction: column;
 
-    p {
-        margin: 0;
+    .search__findDriber-button {
+        height: 50px;
+        margin: 3px;
+        line-height: 16px;
+        border-radius: 8px;
+        background-color: white;
+        border: solid silver 1px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    .search__findDriber-button:hover {
+        background: #F9D567;
     }
 }
+
 
 .search__findDriber-button:hover {
     background: #F9D567;

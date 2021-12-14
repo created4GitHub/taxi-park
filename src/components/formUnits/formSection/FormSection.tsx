@@ -19,11 +19,13 @@ type Props = {
 const FormSection = ({ data, title }: Props) => {
   const [isAdditionalData, setIsAdditionalData] = useState<boolean>(false);
   const [additionalData, setAdditionalData] = useState<Data[]>([]);
+  const className = additionalData.length !== 0 ? 'table_section-showButton' : 'table_section-showButton isActive';
+
   const dispatch = useDispatch();
 
   const search = async () => {
     if (title === "driver") {
-      const cars = await GET_CARS_BY_DRIVER(String(data.id));
+      const cars = await GET_CARS_BY_DRIVER(String(data.id));   
       setAdditionalData(cars.data);
     } else {
       const driver = await GET("driver", data.driver_id);
@@ -31,6 +33,9 @@ const FormSection = ({ data, title }: Props) => {
     }
   };
 
+  useEffect(() => {
+    search()
+  }, [])
 
   const deleteEl = async () => {
     await REMOVE(title, data.id!);
@@ -38,10 +43,9 @@ const FormSection = ({ data, title }: Props) => {
   };
 
   const showClick = () => {
-    // if(additionalData.length !== 0){
-    setIsAdditionalData((prevState) => !prevState);
-    search()
-    // }
+    if(additionalData.length !== 0){
+      setIsAdditionalData((prevState) => !prevState);
+    }
   }
 
   const mapItems = (property: string) => {
@@ -60,8 +64,10 @@ const FormSection = ({ data, title }: Props) => {
   const mappedItems = Object.keys(data).map(mapItems)
 
   const btnText = () => {
-    if (isAdditionalData) {
-      return <FormattedMessage id='Hide' />
+    if(additionalData.length === 0){
+      return <FormattedMessage id='No cars' /> 
+    } else if(isAdditionalData){
+      return <FormattedMessage id='Hide' /> 
     }
     return <FormattedMessage id='Show' />
   }
@@ -74,7 +80,7 @@ const FormSection = ({ data, title }: Props) => {
         {mappedItems}
         <Button
           onClick={showClick}
-          className={'table_section-showButton'}
+          className={className}
           btnText={checkBtntext}
         />
         <Button
