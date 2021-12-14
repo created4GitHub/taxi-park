@@ -5,16 +5,11 @@ import { fetchData } from './fetchData';
 import { updateIsAddNewUnit } from "../actions/actions";
 
 function* addNewUnit({ type, title }: { type: typeof ADD_NEW_UNIT, title: string }) {
-    try {
-        yield call(fetchData, { type: "FETCH_DATA", title });
-        yield fork(updateIsAddNewUnit, title);
-        yield put({ type: SET_IS_ADD_NEW_UNIT, payload: title });
-        yield put({ type: IS_DATA_UPDATED, });
-        yield put({ type: RESET_FILTER });
-    }
-    catch (e) {
-        console.log(e);
-    }
+    yield call(fetchData, { type: "FETCH_DATA", title });
+    yield fork(updateIsAddNewUnit, title);
+    yield put({ type: SET_IS_ADD_NEW_UNIT, payload: title });
+    yield put({ type: IS_DATA_UPDATED, });
+    yield put({ type: RESET_FILTER });
 }
 
 export function* addNewUnitWatcher() {
