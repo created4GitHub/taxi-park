@@ -11,7 +11,6 @@ import {
   isDataUpdatedSelector,
   isDataFilteredSelector,
   dataSelector,
-  isAddNewUnitSelector,
   isDataFetchingSelector,
   isDataFetchErrorSelector
 } from "../../redux/selectors/selector";
