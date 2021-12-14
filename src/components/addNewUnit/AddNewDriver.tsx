@@ -60,8 +60,7 @@ const AddNewDriver = ({ title }: Props) => {
                 const status = statuses.find((status: Status) => status.title === values.status)!;
                 values.status = status;
                 values.date_birth = new Date(values.date_birth).getTime();
-                POST("driver", (values as Data));
-                dispatch(addNewUnit(title, true));
+                dispatch(addNewUnit(title, true, (values as Data)));
             }}
         >
             <div className="table_section_add">

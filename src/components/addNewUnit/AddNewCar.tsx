@@ -70,8 +70,7 @@ const AddNewCar = ({ title }: Props) => {
             onSubmit={(values) => {
                 const status = statuses.find((status: Status) => status.title === values.status)!;
                 values.status = status;
-                POST("car", (values as Data));
-                dispatch(addNewUnit(title, true));
+                dispatch(addNewUnit(title, true, (values as Data)));
             }}
         >
             <div className="table_section_add">
