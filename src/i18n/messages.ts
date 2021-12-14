@@ -31,7 +31,10 @@ export const messages: any = {
     "Reset": "Reset",
     "Class": "Class",
     "Driver ID": "Driver ID",
-    "Select": "Select"
+    "Select": "Select",
+    "No cars": "No cars",
+    "Required": "Required",
+    "Must be 8 characters or less": "Must be 8 characters or less",
   },
   [LOCALES.RUSSIAN]: {
     "ID": "ID",
@@ -63,8 +66,10 @@ export const messages: any = {
     "Reset": "Скинуть",
     "Class": "Класс",
     "Driver ID": "ID водителя",
-    "Select": "Выбрать"
-
+    "Select": "Выбрать",
+    "No cars": "Нет авто",
+    "Required": "Необходимо",
+    "Must be 8 characters or less": "Должно быть не более 8 символов",
   },
   [LOCALES.UKRAINE]: {
     "ID": "ID",
@@ -96,6 +101,9 @@ export const messages: any = {
     "Reset": "Скинути",
     "Class": "Класс",
     "Driver ID": "ID Водiя",
-    "Select": "Оберіть"
+    "Select": "Оберіть",
+    "No cars": "Без авто",
+    "Required": "Необхiдно",
+    "Must be 8 characters or less": "Повинно бути не бiльш 8 символiв",
   },
 }
