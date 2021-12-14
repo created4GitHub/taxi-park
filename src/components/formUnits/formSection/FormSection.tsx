@@ -62,7 +62,7 @@ const FormSection = ({ data, title }: Props) => {
     )
   }
 
-  const mappedItems = Object.keys(data).map(mapItems)
+  const mappedItems = Object.keys(data).map(mapItems);
 
   const btnText = () => {
     if (additionalData.length === 0) {
