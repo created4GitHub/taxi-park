@@ -1,5 +1,17 @@
 import { Data, Status, Filter } from "../interfaces/interfaces";
+<<<<<<< HEAD
 import * as types from './types';
+=======
+import {
+    DATA_RECEIVED,
+    FILTER_DATA,
+    RESET_FILTER,
+    SET_IS_ADD_NEW_UNIT,
+    IS_DATA_UPDATED,
+    IS_DATA_FETCHING,
+    IS_DATA_FETCH_ERROR
+} from './types'
+>>>>>>> origin/dev
 
 interface FilterData {
     filterValues: string;
@@ -16,10 +28,12 @@ interface InitialState {
     isAddNewUnit: string | null;
     isDataUpdated: boolean;
     isDataFiltered: boolean;
+    isDataFetching: boolean;
+    isDataFetchError: boolean;
 }
 
 interface Action {
-    payload?: FilterData | string;
+    payload?: FilterData | string | boolean;
     data?: Data[],
     statuses?: Status[],
     type: string,
@@ -32,8 +46,9 @@ const initialState: InitialState = {
     statuses: [],
     isAddNewUnit: null,
     isDataUpdated: false,
-
     isDataFiltered: false,
+    isDataFetching: false,
+    isDataFetchError: false
 }
 
 const RootReducer = (state: InitialState = initialState, { type, payload, data, statuses }: Action): InitialState => {
@@ -68,6 +83,12 @@ const RootReducer = (state: InitialState = initialState, { type, payload, data, 
 
         case types.IS_DATA_UPDATED:
             return { ...state, isDataUpdated: !state.isDataUpdated };
+
+        case IS_DATA_FETCHING:
+            return { ...state, isDataFetching: (payload as boolean), isDataFetchError: false }
+
+        case IS_DATA_FETCH_ERROR:
+            return { ...state, isDataFetchError: true }
 
         default:
             return state;

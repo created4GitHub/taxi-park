@@ -9,7 +9,9 @@ import {
     DELETE_UNIT,
     ADD_NEW_UNIT,
     SWITCH_PAGE,
-    FETCH_DATA
+    FETCH_DATA,
+    IS_DATA_FETCH_ERROR,
+    IS_DATA_FETCHING
 } from '../types'
 
 export const getData = (title: string) => {
@@ -18,6 +20,20 @@ export const getData = (title: string) => {
         title
     }
 }
+
+export const setIsDataFetching = (payload: boolean) => {
+    return {
+        type: IS_DATA_FETCHING,
+        payload
+    }
+}
+
+export const setIsDataFetchError = () => {
+    return {
+        type: IS_DATA_FETCH_ERROR
+    }
+}
+
 
 export const switchPage = (title: string) => {
     return {
