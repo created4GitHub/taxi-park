@@ -2,8 +2,7 @@ import { useField } from 'formik';
 import { FormattedMessage } from 'react-intl';
 
 const MySelect = ({ ...props }: any) => {
-    const [field, meta] = useField(props);
-    
+    const [field, meta] = useField(props);    
     return (
         <div>
             {meta.touched && meta.error ? (

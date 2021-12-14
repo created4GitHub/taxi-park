@@ -26,4 +26,3 @@ function* addNewUnit({ type, title, isPost, data }: Params) {
 export function* addNewUnitWatcher() {
     yield takeLatest(ADD_NEW_UNIT, addNewUnit);
 }
-
