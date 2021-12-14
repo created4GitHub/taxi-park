@@ -8,6 +8,7 @@ import { messages } from "./i18n/messages";
 
 import "./app.scss";
 
+
 const App: React.FC = () => {
   const local = JSON.parse(localStorage.getItem('internationalization')!)
   const defaultLanguage = {

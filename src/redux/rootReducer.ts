@@ -4,7 +4,9 @@ import {
     FILTER_DATA,
     RESET_FILTER,
     SET_IS_ADD_NEW_UNIT,
-    IS_DATA_UPDATED
+    IS_DATA_UPDATED,
+    IS_DATA_FETCHING,
+    IS_DATA_FETCH_ERROR
 } from './types'
 
 interface FilterData {
@@ -22,12 +24,14 @@ interface InitialState {
     isAddNewUnit: string | null;
     isDataUpdated: boolean;
     isDataFiltered: boolean;
+    isDataFetching: boolean;
+    isDataFetchError: boolean;
 }
 
 interface Action {
-    payload: FilterData | string;
-    data: Data[],
-    statuses: Status[],
+    payload?: FilterData | string | boolean;
+    data?: Data[],
+    statuses?: Status[],
     type: string,
 }
 
@@ -38,20 +42,20 @@ const initialState: InitialState = {
     statuses: [],
     isAddNewUnit: null,
     isDataUpdated: false,
-
     isDataFiltered: false,
+    isDataFetching: false,
+    isDataFetchError: false
 }
 
 const RootReducer = (state: InitialState = initialState, { type, payload, data, statuses }: Action): InitialState => {
     switch (type) {
         case DATA_RECEIVED:
-            return { ...state, data: data, statuses: statuses };
+            return { ...state, data: data!, statuses: statuses! };
 
         case FILTER_DATA:
             const { name, value } = payload as FilterData;
             const filterValues: Filter = state.filterValues;
             filterValues[name as keyof Filter] = value;
-
             let result = state.data;
             for (let key in filterValues) {
                 result = result.filter(item => {
@@ -59,7 +63,7 @@ const RootReducer = (state: InitialState = initialState, { type, payload, data, 
                         return filterValues[key] === (item.status as Status).title;
                     } else {
                         return String(item[key as keyof Data]).toLocaleLowerCase()
-                            .includes(filterValues[name as keyof Filter]!.toLocaleLowerCase());
+                            .includes(filterValues[key as keyof Filter]!.toLocaleLowerCase());
                     }
                 });
             }
@@ -75,6 +79,12 @@ const RootReducer = (state: InitialState = initialState, { type, payload, data, 
 
         case IS_DATA_UPDATED:
             return { ...state, isDataUpdated: !state.isDataUpdated };
+
+        case IS_DATA_FETCHING:
+            return { ...state, isDataFetching: (payload as boolean), isDataFetchError: false }
+
+        case IS_DATA_FETCH_ERROR:
+            return { ...state, isDataFetchError: true }
 
         default:
             return state;

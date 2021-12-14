@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 
-import { dispatchIsDataUpdated, resetFilter, updateIsAddNewUnit } from "../../../redux/actions/actions";
+import { switchPage, addNewUnit } from "../../../redux/actions/actions";
 import { Button } from "../../regularComponents/button/Button";
 import { TitlesLinks } from "../../../constants/mainTitles";
 import { FormattedMessage } from "react-intl";
@@ -26,17 +26,14 @@ const MainTitles = ({ isActive, setIsActive }: Props) => {
 
         const openUnit = () => {
             setIsActive(title);
-            dispatch(updateIsAddNewUnit(null));
-            dispatch(resetFilter());
-            dispatch(dispatchIsDataUpdated());
+            dispatch(switchPage(title));
         }
 
         const addUnit = () => {
             setIsActive(title);
-            dispatch(updateIsAddNewUnit(title));
-            dispatch(resetFilter());
-            dispatch(dispatchIsDataUpdated());
+            dispatch(addNewUnit(title));
         }
+
         return (
             <div className="paragraph_element-route" key={title}>
                 <Link to={path}>

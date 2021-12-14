@@ -3,8 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Filter from "../../filters/Filters";
 import { RoutesInfo } from "../../../constants/routesInfo"
 import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/rootReducer";
-import { isAddNewUnitSelector } from "../../../constants/selectors/selector";
+import { isDataUpdatedSelector } from "../../../constants/selectors/selector";
 
 interface RouteProps {
     path: string;
@@ -12,11 +11,10 @@ interface RouteProps {
 }
 
 const FilterRoutes = () => {
-    const isDataUpdated = useSelector(isAddNewUnitSelector);
 
     const mapItems = ({ path, title }: RouteProps) => {
         return (
-            <Route path={path} key={path} element={<Filter title={title} isDataUpdated={isDataUpdated} />} />
+            <Route path={path} key={path} element={<Filter title={title} />} />
         )
     }
 
@@ -24,7 +22,7 @@ const FilterRoutes = () => {
 
     return (
         <Routes>
-            {mappedItems }
+            {mappedItems}
         </Routes>
     );
 };

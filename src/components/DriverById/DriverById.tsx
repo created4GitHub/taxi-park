@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { FormattedMessage, useIntl } from "react-intl";
 
 import { GET } from "../../requests/requests";
 import { Data } from "../../interfaces/interfaces";
 
-import "./driverListById.style.scss";
-import { FormattedMessage, useIntl } from "react-intl";
+import "./driverById.style.scss";
 
 const DriverIDList: React.FC = () => {
   const [drivers, setDrivers] = useState(Array<Data>());
