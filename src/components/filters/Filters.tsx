@@ -5,7 +5,7 @@ import FilterInputs from "./filterInputs/FilterInputs";
 import ResetButton from "./resetButton/ResetButton";
 import YearSelect from "../YearsSelect/YearsSelect";
 import { filterData, resetFilter } from "../../redux/actions/actions";
-import { filterValuesSelector, isDataUpdatedSelector } from "../../constants/selectors/selector";
+import { filterValuesSelector, isDataUpdatedSelector } from "../../redux/selectors/selector";
 import { RootState } from "../../redux/rootReducer";
 
 import "./filters.style.scss";

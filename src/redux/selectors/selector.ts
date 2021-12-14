@@ -1,4 +1,4 @@
-import { RootState } from "../../redux/rootReducer";
+import { RootState } from "../rootReducer";
 
 export const dataSelector = (state: RootState) => state.data;
 export const filteredDataSelector = (state: RootState) => state.filteredData;

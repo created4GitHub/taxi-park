@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Loader from "../loader/loader";
 import FormSection from "./formSection/FormSection";
 import UnitsTitles from "./unitsTitles/UnitsTitles";
-import { getData, setIsDataFetching } from "../../redux/actions/actions";
+import { getData } from "../../redux/actions/actions";
 import { Data } from "../../interfaces/interfaces";
 import {
   filteredDataSelector,
@@ -14,31 +14,12 @@ import {
   isAddNewUnitSelector,
   isDataFetchingSelector,
   isDataFetchErrorSelector
-} from "../../constants/selectors/selector";
+} from "../../redux/selectors/selector";
 
 import "./formUnits.style.scss";
 
 interface Props {
   title: string;
-  payload: boolean;
-}
-
-function mapStateToProps(state) {
-  return { 
-    selector: state.selector
-  }
-}
-
-// function mapDispatchToProps = dispatch => {
-//   return {
-//     buySelector: () => dispatch(setIsDataFetching())
-//   }
-// }
-
-const mapDispatchToProps = (dispatch: any, { payload }: Props) => {
-  return {
-    buySelector: () => dispatch(setIsDataFetching(payload))
-  }
 }
 
 const FormUnits = ({ title }: Props) => {
@@ -79,4 +60,4 @@ const FormUnits = ({ title }: Props) => {
   );
 };
 
-export default connect() (FormUnits);
+export default FormUnits;
