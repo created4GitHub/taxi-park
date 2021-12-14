@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Filter from "../../filters/Filters";
 import { RoutesInfo } from "../../../constants/routesInfo"
 import { useSelector } from "react-redux";
-import { isDataUpdatedSelector } from "../../../constants/selectors/selector";
+import { isDataUpdatedSelector } from "../../../redux/selectors/selector";
 
 interface RouteProps {
     path: string;

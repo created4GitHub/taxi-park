@@ -1,7 +1,6 @@
 import { Data } from "../interfaces/interfaces";
 type Body = (info: Data) => { body: string; };
 
-
 export const headers: HeadersInit = {
     Accept: "application/json",
     "X-Authorization":

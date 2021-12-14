@@ -14,7 +14,7 @@ import {
   isAddNewUnitSelector,
   isDataFetchingSelector,
   isDataFetchErrorSelector
-} from "../../constants/selectors/selector";
+} from "../../redux/selectors/selector";
 
 import "./formUnits.style.scss";
 
@@ -32,7 +32,7 @@ const FormUnits = ({ title }: Props) => {
   const isDataFetchError = useSelector(isDataFetchErrorSelector);
   const data = (isFilteredData && filteredData) || receivedData;
   const dispatch = useDispatch();
-  console.log(isDataFetchError)
+
   useEffect(() => {
     dispatch(getData(title));
   }, []);
