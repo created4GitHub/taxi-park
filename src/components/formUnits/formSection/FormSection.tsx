@@ -9,6 +9,7 @@ import { GET, REMOVE, GET_CARS_BY_DRIVER } from "../../../requests/requests";
 import { dispatchIsDataUpdated } from "../../../redux/actions/actions";
 
 import "./formSection.style.scss";
+import { FormattedMessage } from "react-intl";
 
 type Props = {
   data: Data;
@@ -23,7 +24,10 @@ const FormSection = ({ data, title }: Props) => {
 
   const search = async () => {
     if (title === "driver") {
+      // const cars: any = await GET("cars", data.id);
       const cars = await GET_CARS_BY_DRIVER(String(data.id));
+      console.log(cars);
+      
       setAdditionalData(cars.data);
     } else {
       const driver = await GET("driver", data.driver_id);
@@ -63,12 +67,12 @@ const FormSection = ({ data, title }: Props) => {
         <Button
           onClick={showClick}
           className="table_section-showButton"
-          btnText={isAdditionalData ? "Hide" : "Show"}
+          btnText={isAdditionalData ? <FormattedMessage id='Hide' /> : <FormattedMessage id='Show' />}
         />
         <Button
           onClick={deleteEl}
           className="table_section-deleteButton"
-          btnText="Delete"
+          btnText={<FormattedMessage id='Delete' /> }
         />
       </div>
       {isAdditionalData && <AdditionalData additionalData={additionalData} title={title} />}

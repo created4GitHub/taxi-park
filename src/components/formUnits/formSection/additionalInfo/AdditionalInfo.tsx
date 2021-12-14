@@ -2,11 +2,12 @@ import { Data, Status } from "../../../../interfaces/interfaces";
 import { DriverTitles, CarTitles } from "../../../../constants/additionalInfo";
 
 import icons from "../../../../img/IconsDirection.svg";
+import { FormattedMessage } from "react-intl";
 
 const AdditionalData = ({ additionalData, title }: { additionalData: Data[], title: string }) => {
     const renderTitles = (array: string[]) => {
         return array.map((item: string) => {
-            return <p key={item}> {item} <img src={icons} alt="alt" /></p>
+            return <p key={item}><FormattedMessage id={item} /><img src={icons} alt="alt" /></p>
         });
     }
 

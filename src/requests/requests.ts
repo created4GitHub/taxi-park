@@ -32,6 +32,7 @@ export const GET = async (title: string, id?: number): Promise<Data[] | Data> =>
 };
 
 export const GET_CARS_BY_DRIVER = async (id: string): Promise<Response> => {
+  (headers as any)["E-Driver-Id"] = id
   const response = await fetch(url + "car/", {
     method: "GET",
     headers,
