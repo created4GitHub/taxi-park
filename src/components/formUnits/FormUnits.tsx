@@ -27,7 +27,6 @@ const FormUnits = ({ title }: Props) => {
   const filteredData = useSelector(filteredDataSelector);
   const isFilteredData = useSelector(isDataFilteredSelector);
   const isDataUpdated = useSelector(isDataUpdatedSelector);
-  const isAddNewUnit = useSelector(isAddNewUnitSelector);
   const isDataFetching = useSelector(isDataFetchingSelector);
   const isDataFetchError = useSelector(isDataFetchErrorSelector);
   const data = (isFilteredData && filteredData) || receivedData;
@@ -35,8 +34,7 @@ const FormUnits = ({ title }: Props) => {
 
   useEffect(() => {
     dispatch(getData(title));
-  }, [isDataUpdated, isAddNewUnit]);
-
+  }, [isDataUpdated]);
 
   const mapItems = (item: Data) => {
     return (

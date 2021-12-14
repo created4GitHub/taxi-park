@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useStateIfMounted } from "use-state-if-mounted";
 
 import FormSectionTab from "./formSectionTab/FormSectionTab";
 import { Button } from "../../regularComponents/button/Button";
@@ -18,14 +19,14 @@ type Props = {
 
 const FormSection = ({ data, title }: Props) => {
   const [isAdditionalData, setIsAdditionalData] = useState<boolean>(false);
-  const [additionalData, setAdditionalData] = useState<Data[]>([]);
+  const [additionalData, setAdditionalData] = useStateIfMounted<Data[]>([]);
   const className = additionalData.length !== 0 ? 'table_section-showButton' : 'table_section-showButton isActive';
 
   const dispatch = useDispatch();
 
   const search = async () => {
     if (title === "driver") {
-      const cars = await GET_CARS_BY_DRIVER(String(data.id));   
+      const cars = await GET_CARS_BY_DRIVER(String(data.id));
       setAdditionalData(cars.data);
     } else {
       const driver = await GET("driver", data.driver_id);
@@ -34,7 +35,7 @@ const FormSection = ({ data, title }: Props) => {
   };
 
   useEffect(() => {
-    search()
+    search();
   }, [])
 
   const deleteEl = async () => {
@@ -43,7 +44,7 @@ const FormSection = ({ data, title }: Props) => {
   };
 
   const showClick = () => {
-    if(additionalData.length !== 0){
+    if (additionalData.length !== 0) {
       setIsAdditionalData((prevState) => !prevState);
     }
   }
@@ -64,10 +65,10 @@ const FormSection = ({ data, title }: Props) => {
   const mappedItems = Object.keys(data).map(mapItems)
 
   const btnText = () => {
-    if(additionalData.length === 0){
-      return <FormattedMessage id='No cars' /> 
-    } else if(isAdditionalData){
-      return <FormattedMessage id='Hide' /> 
+    if (additionalData.length === 0) {
+      return <FormattedMessage id='No cars' />
+    } else if (isAdditionalData) {
+      return <FormattedMessage id='Hide' />
     }
     return <FormattedMessage id='Show' />
   }
