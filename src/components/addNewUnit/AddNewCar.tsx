@@ -27,10 +27,11 @@ interface Props {
 const uuid = require("react-uuid");
 
 const AddNewCar = ({ title }: Props) => {
-    const statuses = useSelector((state: RootState) => state.statuses);
     const dispatch = useDispatch();
+    const statuses = useSelector((state: RootState) => state.statuses);
     const initialValues = useMemo(() => CAR_VALUES, []);;
     const validationSchema = useMemo(() => CAR_VALIDATION_SCHEMA, []);
+
     const onSubmit = useCallback((values) => {
         const status = statuses.find((status: Status) => status.title === values.status)!;
         values.status = status;

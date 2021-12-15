@@ -10,6 +10,16 @@ interface Car {
     } | string;
 }
 
+export interface Driver {
+    first_name: string;
+    last_name: string;
+    date_birth: number | string;
+    status: {
+        title: string;
+        code: string;
+    } | string;
+}
+
 export const CAR_VALUES: Car = {
     mark: '',
     model: '',
@@ -17,4 +27,11 @@ export const CAR_VALUES: Car = {
     number: '',
     driver_id: '',
     status: '',
+};
+
+export const DRIVER_VALUES: Driver = {
+    first_name: "",
+    last_name: "",
+    date_birth: "",
+    status: ""
 };

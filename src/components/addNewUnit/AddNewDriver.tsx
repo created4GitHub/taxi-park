@@ -1,6 +1,6 @@
 import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
+import { useCallback, useMemo } from 'react';
 
 import { DriverInfo } from "../../constants/addNewSection";
 import FormikInput from "../formikComponents/FormikInput";
@@ -10,19 +10,11 @@ import AddNewButton from './addNewButton/AddNewButton';
 import { addNewUnit, updateIsAddNewUnit } from "../../redux/actions/actions";
 import { Status, Data } from '../../interfaces/interfaces';
 import { RootState } from '../../redux/rootReducer';
+import { DRIVER_VALIDATION_SCHEMA } from './validationSchema/validationSchema';
+import { DRIVER_VALUES } from './initValues/initValues';
 
 import "./addNewUnit.style.scss";
-import { useIntl } from 'react-intl';
 
-export interface Driver {
-    first_name: string;
-    last_name: string;
-    date_birth: number | string;
-    status: {
-        title: string;
-        code: string;
-    } | string;
-}
 
 interface Props {
     title: string;
@@ -31,41 +23,23 @@ interface Props {
 const uuid = require("react-uuid");
 
 const AddNewDriver = ({ title }: Props) => {
-    const statuses = useSelector((state: RootState) => state.statuses);
-    const intl = useIntl();
-
     const dispatch = useDispatch();
-    const initialValues: Driver = {
-        first_name: "",
-        last_name: "",
-        date_birth: "",
-        status: ""
-    };
+    const statuses = useSelector((state: RootState) => state.statuses);
+    const initialValues = useMemo(() => DRIVER_VALUES, []);;
+    const validationSchema = useMemo(() => DRIVER_VALIDATION_SCHEMA, []);
 
-    const setLength = (length: string): string => `${intl.formatMessage({ id: `Must be ${length} characters or less` })}`;
+    const onSubmit = useCallback((values) => {
+        const status = statuses.find((status: Status) => status.title === values.status)!;
+        values.status = status;
+        values.date_birth = new Date(values.date_birth).getTime();
+        dispatch(addNewUnit(title, true, (values as Data)));
+    }, [statuses]);
+
     return (
         <Formik
             initialValues={initialValues}
-            validationSchema={Yup.object({
-                first_name: Yup.string()
-                    .max(15, setLength("3-20"))
-                    .min(3, setLength("3-20"))
-                    .required('Required'),
-                last_name: Yup.string()
-                    .max(15, setLength("3-15"))
-                    .min(3, setLength("3-15"))
-                    .required('Required'),
-                date_birth: Yup.string()
-                    .required('Required'),
-                status: Yup.string()
-                    .required('Required'),
-            })}
-            onSubmit={(values) => {
-                const status = statuses.find((status: Status) => status.title === values.status)!;
-                values.status = status;
-                values.date_birth = new Date(values.date_birth).getTime();
-                dispatch(addNewUnit(title, true, (values as Data)));
-            }}
+            validationSchema={validationSchema}
+            onSubmit={onSubmit}
         >
             <div className="table_section_add">
                 <Form className="search-table_section_add">

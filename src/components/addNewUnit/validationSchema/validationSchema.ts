@@ -20,4 +20,19 @@ export const CAR_VALIDATION_SCHEMA = Yup.object({
         .required('Required'),
     status: Yup.string()
         .required('Required'),
-})
+});
+
+export const DRIVER_VALIDATION_SCHEMA = Yup.object({
+    first_name: Yup.string()
+        .max(15, setLength("3-20"))
+        .min(3, setLength("3-20"))
+        .required('Required'),
+    last_name: Yup.string()
+        .max(15, setLength("3-15"))
+        .min(3, setLength("3-15"))
+        .required('Required'),
+    date_birth: Yup.string()
+        .required('Required'),
+    status: Yup.string()
+        .required('Required'),
+});
