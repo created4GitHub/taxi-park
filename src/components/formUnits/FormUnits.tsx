@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Loader from "../loader/loader";
@@ -13,7 +13,6 @@ import {
   dataSelector,
   isDataFetchingSelector,
   isDataFetchErrorSelector,
-  isFilteredUpdatedSelector
 } from "../../redux/selectors/selector";
 
 import "./formUnits.style.scss";
@@ -28,7 +27,6 @@ const FormUnits = ({ title }: Props) => {
   const receivedData = useSelector(dataSelector);
   const filteredData = useSelector(filteredDataSelector);
   const isDataFiltered = useSelector(isDataFilteredSelector);
-  const isFilteredUpdated = useSelector(isFilteredUpdatedSelector);
   const isDataUpdated = useSelector(isDataUpdatedSelector);
   const isDataFetching = useSelector(isDataFetchingSelector);
   const isDataFetchError = useSelector(isDataFetchErrorSelector);
