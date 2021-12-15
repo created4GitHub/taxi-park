@@ -7,6 +7,7 @@ import YearSelect from "../YearsSelect/YearsSelect";
 import { filterData, resetFilter } from "../../redux/actions/actions";
 
 import "./filters.style.scss";
+import { isDataFilteredSelector } from "../../redux/selectors/selector";
 
 interface Props {
   title: string;
@@ -17,6 +18,7 @@ const Filters = ({ title }: Props) => {
   const reset = () => {
     dispatch(resetFilter());
   };
+  const isDataFiltered = useSelector(isDataFilteredSelector);
 
   const filter = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const name = event.target.name;
