@@ -17,8 +17,6 @@ import { CAR_VALIDATION_SCHEMA } from './validationSchema/validationSchema';
 
 import "./addNewUnit.style.scss";
 
-
-
 interface Props {
     title: string;
 }
