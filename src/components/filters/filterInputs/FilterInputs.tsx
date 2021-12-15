@@ -24,7 +24,7 @@ const FilterInputs = ({ filter, title, filterValues }: Props) => {
     const mapItems = ({ name, placeholder }: Info) => {
         return (
             <Input onChange={filter}
-                key={uuid()}
+                key={name}
                 name={name}
                 placeholder={intl.formatMessage({ id: placeholder })}
                 value={((filterValues as Filter[])[name as keyof Filter[]] as string) || ""}

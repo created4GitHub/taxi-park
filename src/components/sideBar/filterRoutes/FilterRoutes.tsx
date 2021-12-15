@@ -14,12 +14,11 @@ interface RouteProps {
 const uuid = require("react-uuid");
 
 const FilterRoutes = () => {
-    const isDataUpdated = useSelector(isDataUpdatedSelector);
     const isFilterValuesUpdatedSelector = useSelector((state: RootState) => state.isFilterValuesUpdated);
 
     const mapItems = ({ path, title }: RouteProps) => {
         return (
-            <Route path={path} key={uuid()} element={<Filter title={title} isDataUpdated={isFilterValuesUpdatedSelector} />} />
+            <Route path={path} key={uuid()} element={<Filter title={title} />} />
         )
     }
 

@@ -3,24 +3,25 @@ import { useDispatch, useSelector } from "react-redux";
 import FilterStatuses from "./filterStatuses/FilterStatuses";
 import FilterInputs from "./filterInputs/FilterInputs";
 import ResetButton from "./resetButton/ResetButton";
-import YearSelect from "../YearsSelect/YearsSelect";
+import { Years } from "../../constants/years";
 import { filterData, resetFilter } from "../../redux/actions/actions";
+import { filterValuesSelector, isFilterValuesUpdatedSelector } from "../../redux/selectors/selector";
 
 import "./filters.style.scss";
-import { isDataFilteredSelector } from "../../redux/selectors/selector";
-import { RootState } from "../../redux/rootReducer";
+
 
 interface Props {
   title: string;
-  isDataUpdated: boolean;
 }
 
-const Filters = ({ title, isDataUpdated }: Props) => {
+const Filters = ({ title }: Props) => {
+  const filterValues = useSelector(filterValuesSelector);
+  const isFilterValuesUpdated = useSelector(isFilterValuesUpdatedSelector);
   const dispatch = useDispatch();
+
   const reset = () => {
     dispatch(resetFilter());
   };
-  const filterValues = useSelector((state: RootState) => state.filterValues);
 
   const filter = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const name = event.target.name;
@@ -32,7 +33,13 @@ const Filters = ({ title, isDataUpdated }: Props) => {
     (
       <div className="filter_element-yearSelect">
         <select name="year" onChange={filter}>
-          <YearSelect />
+          {Years.map((item: number) => {
+            return (
+              <option key={item} value={item}>
+                {item}
+              </option>
+            )
+          })}
         </select>
       </div>
     );
