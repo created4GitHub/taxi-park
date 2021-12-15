@@ -28,9 +28,11 @@ interface Props {
     title: string;
 }
 
+const uuid = require("react-uuid");
+
 const AddNewDriver = ({ title }: Props) => {
     const statuses = useSelector((state: RootState) => state.statuses);
-      const intl = useIntl();
+    const intl = useIntl();
 
     const dispatch = useDispatch();
     const initialValues: Driver = {
@@ -38,8 +40,8 @@ const AddNewDriver = ({ title }: Props) => {
         last_name: "",
         date_birth: "",
         status: ""
-    };    
-    
+    };
+
     const setLength = (length: string): string => `${intl.formatMessage({ id: `Must be ${length} characters or less` })}`;
     return (
         <Formik
@@ -59,7 +61,7 @@ const AddNewDriver = ({ title }: Props) => {
                     .required('Required'),
             })}
             onSubmit={(values) => {
-                const status = statuses.find((status: Status) => status.title === values.status)!;  
+                const status = statuses.find((status: Status) => status.title === values.status)!;
                 values.status = status;
                 values.date_birth = new Date(values.date_birth).getTime();
                 dispatch(addNewUnit(title, true, (values as Data)));
@@ -68,7 +70,7 @@ const AddNewDriver = ({ title }: Props) => {
             <div className="table_section_add">
                 <Form className="search-table_section_add">
                     {DriverInfo.map(({ name, placeholder }) =>
-                        <FormikInput key={name} {...{ name, placeholder, type: "text" }} />
+                        <FormikInput key={uuid()} {...{ name, placeholder, type: "text" }} />
                     )}
                     <FormikInput {...{ name: "date_birth", type: "date" }} />
 

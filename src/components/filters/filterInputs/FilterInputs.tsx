@@ -3,8 +3,7 @@ import { ChangeEvent } from "react";
 import Input from "../../regularComponents/input/Input";
 import { CarInfo, DriverInfo } from "../../../constants/filterInputs"
 import { Filter } from "../../../interfaces/interfaces";
-import { FormattedMessage, injectIntl, useIntl } from "react-intl";
-import { messages } from "../../../i18n/messages";
+import { useIntl } from "react-intl";
 
 interface Props {
     filter: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -17,6 +16,8 @@ interface Info {
     placeholder: string;
 };
 
+const uuid = require("react-uuid");
+
 const FilterInputs = ({ filter, title, filterValues }: Props) => {
     const inputInfo = (title === "car" && CarInfo) || DriverInfo;
     const intl = useIntl();
@@ -24,7 +25,7 @@ const FilterInputs = ({ filter, title, filterValues }: Props) => {
     const mapItems = ({ name, placeholder }: Info) => {
         return (
             <Input onChange={filter}
-                key={name}
+                key={uuid()}
                 name={name}
                 placeholder={intl.formatMessage({ id: placeholder })}
                 value={((filterValues as Filter[])[name as keyof Filter[]] as string) || ""}

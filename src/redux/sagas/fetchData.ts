@@ -9,11 +9,13 @@ export function* fetchData({ type, title }: { type: "FETCH_DATA", title: string 
         yield put({ type: IS_DATA_FETCHING, payload: true });
         const data: { data: Data[] } = yield call(GET, title);
         const statuses: { statuses: Status[] } = yield call(GET_STATUS, title);
-        yield put({ type: IS_DATA_FETCHING, payload: false });
         yield put({ type: DATA_RECEIVED, data, statuses });
     }
     catch (e) {
         yield put({ type: IS_DATA_FETCH_ERROR });
+    }
+    finally {
+        yield put({ type: IS_DATA_FETCHING, payload: false });
     }
 }
 

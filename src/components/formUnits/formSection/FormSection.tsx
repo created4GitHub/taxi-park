@@ -16,12 +16,12 @@ type Props = {
   data: Data;
   title: string;
 };
+const uuid = require("react-uuid");
 
 const FormSection = ({ data, title }: Props) => {
   const [isAdditionalData, setIsAdditionalData] = useState<boolean>(false);
   const [additionalData, setAdditionalData] = useStateIfMounted<Data[]>([]);
   const className = additionalData.length !== 0 ? 'table_section-showButton' : 'table_section-showButton isActive';
-
   const dispatch = useDispatch();
 
   const search = async () => {
@@ -52,7 +52,7 @@ const FormSection = ({ data, title }: Props) => {
   const mapItems = (property: string) => {
     return (
       <FormSectionTab
-        key={property}
+        key={uuid()}
         property={property}
         value={data[property as keyof Data]!}
         id={String(data.id)}

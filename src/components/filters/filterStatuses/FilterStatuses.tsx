@@ -10,13 +10,15 @@ interface Props {
     filterValues: any;
 }
 
+const uuid = require("react-uuid");
+
 const FilterStatuses = ({ filter, filterValues }: Props) => {
     const statuses = useSelector(statusesSelector);
     const intl = useIntl();
 
     const mapItems = ({ title }: { title: string }) => {
         return (
-            <div className="filter-element" key={title}>
+            <div className="filter-element" key={uuid()}>
                 <Input
                     type="radio"
                     name="status"

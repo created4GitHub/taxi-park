@@ -5,6 +5,8 @@ import { DriverTitles, CarTitles } from "../../../../constants/additionalInfo";
 
 import icons from "../../../../img/IconsDirection.svg";
 
+const uuid = require("react-uuid");
+
 const AdditionalData = ({ additionalData, title }: { additionalData: Data[], title: string }) => {
     const renderTitles = (array: string[]) => {
         return array.map((item: string) => {
@@ -15,11 +17,11 @@ const AdditionalData = ({ additionalData, title }: { additionalData: Data[], tit
     const mapItems = (item: Data) => {
         return (
             <div className="block" key={item.id}>
-                {Object.values(item).map((item: Status | string | number, index: number) => {
+                {Object.values(item).map((item: Status | string | number) => {
                     if (item.hasOwnProperty("title")) {
-                        return <p key={(item as Status).title}>{(item as Status).title}</p>;
+                        return <p key={uuid()}>{(item as Status).title}</p>;
                     }
-                    return <p key={String((item as string | number)) + index}>{item}</p>
+                    return <p key={uuid()}>{item}</p>
                 })}
             </div>
         )

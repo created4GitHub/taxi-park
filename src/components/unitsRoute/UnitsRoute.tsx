@@ -12,11 +12,13 @@ interface RouteProp {
     title: string;
 }
 
+const uuid = require("react-uuid");
+
 const UnitsRoute = () => {
     const isAddNewUnit = useSelector(isAddNewUnitSelector);
     const mapItems = ({ path, title }: RouteProp) => {
         return (
-            <Route key={title} path={path} element={
+            <Route key={uuid()} path={path} element={
                 <>
                     {isAddNewUnit && (isAddNewUnit === "car" ? <AddNewCar title={title} />
                         : <AddNewDriver title={title} />)}

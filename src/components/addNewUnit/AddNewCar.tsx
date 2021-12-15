@@ -31,6 +31,8 @@ interface Props {
     title: string;
 }
 
+const uuid = require("react-uuid");
+
 const AddNewCar = ({ title }: Props) => {
     const statuses = useSelector((state: RootState) => state.statuses);
     const dispatch = useDispatch();
@@ -74,7 +76,7 @@ const AddNewCar = ({ title }: Props) => {
             <div className="table_section_add">
                 <Form className="search-table_section_add">
                     {CarInfo.map(({ name, placeholder }) =>
-                        <FormikInput key={name} {...{ name, placeholder, type: "text" }} />
+                        <FormikInput key={uuid()} {...{ name, placeholder, type: "text" }} />
                     )}
                     <div className='table_section_add-select'>
                         <FormikSelect name="year">

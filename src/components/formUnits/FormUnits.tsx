@@ -30,6 +30,7 @@ const FormUnits = ({ title }: Props) => {
   const isDataFetchError = useSelector(isDataFetchErrorSelector);
   const data = (isFilteredData && filteredData) || receivedData;
   const dispatch = useDispatch();
+  let element: JSX.Element | null = null;
 
   useEffect(() => {
     dispatch(getData(title));
@@ -48,13 +49,22 @@ const FormUnits = ({ title }: Props) => {
 
   const mappedItems = data.map(mapItems);
 
-  return (
-    isDataFetchError ? <div>Error</div> :
-      isDataFetching ? <div><Loader /></div>
-        : <>
+  switch (isDataFetching) {
+    case true:
+      element = <div><Loader /></div>;
+      break;
+    default:
+      element = (
+        <>
           <UnitsTitles title={title} />
           {mappedItems}
         </>
+      )
+  }
+
+  return (
+    isDataFetchError ? <div>Error</div>
+      : element
   );
 };
 
