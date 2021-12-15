@@ -39,14 +39,11 @@ const AddNewDriver = ({ title }: Props) => {
     const initialValues = initialValuesDriver;
     const validationSchema = useMemo(() => CAR_VALIDATION_SCHEMA, []);
 
-
     const mapedCarItems = useMemo(() => DRIVERINFO.map(({ name, placeholder }) => {
         return <FormikInput key={uuid()} {...{ name, placeholder, type: "text" }} />
     }), [DRIVERINFO])
 
     const submit = (values: DriverFormik) => {
-        console.log(values);
-        
         const status = statuses.find((status: Status) => status.title === values.status)!;
         values.status = status;
         values.date_birth = new Date(values.date_birth).getTime();
@@ -54,6 +51,9 @@ const AddNewDriver = ({ title }: Props) => {
     }
 
     const submitCallback = useCallback((values) => submit(values), [statuses])
+    
+    // const memoValid = useMemo(() => validationDriver(), [])
+    
     return (
         <Formik
             initialValues={initialValues}

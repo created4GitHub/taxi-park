@@ -38,6 +38,8 @@ const AddNewCar = ({ title }: Props) => {
     <FormikInput key={uuid()} {...{ name, placeholder, type: "text" }} />
     ), []);
 
+    // const memoValid = useMemo(() => validationCar(), [])
+
     return (
         <Formik
             initialValues={initialValues}

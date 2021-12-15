@@ -9,6 +9,7 @@ import AdditionalData from "./additionalInfo/AdditionalInfo";
 import { Data } from "../../../interfaces/interfaces";
 import { GET, REMOVE, GET_CARS_BY_DRIVER } from "../../../requests/requests";
 import { dispatchIsDataUpdated } from "../../../redux/actions/actions";
+import Ellipsis from "../../loader/ellipsis/ellipsis";
 
 import "./formSection.style.scss";
 
@@ -21,6 +22,8 @@ const uuid = require("react-uuid");
 const FormSection = ({ data, title }: Props) => {
   const [isAdditionalData, setIsAdditionalData] = useState<boolean>(false);
   const [additionalData, setAdditionalData] = useStateIfMounted<Data[]>([]);
+  const [isModal, setIsModal] = useState<boolean>(false)
+
   const className = additionalData.length !== 0 ? 'table_section-showButton' : 'table_section-showButton isActive';
   const dispatch = useDispatch();
 
@@ -32,6 +35,7 @@ const FormSection = ({ data, title }: Props) => {
       const driver = await GET("driver", data.driver_id);
       setAdditionalData([driver] as Data[]);
     }
+    setIsModal(true)
   };
 
   useEffect(() => {
@@ -75,22 +79,37 @@ const FormSection = ({ data, title }: Props) => {
 
   const checkBtntext = btnText();
 
+  const additionalElement = () => {
+    if (!isModal) {
+      return (
+        <div className='table_section__loader' >
+          <Ellipsis />
+        </div>
+      )
+    }
+    return (
+      <Button
+        onClick={showClick}
+        className={className}
+        btnText={checkBtntext}
+      />
+    )
+  }
+
+  const additElement = additionalElement();
+
   return (
     <>
       <div className="table_section">
         {mappedItems}
-        <Button
-          onClick={showClick}
-          className={className}
-          btnText={checkBtntext}
-        />
+        {additElement}
         <Button
           onClick={deleteEl}
           className="table_section-deleteButton"
-          btnText={<FormattedMessage id='Delete' />}
+          btnText={<FormattedMessage id='Delete'/>}
         />
       </div>
-      {isAdditionalData && <AdditionalData additionalData={additionalData} title={title} />}
+      {isAdditionalData && <AdditionalData additionalData={additionalData} title={title}/>}
     </>
   );
 };

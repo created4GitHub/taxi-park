@@ -8,19 +8,18 @@ import { messages } from "./i18n/messages";
 
 import "./app.scss";
 
-
 const App: React.FC = () => {
   const local = JSON.parse(localStorage.getItem('internationalization')!)
   const defaultLanguage = {
     value: LOCALES.ENGLISH
   }
-  const [locale, setLocale] = useState<any>(!local ? defaultLanguage : local);
+  
+  const [locale, setLocale] = useState<Record<string, string>>(!local ? defaultLanguage : local);
   
   return (
     <IntlProvider
       messages={messages[locale.value]}
       locale={locale.value}
-      defaultLocale={LOCALES.ENGLISH}
     >
       <Header setLocale={setLocale} />
       <Container />

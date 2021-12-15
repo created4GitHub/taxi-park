@@ -26,8 +26,7 @@ const Filters = ({ title }: Props) => {
     dispatch(filterData({ name, value, title }));
   };
 
-  const optionalElement = title === "car" &&
-    (
+  const optionalElement = title === "car" && (
       <div className="filter_element-yearSelect">
         <select name="year" onChange={filter}>
           <YearSelect />

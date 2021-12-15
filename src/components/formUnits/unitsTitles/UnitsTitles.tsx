@@ -8,7 +8,7 @@ import './unitsTitles.style.scss'
 const uuid = require("react-uuid");
 
 const UnitsTitles = ({ title }: { title: string }) => {
-    const info: any = (title === "car" && CARINFO) || DRIVERINFO;
+    const info: string[] = (title === "car" && CARINFO) || DRIVERINFO;
 
     const mapItems = (item: string) => {
         if (["Drivers", "Cars"].includes(item)) {
