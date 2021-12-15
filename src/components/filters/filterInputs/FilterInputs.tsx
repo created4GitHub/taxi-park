@@ -30,7 +30,7 @@ const FilterInputs = ({ filter, title }: Props) => {
         )
     }
 
-    const mappedItems = useMemo(() => inputInfo.map(mapItems), []);
+    const mappedItems = inputInfo.map(mapItems)
 
     return (
         <>
