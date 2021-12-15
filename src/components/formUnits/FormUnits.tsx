@@ -12,7 +12,8 @@ import {
   isDataFilteredSelector,
   dataSelector,
   isDataFetchingSelector,
-  isDataFetchErrorSelector
+  isDataFetchErrorSelector,
+  isFilteredUpdatedSelector
 } from "../../redux/selectors/selector";
 
 import "./formUnits.style.scss";
@@ -24,17 +25,18 @@ interface Props {
 const FormUnits = ({ title }: Props) => {
   const receivedData = useSelector(dataSelector);
   const filteredData = useSelector(filteredDataSelector);
-  const isFilteredData = useSelector(isDataFilteredSelector);
+  const isDataFiltered = useSelector(isDataFilteredSelector);
+  const isFilteredUpdated = useSelector(isFilteredUpdatedSelector);
   const isDataUpdated = useSelector(isDataUpdatedSelector);
   const isDataFetching = useSelector(isDataFetchingSelector);
   const isDataFetchError = useSelector(isDataFetchErrorSelector);
-  const data = (isFilteredData && filteredData) || receivedData;
+  const data = (isDataFiltered && filteredData) || receivedData;
   const dispatch = useDispatch();
   let element: JSX.Element | null = null;
 
   useEffect(() => {
     dispatch(getData(title));
-  }, []);
+  }, [isDataUpdated]);
 
   const mapItems = (item: Data) => {
     return (

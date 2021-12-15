@@ -22,6 +22,7 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
   const [selectValue, setSelectValue] = useState<string>((value as Status).title);
   const [isMutable, setIsMutable] = useState<boolean>(true);
   const dispatch = useDispatch();
+  let element: JSX.Element | null = null;
 
   const updateElementType = (event: MouseEvent<HTMLElement>) => {
     if (!["id", "date_birth", "date_created", "driver_id"].includes(property)) {
@@ -58,7 +59,7 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
   };
 
   if (property === "status") {
-    return (
+    element = (
       <select
         name="status"
         className="table_section-tab-select"
@@ -69,26 +70,28 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
         <Statuses />
       </select>
     )
+  } else {
+    element = isMutable ?
+      (
+        <p className="table_paragraph" onClick={updateElementType} >
+          {data[property as keyof Data]}
+        </p>
+      ) : (
+        <input
+          type="text"
+          placeholder={String(data[property as keyof Data])}
+          className="table_input"
+          autoFocus={true}
+          onClick={updateElementType}
+          onBlur={onBlurEvent}
+          onKeyPress={onKeyDown}
+        />
+      )
   }
 
   return (
     <div className="table-section-tab">
-      {
-        isMutable ? (
-          <p className="table_paragraph" onClick={updateElementType} >
-            {data[property as keyof Data]}
-          </p>
-        ) : (
-          <input
-            type="text"
-            placeholder={String(data[property as keyof Data])}
-            className="table_input"
-            autoFocus={true}
-            onClick={updateElementType}
-            onBlur={onBlurEvent}
-            onKeyPress={onKeyDown}
-          />)
-      }
+      {element}
     </div>
   );
 };
