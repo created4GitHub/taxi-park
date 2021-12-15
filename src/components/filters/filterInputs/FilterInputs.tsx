@@ -1,7 +1,7 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useMemo } from "react";
 
-import Input from "../../regularComponents/input/Input";
-import { CarInfo, DriverInfo } from "../../../constants/filterInputs"
+import Input from "../../compose/input/Input";
+import { CARINFO, DRIVERINFO } from "../../../constants/filterInputs"
 import { Filter } from "../../../interfaces/interfaces";
 import { FormattedMessage, injectIntl, useIntl } from "react-intl";
 import { messages } from "../../../i18n/messages";
@@ -18,7 +18,7 @@ interface Info {
 };
 
 const FilterInputs = ({ filter, title, filterValues }: Props) => {
-    const inputInfo = (title === "car" && CarInfo) || DriverInfo;
+    const inputInfo = (title === "car" && CARINFO) || DRIVERINFO;
     const intl = useIntl();
 
     const mapItems = ({ name, placeholder }: Info) => {
@@ -32,7 +32,7 @@ const FilterInputs = ({ filter, title, filterValues }: Props) => {
         )
     }
 
-    const mappedItems = inputInfo.map(mapItems)
+    const mappedItems = useMemo(() => inputInfo.map(mapItems), [inputInfo])
 
     return (
         <>

@@ -42,3 +42,25 @@ export interface Filter {
   first_name?: string,
   last_name?: string,
 }
+
+export interface CarFormik {
+  mark: string;
+  model: string;
+  number: string;
+  driver_id: string | number;
+  year: string | number;
+  status: {
+    title: string;
+    code: string;
+  } | string;
+}
+
+export interface DriverFormik {
+  first_name: string;
+  last_name: string;
+  date_birth: number | string;
+  status: {
+    title: string;
+    code: string;
+  } | string;
+}

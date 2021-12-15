@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import { useDispatch } from "react-redux";
 import { useStateIfMounted } from "use-state-if-mounted";
 
 import FormSectionTab from "./formSectionTab/FormSectionTab";
-import { Button } from "../../regularComponents/button/Button";
+import { Button } from "../../compose/button/Button";
 import AdditionalData from "./additionalInfo/AdditionalInfo";
 import { Data } from "../../../interfaces/interfaces";
 import { GET, REMOVE, GET_CARS_BY_DRIVER } from "../../../requests/requests";
@@ -62,7 +62,7 @@ const FormSection = ({ data, title }: Props) => {
     )
   }
 
-  const mappedItems = Object.keys(data).map(mapItems);
+  const mappedItems = useMemo(() => Object.keys(data).map(mapItems), [data]);
 
   const btnText = () => {
     if (additionalData.length === 0) {

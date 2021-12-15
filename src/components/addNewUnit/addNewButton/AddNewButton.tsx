@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
 
-import addObj from "../../../img/addObj.svg";
-import deleteObj from "../../../img/deleteObj.svg";
-import { Button } from "../../regularComponents/button/Button";
+import addObj from "../../../ascets/img/svg/addObj.svg";
+import deleteObj from "../../../ascets/img/svg/deleteObj.svg";
+import { Button } from "../../compose/button/Button";
 
 interface Props {
   updateIsAddNewUnit: (payload: string | null) => {

@@ -1,2 +1,2 @@
-export const DriversPath: string = "/drivers";
-export const CarsPath: string = "/cars";
+export const DRIVERSPATH: string = "/drivers";
+export const CARSPATH: string = "/cars";

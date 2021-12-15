@@ -5,7 +5,7 @@ import Statuses from "../../../statuses/Statuses";
 import { PATCH } from "../../../../requests/requests";
 import { RootState } from "../../../../redux/rootReducer";
 import { Data, Status } from "../../../../interfaces/interfaces";
-import { dispatchIsDataUpdated } from "../../../../redux/actions/actions";
+import { dispatchIsDataUpdated as setIsDataUpdated } from "../../../../redux/actions/actions";
 import { statusesSelector } from "../../../../redux/selectors/selector";
 
 import "./formSectionTab.style.scss";
@@ -36,10 +36,10 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
     (data[property as keyof Data] as string | Status) = newValue;
     setIsDiv(!isDiv);
     PATCH(title, id, { [property]: newValue });
-    dispatch(dispatchIsDataUpdated());
+    dispatch(setIsDataUpdated());
   };
 
-  const pressedEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       const target = event.target as HTMLInputElement;
       target.value ? saveNewInformation(target.value) : setIsDiv(!isDiv);
@@ -74,7 +74,7 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
               autoFocus={true}
               onClick={updateElementType}
               onBlur={onBlurEvent}
-              onKeyPress={pressedEnter}
+              onKeyPress={onKeyDown}
             />)
         ) : (
           <select

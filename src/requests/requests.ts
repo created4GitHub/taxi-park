@@ -1,6 +1,5 @@
 import { Data, Status } from "../interfaces/interfaces";
-import { headers, url, body } from "../constants/requests";
-import { string } from "yup/lib/locale";
+import { HEADERS, URL, body } from "../constants/requests";
 
 interface Response {
   is_error: string;
@@ -11,10 +10,10 @@ interface Response {
 export const GET = async (title: string, id?: number): Promise<Data[] | Data> => {
   const query = (id && `${title}/${id}`) || `${title}`;
   const response = await fetch(
-    url + `${query}/`,
+    URL + `${query}/`,
     {
       method: "GET",
-      headers,
+      headers: HEADERS,
     }
   );
   const jsonData = await response.json();
@@ -33,8 +32,8 @@ export const GET = async (title: string, id?: number): Promise<Data[] | Data> =>
 };
 
 export const GET_CARS_BY_DRIVER = async (id: string): Promise<Response> => {
-  const currentHeader: HeadersInit = { ...headers, "E-Driver-Id": id };
-  const response = await fetch(url + "car/", {
+  const currentHeader: HeadersInit = { ...HEADERS, "E-Driver-Id": id };
+  const response = await fetch(URL + "car/", {
     method: "GET",
     headers: currentHeader
   });
@@ -43,10 +42,10 @@ export const GET_CARS_BY_DRIVER = async (id: string): Promise<Response> => {
 
 export const GET_STATUS = async (title: string): Promise<Status[]> => {
   const response = await fetch(
-    url + `${title}-status/`,
+    URL + `${title}-status/`,
     {
       method: "GET",
-      headers,
+      headers: HEADERS,
     }
   );
   const jsonStatuses = await response.json();
@@ -55,10 +54,10 @@ export const GET_STATUS = async (title: string): Promise<Status[]> => {
 
 export const POST = async (title: string, info: Data): Promise<Response> => {
   const response = await fetch(
-    url + `${title}/`,
+    URL + `${title}/`,
     {
       method: "POST",
-      headers,
+      headers: HEADERS,
       ...body(info),
     }
   );
@@ -71,10 +70,10 @@ export const PATCH = async (
   info: { [key: string]: string | number | Status }
 ): Promise<Response> => {
   const response = await fetch(
-    url + `${title}/` + id + "/",
+    URL + `${title}/` + id + "/",
     {
       method: "PATCH",
-      headers,
+      headers: HEADERS,
       ...body(info),
     }
   );
@@ -83,10 +82,10 @@ export const PATCH = async (
 
 export const REMOVE = async (title: string, id: number): Promise<Response> => {
   const response = await fetch(
-    url + `${title}/` + id + "/",
+    URL + `${title}/` + id + "/",
     {
       method: "DELETE",
-      headers,
+      headers: HEADERS,
     }
   );
   return await response.json();
