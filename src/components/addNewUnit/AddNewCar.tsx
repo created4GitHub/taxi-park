@@ -11,12 +11,11 @@ import Statuses from '../statuses/Statuses';
 import AddNewButton from './addNewButton/AddNewButton';
 import { addNewUnit, updateIsAddNewUnit } from "../../redux/actions/actions";
 import { Status, Data } from '../../interfaces/interfaces';
-import { RootState } from '../../redux/rootReducer';
 import { CAR_VALUES } from './initialValues/initialValues';
 import { CAR_VALIDATION_SCHEMA } from './validationSchema/validationSchema';
+import { statusesSelector } from '../../redux/selectors/selector';
 
 import "./addNewUnit.style.scss";
-import { statusesSelector } from '../../redux/selectors/selector';
 
 interface Props {
     title: string;

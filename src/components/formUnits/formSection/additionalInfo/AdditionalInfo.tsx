@@ -9,11 +9,13 @@ import { useMemo } from "react";
 const uuid = require("react-uuid");
 
 const AdditionalData = ({ additionalData, title }: { additionalData: Data[], title: string }) => {
+
     const renderTitles = (array: string[]) => {
         return array.map((item: string) => {
-            return <p key={item}><FormattedMessage id={item} /><img src={icons} alt="alt" /></p>
+            return <p key={uuid()}><FormattedMessage id={item} /><img src={icons} alt="alt" /></p>
         });
     }
+
 
     const mapItems = (item: Data) => {
         return (

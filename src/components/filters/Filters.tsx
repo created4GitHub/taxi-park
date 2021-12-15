@@ -30,18 +30,18 @@ const Filters = ({ title }: Props) => {
   };
 
   const optionalElement = title === "car" && (
-      <div className="filter_element-yearSelect">
-        <select name="year" onChange={filter}>
-          {YEARS.map((item: number) => {
-            return (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            )
-          })}
-        </select>
-      </div>
-    );
+    <div className="filter_element-yearSelect">
+      <select name="year" onChange={filter}>
+        {YEARS.map((item: number) => {
+          return (
+            <option key={item} value={item}>
+              {item}
+            </option>
+          )
+        })}
+      </select>
+    </div>
+  );
 
   return (
     <form className="content__options-filter">

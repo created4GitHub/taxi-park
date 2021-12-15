@@ -8,13 +8,12 @@ import Statuses from '../statuses/Statuses';
 import AddNewButton from './addNewButton/AddNewButton';
 import { addNewUnit, updateIsAddNewUnit } from "../../redux/actions/actions";
 import { Status, Data } from '../../interfaces/interfaces';
-import { RootState } from '../../redux/rootReducer';
 import { DRIVER_VALIDATION_SCHEMA } from './validationSchema/validationSchema';
 import { DRIVER_VALUES } from './initialValues/initialValues';
 import { DRIVER_INFO, Info } from '../../constants/addNewSection';
+import { statusesSelector } from '../../redux/selectors/selector';
 
 import "./addNewUnit.style.scss";
-import { statusesSelector } from '../../redux/selectors/selector';
 
 interface Props {
     title: string;

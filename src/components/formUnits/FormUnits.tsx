@@ -21,6 +21,8 @@ interface Props {
   title: string;
 }
 
+const uuid = require("react-uuid");
+
 const FormUnits = ({ title }: Props) => {
   const receivedData = useSelector(dataSelector);
   const filteredData = useSelector(filteredDataSelector);
@@ -38,7 +40,7 @@ const FormUnits = ({ title }: Props) => {
   const mapItems = (item: Data) => {
     return (
       <FormSection
-        key={item.id}
+        key={uuid()}
         title={title}
         data={item}
 

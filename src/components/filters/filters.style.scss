@@ -285,24 +285,6 @@
             @media (max-width: 445px) {
                 height: auto;
             }
-            button {
-                width: 200px;
-                height: 35px;
-                border-radius: 8px;
-                color: #d09700;
-                background-color: #fef8e8;
-                border: none;
-                cursor: pointer;
-
-                @media (max-width: 1080px) {
-                    height: 100%;
-                    width: 62px;
-                }
-                @media (max-width: 445px) {
-                    width: 300px;
-                    height: 45px;
-                }
-            }
         }
         .reset-filter-button:hover {
             button {

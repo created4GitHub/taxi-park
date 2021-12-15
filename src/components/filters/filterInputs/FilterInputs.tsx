@@ -1,9 +1,14 @@
 import { ChangeEvent, useMemo } from "react";
 import { useIntl } from "react-intl";
 
+<<<<<<< HEAD
 import Input from "../../commons/input/Input";
 import { CAR_INFO, DRIVE_INFO } from "../../../constants/filterInputs"
 import { Filter } from "../../../interfaces/interfaces";
+=======
+import Input from "../../compose/input/Input";
+import { CARINFO, DRIVERINFO } from "../../../constants/filterInputs"
+>>>>>>> c8aa405497249a1dd157181eca6f891ef3aff3fd
 
 interface Props {
     filter: (event: ChangeEvent<HTMLInputElement>) => void;
