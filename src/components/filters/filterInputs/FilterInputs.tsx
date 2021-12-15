@@ -1,14 +1,13 @@
 import { ChangeEvent, useMemo } from "react";
+import { useIntl } from "react-intl";
 
-import Input from "../../regularComponents/input/Input";
+import Input from "../../commons/input/Input";
 import { CarInfo, DriverInfo } from "../../../constants/filterInputs"
 import { Filter } from "../../../interfaces/interfaces";
-import { useIntl } from "react-intl";
 
 interface Props {
     filter: (event: ChangeEvent<HTMLInputElement>) => void;
     title: string;
-    filterValues?: Filter | Filter[];
 }
 
 interface Info {
@@ -18,17 +17,15 @@ interface Info {
 
 const uuid = require("react-uuid");
 
-const FilterInputs = ({ filter, title, filterValues }: Props) => {
+const FilterInputs = ({ filter, title }: Props) => {
     const inputInfo = (title === "car" && CarInfo) || DriverInfo;
     const intl = useIntl();
-
     const mapItems = ({ name, placeholder }: Info) => {
         return (
             <Input onChange={filter}
                 key={uuid()}
                 name={name}
                 placeholder={intl.formatMessage({ id: placeholder })}
-                value={((filterValues as Filter[])[name as keyof Filter[]] as string) || ""}
             />
         )
     }

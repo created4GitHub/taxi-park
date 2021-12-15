@@ -5,7 +5,6 @@ import FilterInputs from "./filterInputs/FilterInputs";
 import ResetButton from "./resetButton/ResetButton";
 import YearSelect from "../YearsSelect/YearsSelect";
 import { filterData, resetFilter } from "../../redux/actions/actions";
-import { filterValuesSelector, isDataUpdatedSelector } from "../../redux/selectors/selector";
 
 import "./filters.style.scss";
 
@@ -14,9 +13,7 @@ interface Props {
 }
 
 const Filters = ({ title }: Props) => {
-  const filterValues = useSelector(filterValuesSelector);
   const dispatch = useDispatch();
-
   const reset = () => {
     dispatch(resetFilter());
   };
@@ -38,9 +35,9 @@ const Filters = ({ title }: Props) => {
 
   return (
     <form className="content__options-filter">
-      <FilterInputs filter={filter} title={title} filterValues={filterValues} />
+      <FilterInputs filter={filter} title={title} />
       {optionalElement}
-      <FilterStatuses filter={filter} filterValues={filterValues} />
+      <FilterStatuses filter={filter} />
       <ResetButton resetFilters={reset} />
     </form>
   );

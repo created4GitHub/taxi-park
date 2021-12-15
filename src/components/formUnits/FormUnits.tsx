@@ -34,7 +34,7 @@ const FormUnits = ({ title }: Props) => {
 
   useEffect(() => {
     dispatch(getData(title));
-  }, [isDataUpdated]);
+  }, []);
 
   const mapItems = (item: Data) => {
     return (

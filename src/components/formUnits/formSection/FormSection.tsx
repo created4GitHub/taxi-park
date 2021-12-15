@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useStateIfMounted } from "use-state-if-mounted";
 
 import FormSectionTab from "./formSectionTab/FormSectionTab";
-import { Button } from "../../regularComponents/button/Button";
+import { Button } from "../../commons/button/Button";
 import AdditionalData from "./additionalInfo/AdditionalInfo";
 import { Data } from "../../../interfaces/interfaces";
 import { GET, REMOVE, GET_CARS_BY_DRIVER } from "../../../requests/requests";
