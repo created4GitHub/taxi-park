@@ -1,13 +1,14 @@
+import { useMemo } from "react";
 import { FormattedMessage } from "react-intl";
-import { CarInfo, DriverInfo } from "../../../constants/unitsTitles"
+import { CARINFO, DRIVERINFO } from "../../../constants/unitsTitles"
 
-import IconsDirection from '../../../img/IconsDirection.svg'
+import IconsDirection from '../../../ascets/img/svg/IconsDirection.svg'
 import './unitsTitles.style.scss'
 
 const uuid = require("react-uuid");
 
 const UnitsTitles = ({ title }: { title: string }) => {
-    const info: any = (title === "car" && CarInfo) || DriverInfo;
+    const info: any = (title === "car" && CARINFO) || DRIVERINFO;
 
     const mapItems = (item: string) => {
         if (["Drivers", "Cars"].includes(item)) {
@@ -23,7 +24,7 @@ const UnitsTitles = ({ title }: { title: string }) => {
         }
     }
 
-    const mappedItems = info.map(mapItems)
+    const mappedItems = useMemo(() => info.map(mapItems), [info])
 
     return (
         <div className='title-section'>

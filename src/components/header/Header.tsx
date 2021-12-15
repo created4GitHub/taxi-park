@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { LOCALES } from '../../i18n/locales';
 
-import logo from '../../img/taxi.png';
+import logo from '../../ascets/img/png/taxi.png';
 import './header.style.scss';
 
 const uuid = require("react-uuid");
@@ -15,7 +15,7 @@ const Header = ({ setLocale }: any) => {
         )
     }
 
-    const mapped = useMemo(() => Object.keys(LOCALES).map(itemsMap), []);
+    const mapped = useMemo(() => Object.keys(LOCALES).map(itemsMap), [LOCALES])
 
     const handleChenge = (event: any) => {
         const local: any = {

@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { statusesSelector } from "../../redux/selectors/selector";
 
 import { Status } from "../../interfaces/interfaces";
-import { RootState } from "../../redux/rootReducer";
 
 import './statuses.style.scss'
 import { useMemo } from "react";
@@ -20,7 +19,7 @@ const Statuses = () => {
         )
     }
 
-    const mappedItems = useMemo(() => statuses.map(mapItems), [])
+    const mappedItems = useMemo(() => statuses.map(mapItems), [statuses])
 
     return (
         <>

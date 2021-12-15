@@ -1,9 +1,8 @@
 import { ChangeEvent, useMemo } from "react";
 import { useIntl } from "react-intl";
 
-import Input from "../../commons/input/Input";
-import { CarInfo, DriverInfo } from "../../../constants/filterInputs"
-import { Filter } from "../../../interfaces/interfaces";
+import Input from "../../compose/input/Input";
+import { CARINFO, DRIVERINFO } from "../../../constants/filterInputs"
 
 interface Props {
     filter: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -18,7 +17,7 @@ interface Info {
 const uuid = require("react-uuid");
 
 const FilterInputs = ({ filter, title }: Props) => {
-    const inputInfo = (title === "car" && CarInfo) || DriverInfo;
+    const inputInfo = (title === "car" && CARINFO) || DRIVERINFO;
     const intl = useIntl();
     const mapItems = ({ name, placeholder }: Info) => {
         return (
@@ -30,7 +29,7 @@ const FilterInputs = ({ filter, title }: Props) => {
         )
     }
 
-    const mappedItems = inputInfo.map(mapItems)
+    const mappedItems = useMemo(() => inputInfo.map(mapItems), [inputInfo])
 
     return (
         <>

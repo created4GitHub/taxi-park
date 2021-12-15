@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
 import Filter from "../../filters/Filters";
-import { RoutesInfo } from "../../../constants/routesInfo"
+import { ROUTESINFO } from "../../../constants/routesInfo"
 import { useMemo } from "react";
 
 interface RouteProps {
@@ -19,7 +19,7 @@ const FilterRoutes = () => {
         )
     }
 
-    const mappedItems = useMemo(() => RoutesInfo.map(mapItems), []);
+    const mappedItems = useMemo(() => ROUTESINFO.map(mapItems), [ROUTESINFO]);
 
     return (
         <Routes>

@@ -1,8 +1,8 @@
+import { useCallback, useMemo } from 'react';
 import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { CarInfo } from "../../constants/addNewSection";
+import { CARINFO } from "../../constants/addNewSection";
 import FormikInput from "../formikComponents/FormikInput";
 import FormikSelect from "../formikComponents/FormikSelect"
 import YearsSelect from "../YearsSelect/YearsSelect";
@@ -12,9 +12,9 @@ import AddNewButton from './addNewButton/AddNewButton';
 import { addNewUnit, updateIsAddNewUnit } from "../../redux/actions/actions";
 import { Status, Data } from '../../interfaces/interfaces';
 import { RootState } from '../../redux/rootReducer';
+import { statusesSelector } from '../../redux/selectors/selector'
 import { CAR_VALUES } from './initValues/initValues';
 import { CAR_VALIDATION_SCHEMA } from './validationSchema/validationSchema';
-import { useCallback, useMemo } from 'react';
 
 import "./addNewUnit.style.scss";
 
@@ -27,7 +27,7 @@ interface Props {
 const uuid = require("react-uuid");
 
 const AddNewCar = ({ title }: Props) => {
-    const statuses = useSelector((state: RootState) => state.statuses);
+    const statuses = useSelector((statusesSelector));
     const dispatch = useDispatch();
     const initialValues = useMemo(() => CAR_VALUES, []);;
     const validationSchema = useMemo(() => CAR_VALIDATION_SCHEMA, []);
@@ -37,7 +37,7 @@ const AddNewCar = ({ title }: Props) => {
         dispatch(addNewUnit(title, true, (values as Data)));
     }, [statuses]);
 
-    const memoizedCarInfo = useMemo(() => CarInfo.map(({ name, placeholder }) =>
+    const memoizedCarInfo = useMemo(() => CARINFO.map(({ name, placeholder }) =>
     <FormikInput key={uuid()} {...{ name, placeholder, type: "text" }} />
     ), []);
 

@@ -27,8 +27,8 @@ const DriverIDList: React.FC = () => {
     )
   }
 
-  const mappedItems = useMemo(() => drivers?.map(mapItems), [])
-  
+  const mappedItems = useMemo(() => drivers?.map(mapItems), [drivers])
+
   return (
     <>
       <option value="" hidden>{intl.formatMessage({ id: "Select" })}</option>

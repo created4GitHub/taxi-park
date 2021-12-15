@@ -1,9 +1,9 @@
 import { FormattedMessage } from "react-intl";
 
 import { Data, Status } from "../../../../interfaces/interfaces";
-import { DriverTitles, CarTitles } from "../../../../constants/additionalInfo";
+import { DRIVERTITLES, CARTITLES } from "../../../../constants/additionalInfo";
 
-import icons from "../../../../img/IconsDirection.svg";
+import icons from "../../../../ascets/img/svg/IconsDirection.svg";
 import { useMemo } from "react";
 
 const uuid = require("react-uuid");
@@ -30,12 +30,12 @@ const AdditionalData = ({ additionalData, title }: { additionalData: Data[], tit
         )
     }
 
-    const mappedItems = useMemo(() => additionalData.map(mapItems), [])
+    const mappedItems = useMemo(() => additionalData.map(mapItems), [additionalData]);
 
     return (
         <div className="table_section_isActive">
             <div className="block">
-                {title === 'car' ? renderTitles(DriverTitles) : renderTitles(CarTitles)}
+                {title === 'car' ? renderTitles(DRIVERTITLES) : renderTitles(CARTITLES)}
             </div>
             {mappedItems}
         </div>
