@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useStateIfMounted } from "use-state-if-mounted";
 
 import FormSectionTab from "./formSectionTab/FormSectionTab";
-import { Button } from "../../compose/button/Button";
+import { Button } from "../../commons/button/Button";
 import AdditionalData from "./additionalInfo/AdditionalInfo";
 import { Data } from "../../../interfaces/interfaces";
 import { GET, REMOVE, GET_CARS_BY_DRIVER } from "../../../requests/requests";
@@ -17,6 +17,7 @@ type Props = {
   data: Data;
   title: string;
 };
+const uuid = require("react-uuid");
 
 const FormSection = ({ data, title }: Props) => {
   const [isAdditionalData, setIsAdditionalData] = useState<boolean>(false);
@@ -24,13 +25,12 @@ const FormSection = ({ data, title }: Props) => {
   const [isModal, setIsModal] = useState<boolean>(false)
 
   const className = additionalData.length !== 0 ? 'table_section-showButton' : 'table_section-showButton isActive';
-
   const dispatch = useDispatch();
 
   const search = async () => {
     if (title === "driver") {
       const cars = await GET_CARS_BY_DRIVER(String(data.id));
-      setAdditionalData(cars.data);
+      setAdditionalData(cars as Data[]);
     } else {
       const driver = await GET("driver", data.driver_id);
       setAdditionalData([driver] as Data[]);
@@ -56,7 +56,7 @@ const FormSection = ({ data, title }: Props) => {
   const mapItems = (property: string) => {
     return (
       <FormSectionTab
-        key={property}
+        key={uuid()}
         property={property}
         value={data[property as keyof Data]!}
         id={String(data.id)}
@@ -106,10 +106,10 @@ const FormSection = ({ data, title }: Props) => {
         <Button
           onClick={deleteEl}
           className="table_section-deleteButton"
-          btnText={<FormattedMessage id='Delete'/>}
+          btnText={<FormattedMessage id='Delete' />}
         />
       </div>
-      {isAdditionalData && <AdditionalData additionalData={additionalData} title={title}/>}
+      {isAdditionalData && <AdditionalData additionalData={additionalData} title={title} />}
     </>
   );
 };

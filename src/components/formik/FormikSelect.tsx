@@ -6,21 +6,21 @@ interface Props {
     children: React.ReactNode;
 }
 
-const MySelect = ( {name, children}: Props) => {
-    const [field, meta] = useField({name, children});    
-    
+const FormikSelect = ({ name, children }: Props) => {
+    const [field, meta] = useField({ name, children });
+
     return (
         <div>
             {meta.touched && meta.error ? (
-                <span className="table_section-error">{<FormattedMessage id={meta.error} /> }</span>
+                <span className="table_section-error">{<FormattedMessage id={meta.error} />}</span>
             ) : null}
             <select
                 {...field}
-                {...{name, children}}
+                {...{ name, children }}
                 className="table_section-tab-select"
             />
         </div>
     );
 };
 
-export default MySelect;
+export default FormikSelect;

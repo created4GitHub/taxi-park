@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import FilterStatuses from "./filterStatuses/FilterStatuses";
 import FilterInputs from "./filterInputs/FilterInputs";
 import ResetButton from "./resetButton/ResetButton";
-import YearSelect from "../YearsSelect/YearsSelect";
+import { YEARS } from "../../constants/years";
 import { filterData, resetFilter } from "../../redux/actions/actions";
-import { filterValuesSelector } from "../../redux/selectors/selector";
+import { filterValuesSelector, isFilterValuesUpdatedSelector } from "../../redux/selectors/selector";
 
 import "./filters.style.scss";
+
 
 interface Props {
   title: string;
@@ -15,8 +16,8 @@ interface Props {
 
 const Filters = ({ title }: Props) => {
   const filterValues = useSelector(filterValuesSelector);
+  const isFilterValuesUpdated = useSelector(isFilterValuesUpdatedSelector);
   const dispatch = useDispatch();
-
   const reset = () => {
     dispatch(resetFilter());
   };
@@ -28,12 +29,18 @@ const Filters = ({ title }: Props) => {
   };
 
   const optionalElement = title === "car" && (
-      <div className="filter_element-yearSelect">
-        <select name="year" onChange={filter}>
-          <YearSelect />
-        </select>
-      </div>
-    );
+    <div className="filter_element-yearSelect">
+      <select name="year" onChange={filter}>
+        {YEARS.map((item: number) => {
+          return (
+            <option key={item} value={item}>
+              {item}
+            </option>
+          )
+        })}
+      </select>
+    </div>
+  );
 
   return (
     <form className="content__options-filter">

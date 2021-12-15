@@ -26,6 +26,7 @@ interface InitialState {
     isDataFiltered: boolean;
     isDataFetching: boolean;
     isDataFetchError: boolean;
+    isFilterValuesUpdated: boolean;
 }
 
 interface Action {
@@ -44,7 +45,8 @@ const initialState: InitialState = {
     isDataUpdated: false,
     isDataFiltered: false,
     isDataFetching: false,
-    isDataFetchError: false
+    isDataFetchError: false,
+    isFilterValuesUpdated: false
 }
 
 const RootReducer = (state: InitialState = initialState, { type, payload, data, statuses }: Action): InitialState => {
@@ -65,11 +67,11 @@ const RootReducer = (state: InitialState = initialState, { type, payload, data, 
                         return String(item[key as keyof Data])
                             .toLocaleLowerCase()
                             .includes(filterValues[key as keyof Filter]!
-                            .toLocaleLowerCase());
+                                .toLocaleLowerCase());
                     }
                 });
             }
-            return { ...state, filteredData: result, isDataFiltered: true, isDataUpdated: !state.isDataUpdated };
+            return { ...state, filteredData: result, isDataFiltered: true, isFilterValuesUpdated: !state.isFilterValuesUpdated };
 
         case RESET_FILTER:
             return {

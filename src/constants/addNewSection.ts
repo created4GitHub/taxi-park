@@ -18,7 +18,7 @@ export const CARINFO: Info[] = [
     }
 ];
 
-export const DRIVERINFO: Info[] = [
+export const DRIVER_INFO: Info[] = [
     {
         name: "first_name",
         placeholder: "Name"

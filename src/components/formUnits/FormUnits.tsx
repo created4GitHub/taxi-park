@@ -12,7 +12,7 @@ import {
   isDataFilteredSelector,
   dataSelector,
   isDataFetchingSelector,
-  isDataFetchErrorSelector
+  isDataFetchErrorSelector,
 } from "../../redux/selectors/selector";
 
 import "./formUnits.style.scss";
@@ -21,14 +21,16 @@ interface Props {
   title: string;
 }
 
+const uuid = require("react-uuid");
+
 const FormUnits = ({ title }: Props) => {
   const receivedData = useSelector(dataSelector);
   const filteredData = useSelector(filteredDataSelector);
-  const isFilteredData = useSelector(isDataFilteredSelector);
+  const isDataFiltered = useSelector(isDataFilteredSelector);
   const isDataUpdated = useSelector(isDataUpdatedSelector);
   const isDataFetching = useSelector(isDataFetchingSelector);
   const isDataFetchError = useSelector(isDataFetchErrorSelector);
-  const data = (isFilteredData && filteredData) || receivedData;
+  const data = (isDataFiltered && filteredData) || receivedData;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -38,23 +40,25 @@ const FormUnits = ({ title }: Props) => {
   const mapItems = (item: Data) => {
     return (
       <FormSection
-        key={item.id}
+        key={uuid()}
         title={title}
         data={item}
 
       />
     );
   }
-
   const mappedItems = useMemo(() => data.map(mapItems), [data]);
-  
+
+  const element: JSX.Element = isDataFetching ? <div><Loader /></div> : (
+    <>
+      <UnitsTitles title={title} />
+      {mappedItems}
+    </>
+  );
+
   return (
-    isDataFetchError ? <div>Error</div> :
-      isDataFetching ? <div><Loader /></div>
-        : <>
-          <UnitsTitles title={title} />
-          {mappedItems}
-        </>
+    isDataFetchError ? <div>Error</div>
+      : element
   );
 };
 

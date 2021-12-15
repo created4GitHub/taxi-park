@@ -1,15 +1,14 @@
 import { ChangeEvent, useMemo } from "react";
+import { useIntl } from "react-intl";
 
-import Input from "../../compose/input/Input";
-import { CARINFO, DRIVERINFO } from "../../../constants/filterInputs"
+import Input from "../../commons/input/Input";
+import { CAR_INFO, DRIVE_INFO } from "../../../constants/filterInputs"
 import { Filter } from "../../../interfaces/interfaces";
-import { FormattedMessage, injectIntl, useIntl } from "react-intl";
-import { messages } from "../../../i18n/messages";
 
 interface Props {
     filter: (event: ChangeEvent<HTMLInputElement>) => void;
     title: string;
-    filterValues?: Filter | Filter[];
+    filterValues: any;
 }
 
 interface Info {
@@ -18,9 +17,8 @@ interface Info {
 };
 
 const FilterInputs = ({ filter, title, filterValues }: Props) => {
-    const inputInfo = (title === "car" && CARINFO) || DRIVERINFO;
+    const inputInfo = (title === "car" && CAR_INFO) || DRIVE_INFO;
     const intl = useIntl();
-
     const mapItems = ({ name, placeholder }: Info) => {
         return (
             <Input onChange={filter}

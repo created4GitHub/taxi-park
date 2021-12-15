@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import logo from '../../ascets/img/png/taxi.png';
 import './header.style.scss';
 
+const uuid = require("react-uuid");
 
 const Select = styled.select`
     width: 150px;
@@ -24,10 +25,10 @@ interface Props {
 
 const Header = ({ setLocale }: Props) => {
     const nameLocal = JSON.parse(localStorage.getItem('internationalization')!)
-    
+
     const itemsMap = (item: string) => {
         return (
-            <option key={item} value={item}>{item}</option>
+            <option key={uuid()} value={item}>{item}</option>
         )
     }
 
@@ -40,18 +41,18 @@ const Header = ({ setLocale }: Props) => {
         }
 
         const sItem = JSON.stringify(local);
-        
+
         localStorage.setItem('internationalization', sItem);
 
-        setLocale(local)        
+        setLocale(local)
     }
-    
+
     return (
         <header className="header">
             <div className='header__content'>
                 <div className='header__content leftSide'>
                     <div className='header__content logo'>
-                        <img src={logo} alt="#" width='180px' height='40px'/>
+                        <img src={logo} alt="#" width='180px' height='40px' />
                     </div>
                 </div>
                 <Select onChange={handleChenge}>

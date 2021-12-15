@@ -7,13 +7,15 @@ import { Status } from "../../interfaces/interfaces";
 import './statuses.style.scss'
 import { useMemo } from "react";
 
+const uuid = require("react-uuid");
+
 const Statuses = () => {
     const intl = useIntl();
     const statuses = useSelector(statusesSelector);
 
     const mapItems = (item: Status) => {
         return (
-            <option key={item.title}>
+            <option key={uuid()}>
                 {item.title}
             </option>
         )

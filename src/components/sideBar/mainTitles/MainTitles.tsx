@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 
 import { switchPage, addNewUnit } from "../../../redux/actions/actions";
-import { Button } from "../../compose/button/Button";
-import { TITLESLINKS } from "../../../constants/mainTitles";
+import { Button } from "../../commons/button/Button";
+import { TITLES_LINKS } from "../../../constants/mainTitles";
 import { FormattedMessage } from "react-intl";
 import { useMemo } from "react";
 
@@ -19,9 +19,10 @@ interface Titles {
     src: string;
 }
 
+const uuid = require("react-uuid");
+
 const MainTitles = ({ isActive, setIsActive }: Props) => {
     const dispatch = useDispatch();
-
     const mapItems = (({ name, title, path, src }: Titles) => {
         const className = isActive !== title ? "route-button path" : "route-button path active";
 
@@ -36,7 +37,7 @@ const MainTitles = ({ isActive, setIsActive }: Props) => {
         }
 
         return (
-            <div className="paragraph_element-route" key={title}>
+            <div className="paragraph_element-route" key={uuid()}>
                 <Link to={path}>
                     <Button
                         className={className}
@@ -61,7 +62,7 @@ const MainTitles = ({ isActive, setIsActive }: Props) => {
         )
     })
 
-    const mappedItems = useMemo(() => TITLESLINKS.map(mapItems), [TITLESLINKS]);
+    const mappedItems = useMemo(() => TITLES_LINKS.map(mapItems), [TITLES_LINKS, isActive]);
 
     return (
         <div className="content__options-paragraph">

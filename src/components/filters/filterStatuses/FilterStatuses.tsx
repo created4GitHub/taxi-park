@@ -1,7 +1,7 @@
 import { ChangeEvent, useMemo } from "react";
 import { useSelector } from "react-redux";
 
-import Input from "../../compose/input/Input";
+import Input from "../../commons/input/Input";
 import { statusesSelector } from "../../../redux/selectors/selector";
 import { useIntl } from "react-intl";
 import { Filter } from "../../../interfaces/interfaces";
@@ -11,13 +11,15 @@ interface Props {
     filterValues: Filter;
 }
 
+const uuid = require("react-uuid");
+
 const FilterStatuses = ({ filter, filterValues }: Props) => {
     const statuses = useSelector(statusesSelector);
     const intl = useIntl();
 
     const mapItems = ({ title }: { title: string }) => {
         return (
-            <div className="filter-element" key={title}>
+            <div className="filter-element" key={uuid()}>
                 <Input
                     type="radio"
                     name="status"

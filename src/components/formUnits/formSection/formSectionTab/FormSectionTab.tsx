@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Statuses from "../../../statuses/Statuses";
 import { PATCH } from "../../../../requests/requests";
-import { RootState } from "../../../../redux/rootReducer";
 import { Data, Status } from "../../../../interfaces/interfaces";
 import { dispatchIsDataUpdated as setIsDataUpdated } from "../../../../redux/actions/actions";
 import { statusesSelector } from "../../../../redux/selectors/selector";
@@ -21,20 +20,21 @@ interface Props {
 const FormSectionTab = ({ value, property, title, data, id }: Props) => {
   const statuses = useSelector(statusesSelector);
   const [selectValue, setSelectValue] = useState<string>((value as Status).title);
-  const [isDiv, setIsDiv] = useState<boolean>(true);
+  const [isMutable, setIsMutable] = useState<boolean>(true);
   const dispatch = useDispatch();
+  let element: JSX.Element | null = null;
 
   const updateElementType = (event: MouseEvent<HTMLElement>) => {
     if (!["id", "date_birth", "date_created", "driver_id"].includes(property)) {
       if (!((event.target as HTMLElement).className === "table_input")) {
-        setIsDiv(!isDiv);
+        setIsMutable(!isMutable);
       }
     }
   }
 
-  const saveNewInformation = (newValue: string | Status) => {
+  const saveNewInformation = (newValue: string | Status, property: string) => {
     (data[property as keyof Data] as string | Status) = newValue;
-    setIsDiv(!isDiv);
+    setIsMutable(!isMutable);
     PATCH(title, id, { [property]: newValue });
     dispatch(setIsDataUpdated());
   };
@@ -42,53 +42,58 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
   const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       const target = event.target as HTMLInputElement;
-      target.value ? saveNewInformation(target.value) : setIsDiv(!isDiv);
+      target.value ? saveNewInformation(target.value, target.id) : setIsMutable(!isMutable);
     }
   };
 
   const onBlurEvent = (event: React.FocusEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
-    target.value ? saveNewInformation(target.value) : setIsDiv(!isDiv);
+    target.value ? saveNewInformation(target.value, target.id) : setIsMutable(!isMutable);
   };
 
   const saveStatus = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const newTitle = event.target.value;
     const status = statuses.find((status: Status) => status.title === newTitle)!;
     setSelectValue(newTitle);
-    saveNewInformation(status);
+    saveNewInformation(status, event.target.id);
   };
 
+  if (property === "status") {
+    element = (
+      <select
+        name="status"
+        className="table_section-tab-select"
+        value={selectValue}
+        onChange={saveStatus}
+        id={property}
+      >
+        <Statuses />
+      </select>
+    )
+  } else {
+    element = isMutable ?
+      (
+        <p className="table_paragraph" onClick={updateElementType} id={property}>
+          {data[property as keyof Data]}
+        </p>
+      ) : (
+        <input
+          type="text"
+          placeholder={String(data[property as keyof Data])}
+          className="table_input"
+          autoFocus={true}
+          onClick={updateElementType}
+          onBlur={onBlurEvent}
+          onKeyPress={onKeyDown}
+          id={property}
+        />
+      )
+  }
+
   return (
-    <>
-      <div className="table-section-tab">
-        {property !== "status" ? (
-          isDiv ? (
-            <p className="table_paragraph" onClick={updateElementType} >
-              {data[property as keyof Data]}
-            </p>
-          ) : (
-            <input
-              type="text"
-              placeholder={String(data[property as keyof Data])}
-              className="table_input"
-              autoFocus={true}
-              onClick={updateElementType}
-              onBlur={onBlurEvent}
-              onKeyPress={onKeyDown}
-            />)
-        ) : (
-          <select
-            name="status"
-            className="table_section-tab-select"
-            value={selectValue}
-            onChange={saveStatus}
-            id={property}
-          >
-            <Statuses />
-          </select>
-        )}
-      </div>
-    </>
+    <div className="table-section-tab">
+      {element}
+    </div>
   );
 };
 

@@ -43,7 +43,6 @@
             .paragraph_element-route {
                 border-bottom: solid #c0c0c04d 1px;
                 align-items: center;
-
             }
         }
         @media (max-width: 690px) {
@@ -69,7 +68,7 @@
             width: 40px;
             height: 40px;
             color: white;
-            background:  #3498db;
+            background: #3498db;
             cursor: pointer;
             outline: none;
             border: 1px solid #3498db;
@@ -77,21 +76,21 @@
             align-items: center;
             justify-content: center;
             border-radius: 8px;
-            box-shadow: 0 0 8px 2px #c0c0c0c2;;
+            box-shadow: 0 0 8px 2px #c0c0c0c2;
 
-            .addNewUnit-paragraph{
+            .addNewUnit-paragraph {
                 font-size: 30px;
             }
         }
         .addNewUnit:hover {
-            .addNewUnit-paragraph{
+            .addNewUnit-paragraph {
                 font-weight: 600;
             }
         }
         .addNewUnit:active {
             box-shadow: 0 0 8px 2px rgb(134 138 216 / 36%);
 
-            .addNewUnit-paragraph{
+            .addNewUnit-paragraph {
                 font-weight: 100;
             }
         }
@@ -224,7 +223,7 @@
             align-items: stretch;
             align-content: space-around;
             justify-content: space-between;
-            
+
             @media (max-width: 1080px) {
                 display: flex;
                 height: 122px;
@@ -238,7 +237,8 @@
                 flex-wrap: wrap;
             }
             .filter-element {
-                label, input{
+                label,
+                input {
                     cursor: pointer;
                 }
             }
@@ -257,7 +257,7 @@
                 color: black;
                 border: solid silver 1px;
                 cursor: pointer;
-                
+
                 @media (max-width: 1080px) {
                     height: 25px;
                     width: 74px;
@@ -279,39 +279,20 @@
             align-items: center;
             justify-content: center;
 
-      
             @media (max-width: 1080px) {
                 height: 100%;
             }
             @media (max-width: 445px) {
                 height: auto;
             }
-            button {
-                width: 200px;
-                height: 35px;
-                border-radius: 8px;
-                color: #d09700;
-                background-color: #fef8e8;
-                border: none;
-                cursor: pointer;
-
-                @media (max-width: 1080px) {
-                    height: 100%;
-                    width: 62px;
-                }
-                @media (max-width: 445px) {
-                    width: 300px;
-                    height: 45px;
-                }
-            }
         }
-        .reset-filter-button:hover{
-            button{
+        .reset-filter-button:hover {
+            button {
                 box-shadow: 0 0 14px 1px #e2dfbb;
             }
         }
-        .reset-filter-button:active{
-            button{
+        .reset-filter-button:active {
+            button {
                 box-shadow: 0 0 8px 0 #e2dfbb;
             }
         }
