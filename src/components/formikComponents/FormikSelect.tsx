@@ -1,8 +1,14 @@
 import { useField } from 'formik';
 import { FormattedMessage } from 'react-intl';
 
-const MySelect = ({ ...props }: any) => {
-    const [field, meta] = useField(props);    
+interface Props {
+    name: string;
+    children: React.ReactNode;
+}
+
+const MySelect = ( {name, children}: Props) => {
+    const [field, meta] = useField({name, children});    
+    
     return (
         <div>
             {meta.touched && meta.error ? (
@@ -10,7 +16,7 @@ const MySelect = ({ ...props }: any) => {
             ) : null}
             <select
                 {...field}
-                {...props}
+                {...{name, children}}
                 className="table_section-tab-select"
             />
         </div>

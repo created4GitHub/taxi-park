@@ -6,7 +6,7 @@ import IconsDirection from '../../../ascets/img/svg/IconsDirection.svg'
 import './unitsTitles.style.scss'
 
 const UnitsTitles = ({ title }: { title: string }) => {
-    const info: any = (title === "car" && CARINFO) || DRIVERINFO;
+    const info: string[] = (title === "car" && CARINFO) || DRIVERINFO;
 
     const mapItems = (item: string) => {
         if (["Drivers", "Cars"].includes(item)) {

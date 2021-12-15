@@ -1,7 +1,7 @@
 import { useField } from 'formik';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-const MyTextInput = ({ name, placeholder, type }: any) => {
+const MyTextInput = ({ name, placeholder, type }: Record<string, string>) => {
     const [field, meta] = useField({name, placeholder, type});
     const intl = useIntl();
     

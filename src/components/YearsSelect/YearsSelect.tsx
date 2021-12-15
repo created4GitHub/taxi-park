@@ -5,9 +5,8 @@ import { YEARS } from "../../constants/years";
 const YearsSelect = () => {
     const intl = useIntl();
 
-    const mapItems = (item: number) => {
-        return <option value={item} key={item}>{item}</option>
-    }
+    const mapItems = (item: number) =>
+        <option value={item} key={item}>{item}</option>
 
     const mappedItems = useMemo(() => YEARS.map(mapItems), [YEARS])
 

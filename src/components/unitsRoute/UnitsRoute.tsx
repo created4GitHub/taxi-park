@@ -15,6 +15,7 @@ interface RouteProp {
 
 const UnitsRoute = () => {
     const isAddNewUnit = useSelector(isAddNewUnitSelector);
+    
     const mapItems = ({ path, title }: RouteProp) => {
         return (
             <Route key={title} path={path} element={

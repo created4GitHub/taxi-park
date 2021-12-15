@@ -11,11 +11,8 @@ interface RouteProps {
 
 const FilterRoutes = () => {
 
-    const mapItems = ({ path, title }: RouteProps) => {
-        return (
-            <Route path={path} key={path} element={<Filter title={title} />} />
-        )
-    }
+    const mapItems = ({ path, title }: RouteProps) => 
+        <Route path={path} key={path} element={<Filter title={title} />} />
 
     const mappedItems = useMemo(() => ROUTESINFO.map(mapItems), [ROUTESINFO]);
 

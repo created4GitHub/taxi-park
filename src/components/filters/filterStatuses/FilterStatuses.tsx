@@ -4,10 +4,11 @@ import { useSelector } from "react-redux";
 import Input from "../../compose/input/Input";
 import { statusesSelector } from "../../../redux/selectors/selector";
 import { useIntl } from "react-intl";
+import { Filter } from "../../../interfaces/interfaces";
 
 interface Props {
     filter: (event: ChangeEvent<HTMLInputElement>) => void;
-    filterValues: any;
+    filterValues: Filter;
 }
 
 const FilterStatuses = ({ filter, filterValues }: Props) => {
