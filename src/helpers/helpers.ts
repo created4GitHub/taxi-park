@@ -17,7 +17,6 @@ export const createRequest = async (param: string, method: string, headers?:
     if (body) {
         request.body = JSON.stringify(body)
     }
-    console.log(URL + param + "/")
     const data = await fetch(
         URL + param + "/",
         request
