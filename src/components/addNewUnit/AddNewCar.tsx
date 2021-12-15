@@ -11,7 +11,6 @@ import Statuses from '../statuses/Statuses';
 import AddNewButton from './addNewButton/AddNewButton';
 import { addNewUnit, updateIsAddNewUnit } from "../../redux/actions/actions";
 import { Status, Data } from '../../interfaces/interfaces';
-import { RootState } from '../../redux/rootReducer';
 import { statusesSelector } from '../../redux/selectors/selector'
 import { CAR_VALUES } from './initValues/initValues';
 import { CAR_VALIDATION_SCHEMA } from './validationSchema/validationSchema';

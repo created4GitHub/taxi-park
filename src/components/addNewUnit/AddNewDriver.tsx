@@ -11,11 +11,11 @@ import AddNewButton from './addNewButton/AddNewButton';
 import { addNewUnit, updateIsAddNewUnit } from "../../redux/actions/actions";
 import { Status, Data, DriverFormik } from '../../interfaces/interfaces';
 import { statusesSelector } from '../../redux/selectors/selector';
-import { validationDriver } from './validationForm/validation';
+import { CAR_VALIDATION_SCHEMA } from './validationSchema/validationSchema';
 import { initialValuesDriver } from './initialValues/initial';
 
 import "./addNewUnit.style.scss";
-import { useIntl } from 'react-intl';
+// import { useIntl } from 'react-intl';
 
 export interface Driver {
     first_name: string;
@@ -37,10 +37,11 @@ const AddNewDriver = ({ title }: Props) => {
     const statuses = useSelector(statusesSelector);
     const dispatch = useDispatch();
     const initialValues = initialValuesDriver;
+    const validationSchema = useMemo(() => CAR_VALIDATION_SCHEMA, []);
 
 
     const mapedCarItems = useMemo(() => DRIVERINFO.map(({ name, placeholder }) => {
-        return <FormikInput key={name} {...{ name, placeholder, type: "text" }} />
+        return <FormikInput key={uuid()} {...{ name, placeholder, type: "text" }} />
     }), [DRIVERINFO])
 
     const submit = (values: DriverFormik) => {
@@ -56,7 +57,7 @@ const AddNewDriver = ({ title }: Props) => {
     return (
         <Formik
             initialValues={initialValues}
-            validationSchema={validationDriver}
+            validationSchema={validationSchema}
             onSubmit={submitCallback}
         >
             <div className="table_section_add">

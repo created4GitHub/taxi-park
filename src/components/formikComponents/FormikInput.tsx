@@ -4,7 +4,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 const MyTextInput = ({ name, placeholder, type }: any) => {
     const [field, meta] = useField({name, placeholder, type});
     const intl = useIntl();
-    
+
     return (
         <div className="table_section-block-input">
             {meta.touched && meta.error ? (

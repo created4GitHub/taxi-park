@@ -6,6 +6,8 @@ import { Data } from "../../interfaces/interfaces";
 
 import "./driverById.style.scss";
 
+const uuid = require("react-uuid");
+
 const DriverIDList: React.FC = () => {
   const [drivers, setDrivers] = useState(Array<Data>());
   const intl = useIntl();
@@ -21,7 +23,7 @@ const DriverIDList: React.FC = () => {
 
   const mapItems = (item: Data) => {
     return (
-      <option key={item.id} value={item.id}>
+      <option key={uuid()} value={item.id}>
         {item.first_name + " " + item.last_name}
       </option>
     )

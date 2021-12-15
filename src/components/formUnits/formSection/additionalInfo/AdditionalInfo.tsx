@@ -12,7 +12,7 @@ const AdditionalData = ({ additionalData, title }: { additionalData: Data[], tit
 
     const renderTitles = (array: string[]) => {
         return array.map((item: string) => {
-            return <p key={item}><FormattedMessage id={item} /><img src={icons} alt="alt" /></p>
+            return <p key={uuid()}><FormattedMessage id={item} /><img src={icons} alt="alt" /></p>
         });
     }
 

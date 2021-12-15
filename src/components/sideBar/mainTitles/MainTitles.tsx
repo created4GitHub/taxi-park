@@ -19,6 +19,8 @@ interface Titles {
     src: string;
 }
 
+const uuid = require("react-uuid");
+
 const MainTitles = ({ isActive, setIsActive }: Props) => {
     const dispatch = useDispatch();
 
@@ -36,7 +38,7 @@ const MainTitles = ({ isActive, setIsActive }: Props) => {
         }
 
         return (
-            <div className="paragraph_element-route" key={title}>
+            <div className="paragraph_element-route" key={uuid()}>
                 <Link to={path}>
                     <Button
                         className={className}
