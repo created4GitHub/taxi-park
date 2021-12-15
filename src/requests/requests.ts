@@ -11,7 +11,7 @@ interface Response {
 export const GET = async (title: string, id?: number): Promise<Data | Data[]> => {
   const param: string = id ? title + "/" + id : title;
   const data = await createRequest(param, "GET");
-  if (id) {
+  if (id || title === "driver") {
     return convertDate(data, title);
   }
   return data;
