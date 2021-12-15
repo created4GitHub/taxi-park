@@ -17,7 +17,6 @@ export const createRequest = async (param: string, method: string, headers?:
     if (body) {
         request.body = JSON.stringify(body)
     }
-    console.log(URL + param + "/")
     const data = await fetch(
         URL + param + "/",
         request
@@ -32,7 +31,7 @@ export const convertDate = (data: Data | Data[], title: string) => {
         item.date_created = new Date(item.date_created!).toLocaleDateString();
         return item;
     }
-    if (title === "driver") {
+    if (Array.isArray(data)) {
         return (data as Data[]).map(item => convert(item));
     }
     return convert(data as Data);
