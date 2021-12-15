@@ -26,7 +26,7 @@ interface InitialState {
     isDataFiltered: boolean;
     isDataFetching: boolean;
     isDataFetchError: boolean;
-    isFilteredUpdated: boolean;
+    isFilterValuesUpdated: boolean;
 }
 
 interface Action {
@@ -46,7 +46,7 @@ const initialState: InitialState = {
     isDataFiltered: false,
     isDataFetching: false,
     isDataFetchError: false,
-    isFilteredUpdated: false
+    isFilterValuesUpdated: false
 }
 
 const RootReducer = (state: InitialState = initialState, { type, payload, data, statuses }: Action): InitialState => {
@@ -58,6 +58,7 @@ const RootReducer = (state: InitialState = initialState, { type, payload, data, 
             const { name, value } = payload as FilterData;
             const filterValues: Filter = state.filterValues;
             filterValues[name as keyof Filter] = value;
+            console.log(filterValues)
             let result = state.data;
             for (let key in filterValues) {
                 result = result.filter(item => {
@@ -69,7 +70,7 @@ const RootReducer = (state: InitialState = initialState, { type, payload, data, 
                     }
                 });
             }
-            return { ...state, filteredData: result, isDataFiltered: true, isFilteredUpdated: !state.isFilteredUpdated };
+            return { ...state, filteredData: result, isDataFiltered: true, isFilterValuesUpdated: !state.isFilterValuesUpdated };
 
         case RESET_FILTER:
             return {

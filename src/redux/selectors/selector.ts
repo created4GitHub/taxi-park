@@ -9,4 +9,4 @@ export const isAddNewUnitSelector = (state: RootState) => state.isAddNewUnit;
 export const statusesSelector = (state: RootState) => state.statuses;
 export const isDataFetchingSelector = (state: RootState) => state.isDataFetching;
 export const isDataFetchErrorSelector = (state: RootState) => state.isDataFetchError;
-export const isFilteredUpdatedSelector = (state: RootState) => state.isFilteredUpdated;
+export const isFilterValuesUpdatedSelector = (state: RootState) => state.isFilterValuesUpdated;

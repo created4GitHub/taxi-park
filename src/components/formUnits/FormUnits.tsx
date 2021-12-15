@@ -13,7 +13,6 @@ import {
   dataSelector,
   isDataFetchingSelector,
   isDataFetchErrorSelector,
-  isFilteredUpdatedSelector
 } from "../../redux/selectors/selector";
 
 import "./formUnits.style.scss";
@@ -26,7 +25,6 @@ const FormUnits = ({ title }: Props) => {
   const receivedData = useSelector(dataSelector);
   const filteredData = useSelector(filteredDataSelector);
   const isDataFiltered = useSelector(isDataFilteredSelector);
-  const isFilteredUpdated = useSelector(isFilteredUpdatedSelector);
   const isDataUpdated = useSelector(isDataUpdatedSelector);
   const isDataFetching = useSelector(isDataFetchingSelector);
   const isDataFetchError = useSelector(isDataFetchErrorSelector);

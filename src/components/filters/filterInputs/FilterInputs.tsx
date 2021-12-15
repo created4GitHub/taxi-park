@@ -8,6 +8,7 @@ import { Filter } from "../../../interfaces/interfaces";
 interface Props {
     filter: (event: ChangeEvent<HTMLInputElement>) => void;
     title: string;
+    filterValues: any;
 }
 
 interface Info {
@@ -17,7 +18,7 @@ interface Info {
 
 const uuid = require("react-uuid");
 
-const FilterInputs = ({ filter, title }: Props) => {
+const FilterInputs = ({ filter, title, filterValues }: Props) => {
     const inputInfo = (title === "car" && CarInfo) || DriverInfo;
     const intl = useIntl();
     const mapItems = ({ name, placeholder }: Info) => {
@@ -26,6 +27,7 @@ const FilterInputs = ({ filter, title }: Props) => {
                 key={uuid()}
                 name={name}
                 placeholder={intl.formatMessage({ id: placeholder })}
+                value={((filterValues as Filter[])[name as keyof Filter[]] as string) || ""}
             />
         )
     }
