@@ -1,4 +1,4 @@
-import { ChangeEvent, useMemo } from "react";
+import { ChangeEvent } from "react";
 import { useSelector } from "react-redux";
 
 import Input from "../../commons/input/Input";
@@ -33,7 +33,7 @@ const FilterStatuses = ({ filter, filterValues }: Props) => {
         )
     }
 
-    const mappedItems = useMemo(() => statuses.map(mapItems), [statuses])
+    const mappedItems = statuses.map(mapItems);
 
     return (
         <div className='filter_element-inputRadio'>
