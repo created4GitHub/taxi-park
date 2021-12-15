@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Loader from "../loader/loader";
@@ -30,7 +30,6 @@ const FormUnits = ({ title }: Props) => {
   const isDataFetchError = useSelector(isDataFetchErrorSelector);
   const data = (isDataFiltered && filteredData) || receivedData;
   const dispatch = useDispatch();
-  let element: JSX.Element | null = null;
 
   useEffect(() => {
     dispatch(getData(title));
@@ -46,21 +45,14 @@ const FormUnits = ({ title }: Props) => {
       />
     );
   }
+  const mappedItems = useMemo(() => data.map(mapItems), [data]);
 
-  const mappedItems = data.map(mapItems);
-
-  switch (isDataFetching) {
-    case true:
-      element = <div><Loader /></div>;
-      break;
-    default:
-      element = (
-        <>
-          <UnitsTitles title={title} />
-          {mappedItems}
-        </>
-      )
-  }
+  const element: JSX.Element = isDataFetching ? <div><Loader /></div> : (
+    <>
+      <UnitsTitles title={title} />
+      {mappedItems}
+    </>
+  );
 
   return (
     isDataFetchError ? <div>Error</div>

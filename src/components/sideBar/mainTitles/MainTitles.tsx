@@ -3,8 +3,9 @@ import { useDispatch } from 'react-redux';
 
 import { switchPage, addNewUnit } from "../../../redux/actions/actions";
 import { Button } from "../../commons/button/Button";
-import { TitlesLinks } from "../../../constants/mainTitles";
+import { TITLES_LINKS } from "../../../constants/mainTitles";
 import { FormattedMessage } from "react-intl";
+import { useMemo } from "react";
 
 interface Props {
     isActive: string;
@@ -60,7 +61,7 @@ const MainTitles = ({ isActive, setIsActive }: Props) => {
         )
     })
 
-    const mappedItems = TitlesLinks.map(mapItems);
+    const mappedItems = useMemo(() => TITLES_LINKS.map(mapItems), [TITLES_LINKS]);
 
     return (
         <div className="content__options-paragraph">

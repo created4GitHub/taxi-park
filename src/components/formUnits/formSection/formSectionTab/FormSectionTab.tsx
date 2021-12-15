@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Statuses from "../../../statuses/Statuses";
 import { PATCH } from "../../../../requests/requests";
 import { Data, Status } from "../../../../interfaces/interfaces";
-import { dispatchIsDataUpdated } from "../../../../redux/actions/actions";
+import { dispatchIsDataUpdated as setIsDataUpdated } from "../../../../redux/actions/actions";
 import { statusesSelector } from "../../../../redux/selectors/selector";
 
 import "./formSectionTab.style.scss";
@@ -36,7 +36,7 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
     (data[property as keyof Data] as string | Status) = newValue;
     setIsMutable(!isMutable);
     PATCH(title, id, { [property]: newValue });
-    dispatch(dispatchIsDataUpdated());
+    dispatch(setIsDataUpdated());
   };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {

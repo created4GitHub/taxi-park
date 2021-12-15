@@ -1,8 +1,8 @@
+import { useCallback, useMemo } from 'react';
 import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { CarInfo } from "../../constants/addNewSection";
+import { CAR_INFO, Info } from "../../constants/addNewSection";
 import FormikInput from "../formikComponents/FormikInput";
 import FormikSelect from "../formikComponents/FormikSelect"
 import YearsSelect from "../YearsSelect/YearsSelect";
@@ -16,9 +16,6 @@ import { CAR_VALUES } from './initValues/initValues';
 import { CAR_VALIDATION_SCHEMA } from './validationSchema/validationSchema';
 
 import "./addNewUnit.style.scss";
-import { useCallback, useMemo } from 'react';
-
-
 
 interface Props {
     title: string;
@@ -38,6 +35,11 @@ const AddNewCar = ({ title }: Props) => {
         dispatch(addNewUnit(title, true, (values as Data)));
     }, [statuses]);
 
+    const mapItems = (({ name, placeholder }: Info) =>
+        <FormikInput key={uuid()} {...{ name, placeholder, type: "text" }} />)
+
+    const mapedCarItems = useMemo(() => CAR_INFO.map(mapItems), [CAR_INFO]);
+
     return (
         <Formik
             initialValues={initialValues}
@@ -46,9 +48,7 @@ const AddNewCar = ({ title }: Props) => {
         >
             <div className="table_section_add">
                 <Form className="search-table_section_add">
-                    {CarInfo.map(({ name, placeholder }) =>
-                        <FormikInput key={uuid()} {...{ name, placeholder, type: "text" }} />
-                    )}
+                    {mapedCarItems}
                     <div className='table_section_add-select'>
                         <FormikSelect name="year">
                             <YearsSelect />

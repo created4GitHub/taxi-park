@@ -1,10 +1,8 @@
 import { Routes, Route } from "react-router-dom";
+import { useMemo } from "react";
 
 import Filter from "../../filters/Filters";
-import { RoutesInfo } from "../../../constants/routesInfo"
-import { isDataUpdatedSelector } from "../../../redux/selectors/selector";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/rootReducer";
+import { ROUTES_INFO } from "../../../constants/routesInfo"
 
 interface RouteProps {
     path: string;
@@ -14,15 +12,13 @@ interface RouteProps {
 const uuid = require("react-uuid");
 
 const FilterRoutes = () => {
-    const isFilterValuesUpdatedSelector = useSelector((state: RootState) => state.isFilterValuesUpdated);
-
     const mapItems = ({ path, title }: RouteProps) => {
         return (
             <Route path={path} key={uuid()} element={<Filter title={title} />} />
         )
     }
 
-    const mappedItems = RoutesInfo.map(mapItems);
+    const mappedItems = useMemo(() => ROUTES_INFO.map(mapItems), [ROUTES_INFO]);
 
     return (
         <Routes>

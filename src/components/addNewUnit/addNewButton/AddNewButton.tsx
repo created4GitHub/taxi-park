@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 
-import addObj from "../../../img/addObj.svg";
-import deleteObj from "../../../img/deleteObj.svg";
+import addObj from "../../../ascets/img/svg/addObj.svg";
+import deleteObj from "../../../ascets/img/svg/deleteObj.svg";
 import { Button } from "../../commons/button/Button";
 
 interface Props {

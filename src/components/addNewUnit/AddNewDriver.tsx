@@ -2,7 +2,6 @@ import { Formik, Form } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { useCallback, useMemo } from 'react';
 
-import { DriverInfo } from "../../constants/addNewSection";
 import FormikInput from "../formikComponents/FormikInput";
 import FormikSelect from "../formikComponents/FormikSelect"
 import Statuses from '../statuses/Statuses';
@@ -12,9 +11,9 @@ import { Status, Data } from '../../interfaces/interfaces';
 import { RootState } from '../../redux/rootReducer';
 import { DRIVER_VALIDATION_SCHEMA } from './validationSchema/validationSchema';
 import { DRIVER_VALUES } from './initValues/initValues';
+import { DRIVER_INFO, Info } from '../../constants/addNewSection';
 
 import "./addNewUnit.style.scss";
-
 
 interface Props {
     title: string;
@@ -35,6 +34,11 @@ const AddNewDriver = ({ title }: Props) => {
         dispatch(addNewUnit(title, true, (values as Data)));
     }, [statuses]);
 
+    const mapItems = (({ name, placeholder }: Info) =>
+        <FormikInput key={uuid()} {...{ name, placeholder, type: "text" }} />)
+
+    const mapedCarItems = useMemo(() => DRIVER_INFO.map(mapItems), [DRIVER_INFO]);
+
     return (
         <Formik
             initialValues={initialValues}
@@ -43,11 +47,8 @@ const AddNewDriver = ({ title }: Props) => {
         >
             <div className="table_section_add">
                 <Form className="search-table_section_add">
-                    {DriverInfo.map(({ name, placeholder }) =>
-                        <FormikInput key={uuid()} {...{ name, placeholder, type: "text" }} />
-                    )}
+                    {mapedCarItems}
                     <FormikInput {...{ name: "date_birth", type: "date" }} />
-
                     <div className='table_section_add-select'>
                         <FormikSelect name="status">
                             <Statuses />
