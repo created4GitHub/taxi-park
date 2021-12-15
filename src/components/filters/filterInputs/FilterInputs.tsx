@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useMemo } from "react";
 
 import Input from "../../regularComponents/input/Input";
 import { CarInfo, DriverInfo } from "../../../constants/filterInputs"
@@ -31,7 +31,7 @@ const FilterInputs = ({ filter, title, filterValues }: Props) => {
         )
     }
 
-    const mappedItems = inputInfo.map(mapItems)
+    const mappedItems = useMemo(() => inputInfo.map(mapItems), []);
 
     return (
         <>

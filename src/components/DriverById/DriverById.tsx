@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useIntl } from "react-intl";
 
 import { GET } from "../../requests/requests";
@@ -27,8 +27,8 @@ const DriverIDList: React.FC = () => {
     )
   }
 
-  const mappedItems = drivers?.map(mapItems)
-
+  const mappedItems = useMemo(() => drivers?.map(mapItems), [])
+  
   return (
     <>
       <option value="" hidden>{intl.formatMessage({ id: "Select" })}</option>

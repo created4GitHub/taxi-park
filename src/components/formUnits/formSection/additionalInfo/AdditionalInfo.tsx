@@ -4,8 +4,10 @@ import { Data, Status } from "../../../../interfaces/interfaces";
 import { DriverTitles, CarTitles } from "../../../../constants/additionalInfo";
 
 import icons from "../../../../img/IconsDirection.svg";
+import { useMemo } from "react";
 
 const AdditionalData = ({ additionalData, title }: { additionalData: Data[], title: string }) => {
+
     const renderTitles = (array: string[]) => {
         return array.map((item: string) => {
             return <p key={item}><FormattedMessage id={item} /><img src={icons} alt="alt" /></p>
@@ -25,7 +27,7 @@ const AdditionalData = ({ additionalData, title }: { additionalData: Data[], tit
         )
     }
 
-    const mappedItems = additionalData.map(mapItems);
+    const mappedItems = useMemo(() => additionalData.map(mapItems), [])
 
     return (
         <div className="table_section_isActive">
