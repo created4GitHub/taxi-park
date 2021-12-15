@@ -8,11 +8,13 @@ interface RouteProps {
     title: string;
 }
 
+const uuid = require("react-uuid");
+
 const FilterRoutes = () => {
 
     const mapItems = ({ path, title }: RouteProps) => {
         return (
-            <Route path={path} key={path} element={<Filter title={title} />} />
+            <Route path={path} key={uuid()} element={<Filter title={title} />} />
         )
     }
 
