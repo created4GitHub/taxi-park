@@ -1,8 +1,6 @@
 import { URL, HEADERS } from "../constants/requests";
 import { Data } from "../interfaces/interfaces";
 
-type Info = Record<string, string>;
-
 interface Request {
     method: string;
     headers?: HeadersInit;
@@ -19,11 +17,13 @@ export const createRequest = async (param: string, method: string, headers?:
     if (body) {
         request.body = JSON.stringify(body)
     }
+    console.log(URL + param + "/")
     const data = await fetch(
-        URL + param,
+        URL + param + "/",
         request
     );
-    return await data.json();
+    const jsonData = await data.json();
+    return jsonData.data;
 };
 
 export const convertDate = (data: Data | Data[], title: string) => {

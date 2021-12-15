@@ -9,7 +9,7 @@ interface Response {
 }
 
 export const GET = async (title: string, id?: number): Promise<Data | Data[]> => {
-  const param: string = id ? title + id : title;
+  const param: string = id ? title + "/" + id : title;
   const data = await createRequest(param, "GET");
   if (id) {
     return convertDate(data, title);
@@ -18,13 +18,13 @@ export const GET = async (title: string, id?: number): Promise<Data | Data[]> =>
 }
 
 export const GET_STATUS = async (title: string): Promise<Status[]> => {
-  title = title + "-status/";
+  title = title + "-status";
   return await createRequest(title, "GET");
 };
 
 export const GET_CARS_BY_DRIVER = async (id: string): Promise<Data[] | Data> => {
   const currentHeader: HeadersInit = { ...HEADERS, "E-Driver-Id": id };
-  return await createRequest("car/", "GET", currentHeader);
+  return await createRequest("car", "GET", currentHeader);
 };
 
 export const POST = async (title: string, body: Data): Promise<Response> => {

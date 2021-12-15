@@ -18,7 +18,6 @@ const Filters = ({ title }: Props) => {
   const filterValues = useSelector(filterValuesSelector);
   const isFilterValuesUpdated = useSelector(isFilterValuesUpdatedSelector);
   const dispatch = useDispatch();
-
   const reset = () => {
     dispatch(resetFilter());
   };
