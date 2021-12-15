@@ -47,7 +47,7 @@ const FormUnits = ({ title }: Props) => {
   }
 
   const mappedItems = useMemo(() => data.map(mapItems), [data]);
- // // // // // TODO
+  
   return (
     isDataFetchError ? <div>Error</div> :
       isDataFetching ? <div><Loader /></div>

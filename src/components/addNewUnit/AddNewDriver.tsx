@@ -25,14 +25,11 @@ const AddNewDriver = ({ title }: Props) => {
     const dispatch = useDispatch();
     const initialValues = initialValuesDriver;
 
-
     const mapedCarItems = useMemo(() => DRIVERINFO.map(({ name, placeholder }) => {
         return <FormikInput key={name} {...{ name, placeholder, type: "text" }} />
     }), [DRIVERINFO])
 
     const submit = (values: DriverFormik) => {
-        console.log(values);
-        
         const status = statuses.find((status: Status) => status.title === values.status)!;
         values.status = status;
         values.date_birth = new Date(values.date_birth).getTime();
@@ -40,10 +37,13 @@ const AddNewDriver = ({ title }: Props) => {
     }
 
     const submitCallback = useCallback((values) => submit(values), [statuses])
+    
+    const memoValid = useMemo(() => validationDriver(), [])
+    
     return (
         <Formik
             initialValues={initialValues}
-            validationSchema={validationDriver}
+            validationSchema={memoValid}
             onSubmit={submitCallback}
         >
             <div className="table_section_add">

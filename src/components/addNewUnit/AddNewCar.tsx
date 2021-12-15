@@ -38,10 +38,12 @@ const AddNewCar = ({ title }: Props) => {
 
     const callbackSubmit = useCallback((values) => submit(values), [statuses])
 
+    const memoValid = useMemo(() => validationCar(), [])
+
     return (
         <Formik
             initialValues={initialValues}
-            validationSchema={validationCar}
+            validationSchema={memoValid}
             onSubmit={callbackSubmit}
         >
             <div className="table_section_add">

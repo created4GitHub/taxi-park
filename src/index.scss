@@ -14,13 +14,3 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
-
-
-@font-face {
-  font-family: 'Gilroy';
-  src: local('Gilroy ExtraBold'), local('Gilroy-ExtraBold'), 
-  src('./gilroy/Gilroyextrabold.woff2') format('woff2'), 
-  src('./gilroy/Gilroyextrabold.woff') format('woff'), 
-  src('./gilroy/Gilroyextrabold.ttf') format('truetype');
-
-}
