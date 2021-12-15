@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { LOCALES } from '../../i18n/locales';
 
 import logo from '../../img/taxi.png';
@@ -14,7 +15,7 @@ const Header = ({ setLocale }: any) => {
         )
     }
 
-    const mapped = Object.keys(LOCALES).map(itemsMap)
+    const mapped = useMemo(() => Object.keys(LOCALES).map(itemsMap), []);
 
     const handleChenge = (event: any) => {
         const local: any = {

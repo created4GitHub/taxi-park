@@ -13,6 +13,7 @@ import { RootState } from '../../redux/rootReducer';
 
 import "./addNewUnit.style.scss";
 import { useIntl } from 'react-intl';
+import { useMemo } from 'react';
 
 export interface Driver {
     first_name: string;
@@ -43,6 +44,11 @@ const AddNewDriver = ({ title }: Props) => {
     };
 
     const setLength = (length: string): string => `${intl.formatMessage({ id: `Must be ${length} characters or less` })}`;
+
+    const memoizedDriverInfo = useMemo (() => DriverInfo.map(({ name, placeholder }) =>
+    <FormikInput key={uuid()} {...{ name, placeholder, type: "text" }} />
+    ), [])
+
     return (
         <Formik
             initialValues={initialValues}
@@ -69,9 +75,7 @@ const AddNewDriver = ({ title }: Props) => {
         >
             <div className="table_section_add">
                 <Form className="search-table_section_add">
-                    {DriverInfo.map(({ name, placeholder }) =>
-                        <FormikInput key={uuid()} {...{ name, placeholder, type: "text" }} />
-                    )}
+                    {memoizedDriverInfo}
                     <FormikInput {...{ name: "date_birth", type: "date" }} />
 
                     <div className='table_section_add-select'>

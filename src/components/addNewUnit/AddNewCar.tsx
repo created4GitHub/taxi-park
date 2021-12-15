@@ -14,6 +14,7 @@ import { Status, Data } from '../../interfaces/interfaces';
 import { RootState } from '../../redux/rootReducer';
 
 import "./addNewUnit.style.scss";
+import { useMemo } from 'react';
 
 export interface Car {
     mark: string;
@@ -45,6 +46,11 @@ const AddNewCar = ({ title }: Props) => {
         status: '',
     };
     const setLength = (length: string): string => `Must be ${length} characters or less`;
+
+    const memoizedCarInfo = useMemo(() => CarInfo.map(({ name, placeholder }) =>
+    <FormikInput key={uuid()} {...{ name, placeholder, type: "text" }} />
+    ), []);
+
     return (
         <Formik
             initialValues={initialValues}
@@ -75,9 +81,7 @@ const AddNewCar = ({ title }: Props) => {
         >
             <div className="table_section_add">
                 <Form className="search-table_section_add">
-                    {CarInfo.map(({ name, placeholder }) =>
-                        <FormikInput key={uuid()} {...{ name, placeholder, type: "text" }} />
-                    )}
+                    {memoizedCarInfo}
                     <div className='table_section_add-select'>
                         <FormikSelect name="year">
                             <YearsSelect />

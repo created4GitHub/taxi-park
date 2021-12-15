@@ -6,6 +6,7 @@ import { Status } from "../../interfaces/interfaces";
 import { RootState } from "../../redux/rootReducer";
 
 import './statuses.style.scss'
+import { useMemo } from "react";
 
 const Statuses = () => {
     const intl = useIntl();
@@ -19,7 +20,7 @@ const Statuses = () => {
         )
     }
 
-    const mappedItems = statuses.map(mapItems)
+    const mappedItems = useMemo(() => statuses.map(mapItems), [])
 
     return (
         <>

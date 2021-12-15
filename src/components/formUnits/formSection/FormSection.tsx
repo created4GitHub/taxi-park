@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import { useDispatch } from "react-redux";
 import { useStateIfMounted } from "use-state-if-mounted";
@@ -62,8 +62,8 @@ const FormSection = ({ data, title }: Props) => {
     )
   }
 
-  const mappedItems = Object.keys(data).map(mapItems);
-
+  const mappedItems = useMemo(() => Object.keys(data).map(mapItems), []);
+  
   const btnText = () => {
     if (additionalData.length === 0) {
       return <FormattedMessage id='No cars' />

@@ -16,6 +16,7 @@ const AdditionalData = ({ additionalData, title }: { additionalData: Data[], tit
         });
     }
 
+
     const mapItems = (item: Data) => {
         return (
             <div className="block" key={item.id}>
