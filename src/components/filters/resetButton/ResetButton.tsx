@@ -1,5 +1,5 @@
 import { FormattedMessage } from "react-intl";
-import { Button } from "../../regularComponents/button/Button";
+import { Button } from "../../commons/button/Button";
 
 interface Props {
     resetFilters: () => void;

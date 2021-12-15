@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 
 import { switchPage, addNewUnit } from "../../../redux/actions/actions";
-import { Button } from "../../regularComponents/button/Button";
+import { Button } from "../../commons/button/Button";
 import { TitlesLinks } from "../../../constants/mainTitles";
 import { FormattedMessage } from "react-intl";
 

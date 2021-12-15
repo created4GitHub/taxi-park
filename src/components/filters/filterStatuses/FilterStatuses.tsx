@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
 import { useSelector } from "react-redux";
 
-import Input from "../../regularComponents/input/Input";
+import Input from "../../commons/input/Input";
 import { statusesSelector } from "../../../redux/selectors/selector";
 import { useIntl } from "react-intl";
 

@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 
-import Input from "../../regularComponents/input/Input";
+import Input from "../../commons/input/Input";
 import { CarInfo, DriverInfo } from "../../../constants/filterInputs"
 import { Filter } from "../../../interfaces/interfaces";
 import { useIntl } from "react-intl";
