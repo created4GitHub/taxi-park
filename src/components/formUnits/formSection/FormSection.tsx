@@ -30,7 +30,7 @@ const FormSection = ({ data, title }: Props) => {
   const search = async () => {
     if (title === "driver") {
       const cars = await GET_CARS_BY_DRIVER(String(data.id));
-      setAdditionalData(cars.data);
+      setAdditionalData(cars as Data[]);
     } else {
       const driver = await GET("driver", data.driver_id);
       setAdditionalData([driver] as Data[]);

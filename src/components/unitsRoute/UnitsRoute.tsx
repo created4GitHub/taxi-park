@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
 import FormUnits from "../formUnits/FormUnits";
-import { ROUTESINFO } from "../../constants/routesInfo"
+import { ROUTES_INFO } from "../../constants/routesInfo"
 import { isAddNewUnitSelector } from "../../redux/selectors/selector";
 import AddNewCar from "../addNewUnit/AddNewCar";
 import AddNewDriver from "../addNewUnit/AddNewDriver";
@@ -29,7 +29,7 @@ const UnitsRoute = () => {
         )
     }
 
-    const mappedItems = useMemo(() => ROUTESINFO.map(mapItems), [isAddNewUnit]);
+    const mappedItems = useMemo(() => ROUTES_INFO.map(mapItems), [isAddNewUnit]);
 
     return (
         <div className="content__inform">

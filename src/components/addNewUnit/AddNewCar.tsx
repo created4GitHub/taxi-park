@@ -3,8 +3,8 @@ import { Formik, Form } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { CAR_INFO, Info } from "../../constants/addNewSection";
-import FormikInput from "../formikComponents/FormikInput";
-import FormikSelect from "../formikComponents/FormikSelect"
+import FormikInput from "../formik/FormikInput";
+import FormikSelect from "../formik/FormikSelect"
 import YearsSelect from "../YearsSelect/YearsSelect";
 import DriverListById from '../DriverById/DriverById';
 import Statuses from '../statuses/Statuses';
@@ -12,10 +12,11 @@ import AddNewButton from './addNewButton/AddNewButton';
 import { addNewUnit, updateIsAddNewUnit } from "../../redux/actions/actions";
 import { Status, Data } from '../../interfaces/interfaces';
 import { RootState } from '../../redux/rootReducer';
-import { CAR_VALUES } from './initValues/initValues';
+import { CAR_VALUES } from './initialValues/initialValues';
 import { CAR_VALIDATION_SCHEMA } from './validationSchema/validationSchema';
 
 import "./addNewUnit.style.scss";
+import { statusesSelector } from '../../redux/selectors/selector';
 
 interface Props {
     title: string;
@@ -25,7 +26,7 @@ const uuid = require("react-uuid");
 
 const AddNewCar = ({ title }: Props) => {
     const dispatch = useDispatch();
-    const statuses = useSelector((state: RootState) => state.statuses);
+    const statuses = useSelector(statusesSelector);
     const initialValues = useMemo(() => CAR_VALUES, []);;
     const validationSchema = useMemo(() => CAR_VALIDATION_SCHEMA, []);
 

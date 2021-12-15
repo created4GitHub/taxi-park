@@ -32,7 +32,7 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
     }
   }
 
-  const saveNewInformation = (newValue: string | Status) => {
+  const saveNewInformation = (newValue: string | Status, property: string) => {
     (data[property as keyof Data] as string | Status) = newValue;
     setIsMutable(!isMutable);
     PATCH(title, id, { [property]: newValue });
@@ -42,20 +42,20 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
   const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       const target = event.target as HTMLInputElement;
-      target.value ? saveNewInformation(target.value) : setIsMutable(!isMutable);
+      target.value ? saveNewInformation(target.value, target.id) : setIsMutable(!isMutable);
     }
   };
 
   const onBlurEvent = (event: React.FocusEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
-    target.value ? saveNewInformation(target.value) : setIsMutable(!isMutable);
+    target.value ? saveNewInformation(target.value, target.id) : setIsMutable(!isMutable);
   };
 
   const saveStatus = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const newTitle = event.target.value;
     const status = statuses.find((status: Status) => status.title === newTitle)!;
     setSelectValue(newTitle);
-    saveNewInformation(status);
+    saveNewInformation(status, event.target.id);
   };
 
   if (property === "status") {
@@ -73,7 +73,7 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
   } else {
     element = isMutable ?
       (
-        <p className="table_paragraph" onClick={updateElementType} >
+        <p className="table_paragraph" onClick={updateElementType} id={property}>
           {data[property as keyof Data]}
         </p>
       ) : (
@@ -85,6 +85,7 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
           onClick={updateElementType}
           onBlur={onBlurEvent}
           onKeyPress={onKeyDown}
+          id={property}
         />
       )
   }

@@ -1,4 +1,4 @@
-import { DRIVERSPATH, CARSPATH } from "./pathes";
+import { DRIVERS_PATH, CARS_PATH } from "./pathes";
 
 import cars from "../ascets/img/svg/cars.svg";
 import drivers from "../ascets/img/svg/drivers.svg";
@@ -10,16 +10,16 @@ interface Titles {
     src: string
 }
 
-export const TITLESLINKS: Titles[] = [
+export const TITLES_LINKS: Titles[] = [
     {
-        path: DRIVERSPATH,
+        path: DRIVERS_PATH,
         name: "Driver",
         title: "driver",
         src: drivers,
-        
+
     },
     {
-        path: CARSPATH,
+        path: CARS_PATH,
         name: "Car",
         title: "car",
         src: cars,

@@ -1,7 +1,7 @@
 import { FormattedMessage } from "react-intl";
 
 import { Data, Status } from "../../../../interfaces/interfaces";
-import { DRIVERTITLES, CARTITLES } from "../../../../constants/additionalInfo";
+import { DRIVER_TITLES, CAR_TITLES } from "../../../../constants/additionalInfo";
 
 import icons from "../../../../ascets/img/svg/IconsDirection.svg";
 import { useMemo } from "react";
@@ -33,7 +33,7 @@ const AdditionalData = ({ additionalData, title }: { additionalData: Data[], tit
     return (
         <div className="table_section_isActive">
             <div className="block">
-                {title === 'car' ? renderTitles(DRIVERTITLES) : renderTitles(CARTITLES)}
+                {title === 'car' ? renderTitles(DRIVER_TITLES) : renderTitles(CAR_TITLES)}
             </div>
             {mappedItems}
         </div>

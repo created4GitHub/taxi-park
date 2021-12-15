@@ -1,12 +1,12 @@
 import { useField } from 'formik';
 import { FormattedMessage } from 'react-intl';
 
-const MySelect = ({ ...props }: any) => {
-    const [field, meta] = useField(props);    
+const FormikSelect = ({ ...props }: any) => {
+    const [field, meta] = useField(props);
     return (
         <div>
             {meta.touched && meta.error ? (
-                <span className="table_section-error">{<FormattedMessage id={meta.error} /> }</span>
+                <span className="table_section-error">{<FormattedMessage id={meta.error} />}</span>
             ) : null}
             <select
                 {...field}
@@ -17,4 +17,4 @@ const MySelect = ({ ...props }: any) => {
     );
 };
 
-export default MySelect;
+export default FormikSelect;

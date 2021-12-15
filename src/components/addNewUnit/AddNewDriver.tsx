@@ -2,18 +2,19 @@ import { Formik, Form } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { useCallback, useMemo } from 'react';
 
-import FormikInput from "../formikComponents/FormikInput";
-import FormikSelect from "../formikComponents/FormikSelect"
+import FormikInput from "../formik/FormikInput";
+import FormikSelect from "../formik/FormikSelect"
 import Statuses from '../statuses/Statuses';
 import AddNewButton from './addNewButton/AddNewButton';
 import { addNewUnit, updateIsAddNewUnit } from "../../redux/actions/actions";
 import { Status, Data } from '../../interfaces/interfaces';
 import { RootState } from '../../redux/rootReducer';
 import { DRIVER_VALIDATION_SCHEMA } from './validationSchema/validationSchema';
-import { DRIVER_VALUES } from './initValues/initValues';
+import { DRIVER_VALUES } from './initialValues/initialValues';
 import { DRIVER_INFO, Info } from '../../constants/addNewSection';
 
 import "./addNewUnit.style.scss";
+import { statusesSelector } from '../../redux/selectors/selector';
 
 interface Props {
     title: string;
@@ -23,7 +24,7 @@ const uuid = require("react-uuid");
 
 const AddNewDriver = ({ title }: Props) => {
     const dispatch = useDispatch();
-    const statuses = useSelector((state: RootState) => state.statuses);
+    const statuses = useSelector(statusesSelector);
     const initialValues = useMemo(() => DRIVER_VALUES, []);;
     const validationSchema = useMemo(() => DRIVER_VALIDATION_SCHEMA, []);
 

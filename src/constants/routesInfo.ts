@@ -1,16 +1,16 @@
-import { DRIVERSPATH, CARSPATH } from "./pathes";
+import { DRIVERS_PATH, CARS_PATH } from "./pathes";
 interface Route {
     path: string;
     title: string;
 }
 
-export const ROUTESINFO: Route[] = [
+export const ROUTES_INFO: Route[] = [
     {
-        path: DRIVERSPATH,
+        path: DRIVERS_PATH,
         title: "driver"
     },
     {
-        path: CARSPATH,
+        path: CARS_PATH,
         title: "car"
     }
 ]

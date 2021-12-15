@@ -21,7 +21,6 @@ interface Titles {
 
 const MainTitles = ({ isActive, setIsActive }: Props) => {
     const dispatch = useDispatch();
-
     const mapItems = (({ name, title, path, src }: Titles) => {
         const className = isActive !== title ? "route-button path" : "route-button path active";
 
@@ -61,7 +60,7 @@ const MainTitles = ({ isActive, setIsActive }: Props) => {
         )
     })
 
-    const mappedItems = useMemo(() => TITLES_LINKS.map(mapItems), [TITLES_LINKS]);
+    const mappedItems = useMemo(() => TITLES_LINKS.map(mapItems), [TITLES_LINKS, isActive]);
 
     return (
         <div className="content__options-paragraph">
