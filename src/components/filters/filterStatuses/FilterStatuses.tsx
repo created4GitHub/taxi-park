@@ -7,12 +7,11 @@ import { useIntl } from "react-intl";
 
 interface Props {
     filter: (event: ChangeEvent<HTMLInputElement>) => void;
-    filterValues: any;
 }
 
 const uuid = require("react-uuid");
 
-const FilterStatuses = ({ filter, filterValues }: Props) => {
+const FilterStatuses = ({ filter }: Props) => {
     const statuses = useSelector(statusesSelector);
     const intl = useIntl();
 
@@ -25,7 +24,6 @@ const FilterStatuses = ({ filter, filterValues }: Props) => {
                     id={"status" + title}
                     onChange={filter}
                     value={title}
-                    checked={filterValues.status === title}
                 />
                 <label htmlFor={"status" + title}>{intl.formatMessage({ id: title })}</label>
             </div>
