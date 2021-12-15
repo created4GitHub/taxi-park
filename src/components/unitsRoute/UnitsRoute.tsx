@@ -17,6 +17,7 @@ const uuid = require("react-uuid");
 
 const UnitsRoute = () => {
     const isAddNewUnit = useSelector(isAddNewUnitSelector);
+    
     const mapItems = ({ path, title }: RouteProp) => {
         return (
             <Route key={uuid()} path={path} element={

@@ -1,6 +1,10 @@
 import { LOCALES } from './locales'
 
-export const messages: any = {
+interface Props {
+  [x: string]: Record<string, string>
+}
+
+export const messages: Props = {
   [LOCALES.ENGLISH]: {
     "ID": "ID",
     "Model": "Model",

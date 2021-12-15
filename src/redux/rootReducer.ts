@@ -64,8 +64,10 @@ const RootReducer = (state: InitialState = initialState, { type, payload, data, 
                     if (key === "status") {
                         return filterValues[key] === (item.status as Status).title;
                     } else {
-                        return String(item[key as keyof Data]).toLocaleLowerCase()
-                            .includes(filterValues[key as keyof Filter]!.toLocaleLowerCase());
+                        return String(item[key as keyof Data])
+                            .toLocaleLowerCase()
+                            .includes(filterValues[key as keyof Filter]!
+                            .toLocaleLowerCase());
                     }
                 });
             }
