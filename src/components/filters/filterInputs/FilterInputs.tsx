@@ -1,4 +1,4 @@
-import { ChangeEvent, useMemo } from "react";
+import { ChangeEvent } from "react";
 import { useIntl } from "react-intl";
 
 import Input from "../../commons/input/Input";
@@ -30,7 +30,7 @@ const FilterInputs = ({ filter, title, filterValues }: Props) => {
         )
     }
 
-    const mappedItems = useMemo(() => inputInfo.map(mapItems), [inputInfo])
+    const mappedItems = inputInfo.map(mapItems);
 
     return (
         <>

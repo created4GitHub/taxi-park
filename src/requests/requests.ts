@@ -33,11 +33,11 @@ export const POST = async (title: string, body: Data): Promise<Response> => {
 
 export const PATCH = async (title: string, id: string, body: Record<string, string | number | Status>)
   : Promise<Response> => {
-  const param = title + id + "/";
+  const param = title + "/" + id;
   return await createRequest(param, "PATCH", null, body);
 };
 
 export const REMOVE = async (title: string, id: number): Promise<Response> => {
-  const param = `${title}/` + id + "/";
+  const param = title + "/" + id;
   return await createRequest(param, "DELETE", null);
 };
