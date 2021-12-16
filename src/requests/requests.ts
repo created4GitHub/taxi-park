@@ -31,8 +31,7 @@ export const POST = async (title: string, body: Data): Promise<Response> => {
   return await createRequest(title, "POST", null, body);
 };
 
-export const PATCH = async (title: string, id: string, body: BodyType)
-  : Promise<Response> => {
+export const PATCH = async (title: string, id: string, body: BodyType): Promise<Response> => {
   const query = title + "/" + id;
   return await createRequest(query, "PATCH", null, body);
 };

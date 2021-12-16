@@ -29,31 +29,25 @@ interface Props {
 }
 
 const Header = ({ setLocale, localeLanguage }: Props) => {
-
-    // TODO remove
     const itemsMap = (item: string) => {
         return (
-            <option key={uuid()} value={item}>{item}</option>
+            <option key={uuid()} value={item}>
+                {item}
+            </option>
         )
     }
+    const mappedItems = useMemo(() => Object.keys(LOCALES).map(itemsMap), [LOCALES])
 
-    // TODO rename
-
-    const mapped = useMemo(() => Object.keys(LOCALES).map(itemsMap), [LOCALES])
-
-
-    // TODO rename
-    const handleChenge = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const local: Record<string, string> = {
             value: LOCALES[event.target.value],
             name: event.target.value
         }
-
+        
         const sItem = JSON.stringify(local);
-
         localStorage.setItem('internationalization', sItem);
 
-        setLocale(local)
+        setLocale(local);
     }
 
     return (
@@ -64,9 +58,11 @@ const Header = ({ setLocale, localeLanguage }: Props) => {
                         <img src={logo} alt="#" width='180px' height='40px' />
                     </div>
                 </div>
-                <Select onChange={handleChenge}>
-                    <option hidden>{localeLanguage !== null ? localeLanguage.name : 'ENGLISH'}</option>
-                    {mapped}
+                <Select onChange={handleChange}>
+                    <option hidden>
+                        {localeLanguage !== null ? localeLanguage.name : 'ENGLISH'}
+                    </option>
+                    {mappedItems}
                 </Select>
             </div>
         </header>

@@ -43,27 +43,28 @@ const FormUnits = ({ title }: Props) => {
         key={uuid()}
         title={title}
         data={item}
-
       />
     );
   }
+
   const mappedItems = useMemo(() => data.map(mapItems), [data]);
-
-  const element: JSX.Element = isDataFetching ? <div className='block_loader'><Loader /></div> : (
-    <>
-      <UnitsTitles title={title} />
-      {mappedItems}
-    </>
-  );
-
-  // if(isDataFetching) {
-  //   return  <div className='block_loader'><Loader /></div>
-  // }
+  
+  const element: JSX.Element = isDataFetching 
+    ? <div className='block_loader'>
+        <Loader />
+      </div> 
+    : (
+      <>
+        <UnitsTitles title={title} />
+        {mappedItems}
+      </>
+    );
 
   return (
-    isDataFetchError ? <div>Error</div>
+    isDataFetchError
+      ? <div>Error</div>
       : element
-  );
+  );  
 };
 
 export default FormUnits;

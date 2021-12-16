@@ -25,7 +25,9 @@ const Statuses = () => {
 
     return (
         <select className="table_section-tab-select">
-            <option value="" hidden>{intl.formatMessage({ id: "Status" })}</option>
+            <option value="" hidden>
+                {intl.formatMessage({ id: "Status" })}
+            </option>
             {mappedItems}
         </select>
     )

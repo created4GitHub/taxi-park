@@ -24,7 +24,9 @@ const FormSection = ({ data, title }: Props) => {
   const [additionalData, setAdditionalData] = useStateIfMounted<Data[]>([]);
   const [isModal, setIsModal] = useStateIfMounted<boolean>(true)
 
-  const className = additionalData.length !== 0 ? 'table_section-showButton' : 'table_section-showButton isActive';
+  const className = additionalData.length !== 0 
+    ? 'table_section-showButton' 
+    : 'table_section-showButton isActive';
 
   const dispatch = useDispatch();
 
@@ -48,7 +50,7 @@ const FormSection = ({ data, title }: Props) => {
     dispatch(dispatchIsDataUpdated());
   };
 
-  const showClick = () => {
+  const showAditionalSection = () => {
     if (additionalData.length !== 0) {
       setIsAdditionalData((prevState) => !prevState);
     }
@@ -68,19 +70,17 @@ const FormSection = ({ data, title }: Props) => {
   }
   const mappedItems = useMemo(() => Object.keys(data).map(mapItems), [data]);
 
-  const checkBtntext = additionalData.length ?
-    (isAdditionalData && <FormattedMessage id='Hide' />)
+  const checkBtntext = additionalData.length 
+    ? (isAdditionalData && <FormattedMessage id='Hide' />)
     || <FormattedMessage id='Show' />
     : <FormattedMessage id='No cars' />;
 
-  const additElement = isModal ?
-    <div className='table_section__loader' >
-      <Ellipsis />
-    </div>
-    :
-    <Button
-      // TODO raname
-      onClick={showClick}
+  const additElement = isModal 
+    ? <div className='table_section__loader' >
+        <Ellipsis />
+      </div>
+    : <Button
+      onClick={showAditionalSection}
       className={className}
       btnText={checkBtntext}
     />;
@@ -93,10 +93,16 @@ const FormSection = ({ data, title }: Props) => {
         <Button
           onClick={deleteEl}
           className="table_section-deleteButton"
-          btnText={<FormattedMessage id='Delete' />}
+          btnText={
+            <FormattedMessage id='Delete' />
+          }
         />
       </div>
-      {isAdditionalData && <AdditionalData additionalData={additionalData} title={title} />}
+      {isAdditionalData && 
+        <AdditionalData 
+          additionalData={additionalData} 
+          title={title} 
+      />}
     </>
   );
 };

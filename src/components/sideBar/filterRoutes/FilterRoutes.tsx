@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import { useMemo } from "react"
-// import { v4 as uuid } from 'react-uuid'
 
 import Filter from "../../filters/Filters";
 import { ROUTES_INFO } from "../../../constants/routesInfo"
@@ -10,8 +9,6 @@ interface RouteProps {
     title: string;
 }
 
-
-// TODO
 const uuid = require("react-uuid");
 
 const FilterRoutes = () => {

@@ -24,7 +24,6 @@ const UnitsRoute = () => {
     const dispatch = useDispatch();
 
     const mapItems = ({ path, title }: RouteProp) => {
-
         const onSubmit = (values: any) => {
             const status = statuses.find((status: Status) => status.title === values.status)!;
             values.status = status;
