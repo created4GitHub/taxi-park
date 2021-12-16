@@ -3,7 +3,7 @@ export interface Info {
     placeholder: string;
 };
 
-export const CARINFO: Info[] = [
+export const CAR_INFO: Info[] = [
     {
         name: "model",
         placeholder: "Model"

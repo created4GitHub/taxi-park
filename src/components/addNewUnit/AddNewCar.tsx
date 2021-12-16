@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'react';
 import { Formik, Form } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { CARINFO, Info } from "../../constants/addNewSection";
+import { CAR_INFO, Info } from "../../constants/addNewSection";
 import FormikInput from "../formik/FormikInput";
 import FormikSelect from "../formik/FormikSelect"
 import YearsSelect from "../YearsSelect/YearsSelect";
@@ -38,7 +38,7 @@ const AddNewCar = ({ title }: Props) => {
     const mapItems = (({ name, placeholder }: Info) =>
         <FormikInput key={uuid()} {...{ name, placeholder, type: "text" }} />)
 
-    const mapedCarItems = useMemo(() => CARINFO.map(mapItems), [CARINFO]);
+    const mapedCarItems = useMemo(() => CAR_INFO.map(mapItems), [CAR_INFO]);
 
     return (
         <Formik
