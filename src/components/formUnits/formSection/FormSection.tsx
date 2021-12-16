@@ -22,7 +22,7 @@ const uuid = require("react-uuid");
 const FormSection = ({ data, title }: Props) => {
   const [isAdditionalData, setIsAdditionalData] = useState<boolean>(false);
   const [additionalData, setAdditionalData] = useStateIfMounted<Data[]>([]);
-  const [isModal, setIsModal] = useState<boolean>(false)
+  const [isModal, setIsModal] = useStateIfMounted<boolean>(true)
 
   const className = additionalData.length !== 0 ? 'table_section-showButton' : 'table_section-showButton isActive';
   const dispatch = useDispatch();
@@ -35,6 +35,7 @@ const FormSection = ({ data, title }: Props) => {
       const driver = await GET("driver", data.driver_id);
       setAdditionalData([driver] as Data[]);
     }
+    setIsModal(false);
   };
 
   useEffect(() => {
@@ -65,38 +66,23 @@ const FormSection = ({ data, title }: Props) => {
       />
     )
   }
-
   const mappedItems = useMemo(() => Object.keys(data).map(mapItems), [data]);
 
-  const btnText = () => {
-    if (additionalData.length === 0) {
-      return <FormattedMessage id='No cars' />
-    } else if (isAdditionalData) {
-      return <FormattedMessage id='Hide' />
-    }
-    return <FormattedMessage id='Show' />
-  }
+  const checkBtntext = additionalData.length ?
+    (isAdditionalData && <FormattedMessage id='Hide' />)
+    || <FormattedMessage id='Show' />
+    : <FormattedMessage id='No cars' />;
 
-  const checkBtntext = btnText();
-
-  const additionalElement = () => {
-    if (!isModal) {
-      return (
-        <div className='table_section__loader' >
-          <Ellipsis />
-        </div>
-      )
-    }
-    return (
-      <Button
-        onClick={showClick}
-        className={className}
-        btnText={checkBtntext}
-      />
-    )
-  }
-
-  const additElement = additionalElement();
+  const additElement = isModal ?
+    <div className='table_section__loader' >
+      <Ellipsis />
+    </div>
+    :
+    <Button
+      onClick={showClick}
+      className={className}
+      btnText={checkBtntext}
+    />;
 
   return (
     <>
