@@ -1,6 +1,6 @@
 import { Data, Status } from "../interfaces/interfaces";
 import { HEADERS } from "../constants/requests";
-import { createRequest, convertDate } from "../helpers/helpers";
+import { createRequest, createGetRequest, convertDate } from "../helpers/helpers";
 
 interface Response {
   is_error: string;
@@ -9,8 +9,8 @@ interface Response {
 }
 
 export const GET = async (title: string, id?: number): Promise<Data | Data[]> => {
-  const param: string = id ? title + "/" + id : title;
-  const data = await createRequest(param, "GET");
+  const query: string = id ? title + "/" + id : title;
+  const data = await createGetRequest(query);
   if (id || title === "driver") {
     return convertDate(data, title);
   }
@@ -19,12 +19,12 @@ export const GET = async (title: string, id?: number): Promise<Data | Data[]> =>
 
 export const GET_STATUS = async (title: string): Promise<Status[]> => {
   title = title + "-status";
-  return await createRequest(title, "GET");
+  return await createGetRequest(title);
 };
 
 export const GET_CARS_BY_DRIVER = async (id: string): Promise<Data[] | Data> => {
   const currentHeader: HeadersInit = { ...HEADERS, "E-Driver-Id": id };
-  return await createRequest("car", "GET", currentHeader);
+  return await createGetRequest("car", currentHeader);
 };
 
 export const POST = async (title: string, body: Data): Promise<Response> => {
@@ -33,11 +33,11 @@ export const POST = async (title: string, body: Data): Promise<Response> => {
 
 export const PATCH = async (title: string, id: string, body: Record<string, string | number | Status>)
   : Promise<Response> => {
-  const param = title + "/" + id;
-  return await createRequest(param, "PATCH", null, body);
+  const query = title + "/" + id;
+  return await createRequest(query, "PATCH", null, body);
 };
 
 export const REMOVE = async (title: string, id: number): Promise<Response> => {
-  const param = title + "/" + id;
-  return await createRequest(param, "DELETE", null);
+  const query = title + "/" + id;
+  return await createRequest(query, "DELETE", null);
 };

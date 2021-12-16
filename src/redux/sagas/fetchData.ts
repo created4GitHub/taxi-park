@@ -1,4 +1,4 @@
-import { put, takeLatest, call } from 'redux-saga/effects';
+import { put, takeLatest, call, delay } from 'redux-saga/effects';
 
 import { Data, Status } from '../../interfaces/interfaces';
 import { GET, GET_STATUS } from "../../requests/requests";
@@ -11,6 +11,7 @@ interface Params {
 
 export function* fetchData({ title }: Params) {
     try {
+        yield delay(10);
         yield put({ type: IS_DATA_FETCHING, payload: true });
         const data: { data: Data[] } = yield call(GET, title);
         const statuses: { statuses: Status[] } = yield call(GET_STATUS, title);
