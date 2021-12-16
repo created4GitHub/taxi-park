@@ -27,7 +27,8 @@
             display: flex;
             align-items: center;
 
-            .closeUnit, .addUnit {
+            .closeUnit,
+            .addUnit {
                 width: 100%;
                 cursor: pointer;
             }
@@ -88,10 +89,11 @@
         }
     }
 
-    .table_section-tab-select{
+    .table_section-tab-select {
         background-color: white;
         color: #7a7a7a;
         padding: 0;
+        min-width: 65px;
         @media (max-width: 840px) {
             width: 115px;
             height: 26px;
