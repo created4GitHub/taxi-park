@@ -1,5 +1,5 @@
-import { useField } from 'formik';
 import React from 'react';
+import { useField } from 'formik';
 import { FormattedMessage } from 'react-intl';
 
 interface Props {
@@ -18,7 +18,9 @@ const FormikSelect = ({ name, children }: Props) => {
     return (
         <div>
             {meta.touched && meta.error ? (
-                <span className="table_section-error">{<FormattedMessage id={meta.error} />}</span>
+                <span className="table_section-error">
+                    {<FormattedMessage id={meta.error} />}
+                </span>
             ) : null}
             {element}
         </div>

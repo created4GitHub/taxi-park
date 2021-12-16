@@ -9,8 +9,8 @@ import DriversOptions from '../DriverOptions/DriversOptions';
 import Statuses from '../Statuses/Statuses';
 import AddNewButton from './addNewButton/AddNewButton';
 import { updateIsAddNewUnit } from "../../redux/actions/actions";
-import { CAR_VALUES } from './initialValues/initialValues';
-import { CAR_VALIDATION_SCHEMA } from './validationSchema/validationSchema';
+import { CAR_VALUES } from './initialValues';
+import { CAR_VALIDATION_SCHEMA } from './validationSchema';
 
 import "./addNewUnit.style.scss";
 
@@ -25,7 +25,10 @@ const AddNewCar = ({ submit }: Props) => {
     const validationSchema = CAR_VALIDATION_SCHEMA;
 
     const mapItems = (({ name, placeholder }: Info) => {
-        return <FormikInput key={uuid()} {...{ name, placeholder, type: "text" }} />
+        return <FormikInput
+            key={uuid()}
+            {...{ name, placeholder, type: "text" }}
+        />
     })
 
     const mapedCarItems = useMemo(() => CAR_INFO.map(mapItems), [CAR_INFO]);

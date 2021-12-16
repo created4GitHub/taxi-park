@@ -1,17 +1,14 @@
 import { Formik, Form } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
-import { useCallback, useMemo } from 'react';
+import { useMemo } from 'react';
 
 import FormikInput from "../formik/FormikInput";
 import FormikSelect from "../formik/FormikSelect"
 import Statuses from '../Statuses/Statuses';
 import AddNewButton from './addNewButton/AddNewButton';
-import { addNewUnit, updateIsAddNewUnit } from "../../redux/actions/actions";
-import { Status, Data } from '../../interfaces';
-import { DRIVER_VALIDATION_SCHEMA } from './validationSchema/validationSchema';
-import { DRIVER_VALUES } from './initialValues/initialValues';
+import { updateIsAddNewUnit } from "../../redux/actions/actions";
+import { DRIVER_VALIDATION_SCHEMA } from './validationSchema';
+import { DRIVER_VALUES } from './initialValues';
 import { DRIVER_INFO, Info } from '../../constants/addNewSection';
-import { statusesSelector } from '../../redux/selectors/selector';
 
 import "./addNewUnit.style.scss";
 
@@ -22,12 +19,14 @@ interface Props {
 const uuid = require("react-uuid");
 
 const AddNewDriver = ({ submit }: Props) => {
-    const statuses = useSelector(statusesSelector);
     const initialValues = useMemo(() => DRIVER_VALUES, []);
     const validationSchema = useMemo(() => DRIVER_VALIDATION_SCHEMA, []);
 
     const mapItems = (({ name, placeholder }: Info) =>
-        <FormikInput key={uuid()} {...{ name, placeholder, type: "text" }} />)
+        <FormikInput
+            key={uuid()}
+            {...{ name, placeholder, type: "text" }}
+        />)
 
     const mapedCarItems = useMemo(() => DRIVER_INFO.map(mapItems), [DRIVER_INFO]);
 
@@ -40,7 +39,9 @@ const AddNewDriver = ({ submit }: Props) => {
             <div className="table_section_add">
                 <Form className="search-table_section_add">
                     {mapedCarItems}
-                    <FormikInput {...{ name: "date_birth", type: "date" }} />
+                    <FormikInput
+                        {...{ name: "date_birth", type: "date" }}
+                    />
                     <div className='table_section_add-select'>
                         <FormikSelect name="status">
                             <Statuses />
