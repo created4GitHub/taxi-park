@@ -1,6 +1,6 @@
 import { put, takeLatest, call, delay } from 'redux-saga/effects';
 
-import { Data, Status } from '../../interfaces/interfaces';
+import { Data, Status } from '../../interfaces';
 import { GET, GET_STATUS } from "../../requests/requests";
 import { DATA_RECEIVED, FETCH_DATA, IS_DATA_FETCHING, IS_DATA_FETCH_ERROR } from '../types';
 

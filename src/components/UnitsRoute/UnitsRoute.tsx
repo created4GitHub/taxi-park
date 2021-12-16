@@ -19,13 +19,11 @@ const UnitsRoute = () => {
     const isAddNewUnit = useSelector(isAddNewUnitSelector);
 
     const mapItems = ({ path, title }: RouteProp) => {
+        const addNewUnit = isAddNewUnit === "car" ? <AddNewCar title={title} /> : <AddNewDriver title={title} />;
         return (
             <Route key={uuid()} path={path} element={
                 <>
-                // TODO refactoring
-                    {isAddNewUnit && (isAddNewUnit === "car"
-                        ? <AddNewCar title={title} />
-                        : <AddNewDriver title={title} />)}
+                    {isAddNewUnit && addNewUnit}
                     <FormUnits title={title} />
                 </>
             } />

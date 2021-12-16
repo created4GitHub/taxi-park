@@ -4,10 +4,10 @@ import { useCallback, useMemo } from 'react';
 
 import FormikInput from "../formik/FormikInput";
 import FormikSelect from "../formik/FormikSelect"
-import Statuses from '../statuses/Statuses';
+import Statuses from '../Statuses/Statuses';
 import AddNewButton from './addNewButton/AddNewButton';
 import { addNewUnit, updateIsAddNewUnit } from "../../redux/actions/actions";
-import { Status, Data } from '../../interfaces/interfaces';
+import { Status, Data } from '../../interfaces';
 import { DRIVER_VALIDATION_SCHEMA } from './validationSchema/validationSchema';
 import { DRIVER_VALUES } from './initialValues/initialValues';
 import { DRIVER_INFO, Info } from '../../constants/addNewSection';

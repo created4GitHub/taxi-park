@@ -7,10 +7,10 @@ import FormikInput from "../formik/FormikInput";
 import FormikSelect from "../formik/FormikSelect"
 import YearsSelect from "../YearsSelect/YearsSelect";
 import DriverListById from '../DriverById/DriverById';
-import Statuses from '../statuses/Statuses';
+import Statuses from '../Statuses/Statuses';
 import AddNewButton from './addNewButton/AddNewButton';
 import { addNewUnit, updateIsAddNewUnit } from "../../redux/actions/actions";
-import { Status, Data } from '../../interfaces/interfaces';
+import { Status, Data } from '../../interfaces';
 import { CAR_VALUES } from './initialValues/initialValues';
 import { CAR_VALIDATION_SCHEMA } from './validationSchema/validationSchema';
 import { statusesSelector } from '../../redux/selectors/selector';

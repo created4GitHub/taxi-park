@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useIntl } from "react-intl";
 
 import { GET } from "../../requests/requests";
-import { Data } from "../../interfaces/interfaces";
+import { Data } from "../../interfaces";
 
 import "./driverById.style.scss";
 
