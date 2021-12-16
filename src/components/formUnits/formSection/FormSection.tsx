@@ -22,9 +22,10 @@ const uuid = require("react-uuid");
 const FormSection = ({ data, title }: Props) => {
   const [isAdditionalData, setIsAdditionalData] = useState<boolean>(false);
   const [additionalData, setAdditionalData] = useStateIfMounted<Data[]>([]);
-  const [isModal, setIsModal] = useState<boolean>(false)
+  const [isModal, setIsModal] = useStateIfMounted<boolean>(false)
 
   const className = additionalData.length !== 0 ? 'table_section-showButton' : 'table_section-showButton isActive';
+  
   const dispatch = useDispatch();
 
   const search = async () => {
@@ -37,7 +38,7 @@ const FormSection = ({ data, title }: Props) => {
     }
     setIsModal(true)
   };
-
+  
   useEffect(() => {
     search();
   }, [])

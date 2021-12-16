@@ -7,7 +7,7 @@ interface Request {
     body?: string;
 }
 
-export const createRequest = async (param: string, method: string, headers?:
+export const createRequest = async (param: string, method: string, headers?: 
     HeadersInit | null, body?: Data) => {
     const currentHeader = headers || HEADERS;
     const request: Request = {
