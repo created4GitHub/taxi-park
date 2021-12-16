@@ -29,7 +29,10 @@ const AddNewDriver = ({ submit }: Props) => {
         />)
 
     const mapedCarItems = useMemo(() => DRIVER_INFO.map(mapItems), [DRIVER_INFO]);
-
+    // const check = <FormikSelect name="status">
+    //     <Statuses />
+    // </FormikSelect>
+    // console.log(check)
     return (
         <Formik
             initialValues={initialValues}

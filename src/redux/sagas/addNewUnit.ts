@@ -13,6 +13,7 @@ interface Params {
 }
 
 function* addNewUnit({ title, isPost, data }: Params) {
+    console.log("s")
     yield call(fetchData, { type: FETCH_DATA, title });
     yield put({ type: SET_IS_ADD_NEW_UNIT, payload: title });
     if (isPost) {
