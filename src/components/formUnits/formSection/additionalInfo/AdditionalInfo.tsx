@@ -29,7 +29,7 @@ const AdditionalData = ({ additionalData, title }: { additionalData: Data[], tit
             </div>
         )
     }
-
+    
     const mappedItems = useMemo(() => additionalData.map(mapItems), [additionalData]);
 
     return (

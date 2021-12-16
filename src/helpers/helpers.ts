@@ -21,7 +21,6 @@ export const createRequest = async (param: string, method: string, headers?:
         URL + param + "/",
         request
     );
-    console.log(param);
     const jsonData = await data.json();
     return jsonData.data;
 };
@@ -32,7 +31,7 @@ export const convertDate = (data: Data | Data[], title: string) => {
         item.date_created = new Date(item.date_created!).toLocaleDateString();
         return item;
     }
-    if (title === "driver") {
+    if (Array.isArray(data)) {        
         return (data as Data[]).map(item => convert(item));
     }
     return convert(data as Data);

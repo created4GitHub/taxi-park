@@ -35,11 +35,11 @@ const FormSection = ({ data, title }: Props) => {
       const driver = await GET("driver", data.driver_id);
       setAdditionalData([driver] as Data[]);
     }
-    setIsModal(true)
   };
 
   useEffect(() => {
     search();
+    setIsModal(true);
   }, [])
 
   const deleteEl = async () => {
