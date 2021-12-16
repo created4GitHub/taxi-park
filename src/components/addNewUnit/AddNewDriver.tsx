@@ -28,11 +28,8 @@ const AddNewDriver = ({ submit }: Props) => {
             {...{ name, placeholder, type: "text" }}
         />)
 
-    const mapedCarItems = useMemo(() => DRIVER_INFO.map(mapItems), [DRIVER_INFO]);
-    // const check = <FormikSelect name="status">
-    //     <Statuses />
-    // </FormikSelect>
-    // console.log(check)
+    const mappedDriverItems = useMemo(() => DRIVER_INFO.map(mapItems), [DRIVER_INFO]);
+
     return (
         <Formik
             initialValues={initialValues}
@@ -41,13 +38,11 @@ const AddNewDriver = ({ submit }: Props) => {
         >
             <div className="table_section_add">
                 <Form className="search-table_section_add">
-                    {mapedCarItems}
-                    <FormikInput
-                        {...{ name: "date_birth", type: "date" }}
-                    />
+                    {mappedDriverItems}
+                    <FormikInput name="date_birth" type="date" />
                     <div className='table_section_add-select'>
                         <FormikSelect name="status">
-                            <Statuses />
+                            {Statuses()}
                         </FormikSelect>
                     </div>
                     <AddNewButton updateIsAddNewUnit={updateIsAddNewUnit} />

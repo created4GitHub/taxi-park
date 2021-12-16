@@ -8,7 +8,7 @@ import "./driversOptions.style.scss";
 
 const uuid = require("react-uuid");
 
-const DriversOptions: React.FC = () => {
+const DriversOptions = () => {
   const [drivers, setDrivers] = useState(Array<Data>());
   const intl = useIntl();
 
