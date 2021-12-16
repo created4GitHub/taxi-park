@@ -1,12 +1,14 @@
 import { useMemo } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
 import FormUnits from "../formUnits/FormUnits";
 import { ROUTES_INFO } from "../../constants/routesInfo"
-import { isAddNewUnitSelector } from "../../redux/selectors/selector";
+import { isAddNewUnitSelector, statusesSelector } from "../../redux/selectors/selector";
 import AddNewCar from "../addNewUnit/AddNewCar";
 import AddNewDriver from "../addNewUnit/AddNewDriver";
+import { Data, Status } from "../../interfaces/";
+import { addNewUnit } from "../../redux/actions/actions";
 
 interface RouteProp {
     path: string;
@@ -18,12 +20,26 @@ const uuid = require("react-uuid");
 const UnitsRoute = () => {
     const isAddNewUnit = useSelector(isAddNewUnitSelector);
 
+    const statuses = useSelector(statusesSelector);
+    const dispatch = useDispatch();
+
     const mapItems = ({ path, title }: RouteProp) => {
-        const addNewUnit = isAddNewUnit === "car" ? <AddNewCar title={title} /> : <AddNewDriver title={title} />;
+
+        const onSubmit = (values: any) => {
+            const status = statuses.find((status: Status) => status.title === values.status)!;
+            values.status = status;
+            if (values.date_birth) {
+                values.date_birth = new Date(values.date_birth).getTime();
+            }
+            dispatch(addNewUnit(title, true, (values as Data)));
+        }
+        const newUnit = isAddNewUnit === "car"
+            ? <AddNewCar submit={onSubmit} />
+            : <AddNewDriver submit={onSubmit} />;
         return (
             <Route key={uuid()} path={path} element={
                 <>
-                    {isAddNewUnit && addNewUnit}
+                    {isAddNewUnit && newUnit}
                     <FormUnits title={title} />
                 </>
             } />

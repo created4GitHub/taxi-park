@@ -16,23 +16,15 @@ import { statusesSelector } from '../../redux/selectors/selector';
 import "./addNewUnit.style.scss";
 
 interface Props {
-    title: string;
+    submit: any
 }
 
 const uuid = require("react-uuid");
 
-const AddNewDriver = ({ title }: Props) => {
-    const dispatch = useDispatch();
+const AddNewDriver = ({ submit }: Props) => {
     const statuses = useSelector(statusesSelector);
     const initialValues = useMemo(() => DRIVER_VALUES, []);
     const validationSchema = useMemo(() => DRIVER_VALIDATION_SCHEMA, []);
-
-    const onSubmit = useCallback((values) => {
-        const status = statuses.find((status: Status) => status.title === values.status)!;
-        values.status = status;
-        values.date_birth = new Date(values.date_birth).getTime();
-        dispatch(addNewUnit(title, true, (values as Data)));
-    }, [statuses]);
 
     const mapItems = (({ name, placeholder }: Info) =>
         <FormikInput key={uuid()} {...{ name, placeholder, type: "text" }} />)
@@ -43,7 +35,7 @@ const AddNewDriver = ({ title }: Props) => {
         <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={onSubmit}
+            onSubmit={submit}
         >
             <div className="table_section_add">
                 <Form className="search-table_section_add">
