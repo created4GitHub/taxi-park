@@ -25,7 +25,7 @@ const Statuses = () => {
 
     return (
         <>
-            <option value="" hidden>{intl.formatMessage({ id: "Select" })}</option>
+            <option value="" hidden>{intl.formatMessage({ id: "Status" })}</option>
             {mappedItems}
         </>
     )

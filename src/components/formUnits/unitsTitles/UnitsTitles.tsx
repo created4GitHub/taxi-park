@@ -15,7 +15,7 @@ const UnitsTitles = ({ title }: { title: string }) => {
             return (
                 <div key={uuid()} className="title-section-button">
                     <div className='title-section-title'><FormattedMessage id={item} /><img src={IconsDirection} alt="alt" /></div>
-                    <div className='title-section-title'><FormattedMessage id='delete' /><img src={IconsDirection} alt="alt" /></div>
+                    <div className='title-section-title'><FormattedMessage id='Delete' /><img src={IconsDirection} alt="alt" /></div>
                 </div>
             )
         }

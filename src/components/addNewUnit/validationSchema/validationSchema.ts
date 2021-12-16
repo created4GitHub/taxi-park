@@ -1,18 +1,19 @@
 import * as Yup from 'yup';
 
-const setLength = (length: string): string => `Must be ${length} characters or less`;
+const setLength = (length: string): string => `Must be ${length} characters`;
 
 export const CAR_VALIDATION_SCHEMA = Yup.object({
     mark: Yup.string()
-        .max(10, setLength("1-10"))
-        .min(2, setLength("1-10"))
+        .max(10, setLength("2-10"))
+        .min(2, setLength("2-10"))
         .required('Required'),
     model: Yup.string()
-        .max(10, setLength("1-15"))
-        .min(2, setLength("1-15"))
+        .max(10, setLength("2-15"))
+        .min(2, setLength("2-15"))
         .required('Required'),
     number: Yup.string()
-        .max(8, 'Must be 8 characters or less')
+        .max(8, 'Must be 8 characters')
+        .min(8, 'Must be 8 characters')
         .required('Required'),
     year: Yup.string()
         .required('Required'),
