@@ -67,6 +67,4 @@ export interface DriverFormik {
 
 export type BodyType = Record<string, string | number | Status>;
 
-export interface Language {
-  value: string;
-}
+export type Language = Record<string, string>;
