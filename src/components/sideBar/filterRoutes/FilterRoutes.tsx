@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import { useMemo } from "react"
-// import { v4 as uuid } from 'react-uuid'
 
 import Filter from "../../filters/Filters";
 import { ROUTES_INFO } from "../../../constants/routesInfo"
@@ -10,14 +9,15 @@ interface RouteProps {
     title: string;
 }
 
-
-// TODO
 const uuid = require("react-uuid");
 
 const FilterRoutes = () => {
     const mapItems = ({ path, title }: RouteProps) => {
         return (
-            <Route path={path} key={uuid()} element={<Filter title={title} />} />
+            <Route path={path} 
+                key={uuid()} 
+                element={<Filter title={title} />} 
+            />
         )
     }
 

@@ -20,13 +20,13 @@ const FilterInputs = ({ filter, title, filterValues }: Props) => {
     const inputInfo = (title === "car" && CAR_INFO) || DRIVE_INFO;
     const intl = useIntl();
     const mapItems = ({ name, placeholder }: Info) => {
+        const inputValue = ((filterValues as Filter[])[name as keyof Filter[]] as string);
         return (
             <Input onChange={filter}
                 key={name}
                 name={name}
                 placeholder={intl.formatMessage({ id: placeholder })}
-                // TODO refactoring
-                value={((filterValues as Filter[])[name as keyof Filter[]] as string) || ""}
+                value={inputValue || ""}
             />
         )
     }

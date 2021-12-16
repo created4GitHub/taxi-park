@@ -22,14 +22,11 @@ const uuid = require("react-uuid");
 const FormSection = ({ data, title }: Props) => {
   const [isAdditionalData, setIsAdditionalData] = useState<boolean>(false);
   const [additionalData, setAdditionalData] = useStateIfMounted<Data[]>([]);
-  const [isModal, setIsModal] = useStateIfMounted<boolean>(true)
+  const [isModal, setIsModal] = useStateIfMounted<boolean>(true);
 
-  const className = additionalData.length !== 0 ? 'table_section-showButton' : 'table_section-showButton isActive';
-<<<<<<< HEAD
-  
-=======
-
->>>>>>> origin/dev
+  const className = additionalData.length !== 0 ? 
+  'table_section-showButton' 
+  : 'table_section-showButton isActive';
   const dispatch = useDispatch();
 
   const search = async () => {
@@ -53,7 +50,7 @@ const FormSection = ({ data, title }: Props) => {
     dispatch(dispatchIsDataUpdated());
   };
 
-  const showClick = () => {
+  const showAditionalSection = () => {
     if (additionalData.length !== 0) {
       setIsAdditionalData((prevState) => !prevState);
     }
@@ -79,13 +76,12 @@ const FormSection = ({ data, title }: Props) => {
     : <FormattedMessage id='No cars' />;
 
   const additElement = isModal ?
-    <div className='table_section__loader' >
+    <div className='table_section__loader'>
       <Ellipsis />
     </div>
     :
     <Button
-      // TODO raname
-      onClick={showClick}
+      onClick={showAditionalSection}
       className={className}
       btnText={checkBtntext}
     />;
@@ -101,7 +97,10 @@ const FormSection = ({ data, title }: Props) => {
           btnText={<FormattedMessage id='Delete' />}
         />
       </div>
-      {isAdditionalData && <AdditionalData additionalData={additionalData} title={title} />}
+      {isAdditionalData && <AdditionalData 
+        additionalData={additionalData} 
+        title={title} 
+      />}
     </>
   );
 };

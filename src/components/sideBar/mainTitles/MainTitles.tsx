@@ -8,7 +8,7 @@ import { FormattedMessage } from "react-intl";
 import { useMemo } from "react";
 
 interface Props {
-    isActive: string;
+    activeTitle: string;
     setIsActive: React.Dispatch<React.SetStateAction<string>>;
 }
 
@@ -23,14 +23,8 @@ const uuid = require("react-uuid");
 
 const MainTitles = ({ activeTitle, setIsActive }: Props) => {
     const dispatch = useDispatch();
-
-    const isActive = activeTitle === title
-    // TODO rename
-    const mapItems = (({ name, title, path, src }: Titles) => {
-
-
-        const className = `route-button path ${isActive ? 'active' : ''}`
-    };
+    const tabItems = (({ name, title, path, src }: Titles) => {
+    const className = `route-button path ${activeTitle ? 'active' : ''}`
 
     const openUnit = () => {
         setIsActive(title);
@@ -60,8 +54,7 @@ const MainTitles = ({ activeTitle, setIsActive }: Props) => {
                 />
                 <Button
                     onClick={addUnit}
-                    // TODO refactoring
-                    btnText={<p className='addNewUnit-paragraph'>+</p>}
+                    btnText='+'
                     className="addNewUnit"
                 />
             </Link>
@@ -69,7 +62,7 @@ const MainTitles = ({ activeTitle, setIsActive }: Props) => {
     )
 })
 
-const mappedItems = useMemo(() => TITLES_LINKS.map(mapItems), [TITLES_LINKS, isActive]);
+const mappedItems = useMemo(() => TITLES_LINKS.map(tabItems), [TITLES_LINKS, activeTitle]);
 
 return (
     <div className="content__options-paragraph">

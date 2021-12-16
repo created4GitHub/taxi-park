@@ -26,7 +26,8 @@ interface Props {
 const ResetButton = ({ resetFilters }: Props) => {
     return (
         <div className="reset-filter-button">
-            <Button type="button" onClick={resetFilters}>
+            <Button type="button" 
+                onClick={resetFilters}>
                 {<FormattedMessage id='Reset' />}
             </Button>
         </div>

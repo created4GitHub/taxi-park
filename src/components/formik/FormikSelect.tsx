@@ -9,12 +9,14 @@ interface Props {
 const FormikSelect = ({ name, children }: Props) => {
     const [field, meta] = useField({ name, children });
 
-    // TODO refactoring
+
 
     return (
         <div>
             {meta.touched && meta.error ? (
-                <span className="table_section-error">{<FormattedMessage id={meta.error} />}</span>
+                <span className="table_section-error">
+                    {<FormattedMessage id={meta.error} />}
+                </span>
             ) : null}
             <select
                 {...field}

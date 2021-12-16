@@ -22,11 +22,11 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
   const [selectValue, setSelectValue] = useState<string>((value as Status).title);
   const [isMutable, setIsMutable] = useState<boolean>(true);
   const dispatch = useDispatch();
+  const elementInfo = ["id", "date_birth", "date_created", "driver_id"];
   let element: JSX.Element | null = null;
 
   const updateElementType = (event: MouseEvent<HTMLElement>) => {
-    // TODO to config
-    if (!["id", "date_birth", "date_created", "driver_id"].includes(property)) {
+    if (!elementInfo.includes(property)) {
       if (!((event.target as HTMLElement).className === "table_input")) {
         setIsMutable(!isMutable);
       }
@@ -37,22 +37,24 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
     (data[property as keyof Data] as string | Status) = newValue;
     setIsMutable(!isMutable);
 
-    // TODO 
     PATCH(title, id, { [property]: newValue });
     dispatch(setIsDataUpdated());
   };
 
-  // TODO refactoring
   const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       const target = event.target as HTMLInputElement;
-      target.value ? saveNewInformation(target.value, target.id) : setIsMutable(!isMutable);
+      target.value 
+      ? saveNewInformation(target.value, target.id) 
+      : setIsMutable(!isMutable);
     }
   };
 
   const onBlurEvent = (event: React.FocusEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
-    target.value ? saveNewInformation(target.value, target.id) : setIsMutable(!isMutable);
+    target.value 
+    ? saveNewInformation(target.value, target.id) 
+    : setIsMutable(!isMutable);
   };
 
   const saveStatus = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -77,7 +79,9 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
   } else {
     element = isMutable ?
       (
-        <p className="table_paragraph" onClick={updateElementType} id={property}>
+        <p className="table_paragraph" 
+          onClick={updateElementType} 
+          id={property}>
           {data[property as keyof Data]}
         </p>
       ) : (

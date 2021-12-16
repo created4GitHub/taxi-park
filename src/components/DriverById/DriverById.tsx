@@ -23,7 +23,8 @@ const Driversist: React.FC = () => {
 
   const mapItems = (item: Data) => {
     return (
-      <option key={uuid()} value={item.id}>
+      <option key={uuid()} 
+      value={item.id}>
         {item.first_name + " " + item.last_name}
       </option>
     )
@@ -32,15 +33,11 @@ const Driversist: React.FC = () => {
   const mappedItems = useMemo(() => drivers?.map(mapItems), [drivers])
 
   return (
-<<<<<<< HEAD
     <>
-=======
-    <select>
->>>>>>> origin/dev
       <option value="" hidden>{intl.formatMessage({ id: "Driver" })}</option>
       {mappedItems}
-    </select>
+    </>
   )
 };
 
-export default DriverIDList;
+export default Driversist;

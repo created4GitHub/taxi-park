@@ -27,22 +27,20 @@ interface Props {
 
 const Header = ({ setLocale }: Props) => {
 
-    // TODO remove
     const nameLocal = JSON.parse(localStorage.getItem('internationalization')!)
 
     const itemsMap = (item: string) => {
         return (
-            <option key={uuid()} value={item}>{item}</option>
+            <option key={uuid()} 
+                value={item}>
+                {item}
+            </option>
         )
     }
 
-    // TODO rename
+    const mappedItems = useMemo(() => Object.keys(LOCALES).map(itemsMap), [LOCALES])
 
-    const mapped = useMemo(() => Object.keys(LOCALES).map(itemsMap), [LOCALES])
-
-
-    // TODO rename
-    const handleChenge = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const local: Record<string, string> = {
             value: LOCALES[event.target.value],
             name: event.target.value
@@ -60,12 +58,20 @@ const Header = ({ setLocale }: Props) => {
             <div className='header__content'>
                 <div className='header__content leftSide'>
                     <div className='header__content logo'>
-                        <img src={logo} alt="#" width='180px' height='40px' />
+                        <img src={logo} 
+                            alt="#" 
+                            width='180px' 
+                            height='40px' 
+                        />
                     </div>
                 </div>
-                <Select onChange={handleChenge}>
-                    <option hidden>{nameLocal !== null ? nameLocal.name : 'ENGLISH'}</option>
-                    {mapped}
+                <Select onChange={handleChange}>
+                    <option hidden>
+                        {nameLocal !== null ?
+                        nameLocal.name 
+                        : 'ENGLISH'}
+                    </option>
+                    {mappedItems}
                 </Select>
             </div>
         </header>
