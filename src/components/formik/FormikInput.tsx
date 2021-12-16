@@ -8,7 +8,9 @@ const FormikInput = ({ name, placeholder, type }: any) => {
     return (
         <div className="table_section-block-input">
             {meta.touched && meta.error ? (
-                <span className="table_section-error">{<FormattedMessage id={meta.error} />}</span>
+                <span className="table_section-error">
+                    {<FormattedMessage id={meta.error} />}
+                </span>
             ) : null}
             <input className="table_section-input"
                 placeholder={placeholder && intl.formatMessage({ id: placeholder })}

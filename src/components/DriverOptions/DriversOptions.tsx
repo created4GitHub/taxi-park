@@ -33,7 +33,9 @@ const DriversOptions: React.FC = () => {
 
   return (
     <select className="table_section-tab-select">
-      <option value="" hidden>{intl.formatMessage({ id: "Driver" })}</option>
+      <option value="" hidden>
+        {intl.formatMessage({ id: "Driver" })}
+      </option>
       {mappedItems}
     </select>
   )

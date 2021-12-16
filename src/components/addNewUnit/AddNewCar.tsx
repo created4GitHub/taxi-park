@@ -1,6 +1,5 @@
-import { useCallback, useMemo } from 'react';
+import { useMemo } from 'react';
 import { Formik, Form } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { CAR_INFO, Info } from "../../constants/addNewSection";
 import FormikInput from "../formik/FormikInput";
@@ -9,9 +8,9 @@ import YearsSelect from "../YearsSelect/YearsSelect";
 import DriversOptions from '../DriverOptions/DriversOptions';
 import Statuses from '../statuses/Statuses';
 import AddNewButton from './addNewButton/AddNewButton';
-import { addNewUnit, updateIsAddNewUnit } from "../../redux/actions/actions";
-import { CAR_VALUES } from './initialValues/initialValues';
-import { CAR_VALIDATION_SCHEMA } from './validationSchema/validationSchema';
+import { updateIsAddNewUnit } from "../../redux/actions/actions";
+import { CAR_VALUES } from './initialValues';
+import { CAR_VALIDATION_SCHEMA } from './validationSchema';
 
 import "./addNewUnit.style.scss";
 
@@ -26,7 +25,10 @@ const AddNewCar = ({ submit }: Props) => {
     const validationSchema = CAR_VALIDATION_SCHEMA;
 
     const mapItems = (({ name, placeholder }: Info) => {
-        return <FormikInput key={uuid()} {...{ name, placeholder, type: "text" }} />
+        return <FormikInput 
+            key={uuid()} 
+            {...{ name, placeholder, type: "text" }}
+        />
     })
 
     const mapedCarItems = useMemo(() => CAR_INFO.map(mapItems), [CAR_INFO]);

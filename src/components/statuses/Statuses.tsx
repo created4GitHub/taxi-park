@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useIntl } from "react-intl";
 import { useSelector } from "react-redux";
 import { statusesSelector } from "../../redux/selectors/selector";
@@ -5,7 +6,6 @@ import { statusesSelector } from "../../redux/selectors/selector";
 import { Status } from "../../interfaces/interfaces";
 
 import './statuses.style.scss'
-import { useMemo } from "react";
 
 const uuid = require("react-uuid");
 

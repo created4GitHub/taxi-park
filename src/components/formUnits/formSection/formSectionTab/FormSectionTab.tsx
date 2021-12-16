@@ -64,15 +64,15 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
 
   if (property === "status") {
     element = (
-      <select
-        name="status"
-        className="table_section-tab-select"
-        value={selectValue}
-        onChange={saveStatus}
-        id={property}
-      >
-        <Statuses />
-      </select>
+    <select
+      name="status"
+      className="table_section-tab-select"
+      value={selectValue}
+      onChange={saveStatus}
+      id={property}
+    >
+      <Statuses />
+    </select>
     )
   } else {
     element = isMutable ?
