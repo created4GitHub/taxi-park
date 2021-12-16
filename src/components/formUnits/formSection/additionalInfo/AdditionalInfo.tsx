@@ -35,6 +35,7 @@ const AdditionalData = ({ additionalData, title }: { additionalData: Data[], tit
     return (
         <div className="table_section_isActive">
             <div className="block">
+                // TODO refactor
                 {title === 'car' ? renderTitles(DRIVER_TITLES) : renderTitles(CAR_TITLES)}
             </div>
             {mappedItems}

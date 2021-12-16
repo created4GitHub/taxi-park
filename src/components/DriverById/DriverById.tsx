@@ -8,7 +8,7 @@ import "./driverById.style.scss";
 
 const uuid = require("react-uuid");
 
-const DriverIDList: React.FC = () => {
+const Driversist: React.FC = () => {
   const [drivers, setDrivers] = useState(Array<Data>());
   const intl = useIntl();
 
@@ -32,10 +32,14 @@ const DriverIDList: React.FC = () => {
   const mappedItems = useMemo(() => drivers?.map(mapItems), [drivers])
 
   return (
+<<<<<<< HEAD
     <>
+=======
+    <select>
+>>>>>>> origin/dev
       <option value="" hidden>{intl.formatMessage({ id: "Driver" })}</option>
       {mappedItems}
-    </>
+    </select>
   )
 };
 

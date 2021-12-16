@@ -83,7 +83,11 @@ export const messages: Props = {
     "Select": "Выбрать",
     "No cars": "Нет авто",
     "Required": "Необходимо",
+<<<<<<< HEAD
     "Must be 8 characters": "Должно быть не более 8 символов",
+=======
+    "Must be 8 characters": "Должно быть 8 символов",
+>>>>>>> origin/dev
     "Must be 2-15 characters": "Должно быть 1-15 символов",
     "Must be 3-15 characters": "Должно быть 3-15 символов",
     "Must be 3-20 characters": "Должно быть 3-20 символов",
@@ -129,7 +133,11 @@ export const messages: Props = {
     "Select": "Оберіть",
     "No cars": "Без авто",
     "Required": "Необхiдно",
+<<<<<<< HEAD
     "Must be 8 characters": "Повинно бути не бiльш 8 символiв",
+=======
+    "Must be 8 characters": "Повинно бути 8 символiв",
+>>>>>>> origin/dev
     "Must be 2-15 characters": "Має бути 2-15 символів",
     "Must be 3-15 characters": "Має бути 3-15 символів",
     "Must be 3-20 characters": "Має бути 3-20 символів",

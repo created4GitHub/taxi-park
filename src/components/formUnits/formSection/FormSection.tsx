@@ -25,7 +25,11 @@ const FormSection = ({ data, title }: Props) => {
   const [isModal, setIsModal] = useStateIfMounted<boolean>(true)
 
   const className = additionalData.length !== 0 ? 'table_section-showButton' : 'table_section-showButton isActive';
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> origin/dev
   const dispatch = useDispatch();
 
   const search = async () => {
@@ -80,6 +84,7 @@ const FormSection = ({ data, title }: Props) => {
     </div>
     :
     <Button
+      // TODO raname
       onClick={showClick}
       className={className}
       btnText={checkBtntext}

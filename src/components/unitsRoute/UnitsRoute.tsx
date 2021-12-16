@@ -17,12 +17,14 @@ const uuid = require("react-uuid");
 
 const UnitsRoute = () => {
     const isAddNewUnit = useSelector(isAddNewUnitSelector);
-    
+
     const mapItems = ({ path, title }: RouteProp) => {
         return (
             <Route key={uuid()} path={path} element={
                 <>
-                    {isAddNewUnit && (isAddNewUnit === "car" ? <AddNewCar title={title} />
+                // TODO refactoring
+                    {isAddNewUnit && (isAddNewUnit === "car"
+                        ? <AddNewCar title={title} />
                         : <AddNewDriver title={title} />)}
                     <FormUnits title={title} />
                 </>

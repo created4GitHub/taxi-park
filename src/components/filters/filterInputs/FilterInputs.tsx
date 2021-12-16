@@ -25,6 +25,7 @@ const FilterInputs = ({ filter, title, filterValues }: Props) => {
                 key={name}
                 name={name}
                 placeholder={intl.formatMessage({ id: placeholder })}
+                // TODO refactoring
                 value={((filterValues as Filter[])[name as keyof Filter[]] as string) || ""}
             />
         )
