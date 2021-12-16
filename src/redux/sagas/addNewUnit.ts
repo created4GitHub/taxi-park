@@ -1,6 +1,6 @@
 import { put, takeLatest, call } from 'redux-saga/effects';
 
-import { ADD_NEW_UNIT, IS_DATA_UPDATED, RESET_FILTER, SET_IS_ADD_NEW_UNIT } from '../types';
+import { ADD_NEW_UNIT, FETCH_DATA, IS_DATA_UPDATED, RESET_FILTER, SET_IS_ADD_NEW_UNIT } from '../types';
 import { fetchData } from './fetchData';
 import { Data } from "../../interfaces/interfaces";
 import { POST } from '../../requests/requests';
@@ -12,8 +12,8 @@ interface Params {
     data?: Data;
 }
 
-function* addNewUnit({ type, title, isPost, data }: Params) {
-    yield call(fetchData, { type: "FETCH_DATA", title });
+function* addNewUnit({ title, isPost, data }: Params) {
+    yield call(fetchData, { type: FETCH_DATA, title });
     yield put({ type: SET_IS_ADD_NEW_UNIT, payload: title });
     if (isPost) {
         POST(title, data!);

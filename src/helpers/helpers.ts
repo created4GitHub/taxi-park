@@ -7,7 +7,7 @@ interface Request {
     body?: string;
 }
 
-export const createRequest = async (param: string, method: string, headers?: 
+export const createRequest = async (query: string, method: string, headers?:
     HeadersInit | null, body?: Data) => {
     const currentHeader = headers || HEADERS;
     const request: Request = {
@@ -18,11 +18,15 @@ export const createRequest = async (param: string, method: string, headers?:
         request.body = JSON.stringify(body)
     }
     const data = await fetch(
-        URL + param + "/",
+        URL + query + "/",
         request
     );
     const jsonData = await data.json();
     return jsonData.data;
+};
+
+export const createGetRequest = async (query: string, headers?: HeadersInit) => {
+    return await createRequest(query, "GET", headers);
 };
 
 export const convertDate = (data: Data | Data[], title: string) => {
