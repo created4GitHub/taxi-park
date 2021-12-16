@@ -49,7 +49,7 @@ const FormUnits = ({ title }: Props) => {
   }
   const mappedItems = useMemo(() => data.map(mapItems), [data]);
 
-  const element: JSX.Element = isDataFetching ? <div><Loader /></div> : (
+  const element: JSX.Element = isDataFetching ? <div className='block_loader'><Loader /></div> : (
     <>
       <UnitsTitles title={title} />
       {mappedItems}
