@@ -21,54 +21,61 @@ interface Titles {
 
 const uuid = require("react-uuid");
 
-const MainTitles = ({ isActive, setIsActive }: Props) => {
+const MainTitles = ({ activeTitle, setIsActive }: Props) => {
     const dispatch = useDispatch();
+
+    const isActive = activeTitle === title
+    // TODO rename
     const mapItems = (({ name, title, path, src }: Titles) => {
-        const className = isActive !== title ? "route-button path" : "route-button path active";
 
-        const openUnit = () => {
-            setIsActive(title);
-            dispatch(switchPage(title));
-        }
 
-        const addUnit = () => {
-            setIsActive(title);
-            dispatch(addNewUnit(title, false));
-        }
+        const className = `route-button path ${isActive ? 'active' : ''}`
+    };
 
-        return (
-            <div className="paragraph_element-route" key={uuid()}>
-                <Link to={path}>
-                    <Button
-                        className={className}
-                        onClick={openUnit}
-                        btnText={
-                            <p className="options-paragraph">
-                                <img
-                                    className="options-img"
-                                    src={src}
-                                    alt="alt" />
-                                <FormattedMessage id={name} />
-                            </p>
-                        }
-                    />
-                    <Button
-                        onClick={addUnit}
-                        btnText={<p className='addNewUnit-paragraph'>+</p>}
-                        className="addNewUnit"
-                    />
-                </Link>
-            </div>
-        )
-    })
+    const openUnit = () => {
+        setIsActive(title);
+        dispatch(switchPage(title));
+    }
 
-    const mappedItems = useMemo(() => TITLES_LINKS.map(mapItems), [TITLES_LINKS, isActive]);
+    const addUnit = () => {
+        setIsActive(title);
+        dispatch(addNewUnit(title, false));
+    }
 
     return (
-        <div className="content__options-paragraph">
-            {mappedItems}
+        <div className="paragraph_element-route" key={uuid()}>
+            <Link to={path}>
+                <Button
+                    className={className}
+                    onClick={openUnit}
+                    btnText={
+                        <p className="options-paragraph">
+                            <img
+                                className="options-img"
+                                src={src}
+                                alt="alt" />
+                            <FormattedMessage id={name} />
+                        </p>
+                    }
+                />
+                <Button
+                    onClick={addUnit}
+                    // TODO refactoring
+                    btnText={<p className='addNewUnit-paragraph'>+</p>}
+                    className="addNewUnit"
+                />
+            </Link>
         </div>
     )
+})
+
+const mappedItems = useMemo(() => TITLES_LINKS.map(mapItems), [TITLES_LINKS, isActive]);
+
+return (
+    <div className="content__options-paragraph">
+        {mappedItems}
+    </div>
+)
 }
 
 export default MainTitles;

@@ -24,7 +24,7 @@ const uuid = require("react-uuid");
 const AddNewDriver = ({ title }: Props) => {
     const dispatch = useDispatch();
     const statuses = useSelector(statusesSelector);
-    const initialValues = useMemo(() => DRIVER_VALUES, []);;
+    const initialValues = useMemo(() => DRIVER_VALUES, []);
     const validationSchema = useMemo(() => DRIVER_VALIDATION_SCHEMA, []);
 
     const onSubmit = useCallback((values) => {

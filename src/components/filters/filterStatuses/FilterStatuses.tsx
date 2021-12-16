@@ -18,6 +18,7 @@ const FilterStatuses = ({ filter, filterValues }: Props) => {
     const intl = useIntl();
 
     const mapItems = ({ title }: { title: string }) => {
+        // Check native group component
         return (
             <div className="filter-element" key={uuid()}>
                 <Input

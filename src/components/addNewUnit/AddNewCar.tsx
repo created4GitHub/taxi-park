@@ -29,6 +29,7 @@ const AddNewCar = ({ title }: Props) => {
     const initialValues = useMemo(() => CAR_VALUES, []);;
     const validationSchema = useMemo(() => CAR_VALIDATION_SCHEMA, []);
 
+    // TODO move above
     const onSubmit = useCallback((values) => {
         const status = statuses.find((status: Status) => status.title === values.status)!;
         values.status = status;

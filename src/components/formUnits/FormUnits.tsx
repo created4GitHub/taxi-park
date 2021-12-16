@@ -56,6 +56,10 @@ const FormUnits = ({ title }: Props) => {
     </>
   );
 
+  // if(isDataFetching) {
+  //   return  <div className='block_loader'><Loader /></div>
+  // }
+
   return (
     isDataFetchError ? <div>Error</div>
       : element

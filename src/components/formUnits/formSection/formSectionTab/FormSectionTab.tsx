@@ -25,6 +25,7 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
   let element: JSX.Element | null = null;
 
   const updateElementType = (event: MouseEvent<HTMLElement>) => {
+    // TODO to config
     if (!["id", "date_birth", "date_created", "driver_id"].includes(property)) {
       if (!((event.target as HTMLElement).className === "table_input")) {
         setIsMutable(!isMutable);
@@ -35,10 +36,13 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
   const saveNewInformation = (newValue: string | Status, property: string) => {
     (data[property as keyof Data] as string | Status) = newValue;
     setIsMutable(!isMutable);
+
+    // TODO 
     PATCH(title, id, { [property]: newValue });
     dispatch(setIsDataUpdated());
   };
 
+  // TODO refactoring
   const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       const target = event.target as HTMLInputElement;

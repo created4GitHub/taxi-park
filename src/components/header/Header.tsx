@@ -12,6 +12,8 @@ const Select = styled.select`
     height: 30px;
     margin-right: 30px;
     padding: 0 4px;
+
+    // TODO color
     border: 1px solid #C5C6CE;
     box-sizing: border-box;
     border-radius: 8px;
@@ -24,6 +26,8 @@ interface Props {
 }
 
 const Header = ({ setLocale }: Props) => {
+
+    // TODO remove
     const nameLocal = JSON.parse(localStorage.getItem('internationalization')!)
 
     const itemsMap = (item: string) => {
@@ -32,8 +36,12 @@ const Header = ({ setLocale }: Props) => {
         )
     }
 
+    // TODO rename
+
     const mapped = useMemo(() => Object.keys(LOCALES).map(itemsMap), [LOCALES])
 
+
+    // TODO rename
     const handleChenge = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const local: Record<string, string> = {
             value: LOCALES[event.target.value],

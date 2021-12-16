@@ -13,9 +13,11 @@ const App: React.FC = () => {
   const defaultLanguage = {
     value: LOCALES.ENGLISH
   }
-  
+
+
+  // TODO
   const [locale, setLocale] = useState<Record<string, string>>(!local ? defaultLanguage : local);
-  
+
   return (
     <IntlProvider
       messages={messages[locale.value]}

@@ -13,6 +13,7 @@ const UnitsTitles = ({ title }: { title: string }) => {
     const mapItems = (item: string) => {
         if (["Drivers", "Cars"].includes(item)) {
             return (
+                // TODO refactoring
                 <div key={uuid()} className="title-section-button">
                     <div className='title-section-title'><FormattedMessage id={item} /><img src={IconsDirection} alt="alt" /></div>
                     <div className='title-section-title'><FormattedMessage id='Delete' /><img src={IconsDirection} alt="alt" /></div>
@@ -20,7 +21,10 @@ const UnitsTitles = ({ title }: { title: string }) => {
             )
         }
         else {
-            return <div key={uuid()} className='title-section-title'><FormattedMessage id={item} /><img src={IconsDirection} alt="alt" /></div>
+            return <div key={uuid()} className='title-section-title'>
+                <FormattedMessage id={item} />
+                <img src={IconsDirection} alt="alt" />
+            </div>
         }
     }
 

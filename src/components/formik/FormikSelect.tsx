@@ -9,6 +9,8 @@ interface Props {
 const FormikSelect = ({ name, children }: Props) => {
     const [field, meta] = useField({ name, children });
 
+    // TODO refactoring
+
     return (
         <div>
             {meta.touched && meta.error ? (
