@@ -33,7 +33,7 @@ const DriverIDList: React.FC = () => {
 
   return (
     <>
-      <option value="" hidden>{intl.formatMessage({ id: "Select" })}</option>
+      <option value="" hidden>{intl.formatMessage({ id: "Driver" })}</option>
       {mappedItems}
     </>
   )
