@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { IntlProvider } from "react-intl";
 
 import Header from "./components/header/Header";
-import Container from "./components/container/container";
+import Container from "./components/container/Container";
 import { LOCALES } from "./i18n/locales";
 import { messages } from "./i18n/messages";
 
@@ -13,7 +13,6 @@ const App: React.FC = () => {
   const defaultLanguage = {
     value: LOCALES.ENGLISH
   }
-
 
   // TODO
   const [locale, setLocale] = useState<Record<string, string>>(!local ? defaultLanguage : local);

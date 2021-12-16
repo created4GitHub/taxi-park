@@ -12,10 +12,10 @@ const YearsSelect = () => {
     const mappedItems = useMemo(() => YEARS.map(mapItems), [YEARS]);
 
     return (
-        <>
+        <select className="table_section-tab-select">
             <option value="" hidden>{intl.formatMessage({ id: "Year" })}</option>
             {mappedItems}
-        </>
+        </select>
     )
 }
 

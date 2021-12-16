@@ -6,38 +6,28 @@ import { CAR_INFO, Info } from "../../constants/addNewSection";
 import FormikInput from "../formik/FormikInput";
 import FormikSelect from "../formik/FormikSelect"
 import YearsSelect from "../YearsSelect/YearsSelect";
-import DriverListById from '../DriverById/DriverById';
+import DriversOptions from '../DriverOptions/DriversOptions';
 import Statuses from '../statuses/Statuses';
 import AddNewButton from './addNewButton/AddNewButton';
 import { addNewUnit, updateIsAddNewUnit } from "../../redux/actions/actions";
-import { Status, Data } from '../../interfaces/interfaces';
 import { CAR_VALUES } from './initialValues/initialValues';
 import { CAR_VALIDATION_SCHEMA } from './validationSchema/validationSchema';
-import { statusesSelector } from '../../redux/selectors/selector';
 
 import "./addNewUnit.style.scss";
 
 interface Props {
-    title: string;
+    submit: any;
 }
 
 const uuid = require("react-uuid");
 
-const AddNewCar = ({ title }: Props) => {
-    const dispatch = useDispatch();
-    const statuses = useSelector(statusesSelector);
-    const initialValues = useMemo(() => CAR_VALUES, []);;
-    const validationSchema = useMemo(() => CAR_VALIDATION_SCHEMA, []);
+const AddNewCar = ({ submit }: Props) => {
+    const initialValues = CAR_VALUES;
+    const validationSchema = CAR_VALIDATION_SCHEMA;
 
-    // TODO move above
-    const onSubmit = useCallback((values) => {
-        const status = statuses.find((status: Status) => status.title === values.status)!;
-        values.status = status;
-        dispatch(addNewUnit(title, true, (values as Data)));
-    }, [statuses]);
-
-    const mapItems = (({ name, placeholder }: Info) =>
-        <FormikInput key={uuid()} {...{ name, placeholder, type: "text" }} />)
+    const mapItems = (({ name, placeholder }: Info) => {
+        return <FormikInput key={uuid()} {...{ name, placeholder, type: "text" }} />
+    })
 
     const mapedCarItems = useMemo(() => CAR_INFO.map(mapItems), [CAR_INFO]);
 
@@ -45,7 +35,7 @@ const AddNewCar = ({ title }: Props) => {
         <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={onSubmit}
+            onSubmit={submit}
         >
             <div className="table_section_add">
                 <Form className="search-table_section_add">
@@ -56,8 +46,8 @@ const AddNewCar = ({ title }: Props) => {
                         </FormikSelect>
                     </div>
                     <div className='table_section_add-select'>
-                        <FormikSelect name="driver_id">
-                            <DriverListById />
+                        <FormikSelect name="driver_id" >
+                            <DriversOptions />
                         </FormikSelect>
                     </div>
                     <div className='table_section_add-select'>

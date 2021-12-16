@@ -24,10 +24,10 @@ const Statuses = () => {
     const mappedItems = useMemo(() => statuses.map(mapItems), [statuses])
 
     return (
-        <>
+        <select className="table_section-tab-select">
             <option value="" hidden>{intl.formatMessage({ id: "Status" })}</option>
             {mappedItems}
-        </>
+        </select>
     )
 }
 
