@@ -12,7 +12,6 @@ import {
 
 interface FilterData {
     filterValues: string;
-    title: string;
     name: string,
     value: string,
 }
