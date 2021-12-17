@@ -39,7 +39,7 @@ const AddNewDriver = ({ submit }: Props) => {
             <div className="table_section_add">
                 <Form className="search-table_section_add">
                     {mappedDriverItems}
-                    <FormikInput name="date_birth" type="date" />
+                    <FormikInput name="date_birth" type="date"/>
                     <div className='table_section_add-select'>
                         <FormikSelect name="status">
                             {Statuses()}
