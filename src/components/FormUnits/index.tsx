@@ -13,7 +13,7 @@ import {
   dataSelector,
   isDataFetchingSelector,
   isDataFetchErrorSelector,
-} from "../../redux/selectors/selector";
+} from "../../redux/selectors";
 
 import "./formUnits.style.scss";
 

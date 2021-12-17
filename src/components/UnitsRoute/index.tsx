@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 
 import FormUnits from "../FormUnits";
 import { ROUTES_INFO } from "../../constants/routesInfo"
-import { isAddNewUnitSelector, statusesSelector } from "../../redux/selectors/selector";
+import { isAddNewUnitSelector, statusesSelector } from "../../redux/selectors";
 import AddNewCar from "../AddNewUnit/AddNewCar";
 import AddNewDriver from "../AddNewUnit/AddNewDriver";
 import { Data, Status } from "../../interfaces";

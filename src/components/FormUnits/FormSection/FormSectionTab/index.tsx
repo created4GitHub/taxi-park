@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Statuses from "../../../Statuses";
 import { Data, Status } from "../../../../interfaces";
 import { patchData } from "../../../../redux/actions/actions";
-import { statusesSelector } from "../../../../redux/selectors/selector";
+import { statusesSelector } from "../../../../redux/selectors";
 import { immutableFields } from "../../../../constants/commons";
 
 import "./formSectionTab.style.scss";

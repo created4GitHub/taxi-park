@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useIntl } from "react-intl";
 import { useSelector } from "react-redux";
 
-import { statusesSelector } from "../../redux/selectors/selector";
+import { statusesSelector } from "../../redux/selectors";
 import { Status } from "../../interfaces";
 
 import './statuses.style.scss'
