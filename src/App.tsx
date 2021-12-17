@@ -3,27 +3,26 @@ import { IntlProvider } from "react-intl";
 
 import Header from "./components/header/Header";
 import Container from "./components/container/container";
-import { LOCALES } from "./i18n/locales";
-import { messages } from "./i18n/messages";
+import { LOCALES } from "./intl/locales";
+import { messages } from "./intl/messages";
+import { Language } from "./interfaces";
 
 import "./app.scss";
 
 const App: React.FC = () => {
-  const local = JSON.parse(localStorage.getItem('internationalization')!)
-  const defaultLanguage = {
+  const storedLanguage: Language = JSON.parse(localStorage.getItem('internationalization')!)
+  const defaultLanguage: Language = {
     value: LOCALES.ENGLISH
   }
-
-
-  // TODO
-  const [locale, setLocale] = useState<Record<string, string>>(!local ? defaultLanguage : local);
+  const language: Language = storedLanguage || defaultLanguage;
+  const [localeLanguage, setLocaleLanguage] = useState<Language>(language);
 
   return (
     <IntlProvider
-      messages={messages[locale.value]}
-      locale={locale.value}
+      messages={messages[localeLanguage.value]}
+      locale={localeLanguage.value}
     >
-      <Header setLocale={setLocale} />
+      <Header setLocale={setLocaleLanguage} localeLanguage={localeLanguage} />
       <Container />
     </IntlProvider>
   );

@@ -3,7 +3,7 @@ import { useIntl } from "react-intl";
 
 import Input from "../../commons/input/Input";
 import { CAR_INFO, DRIVE_INFO } from "../../../constants/filterInputs"
-import { Filter } from "../../../interfaces/interfaces";
+import { Filter } from "../../../interfaces";
 
 interface Props {
     filter: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -32,7 +32,7 @@ const FilterInputs = ({ filter, title, filterValues }: Props) => {
     }
 
     const mappedItems = inputInfo.map(mapItems);
-
+    // console.log(filterValues);
     return (
         <>
             <div className='filter_element-inputs'>

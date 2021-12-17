@@ -5,7 +5,7 @@ import Loader from "../loader/loader";
 import FormSection from "./formSection/FormSection";
 import UnitsTitles from "./unitsTitles/UnitsTitles";
 import { getData } from "../../redux/actions/actions";
-import { Data } from "../../interfaces/interfaces";
+import { Data } from "../../interfaces";
 import {
   filteredDataSelector,
   isDataUpdatedSelector,

@@ -1,4 +1,4 @@
-import { Data, Status, Filter } from "../interfaces/interfaces";
+import { Data, Status, Filter } from "../interfaces";
 import {
     DATA_RECEIVED,
     FILTER_DATA,
@@ -71,7 +71,10 @@ const RootReducer = (state: InitialState = initialState, { type, payload, data, 
                     }
                 });
             }
-            return { ...state, filteredData: result, isDataFiltered: true, isFilterValuesUpdated: !state.isFilterValuesUpdated };
+            return {
+                ...state, filteredData: result, isDataFiltered: true,
+                isFilterValuesUpdated: !state.isFilterValuesUpdated
+            };
 
         case RESET_FILTER:
             return {

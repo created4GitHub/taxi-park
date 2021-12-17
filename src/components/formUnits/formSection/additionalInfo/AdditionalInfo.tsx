@@ -1,6 +1,6 @@
 import { FormattedMessage } from "react-intl";
 
-import { Data, Status } from "../../../../interfaces/interfaces";
+import { Data, Status } from "../../../../interfaces";
 import { DRIVER_TITLES, CAR_TITLES } from "../../../../constants/additionalInfo";
 
 import icons from "../../../../ascets/img/svg/IconsDirection.svg";

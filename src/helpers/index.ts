@@ -1,5 +1,5 @@
 import { URL, HEADERS } from "../constants/requests";
-import { Data } from "../interfaces/interfaces";
+import { Data } from "../interfaces";
 
 interface Request {
     method: string;

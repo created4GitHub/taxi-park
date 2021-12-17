@@ -1,6 +1,8 @@
-import { SetStateAction, useMemo } from 'react';
-import { LOCALES } from '../../i18n/locales';
+import { useMemo } from 'react';
+import { LOCALES } from '../../intl/locales';
 import styled from 'styled-components'
+
+import { Language } from "../../interfaces";
 
 import logo from '../../ascets/img/png/taxi.png';
 import './header.style.scss';
@@ -22,13 +24,13 @@ const Select = styled.select`
 `;
 
 interface Props {
-    setLocale: React.Dispatch<SetStateAction<Record<string, string>>>
+    localeLanguage: Language;
+    setLocale: React.Dispatch<React.SetStateAction<Language>>;
 }
 
-const Header = ({ setLocale }: Props) => {
+const Header = ({ setLocale, localeLanguage }: Props) => {
 
-    const nameLocal = JSON.parse(localStorage.getItem('internationalization')!)
-
+    // TODO remove
     const itemsMap = (item: string) => {
         return (
             <option key={uuid()} 
@@ -67,8 +69,8 @@ const Header = ({ setLocale }: Props) => {
                 </div>
                 <Select onChange={handleChange}>
                     <option hidden>
-                        {nameLocal !== null ?
-                        nameLocal.name 
+                        {localeLanguage !== null ?
+                        localeLanguage.name 
                         : 'ENGLISH'}
                     </option>
                     {mappedItems}

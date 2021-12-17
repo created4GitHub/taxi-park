@@ -1,15 +1,19 @@
+import React from 'react';
 import { useField } from 'formik';
 import { FormattedMessage } from 'react-intl';
 
 interface Props {
     name: string;
-    children: React.ReactNode;
+    children: React.ReactNode | any;
 }
 
 const FormikSelect = ({ name, children }: Props) => {
     const [field, meta] = useField({ name, children });
 
-
+    const element = React.cloneElement(
+        children,
+        [name, field],
+    )
 
     return (
         <div>
@@ -18,11 +22,7 @@ const FormikSelect = ({ name, children }: Props) => {
                     {<FormattedMessage id={meta.error} />}
                 </span>
             ) : null}
-            <select
-                {...field}
-                {...{ name, children }}
-                className="table_section-tab-select"
-            />
+            {element}
         </div>
     );
 };

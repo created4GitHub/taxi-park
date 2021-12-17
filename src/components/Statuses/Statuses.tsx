@@ -1,11 +1,11 @@
+import { useMemo } from "react";
 import { useIntl } from "react-intl";
 import { useSelector } from "react-redux";
-import { statusesSelector } from "../../redux/selectors/selector";
 
-import { Status } from "../../interfaces/interfaces";
+import { statusesSelector } from "../../redux/selectors/selector";
+import { Status } from "../../interfaces";
 
 import './statuses.style.scss'
-import { useMemo } from "react";
 
 const uuid = require("react-uuid");
 
@@ -24,10 +24,10 @@ const Statuses = () => {
     const mappedItems = useMemo(() => statuses.map(mapItems), [statuses])
 
     return (
-        <>
+        <select className="table_section-tab-select">
             <option value="" hidden>{intl.formatMessage({ id: "Status" })}</option>
             {mappedItems}
-        </>
+        </select>
     )
 }
 

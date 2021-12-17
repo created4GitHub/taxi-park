@@ -1,6 +1,6 @@
-import { Data, Status } from "../interfaces/interfaces";
+import { Data, Status, BodyType } from "../interfaces";
 import { HEADERS } from "../constants/requests";
-import { createRequest, createGetRequest, convertDate } from "../helpers/helpers";
+import { createRequest, createGetRequest, convertDate } from "../helpers";
 
 interface Response {
   is_error: string;
@@ -31,7 +31,7 @@ export const POST = async (title: string, body: Data): Promise<Response> => {
   return await createRequest(title, "POST", null, body);
 };
 
-export const PATCH = async (title: string, id: string, body: Record<string, string | number | Status>)
+export const PATCH = async (title: string, id: string, body: BodyType)
   : Promise<Response> => {
   const query = title + "/" + id;
   return await createRequest(query, "PATCH", null, body);

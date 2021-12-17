@@ -1,5 +1,5 @@
 import SideBar from "../sideBar/SideBar";
-import UnitsRoute from "../unitsRoute/UnitsRoute";
+import UnitsRoute from "../UnitsRoute/unitsRoute";
 
 const Container = () => {
 
@@ -13,4 +13,4 @@ const Container = () => {
   )
 }
 
-export default Container
+export default Container;

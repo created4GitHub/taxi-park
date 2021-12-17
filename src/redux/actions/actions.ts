@@ -1,4 +1,4 @@
-import { Data, Status } from "../../interfaces/interfaces";
+import { BodyType, Data, Status } from "../../interfaces";
 import {
     DATA_RECEIVED,
     SET_IS_ADD_NEW_UNIT,
@@ -10,7 +10,8 @@ import {
     SWITCH_PAGE,
     FETCH_DATA,
     IS_DATA_FETCH_ERROR,
-    IS_DATA_FETCHING
+    IS_DATA_FETCHING,
+    PATCH_DATA
 } from '../types'
 
 export const getData = (title: string) => {
@@ -55,6 +56,15 @@ export const removeUnit = (title: string, id: number) => {
         type: DELETE_UNIT,
         title,
         id
+    }
+}
+
+export const patchData = (title: string, id: string, data: BodyType) => {
+    return {
+        type: PATCH_DATA,
+        title,
+        id,
+        data
     }
 }
 

@@ -13,7 +13,6 @@ export const CAR_VALIDATION_SCHEMA = Yup.object({
         .required('Required'),
     number: Yup.string()
         .max(8, 'Must be 8 characters')
-        .min(8, 'Must be 8 characters')
         .required('Required'),
     year: Yup.string()
         .required('Required'),

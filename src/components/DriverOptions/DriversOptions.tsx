@@ -2,13 +2,13 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useIntl } from "react-intl";
 
 import { GET } from "../../requests/requests";
-import { Data } from "../../interfaces/interfaces";
+import { Data } from "../../interfaces";
 
-import "./driverById.style.scss";
+import "./driversOptions.style.scss";
 
 const uuid = require("react-uuid");
 
-const Driversist: React.FC = () => {
+const DriversOptions: React.FC = () => {
   const [drivers, setDrivers] = useState(Array<Data>());
   const intl = useIntl();
 
@@ -33,11 +33,13 @@ const Driversist: React.FC = () => {
   const mappedItems = useMemo(() => drivers?.map(mapItems), [drivers])
 
   return (
-    <>
-      <option value="" hidden>{intl.formatMessage({ id: "Driver" })}</option>
+    <select className="table_section-tab-select">
+      <option value="" hidden>
+        {intl.formatMessage({ id: "Driver" })}
+      </option>
       {mappedItems}
-    </>
+    </select>
   )
 };
 
-export default Driversist;
+export default DriversOptions;
