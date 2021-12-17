@@ -3,6 +3,7 @@ import { LOCALES } from '../../intl/locales';
 import styled from 'styled-components'
 
 import { Language } from "../../interfaces";
+import { GREY_COLOR, LIGHT_GREY_COLOR } from '../../constants/style.colors';
 
 import logo from '../../ascets/img/png/taxi.png';
 import './header.style.scss';
@@ -14,12 +15,10 @@ const Select = styled.select`
     height: 30px;
     margin-right: 30px;
     padding: 0 4px;
-
-    // TODO color
-    border: 1px solid #C5C6CE;
+    border: 1px solid ${LIGHT_GREY_COLOR};
     box-sizing: border-box;
     border-radius: 8px;
-    color: #6B6F82;
+    color: ${GREY_COLOR};
     font-size: 12px;
 `;
 
