@@ -7,13 +7,13 @@ import Statuses from '../Statuses';
 import AddNewButton from './AddNewButton';
 import { updateIsAddNewUnit } from "../../redux/actions";
 import { DRIVER_VALIDATION_SCHEMA } from './validationSchema';
-import { DRIVER_VALUES } from './initialValues';
+import { Car, Driver, DRIVER_VALUES } from './initialValues';
 import { DRIVER_INFO, Info } from '../../constants/addNewSection';
 
 import "./addNewUnit.style.scss";
 
 interface Props {
-    submit: any
+    submit: (values: Car | Driver) => void
 }
 
 const uuid = require("react-uuid");
@@ -39,7 +39,7 @@ const AddNewDriver = ({ submit }: Props) => {
             <div className="table_section_add">
                 <Form className="search-table_section_add">
                     {mappedDriverItems}
-                    <FormikInput name="date_birth" type="date" />
+                    <FormikInput name="date_birth" type="date"/>
                     <div className='table_section_add-select'>
                         <FormikSelect name="status">
                             {Statuses()}

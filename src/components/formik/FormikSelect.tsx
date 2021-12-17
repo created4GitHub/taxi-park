@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { ReactChild, ReactChildren, ReactElement } from 'react';
 import { useField } from 'formik';
 import { FormattedMessage } from 'react-intl';
 
 interface Props {
     name: string;
-    children: React.ReactNode | any;
+    children: ReactElement;
 }
 
 const FormikSelect = ({ name, children }: Props) => {

@@ -8,14 +8,14 @@ import YearsSelect from "../YearsSelect";
 import DriversOptions from '../DriverOptions';
 import Statuses from '../Statuses';
 import AddNewButton from './AddNewButton';
-import { updateIsAddNewUnit } from "../../redux/actions";
-import { CAR_VALUES } from './initialValues';
+import { updateIsAddNewUnit } from "../../redux/actions/actions";
+import { Car, CAR_VALUES, Driver } from './initialValues';
 import { CAR_VALIDATION_SCHEMA } from './validationSchema';
 
 import "./addNewUnit.style.scss";
 
 interface Props {
-    submit: any;
+    submit: (values: Car | Driver) => void
 }
 
 const uuid = require("react-uuid");

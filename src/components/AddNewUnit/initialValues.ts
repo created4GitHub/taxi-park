@@ -1,4 +1,4 @@
-interface Car {
+export interface Car {
     mark: string;
     model: string;
     number: string;

@@ -1,7 +1,13 @@
 import { useField } from 'formik';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-const FormikInput = ({ name, placeholder, type }: any) => {
+interface Props {
+    name: string;
+    placeholder?: string;
+    type: string;
+}
+
+const FormikInput = ({ name, placeholder, type }: Props) => {
     const [field, meta] = useField({ name, placeholder, type });
     const intl = useIntl();
 

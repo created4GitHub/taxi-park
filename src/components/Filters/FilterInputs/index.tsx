@@ -7,18 +7,18 @@ import { Filter } from "../../../interfaces";
 import { useSelector } from "react-redux";
 import { isPageCarSelector } from "../../../redux/selectors";
 
+interface Props {
+    filter: (event: ChangeEvent<HTMLInputElement>) => void;
+    title: string;
+    filterValues: Filter;
+}
+
 interface Info {
     name: string;
     placeholder: string;
 };
 
-interface Props {
-    filter: (event: ChangeEvent<HTMLInputElement>) => void;
-    pageName: string;
-    filterValues: any;
-}
-
-const FilterInputs = ({ filter, pageName, filterValues }: Props) => {
+const FilterInputs = ({ filter, filterValues }: Props) => {
     const isPageCar = useSelector(isPageCarSelector);
     const inputInfo = (isPageCar && CAR_INFO) || DRIVE_INFO;
     const intl = useIntl();
