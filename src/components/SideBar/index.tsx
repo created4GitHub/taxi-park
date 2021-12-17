@@ -1,15 +1,15 @@
 import { useState } from "react";
 
-import MainTitles from "./MainTitles"
+import Pages from "./Pages"
 import FilterRoutes from "./FilterRoutes"
 
 const SideBar = () => {
-  const [activeTitle, setIsActive] = useState<string>("");
+  const [activePage, setIsactivePage] = useState<string>("");
 
   return (
     <div className="content__options">
-      <MainTitles activeTitle={activeTitle}
-        setIsActive={setIsActive}
+      <Pages activePage={activePage}
+        setIsactivePage={setIsactivePage}
       />
       <FilterRoutes />
     </div>

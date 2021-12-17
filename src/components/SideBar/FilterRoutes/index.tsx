@@ -6,17 +6,17 @@ import { ROUTES_INFO } from "../../../constants/routesInfo"
 
 interface RouteProps {
     path: string;
-    title: string;
+    pageName: string;
 }
 
 const uuid = require("react-uuid");
 
 const FilterRoutes = () => {
-    const mapItems = ({ path, title }: RouteProps) => {
+    const mapItems = ({ path, pageName }: RouteProps) => {
         return (
             <Route path={path}
                 key={uuid()}
-                element={<Filter title={title} />}
+                element={<Filter pageName={pageName} />}
             />
         )
     }

@@ -6,15 +6,15 @@ import { DATA_RECEIVED, FETCH_DATA, IS_DATA_FETCHING, IS_DATA_FETCH_ERROR } from
 
 interface Params {
     type: typeof FETCH_DATA;
-    title: string;
+    pageName: string;
 }
 
-export function* fetchData({ title }: Params) {
+export function* fetchData({ pageName }: Params) {
     try {
         yield delay(10);
         yield put({ type: IS_DATA_FETCHING, payload: true });
-        const data: { data: Data[] } = yield call(GET, title);
-        const statuses: { statuses: Status[] } = yield call(GET_STATUS, title);
+        const data: { data: Data[] } = yield call(GET, pageName);
+        const statuses: { statuses: Status[] } = yield call(GET_STATUS, pageName);
         yield put({ type: DATA_RECEIVED, data, statuses });
     }
     catch (e) {

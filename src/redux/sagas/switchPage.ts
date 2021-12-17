@@ -5,11 +5,11 @@ import { fetchData } from './fetchData';
 
 interface Params {
     type: typeof SWITCH_PAGE;
-    title: string;
+    pageName: string;
 }
 
-function* switchPage({ title }: Params) {
-    yield call(fetchData, { type: FETCH_DATA, title });
+function* switchPage({ pageName }: Params) {
+    yield call(fetchData, { type: FETCH_DATA, pageName });
     yield put({ type: RESET_FILTER });
     yield put({ type: SET_IS_ADD_NEW_UNIT, payload: null });
 }

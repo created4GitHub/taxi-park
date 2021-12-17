@@ -6,31 +6,31 @@ import FormSection from "./FormSection";
 import UnitsTitles from "./UnitsTitles";
 import { getData } from "../../redux/actions";
 import { Data } from "../../interfaces";
-import { state } from "../../redux/selectors";
+import { stateSelector } from "../../redux/selectors";
 
 import "./formUnits.style.scss";
 
 interface Props {
-  title: string;
+  pageName: string;
 }
 
 const uuid = require("react-uuid");
 
-const FormUnits = ({ title }: Props) => {
+const FormUnits = ({ pageName }: Props) => {
   const { receivedData, filteredData, isDataFiltered,
-    isDataUpdated, isDataFetching, isDataFetchError } = useSelector(state);
+    isDataUpdated, isDataFetching, isDataFetchError } = useSelector(stateSelector);
   const data = (isDataFiltered && filteredData) || receivedData;
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getData(title));
+    dispatch(getData(pageName));
   }, [isDataUpdated]);
 
   const mapItems = (item: Data) => {
     return (
       <FormSection
         key={uuid()}
-        title={title}
+        pageName={pageName}
         data={item}
 
       />
@@ -44,7 +44,7 @@ const FormUnits = ({ title }: Props) => {
     </div>
     : (
       <>
-        <UnitsTitles title={title} />
+        <UnitsTitles />
         {mappedItems}
       </>
     );

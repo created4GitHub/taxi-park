@@ -5,18 +5,18 @@ import FilterInputs from "./FilterInputs";
 import ResetButton from "./ResetButton";
 import { YEARS } from "../../constants/years";
 import { filterData, resetFilter } from "../../redux/actions";
-import { filterValuesSelector, isFilterValuesUpdatedSelector } from "../../redux/selectors";
+import { filterValuesSelector, isFilterValuesUpdatedSelector, stateSelector } from "../../redux/selectors";
 
 import "./filters.style.scss";
 
 
 interface Props {
-  title: string;
+  pageName: string;
 }
 
-const Filters = ({ title }: Props) => {
-  const filterValues = useSelector(filterValuesSelector);
-  const isFilterValuesUpdated = useSelector(isFilterValuesUpdatedSelector);
+const Filters = ({ pageName }: Props) => {
+  const { filterValues, isFilterValuesUpdated, isPageCar } = useSelector(stateSelector);
+  // const isFilterValuesUpdated = useSelector(isFilterValuesUpdatedSelector);
   const dispatch = useDispatch();
   const reset = () => {
     dispatch(resetFilter());
@@ -25,10 +25,10 @@ const Filters = ({ title }: Props) => {
   const filter = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const name = event.target.name;
     const value = event.target.value;
-    dispatch(filterData({ name, value, title }));
+    dispatch(filterData({ name, value, pageName }));
   };
 
-  const optionalElement = title === "car" && (
+  const optionalElement = isPageCar && (
     <div className="filter_element-yearSelect">
       <select name="year"
         onChange={filter}>
@@ -47,7 +47,7 @@ const Filters = ({ title }: Props) => {
   return (
     <form className="content__options-filter">
       <FilterInputs filter={filter}
-        title={title}
+        pageName={pageName}
         filterValues={filterValues}
       />
       {optionalElement}

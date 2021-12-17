@@ -1,16 +1,16 @@
 import { DRIVERS_PATH, CARS_PATH } from "./pathes";
 interface Route {
     path: string;
-    title: string;
+    pageName: string;
 }
 
 export const ROUTES_INFO: Route[] = [
     {
         path: DRIVERS_PATH,
-        title: "driver"
+        pageName: "driver"
     },
     {
         path: CARS_PATH,
-        title: "car"
+        pageName: "car"
     }
 ]

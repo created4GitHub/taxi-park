@@ -12,7 +12,24 @@ import { addNewUnit } from "../../redux/actions";
 
 interface RouteProp {
     path: string;
-    title: string;
+    pageName: string;
+}
+
+interface Values {
+    id?: number;
+    first_name?: string;
+    last_name?: string;
+    date_birth?: number | string;
+    date_created?: number | string;
+    mark?: string;
+    model?: string;
+    number?: string;
+    driver_id?: number;
+    year?: number;
+    status?: {
+        title: string;
+        code: string;
+    } | string;
 }
 
 const uuid = require("react-uuid");
@@ -23,15 +40,15 @@ const UnitsRoute = () => {
     const statuses = useSelector(statusesSelector);
     const dispatch = useDispatch();
 
-    const mapItems = ({ path, title }: RouteProp) => {
+    const mapItems = ({ path, pageName }: RouteProp) => {
 
-        const onSubmit = (values: any) => {
+        const onSubmit = (values: Values) => {
             const status = statuses.find((status: Status) => status.title === values.status)!;
             values.status = status;
             if (values.date_birth) {
                 values.date_birth = new Date(values.date_birth).getTime();
             }
-            dispatch(addNewUnit(title, true, (values as Data)));
+            dispatch(addNewUnit(pageName, true, (values as Data)));
         }
         const newUnit = isAddNewUnit === "car"
             ? <AddNewCar submit={onSubmit} />
@@ -40,7 +57,7 @@ const UnitsRoute = () => {
             <Route key={uuid()} path={path} element={
                 <>
                     {isAddNewUnit && newUnit}
-                    <FormUnits title={title} />
+                    <FormUnits pageName={pageName} />
                 </>
             } />
         )

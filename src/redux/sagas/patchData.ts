@@ -6,15 +6,15 @@ import { IS_DATA_UPDATED, PATCH_DATA } from '../types';
 
 interface Params {
     type: typeof PATCH_DATA;
-    title: string;
+    pageName: string;
     id: string;
     data: BodyType
 }
 
-export function* patchData({ title, id, data }: Params) {
+export function* patchData({ pageName, id, data }: Params) {
 
     try {
-        yield call(PATCH, title, id, data);
+        yield call(PATCH, pageName, id, data);
         yield put({ type: IS_DATA_UPDATED });
 
     }

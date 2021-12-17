@@ -27,7 +27,7 @@ export interface ActionType<T> {
 
 export interface Route {
   path: string;
-  title: string;
+  pageName: string;
 }
 
 export interface Filter {
@@ -37,7 +37,6 @@ export interface Filter {
   model?: string,
   number?: string,
   status?: string,
-  title?: string,
   year?: string,
   first_name?: string,
   last_name?: string,

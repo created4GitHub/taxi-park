@@ -29,13 +29,13 @@ export const createGetRequest = async (query: string, headers?: HeadersInit) => 
     return await createRequest(query, "GET", headers);
 };
 
-export const convertDate = (data: Data | Data[], title: string) => {
+export const convertDate = (data: Data | Data[]) => {
     const convert = (item: Data) => {
         item.date_birth = new Date(item.date_birth!).toLocaleDateString();
         item.date_created = new Date(item.date_created!).toLocaleDateString();
         return item;
     }
-    if (Array.isArray(data)) {        
+    if (Array.isArray(data)) {
         return (data as Data[]).map(item => convert(item));
     }
     return convert(data as Data);

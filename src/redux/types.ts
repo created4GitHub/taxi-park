@@ -10,3 +10,4 @@ export const IS_DATA_FETCHING = "IS_DATA_FETCHING";
 export const IS_DATA_FETCH_ERROR = "IS_DATA_FETCH_ERROR";
 export const ADD_NEW_UNIT = "ADD_NEW_UNIT";
 export const PATCH_DATA = "PATCH_DATA";
+export const SET_IS_PAGE_CAR = "SET_IS_PAGE_CAR";

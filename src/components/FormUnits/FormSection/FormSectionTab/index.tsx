@@ -12,7 +12,7 @@ import "./formSectionTab.style.scss";
 interface Props {
   value: string | number | Status;
   property: string;
-  title: string;
+  pageName: string;
   id: string;
   data: Data;
 }
@@ -20,7 +20,7 @@ interface Props {
 type KeyboardEvent = React.KeyboardEvent<HTMLInputElement>;
 type FocusEvent = React.FocusEvent<HTMLInputElement>;
 
-const FormSectionTab = ({ value, property, title, data, id }: Props) => {
+const FormSectionTab = ({ value, property, pageName, data, id }: Props) => {
   const statuses = useSelector(statusesSelector);
   const [selectValue, setSelectValue] = useState<string>((value as Status).title);
   const [isMutable, setIsMutable] = useState<boolean>(true);
@@ -37,7 +37,8 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
   const patchNewInformation = (newValue: string | Status, property: string) => {
     (data[property as keyof Data] as string | Status) = newValue;
     setIsMutable(!isMutable);
-    dispatch(patchData(title, id, { [property]: newValue }));
+    console.log(pageName, id, { [property]: newValue })
+    dispatch(patchData(pageName, id, { [property]: newValue }));
   };
 
   const saveInput = (event: KeyboardEvent | FocusEvent) => {
