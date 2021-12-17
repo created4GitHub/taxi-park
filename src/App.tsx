@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { IntlProvider } from "react-intl";
 
-import Header from "./components/header/Header";
-import Container from "./components/container/container";
+import Header from "./components/Header";
+import Container from "./components/Container";
 import { LOCALES } from "./intl/locales";
 import { messages } from "./intl/messages";
 import { Language } from "./interfaces";
