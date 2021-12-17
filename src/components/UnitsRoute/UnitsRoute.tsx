@@ -7,7 +7,7 @@ import { ROUTES_INFO } from "../../constants/routesInfo"
 import { isAddNewUnitSelector, statusesSelector } from "../../redux/selectors/selector";
 import AddNewCar from "../addNewUnit/AddNewCar";
 import AddNewDriver from "../addNewUnit/AddNewDriver";
-import { Data, Status } from "../../interfaces/";
+import { Data, Status } from "../../interfaces";
 import { addNewUnit } from "../../redux/actions/actions";
 
 interface RouteProp {

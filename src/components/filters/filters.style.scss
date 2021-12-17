@@ -77,22 +77,12 @@
             justify-content: center;
             border-radius: 8px;
             box-shadow: 0 0 8px 2px #c0c0c0c2;
-
-            .addNewUnit-paragraph {
-                font-size: 30px;
-            }
+            font-size: 25px;
+            font-weight: 300;
         }
         .addNewUnit:hover {
-            .addNewUnit-paragraph {
-                font-weight: 600;
-            }
-        }
-        .addNewUnit:active {
-            box-shadow: 0 0 8px 2px rgb(134 138 216 / 36%);
-
-            .addNewUnit-paragraph {
-                font-weight: 100;
-            }
+            font-size: 30px;
+            font-weight: 500;
         }
 
         .route-button {

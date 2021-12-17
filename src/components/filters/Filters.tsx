@@ -5,7 +5,7 @@ import FilterInputs from "./filterInputs/FilterInputs";
 import ResetButton from "./resetButton/ResetButton";
 import { YEARS } from "../../constants/years";
 import { filterData, resetFilter } from "../../redux/actions/actions";
-import { filterValuesSelector, isFilterValuesUpdatedSelector } from "../../redux/selectors/selector";
+import { filterValuesSelector } from "../../redux/selectors/selector";
 
 import "./filters.style.scss";
 
@@ -16,7 +16,6 @@ interface Props {
 
 const Filters = ({ title }: Props) => {
   const filterValues = useSelector(filterValuesSelector);
-  const isFilterValuesUpdated = useSelector(isFilterValuesUpdatedSelector);
   const dispatch = useDispatch();
   const reset = () => {
     dispatch(resetFilter());
@@ -30,10 +29,12 @@ const Filters = ({ title }: Props) => {
 
   const optionalElement = title === "car" && (
     <div className="filter_element-yearSelect">
-      <select name="year" onChange={filter}>
+      <select name="year" 
+        onChange={filter}>
         {YEARS.map((item: number) => {
           return (
-            <option key={item} value={item}>
+            <option key={item}
+              value={item}>
               {item}
             </option>
           )
@@ -44,9 +45,14 @@ const Filters = ({ title }: Props) => {
 
   return (
     <form className="content__options-filter">
-      <FilterInputs filter={filter} title={title} filterValues={filterValues} />
+      <FilterInputs filter={filter} 
+        title={title} 
+        filterValues={filterValues} 
+      />
       {optionalElement}
-      <FilterStatuses filter={filter} filterValues={filterValues} />
+      <FilterStatuses filter={filter} 
+        filterValues={filterValues} 
+      />
       <ResetButton resetFilters={reset} />
     </form>
   );

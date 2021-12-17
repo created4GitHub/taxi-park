@@ -4,11 +4,13 @@ import MainTitles from "./mainTitles/MainTitles"
 import FilterRoutes from "./filterRoutes/FilterRoutes"
 
 const SideBar = () => {
-  const [isActive, setIsActive] = useState<string>("");
+  const [activeTitle, setIsActive] = useState<string>("");
 
   return (
     <div className="content__options">
-      <MainTitles isActive={isActive} setIsActive={setIsActive} />
+      <MainTitles activeTitle={activeTitle} 
+        setIsActive={setIsActive} 
+      />
       <FilterRoutes />
     </div>
   );

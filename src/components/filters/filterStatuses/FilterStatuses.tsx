@@ -18,7 +18,6 @@ const FilterStatuses = ({ filter, filterValues }: Props) => {
     const intl = useIntl();
 
     const mapItems = ({ title }: { title: string }) => {
-        // Check native group component
         return (
             <div className="filter-element" key={uuid()}>
                 <Input
@@ -29,7 +28,9 @@ const FilterStatuses = ({ filter, filterValues }: Props) => {
                     value={title}
                     checked={filterValues.status === title}
                 />
-                <label htmlFor={"status" + title}>{intl.formatMessage({ id: title })}</label>
+                <label htmlFor={"status" + title}>
+                    {intl.formatMessage({ id: title })}
+                </label>
             </div>
         )
     }

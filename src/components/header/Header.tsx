@@ -3,6 +3,7 @@ import { LOCALES } from '../../intl/locales';
 import styled from 'styled-components'
 
 import { Language } from "../../interfaces";
+import { GREY_COLOR, LIGHT_GREY_COLOR } from '../../constants/style.colors';
 
 import logo from '../../ascets/img/png/taxi.png';
 import './header.style.scss';
@@ -14,12 +15,10 @@ const Select = styled.select`
     height: 30px;
     margin-right: 30px;
     padding: 0 4px;
-
-    // TODO color
-    border: 1px solid #C5C6CE;
+    border: 1px solid ${LIGHT_GREY_COLOR};
     box-sizing: border-box;
     border-radius: 8px;
-    color: #6B6F82;
+    color: ${GREY_COLOR};
     font-size: 12px;
 `;
 
@@ -33,17 +32,16 @@ const Header = ({ setLocale, localeLanguage }: Props) => {
     // TODO remove
     const itemsMap = (item: string) => {
         return (
-            <option key={uuid()} value={item}>{item}</option>
+            <option key={uuid()} 
+                value={item}>
+                {item}
+            </option>
         )
     }
 
-    // TODO rename
+    const mappedItems = useMemo(() => Object.keys(LOCALES).map(itemsMap), [LOCALES])
 
-    const mapped = useMemo(() => Object.keys(LOCALES).map(itemsMap), [LOCALES])
-
-
-    // TODO rename
-    const handleChenge = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const local: Record<string, string> = {
             value: LOCALES[event.target.value],
             name: event.target.value
@@ -61,12 +59,20 @@ const Header = ({ setLocale, localeLanguage }: Props) => {
             <div className='header__content'>
                 <div className='header__content leftSide'>
                     <div className='header__content logo'>
-                        <img src={logo} alt="#" width='180px' height='40px' />
+                        <img src={logo} 
+                            alt="#" 
+                            width='180px' 
+                            height='40px' 
+                        />
                     </div>
                 </div>
-                <Select onChange={handleChenge}>
-                    <option hidden>{localeLanguage !== null ? localeLanguage.name : 'ENGLISH'}</option>
-                    {mapped}
+                <Select onChange={handleChange}>
+                    <option hidden>
+                        {localeLanguage !== null ?
+                        localeLanguage.name 
+                        : 'ENGLISH'}
+                    </option>
+                    {mappedItems}
                 </Select>
             </div>
         </header>

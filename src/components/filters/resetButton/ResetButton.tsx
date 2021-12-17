@@ -1,12 +1,13 @@
 import { FormattedMessage } from "react-intl";
 import styled from 'styled-components';
+import { LIGHT_ORANGE_COLOR, ORANGE_COLOR } from "../../../constants/style.colors";
 
 const Button = styled.button`
     width: 200px;
     height: 35px;
     border-radius: 8px;
-    color: #d09700;
-    background-color: #fef8e8;
+    color: ${ORANGE_COLOR};
+    background-color: ${LIGHT_ORANGE_COLOR};
     border: none;
     cursor: pointer;
     @media (max-width: 1080px) {
@@ -26,7 +27,8 @@ interface Props {
 const ResetButton = ({ resetFilters }: Props) => {
     return (
         <div className="reset-filter-button">
-            <Button type="button" onClick={resetFilters}>
+            <Button type="button" 
+                onClick={resetFilters}>
                 {<FormattedMessage id='Reset' />}
             </Button>
         </div>

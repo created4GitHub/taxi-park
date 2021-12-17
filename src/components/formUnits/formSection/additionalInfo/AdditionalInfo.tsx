@@ -12,31 +12,41 @@ const AdditionalData = ({ additionalData, title }: { additionalData: Data[], tit
 
     const renderTitles = (array: string[]) => {
         return array.map((item: string) => {
-            return <p key={uuid()}><FormattedMessage id={item} /><img src={icons} alt="alt" /></p>
+            return <p key={uuid()}>
+                    <FormattedMessage id={item} />
+                    <img src={icons} 
+                        alt="alt" 
+                    />
+                </p>
         });
     }
 
-
     const mapItems = (item: Data) => {
         return (
-            <div className="block" key={item.id}>
+            <div className="block" 
+                key={item.id}>
                 {Object.values(item).map((item: Status | string | number) => {
                     if (item.hasOwnProperty("title")) {
-                        return <p key={uuid()}>{(item as Status).title}</p>;
+                        return <p key={uuid()}>
+                            {(item as Status).title}
+                        </p>;
                     }
-                    return <p key={uuid()}>{item}</p>
+                    return <p key={uuid()}>
+                            {item}
+                        </p>
                 })}
             </div>
         )
     }
-
+    
     const mappedItems = useMemo(() => additionalData.map(mapItems), [additionalData]);
 
     return (
         <div className="table_section_isActive">
             <div className="block">
-                // TODO refactor
-                {title === 'car' ? renderTitles(DRIVER_TITLES) : renderTitles(CAR_TITLES)}
+                {title === 'car' ? 
+                renderTitles(DRIVER_TITLES) 
+                : renderTitles(CAR_TITLES)}
             </div>
             {mappedItems}
         </div>

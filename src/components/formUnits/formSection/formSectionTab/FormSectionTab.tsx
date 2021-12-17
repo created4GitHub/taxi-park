@@ -45,7 +45,9 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
       return;
     }
     const target = event.target as HTMLInputElement;
-    target.value ? patchNewInformation(target.value, target.id) : setIsMutable(!isMutable);
+    target.value 
+    ? patchNewInformation(target.value, target.id) 
+    : setIsMutable(!isMutable);
   }
 
   const saveStatus = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -68,7 +70,9 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
 
   const element = isMutable
     ? (
-      <p className="table_paragraph" onClick={changeElementType} id={property}>
+      <p className="table_paragraph" 
+        onClick={changeElementType} 
+        id={property}>
         {data[property as keyof Data]}
       </p>
     ) : (
