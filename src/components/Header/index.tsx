@@ -3,7 +3,7 @@ import { LOCALES } from '../../intl/locales';
 import styled from 'styled-components'
 
 import { Language } from "../../interfaces";
-import { GREY_COLOR, LIGHT_GREY_COLOR } from '../../constants/style.colors';
+import { COLOR_SWITCH_LANGUAGE, BORDER_SWITCH_LANGUAGE } from '../../constants/style.colors';
 
 import logo from '../../ascets/img/png/taxi.png';
 import './header.style.scss';
@@ -15,10 +15,10 @@ const Select = styled.select`
     height: 30px;
     margin-right: 30px;
     padding: 0 4px;
-    border: 1px solid ${LIGHT_GREY_COLOR};
+    border: 1px solid ${BORDER_SWITCH_LANGUAGE};
     box-sizing: border-box;
     border-radius: 8px;
-    color: ${GREY_COLOR};
+    color: ${COLOR_SWITCH_LANGUAGE};
     font-size: 12px;
 `;
 

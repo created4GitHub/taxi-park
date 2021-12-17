@@ -2,8 +2,8 @@ import { useMemo } from 'react';
 import { Formik, Form } from 'formik';
 
 import { CAR_INFO, Info } from "../../constants/addNewSection";
-import FormikInput from "../formik/FormikInput";
-import FormikSelect from "../formik/FormikSelect"
+import FormikInput from "../Formik/FormikInput";
+import FormikSelect from "../Formik/FormikSelect"
 import YearsSelect from "../YearsSelect";
 import DriversOptions from '../DriverOptions';
 import Statuses from '../Statuses';

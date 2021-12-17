@@ -1,8 +1,8 @@
 import { Formik, Form } from 'formik';
 import { useMemo } from 'react';
 
-import FormikInput from "../formik/FormikInput";
-import FormikSelect from "../formik/FormikSelect"
+import FormikInput from "../Formik/FormikInput";
+import FormikSelect from "../Formik/FormikSelect"
 import Statuses from '../Statuses';
 import AddNewButton from './AddNewButton';
 import { updateIsAddNewUnit } from "../../redux/actions";

@@ -1,13 +1,13 @@
 import { FormattedMessage } from "react-intl";
 import styled from 'styled-components';
-import { LIGHT_ORANGE_COLOR, ORANGE_COLOR } from "../../../constants/style.colors";
+import { RESET_BUTTON_BACKGROUND, RESET_BUTTON_COLOR } from "../../../constants/style.colors";
 
 const Button = styled.button`
     width: 200px;
     height: 35px;
     border-radius: 8px;
-    color: ${ORANGE_COLOR};
-    background-color: ${LIGHT_ORANGE_COLOR};
+    color: ${RESET_BUTTON_COLOR};
+    background-color: ${RESET_BUTTON_BACKGROUND};
     border: none;
     cursor: pointer;
     @media (max-width: 1080px) {
