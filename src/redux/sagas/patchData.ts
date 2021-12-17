@@ -12,12 +12,11 @@ interface Params {
 }
 
 export function* patchData({ title, id, data }: Params) {
-    console.log("s")
+    console.log(title, id, data)
+
     try {
-        console.log("check")
         yield call(PATCH, title, id, data);
         yield put({ type: IS_DATA_UPDATED });
-        console.log("test")
 
     }
     catch (e) {

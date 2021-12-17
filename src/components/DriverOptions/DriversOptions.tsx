@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useIntl } from "react-intl";
 
 import { GET } from "../../requests/requests";
@@ -8,7 +8,7 @@ import "./driversOptions.style.scss";
 
 const uuid = require("react-uuid");
 
-const DriversOptions: React.FC = () => {
+const DriversOptions = () => {
   const [drivers, setDrivers] = useState(Array<Data>());
   const intl = useIntl();
 
@@ -32,7 +32,7 @@ const DriversOptions: React.FC = () => {
   const mappedItems = useMemo(() => drivers?.map(mapItems), [drivers])
 
   return (
-    <select className="table_section-tab-select">
+    <select>
       <option value="" hidden>
         {intl.formatMessage({ id: "Driver" })}
       </option>

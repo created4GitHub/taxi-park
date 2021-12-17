@@ -9,8 +9,6 @@ import {
     ADD_NEW_UNIT,
     SWITCH_PAGE,
     FETCH_DATA,
-    IS_DATA_FETCH_ERROR,
-    IS_DATA_FETCHING,
     PATCH_DATA
 } from '../types'
 
@@ -20,20 +18,6 @@ export const getData = (title: string) => {
         title
     }
 }
-
-export const setIsDataFetching = (payload: boolean) => {
-    return {
-        type: IS_DATA_FETCHING,
-        payload
-    }
-}
-
-export const setIsDataFetchError = () => {
-    return {
-        type: IS_DATA_FETCH_ERROR
-    }
-}
-
 
 export const switchPage = (title: string) => {
     return {
@@ -68,14 +52,6 @@ export const patchData = (title: string, id: string, data: BodyType) => {
     }
 }
 
-export const dispatchData = ({ data, statuses }: { data: Data[], statuses: Status[] }) => {
-    return {
-        type: DATA_RECEIVED,
-        data,
-        statuses
-    };
-};
-
 export const filterData = (payload: { [key: string]: string }) => {
     return {
         type: FILTER_DATA,
@@ -93,11 +69,5 @@ export const updateIsAddNewUnit = (payload: string | null) => {
     return {
         type: SET_IS_ADD_NEW_UNIT,
         payload
-    };
-};
-
-export const dispatchIsDataUpdated = () => {
-    return {
-        type: IS_DATA_UPDATED
     };
 };

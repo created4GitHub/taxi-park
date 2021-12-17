@@ -10,20 +10,11 @@ interface Props {
 const FormikSelect = ({ name, children }: Props) => {
     const [field, meta] = useField({ name, children });
 
-
-    const check = <select
-        className="table_section-tab-select">
-        <option value="" hidden>check</option>
-        <option>one more</option>
-    </select>
-    // console.log(children, check)
     const element = React.cloneElement(
         children,
-        [{ ...field }, { ...{ name, children } }],
+        { ...field, className: "table_section-tab-select" },
         children.props.children
     )
-    // console.log(element)
-    console.log(children, check.props.children)
 
     return (
         <div>

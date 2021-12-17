@@ -56,15 +56,13 @@ const FormSectionTab = ({ value, property, title, data, id }: Props) => {
   };
 
   if (property === "status") {
-    return (<select
-      name="status"
-      className="table_section-tab-select"
-      value={selectValue}
-      onChange={saveStatus}
-      id={property}
-    >
-      <Statuses />
-    </select>
+    return (
+      <Statuses
+        name="status"
+        className="table_section-tab-select"
+        value={selectValue}
+        onChange={saveStatus}
+        id={property} />
     )
   }
 
