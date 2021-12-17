@@ -23,13 +23,12 @@ const DriversOptions = () => {
 
   const mapItems = (item: Data) => {
     return (
-      <option key={uuid()} 
-      value={item.id}>
+      <option key={uuid()}
+        value={item.id}>
         {item.first_name + " " + item.last_name}
       </option>
     )
   }
-
   const mappedItems = useMemo(() => drivers?.map(mapItems), [drivers])
 
   return (

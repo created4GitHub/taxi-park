@@ -8,9 +8,9 @@ import YearsSelect from "../YearsSelect";
 import DriversOptions from '../DriverOptions';
 import Statuses from '../Statuses';
 import AddNewButton from './AddNewButton';
-import { updateIsAddNewUnit } from "../../redux/actions/";
 import { Car, CAR_VALUES, Driver } from './initialValues';
 import { CAR_VALIDATION_SCHEMA } from './validationSchema';
+import { updateIsAddNewUnit } from "../../redux/actions/";
 
 import "./addNewUnit.style.scss";
 
@@ -30,7 +30,6 @@ const AddNewCar = ({ submit }: Props) => {
             {...{ name, placeholder, type: "text" }}
         />
     })
-
     const mapedCarItems = useMemo(() => CAR_INFO.map(mapItems), [CAR_INFO]);
 
     return (

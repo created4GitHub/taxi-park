@@ -1,6 +1,6 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
-import { BodyType } from '../../interfaces';
 
+import { BodyType } from '../../interfaces';
 import { PATCH } from "../../requests/requests";
 import { IS_DATA_UPDATED, PATCH_DATA } from '../types';
 

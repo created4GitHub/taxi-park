@@ -1,11 +1,12 @@
 import { useMemo } from "react";
 import { FormattedMessage } from "react-intl";
+import { useSelector } from "react-redux";
+
 import { CAR_INFO, DRIVER_INFO } from "../../../constants/unitsTitles"
+import { isPageCarSelector } from "../../../redux/selectors";
 
 import IconsDirection from '../../../ascets/img/svg/IconsDirection.svg'
 import './unitsTitles.style.scss'
-import { useSelector } from "react-redux";
-import { isPageCarSelector } from "../../../redux/selectors";
 
 const uuid = require("react-uuid");
 
@@ -43,7 +44,6 @@ const UnitsTitles = () => {
             </div>
         }
     }
-
     const mappedItems = useMemo(() => info.map(mapItems), [info])
 
     return (

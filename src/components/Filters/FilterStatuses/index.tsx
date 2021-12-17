@@ -1,17 +1,17 @@
 import { ChangeEvent } from "react";
 import { useSelector } from "react-redux";
+import { useIntl } from "react-intl";
 
 import Input from "../../commons/Input";
 import { statusesSelector } from "../../../redux/selectors";
-import { useIntl } from "react-intl";
 import { Filter } from "../../../interfaces";
+
+const uuid = require("react-uuid");
 
 interface Props {
     filter: (event: ChangeEvent<HTMLInputElement>) => void;
     filterValues: Filter;
 }
-
-const uuid = require("react-uuid");
 
 const FilterStatuses = ({ filter, filterValues }: Props) => {
     const statuses = useSelector(statusesSelector);

@@ -5,10 +5,10 @@ import FormikInput from "../formik/FormikInput";
 import FormikSelect from "../formik/FormikSelect"
 import Statuses from '../Statuses';
 import AddNewButton from './AddNewButton';
-import { updateIsAddNewUnit } from "../../redux/actions";
+import { DRIVER_INFO, Info } from '../../constants/addNewSection';
 import { DRIVER_VALIDATION_SCHEMA } from './validationSchema';
 import { Car, Driver, DRIVER_VALUES } from './initialValues';
-import { DRIVER_INFO, Info } from '../../constants/addNewSection';
+import { updateIsAddNewUnit } from "../../redux/actions";
 
 import "./addNewUnit.style.scss";
 

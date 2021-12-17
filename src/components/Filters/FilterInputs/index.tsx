@@ -1,10 +1,10 @@
 import { ChangeEvent } from "react";
 import { useIntl } from "react-intl";
+import { useSelector } from "react-redux";
 
 import Input from "../../commons/Input";
 import { CAR_INFO, DRIVE_INFO } from "../../../constants/filterInputs"
 import { Filter } from "../../../interfaces";
-import { useSelector } from "react-redux";
 import { isPageCarSelector } from "../../../redux/selectors";
 
 interface Props {

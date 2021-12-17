@@ -7,32 +7,33 @@ import FormSectionTab from "./FormSectionTab";
 import { Button } from "../../commons/Button";
 import AdditionalData from "./AdditionalInfo";
 import { Data } from "../../../interfaces";
+import Ellipsis from "../../Loader/Ellipsis";
+import { isPageCarSelector } from "../../../redux/selectors";
 import { GET, GET_CARS_BY_DRIVER } from "../../../requests/requests";
 import { removeUnit } from "../../../redux/actions";
-import Ellipsis from "../../Loader/Ellipsis";
 
 import "./formSection.style.scss";
-import { isPageCarSelector } from "../../../redux/selectors";
+
+const uuid = require("react-uuid");
 
 type Props = {
   data: Data;
   pageName: string;
 };
-const uuid = require("react-uuid");
 
 const FormSection = ({ data, pageName }: Props) => {
+  const dispatch = useDispatch();
   const [isAdditionalData, setIsAdditionalData] = useState<boolean>(false);
   const [additionalData, setAdditionalData] = useStateIfMounted<Data[]>([]);
   const [isModal, setIsModal] = useStateIfMounted<boolean>(true);
   const isPageCar = useSelector(isPageCarSelector);
 
-  const className = additionalData.length !== 0 ?
-    'table_section-showButton'
+  const className = additionalData.length !== 0
+    ? 'table_section-showButton'
     : 'table_section-showButton isActive';
-  const dispatch = useDispatch();
 
   const search = async () => {
-    if (isPageCar) {
+    if (!isPageCar) {
       const cars = await GET_CARS_BY_DRIVER(String(data.id));
       setAdditionalData(cars as Data[]);
     } else {

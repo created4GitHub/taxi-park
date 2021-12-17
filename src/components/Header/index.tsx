@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
-import { LOCALES } from '../../intl/locales';
 import styled from 'styled-components'
 
+import { LOCALES } from '../../intl/locales';
 import { Language } from "../../interfaces";
 import { COLOR_SWITCH_LANGUAGE, BORDER_SWITCH_LANGUAGE } from '../../constants/style.colors';
 

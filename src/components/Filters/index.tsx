@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useMemo } from "react";
 
 import FilterStatuses from "./FilterStatuses";
 import FilterInputs from "./FilterInputs";
@@ -8,7 +9,6 @@ import { filterData, resetFilter } from "../../redux/actions";
 import { stateSelector } from "../../redux/selectors";
 
 import "./filters.style.scss";
-
 
 interface Props {
   pageName: string;
@@ -27,7 +27,7 @@ const Filters = ({ pageName }: Props) => {
     dispatch(filterData({ name, value, pageName }));
   };
 
-  const optionalElement = isPageCar && (
+  const yearSelect = useMemo(() =>
     <div className="filter_element-yearSelect">
       <select name="year"
         onChange={filter}>
@@ -40,8 +40,10 @@ const Filters = ({ pageName }: Props) => {
           )
         })}
       </select>
-    </div>
-  );
+    </div>,
+    [YEARS])
+
+  const optionalElement = isPageCar && yearSelect;
 
   return (
     <form className="content__options-filter">

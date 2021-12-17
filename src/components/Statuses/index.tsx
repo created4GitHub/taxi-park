@@ -28,7 +28,6 @@ const Statuses = (props?: Props) => {
             </option>
         )
     }
-
     const mappedItems = useMemo(() => statuses.map(mapItems), [statuses])
 
     return (

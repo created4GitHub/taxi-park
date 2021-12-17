@@ -1,5 +1,6 @@
 import { FormattedMessage } from "react-intl";
 import styled from 'styled-components';
+
 import { RESET_BUTTON_BACKGROUND, RESET_BUTTON_COLOR } from "../../../constants/style.colors";
 
 const Button = styled.button`
@@ -27,7 +28,7 @@ interface Props {
 const ResetButton = ({ resetFilters }: Props) => {
     return (
         <div className="reset-filter-button">
-            <Button type="button" 
+            <Button type="button"
                 onClick={resetFilters}>
                 {<FormattedMessage id='Reset' />}
             </Button>

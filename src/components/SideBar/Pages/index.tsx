@@ -1,11 +1,11 @@
+import { useMemo } from "react";
+import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 
 import { switchPage, addNewUnit, setIsPageCar } from "../../../redux/actions";
 import { Button } from "../../commons/Button";
 import { PAGES_LINKS } from "../../../constants/pages";
-import { FormattedMessage } from "react-intl";
-import { useMemo } from "react";
 
 interface Props {
     activePage: string;
@@ -65,7 +65,6 @@ const Pages = ({ activePage, setIsactivePage }: Props) => {
             </div>
         )
     })
-
     const mappedItems = useMemo(() => PAGES_LINKS.map(tabItems), [PAGES_LINKS, activePage]);
 
     return (
