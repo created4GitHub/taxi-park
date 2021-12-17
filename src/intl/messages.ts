@@ -72,7 +72,7 @@ export const messages: Props = {
     "Delete": "Удалить",
     "Search by ID": "Поиск по ID",
     "Search by driver ID": "Поиск по ID водителя",
-    "Search by mark": "Искать по отметке",
+    "Search by mark": "Искать по марке",
     "Search by model": "Поиск по модели",
     "Search by number": "Поиск по номеру",
     "Search by name": "Поиск по имени",

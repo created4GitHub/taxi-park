@@ -35,7 +35,7 @@ export const convertDate = (data: Data | Data[], title: string) => {
         item.date_created = new Date(item.date_created!).toLocaleDateString();
         return item;
     }
-    if (Array.isArray(data)) {
+    if (Array.isArray(data)) {        
         return (data as Data[]).map(item => convert(item));
     }
     return convert(data as Data);
