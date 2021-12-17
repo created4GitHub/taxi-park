@@ -29,10 +29,9 @@ interface Props {
 
 const Header = ({ setLocale, localeLanguage }: Props) => {
 
-    // TODO remove
     const itemsMap = (item: string) => {
         return (
-            <option key={uuid()} 
+            <option key={uuid()}
                 value={item}>
                 {item}
             </option>
@@ -59,18 +58,18 @@ const Header = ({ setLocale, localeLanguage }: Props) => {
             <div className='header__content'>
                 <div className='header__content leftSide'>
                     <div className='header__content logo'>
-                        <img src={logo} 
-                            alt="#" 
-                            width='180px' 
-                            height='40px' 
+                        <img src={logo}
+                            alt="#"
+                            width='180px'
+                            height='40px'
                         />
                     </div>
                 </div>
                 <Select onChange={handleChange}>
                     <option hidden>
                         {localeLanguage !== null ?
-                        localeLanguage.name 
-                        : 'ENGLISH'}
+                            localeLanguage.name
+                            : 'ENGLISH'}
                     </option>
                     {mappedItems}
                 </Select>
