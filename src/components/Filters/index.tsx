@@ -16,7 +16,6 @@ interface Props {
 
 const Filters = ({ pageName }: Props) => {
   const { filterValues, isFilterValuesUpdated, isPageCar } = useSelector(stateSelector);
-  // const isFilterValuesUpdated = useSelector(isFilterValuesUpdatedSelector);
   const dispatch = useDispatch();
   const reset = () => {
     dispatch(resetFilter());
