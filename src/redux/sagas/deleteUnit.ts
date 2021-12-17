@@ -10,6 +10,7 @@ interface Params {
 }
 
 function* deleteUnit({ title, id }: Params) {
+    console.log("s")
     yield call(REMOVE, title, id);
     yield put({ type: IS_DATA_UPDATED });
 }

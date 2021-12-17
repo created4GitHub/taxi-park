@@ -47,17 +47,17 @@ const AddNewCar = ({ submit }: any) => {
                     {mapedCarItems}
                     <div className='table_section_add-select'>
                         <FormikSelect name="year">
-                            <YearsSelect />
+                            {YearsSelect()}
                         </FormikSelect>
                     </div>
                     <div className='table_section_add-select'>
                         <FormikSelect name="driver_id" >
-                            <DriversOptions />
+                            {DriversOptions()}
                         </FormikSelect>
                     </div>
                     <div className='table_section_add-select'>
                         <FormikSelect name="status">
-                            <Statuses />
+                            {Statuses()}
                         </FormikSelect>
                     </div>
                     <AddNewButton updateIsAddNewUnit={updateIsAddNewUnit} />

@@ -12,7 +12,8 @@ const FormikSelect = ({ name, children }: Props) => {
 
     const element = React.cloneElement(
         children,
-        [name, field],
+        field,
+        children.props.children
     )
 
     return (
