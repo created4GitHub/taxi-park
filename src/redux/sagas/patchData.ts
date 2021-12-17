@@ -12,7 +12,6 @@ interface Params {
 }
 
 export function* patchData({ title, id, data }: Params) {
-    console.log(title, id, data)
 
     try {
         yield call(PATCH, title, id, data);

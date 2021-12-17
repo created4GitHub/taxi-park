@@ -8,7 +8,7 @@ import { Button } from "../../commons/Button";
 import AdditionalData from "./AdditionalInfo";
 import { Data } from "../../../interfaces";
 import { GET, REMOVE, GET_CARS_BY_DRIVER } from "../../../requests/requests";
-import { removeUnit } from "../../../redux/actions/actions";
+import { removeUnit } from "../../../redux/actions";
 import Ellipsis from "../../Loader/Ellipsis";
 
 import "./formSection.style.scss";

@@ -17,7 +17,7 @@ interface FilterData {
 }
 
 interface InitialState {
-    data: Data[];
+    receivedData: Data[];
     filteredData: Data[];
     filterValues: Filter;
     statuses: Status[];
@@ -37,7 +37,7 @@ interface Action {
 }
 
 const initialState: InitialState = {
-    data: [],
+    receivedData: [],
     filteredData: [],
     filterValues: {},
     statuses: [],
@@ -52,13 +52,13 @@ const initialState: InitialState = {
 const RootReducer = (state: InitialState = initialState, { type, payload, data, statuses }: Action): InitialState => {
     switch (type) {
         case DATA_RECEIVED:
-            return { ...state, data: data!, statuses: statuses! };
+            return { ...state, receivedData: data!, statuses: statuses! };
 
         case FILTER_DATA:
             const { name, value } = payload as FilterData;
             const filterValues: Filter = state.filterValues;
             filterValues[name as keyof Filter] = value;
-            let result = state.data;
+            let result = state.receivedData;
             for (let key in filterValues) {
                 result = result.filter(item => {
                     if (key === "status") {
@@ -78,7 +78,7 @@ const RootReducer = (state: InitialState = initialState, { type, payload, data, 
 
         case RESET_FILTER:
             return {
-                ...state, filteredData: state.data, isDataFiltered: false, filterValues: {}
+                ...state, filteredData: state.receivedData, isDataFiltered: false, filterValues: {}
             };
 
         case SET_IS_ADD_NEW_UNIT:

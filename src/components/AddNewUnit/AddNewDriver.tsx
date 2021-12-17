@@ -5,7 +5,7 @@ import FormikInput from "../Formik/FormikInput";
 import FormikSelect from "../Formik/FormikSelect"
 import Statuses from '../Statuses';
 import AddNewButton from './AddNewButton';
-import { updateIsAddNewUnit } from "../../redux/actions/actions";
+import { updateIsAddNewUnit } from "../../redux/actions";
 import { DRIVER_VALIDATION_SCHEMA } from './validationSchema';
 import { DRIVER_VALUES } from './initialValues';
 import { DRIVER_INFO, Info } from '../../constants/addNewSection';

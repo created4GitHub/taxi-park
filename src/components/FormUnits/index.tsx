@@ -4,16 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../Loader";
 import FormSection from "./FormSection";
 import UnitsTitles from "./UnitsTitles";
-import { getData } from "../../redux/actions/actions";
+import { getData } from "../../redux/actions";
 import { Data } from "../../interfaces";
-import {
-  filteredDataSelector,
-  isDataUpdatedSelector,
-  isDataFilteredSelector,
-  dataSelector,
-  isDataFetchingSelector,
-  isDataFetchErrorSelector,
-} from "../../redux/selectors/selector";
+import { state } from "../../redux/selectors";
 
 import "./formUnits.style.scss";
 
@@ -24,12 +17,8 @@ interface Props {
 const uuid = require("react-uuid");
 
 const FormUnits = ({ title }: Props) => {
-  const receivedData = useSelector(dataSelector);
-  const filteredData = useSelector(filteredDataSelector);
-  const isDataFiltered = useSelector(isDataFilteredSelector);
-  const isDataUpdated = useSelector(isDataUpdatedSelector);
-  const isDataFetching = useSelector(isDataFetchingSelector);
-  const isDataFetchError = useSelector(isDataFetchErrorSelector);
+  const { receivedData, filteredData, isDataFiltered,
+    isDataUpdated, isDataFetching, isDataFetchError } = useSelector(state);
   const data = (isDataFiltered && filteredData) || receivedData;
   const dispatch = useDispatch();
 
