@@ -8,7 +8,7 @@ import YearsSelect from "../YearsSelect";
 import DriversOptions from '../DriverOptions';
 import Statuses from '../Statuses';
 import AddNewButton from './AddNewButton';
-import { updateIsAddNewUnit } from "../../redux/actions/actions";
+import { updateIsAddNewUnit } from "../../redux/actions/";
 import { Car, CAR_VALUES, Driver } from './initialValues';
 import { CAR_VALIDATION_SCHEMA } from './validationSchema';
 
