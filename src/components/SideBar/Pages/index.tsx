@@ -1,39 +1,43 @@
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 
-import { switchPage, addNewUnit } from "../../../redux/actions/actions";
+import { switchPage, addNewUnit, setIsPageCar } from "../../../redux/actions";
 import { Button } from "../../commons/Button";
-import { TITLES_LINKS } from "../../../constants/mainTitles";
+import { PAGES_LINKS } from "../../../constants/pages";
 import { FormattedMessage } from "react-intl";
 import { useMemo } from "react";
 
 interface Props {
-    activeTitle: string;
-    setIsActive: React.Dispatch<React.SetStateAction<string>>;
+    activePage: string;
+    setIsactivePage: React.Dispatch<React.SetStateAction<string>>;
 }
 
-interface Titles {
-    title: string;
+interface Tab {
+    pageName: string;
     path: string;
-    name: string;
+    title: string;
     src: string;
 }
 
 const uuid = require("react-uuid");
 
-const MainTitles = ({ activeTitle, setIsActive }: Props) => {
+const Pages = ({ activePage, setIsactivePage }: Props) => {
+    const setActive = (pageName: string) => {
+        setIsactivePage(pageName);
+        dispatch(setIsPageCar(pageName));
+    }
     const dispatch = useDispatch();
-    const tabItems = (({ name, title, path, src }: Titles) => {
-        const className = `route-button path ${activeTitle === title ? 'active' : ''}`
+    const tabItems = (({ title, pageName, path, src }: Tab) => {
+        const className = `route-button path ${activePage === pageName ? 'active' : ''}`
 
         const openUnit = () => {
-            setIsActive(title);
-            dispatch(switchPage(title));
+            setActive(pageName);
+            dispatch(switchPage(pageName));
         }
 
         const addUnit = () => {
-            setIsActive(title);
-            dispatch(addNewUnit(title, false));
+            setActive(pageName);
+            dispatch(addNewUnit(pageName, false));
         }
 
         return (
@@ -48,7 +52,7 @@ const MainTitles = ({ activeTitle, setIsActive }: Props) => {
                                     className="options-img"
                                     src={src}
                                     alt="alt" />
-                                <FormattedMessage id={name} />
+                                <FormattedMessage id={title} />
                             </p>
                         }
                     />
@@ -62,7 +66,7 @@ const MainTitles = ({ activeTitle, setIsActive }: Props) => {
         )
     })
 
-    const mappedItems = useMemo(() => TITLES_LINKS.map(tabItems), [TITLES_LINKS, activeTitle]);
+    const mappedItems = useMemo(() => PAGES_LINKS.map(tabItems), [PAGES_LINKS, activePage]);
 
     return (
         <div className="content__options-paragraph">
@@ -71,4 +75,4 @@ const MainTitles = ({ activeTitle, setIsActive }: Props) => {
     )
 }
 
-export default MainTitles;
+export default Pages;

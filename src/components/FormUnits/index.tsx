@@ -4,44 +4,33 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../Loader";
 import FormSection from "./FormSection";
 import UnitsTitles from "./UnitsTitles";
-import { getData } from "../../redux/actions/actions";
+import { getData } from "../../redux/actions";
 import { Data } from "../../interfaces";
-import {
-  filteredDataSelector,
-  isDataUpdatedSelector,
-  isDataFilteredSelector,
-  dataSelector,
-  isDataFetchingSelector,
-  isDataFetchErrorSelector,
-} from "../../redux/selectors";
+import { stateSelector } from "../../redux/selectors";
 
 import "./formUnits.style.scss";
 
 interface Props {
-  title: string;
+  pageName: string;
 }
 
 const uuid = require("react-uuid");
 
-const FormUnits = ({ title }: Props) => {
-  const receivedData = useSelector(dataSelector);
-  const filteredData = useSelector(filteredDataSelector);
-  const isDataFiltered = useSelector(isDataFilteredSelector);
-  const isDataUpdated = useSelector(isDataUpdatedSelector);
-  const isDataFetching = useSelector(isDataFetchingSelector);
-  const isDataFetchError = useSelector(isDataFetchErrorSelector);
+const FormUnits = ({ pageName }: Props) => {
+  const { receivedData, filteredData, isDataFiltered,
+    isDataUpdated, isDataFetching, isDataFetchError } = useSelector(stateSelector);
   const data = (isDataFiltered && filteredData) || receivedData;
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getData(title));
+    dispatch(getData(pageName));
   }, [isDataUpdated]);
 
   const mapItems = (item: Data) => {
     return (
       <FormSection
         key={uuid()}
-        title={title}
+        pageName={pageName}
         data={item}
 
       />
@@ -55,7 +44,7 @@ const FormUnits = ({ title }: Props) => {
     </div>
     : (
       <>
-        <UnitsTitles title={title} />
+        <UnitsTitles />
         {mappedItems}
       </>
     );

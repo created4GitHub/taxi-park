@@ -37,7 +37,6 @@ const Header = ({ setLocale, localeLanguage }: Props) => {
             </option>
         )
     }
-
     const mappedItems = useMemo(() => Object.keys(LOCALES).map(itemsMap), [LOCALES])
 
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -45,11 +44,8 @@ const Header = ({ setLocale, localeLanguage }: Props) => {
             value: LOCALES[event.target.value],
             name: event.target.value
         }
-
         const sItem = JSON.stringify(local);
-
         localStorage.setItem('internationalization', sItem);
-
         setLocale(local)
     }
 
@@ -67,7 +63,7 @@ const Header = ({ setLocale, localeLanguage }: Props) => {
                 </div>
                 <Select onChange={handleChange}>
                     <option hidden>
-                        {localeLanguage !== null ?
+                        {localeLanguage.hasOwnProperty("name") ?
                             localeLanguage.name
                             : 'ENGLISH'}
                     </option>

@@ -1,52 +1,51 @@
-import { BodyType, Data, Status } from "../../interfaces";
+import { BodyType, Data } from "../../interfaces";
 import {
-    DATA_RECEIVED,
     SET_IS_ADD_NEW_UNIT,
-    IS_DATA_UPDATED,
     FILTER_DATA,
     RESET_FILTER,
     DELETE_UNIT,
     ADD_NEW_UNIT,
     SWITCH_PAGE,
     FETCH_DATA,
-    PATCH_DATA
+    PATCH_DATA,
+    SET_IS_PAGE_CAR
 } from '../types'
 
-export const getData = (title: string) => {
+export const getData = (pageName: string) => {
     return {
         type: FETCH_DATA,
-        title
+        pageName
     }
 }
 
-export const switchPage = (title: string) => {
+export const switchPage = (pageName: string) => {
     return {
         type: SWITCH_PAGE,
-        title
+        pageName
     }
 }
 
-export const addNewUnit = (title: string, isPost: boolean, data?: Data) => {
+export const addNewUnit = (pageName: string, isPost: boolean, data?: Data) => {
     return {
         type: ADD_NEW_UNIT,
-        title,
+        pageName,
         isPost,
         data
     }
 }
 
-export const removeUnit = (title: string, id: number) => {
+export const removeUnit = (pageName: string, id: number) => {
     return {
         type: DELETE_UNIT,
-        title,
+        pageName,
         id
     }
 }
 
-export const patchData = (title: string, id: string, data: BodyType) => {
+export const patchData = (pageName: string, id: string, data: BodyType) => {
     return {
         type: PATCH_DATA,
-        title,
+        pageName,
         id,
         data
     }
@@ -71,3 +70,10 @@ export const updateIsAddNewUnit = (payload: string | null) => {
         payload
     };
 };
+
+export const setIsPageCar = (pageName: string) => {
+    return {
+        type: SET_IS_PAGE_CAR,
+        payload: pageName === "car"
+    }
+}

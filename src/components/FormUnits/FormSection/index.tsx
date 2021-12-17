@@ -1,28 +1,30 @@
 import { useEffect, useMemo, useState } from "react";
 import { FormattedMessage } from "react-intl";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useStateIfMounted } from "use-state-if-mounted";
 
 import FormSectionTab from "./FormSectionTab";
 import { Button } from "../../commons/Button";
 import AdditionalData from "./AdditionalInfo";
 import { Data } from "../../../interfaces";
-import { GET, REMOVE, GET_CARS_BY_DRIVER } from "../../../requests/requests";
-import { removeUnit } from "../../../redux/actions/actions";
+import { GET, GET_CARS_BY_DRIVER } from "../../../requests/requests";
+import { removeUnit } from "../../../redux/actions";
 import Ellipsis from "../../Loader/Ellipsis";
 
 import "./formSection.style.scss";
+import { isPageCarSelector } from "../../../redux/selectors";
 
 type Props = {
   data: Data;
-  title: string;
+  pageName: string;
 };
 const uuid = require("react-uuid");
 
-const FormSection = ({ data, title }: Props) => {
+const FormSection = ({ data, pageName }: Props) => {
   const [isAdditionalData, setIsAdditionalData] = useState<boolean>(false);
   const [additionalData, setAdditionalData] = useStateIfMounted<Data[]>([]);
   const [isModal, setIsModal] = useStateIfMounted<boolean>(true);
+  const isPageCar = useSelector(isPageCarSelector);
 
   const className = additionalData.length !== 0 ?
     'table_section-showButton'
@@ -30,7 +32,7 @@ const FormSection = ({ data, title }: Props) => {
   const dispatch = useDispatch();
 
   const search = async () => {
-    if (title === "driver") {
+    if (isPageCar) {
       const cars = await GET_CARS_BY_DRIVER(String(data.id));
       setAdditionalData(cars as Data[]);
     } else {
@@ -46,7 +48,7 @@ const FormSection = ({ data, title }: Props) => {
   }, [])
 
   const deleteEl = async () => {
-    dispatch(removeUnit(title, data.id!));
+    dispatch(removeUnit(pageName, data.id!));
   };
 
   const showAditionalSection = () => {
@@ -62,7 +64,7 @@ const FormSection = ({ data, title }: Props) => {
         property={property}
         value={data[property as keyof Data]!}
         id={String(data.id)}
-        title={title}
+        pageName={pageName}
         data={data}
       />
     )
@@ -98,7 +100,6 @@ const FormSection = ({ data, title }: Props) => {
       </div>
       {isAdditionalData && <AdditionalData
         additionalData={additionalData}
-        title={title}
       />}
     </>
   );

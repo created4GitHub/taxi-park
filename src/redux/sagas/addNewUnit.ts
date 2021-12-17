@@ -7,17 +7,16 @@ import { POST } from '../../requests/requests';
 
 interface Params {
     type: typeof ADD_NEW_UNIT;
-    title: string;
+    pageName: string;
     isPost: boolean;
     data?: Data;
 }
 
-function* addNewUnit({ title, isPost, data }: Params) {
-    console.log("s")
-    yield call(fetchData, { type: FETCH_DATA, title });
-    yield put({ type: SET_IS_ADD_NEW_UNIT, payload: title });
+function* addNewUnit({ pageName, isPost, data }: Params) {
+    yield call(fetchData, { type: FETCH_DATA, pageName });
+    yield put({ type: SET_IS_ADD_NEW_UNIT, payload: pageName });
     if (isPost) {
-        POST(title, data!);
+        POST(pageName, data!);
         yield put({ type: IS_DATA_UPDATED });
         yield put({ type: RESET_FILTER });
         yield put({ type: SET_IS_ADD_NEW_UNIT, payload: null });

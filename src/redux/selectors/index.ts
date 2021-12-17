@@ -10,4 +10,5 @@ export const statusesSelector = (state: RootState) => state.statuses;
 export const isDataFetchingSelector = (state: RootState) => state.isDataFetching;
 export const isDataFetchErrorSelector = (state: RootState) => state.isDataFetchError;
 export const isFilterValuesUpdatedSelector = (state: RootState) => state.isFilterValuesUpdated;
-export const state = (state: RootState) => state;
+export const isPageCarSelector = (state: RootState) => state.isPageCar;
+export const stateSelector = (state: RootState) => state;

@@ -6,7 +6,8 @@ import {
     SET_IS_ADD_NEW_UNIT,
     IS_DATA_UPDATED,
     IS_DATA_FETCHING,
-    IS_DATA_FETCH_ERROR
+    IS_DATA_FETCH_ERROR,
+    SET_IS_PAGE_CAR
 } from './types'
 
 interface FilterData {
@@ -27,6 +28,7 @@ interface InitialState {
     isDataFetching: boolean;
     isDataFetchError: boolean;
     isFilterValuesUpdated: boolean;
+    isPageCar: boolean;
 }
 
 interface Action {
@@ -46,10 +48,12 @@ const initialState: InitialState = {
     isDataFiltered: false,
     isDataFetching: false,
     isDataFetchError: false,
-    isFilterValuesUpdated: false
+    isFilterValuesUpdated: false,
+    isPageCar: false,
 }
 
-const RootReducer = (state: InitialState = initialState, { type, payload, data, statuses }: Action): InitialState => {
+const RootReducer = (state: InitialState = initialState, { type, payload, data, statuses }: Action)
+    : InitialState => {
     switch (type) {
         case DATA_RECEIVED:
             return { ...state, receivedData: data!, statuses: statuses! };
@@ -92,6 +96,9 @@ const RootReducer = (state: InitialState = initialState, { type, payload, data, 
 
         case IS_DATA_FETCH_ERROR:
             return { ...state, isDataFetchError: true }
+
+        case SET_IS_PAGE_CAR:
+            return { ...state, isPageCar: (payload as boolean) }
 
         default:
             return state;

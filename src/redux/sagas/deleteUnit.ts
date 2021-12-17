@@ -5,12 +5,12 @@ import { DELETE_UNIT, IS_DATA_UPDATED } from '../types';
 
 interface Params {
     type: typeof DELETE_UNIT;
-    title: string;
+    pageName: string;
     id: number;
 }
 
-function* deleteUnit({ title, id }: Params) {
-    yield call(REMOVE, title, id);
+function* deleteUnit({ pageName, id }: Params) {
+    yield call(REMOVE, pageName, id);
     yield put({ type: IS_DATA_UPDATED });
 }
 
