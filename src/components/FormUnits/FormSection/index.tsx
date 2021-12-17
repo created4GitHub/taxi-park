@@ -3,13 +3,13 @@ import { FormattedMessage } from "react-intl";
 import { useDispatch } from "react-redux";
 import { useStateIfMounted } from "use-state-if-mounted";
 
-import FormSectionTab from './formSectionTab';
-import AdditionalData from "./additionalInfo";
+import FormSectionTab from "./FormSectionTab";
 import { Button } from "../../commons/Button";
+import AdditionalData from "./AdditionalInfo";
 import { Data } from "../../../interfaces";
-import { GET, GET_CARS_BY_DRIVER } from "../../../requests/requests";
+import { GET, REMOVE, GET_CARS_BY_DRIVER } from "../../../requests/requests";
 import { removeUnit } from "../../../redux/actions/actions";
-import Ellipsis from "../../loader/ellipsis";
+import Ellipsis from "../../Loader/Ellipsis";
 
 import "./formSection.style.scss";
 
@@ -69,8 +69,8 @@ const FormSection = ({ data, title }: Props) => {
   }
   const mappedItems = useMemo(() => Object.keys(data).map(mapItems), [data]);
 
-  const checkBtntext = additionalData.length 
-    ? (isAdditionalData && <FormattedMessage id='Hide' />)
+  const checkBtntext = additionalData.length ?
+    (isAdditionalData && <FormattedMessage id='Hide' />)
     || <FormattedMessage id='Show' />
     : <FormattedMessage id='No cars' />;
 
@@ -93,9 +93,7 @@ const FormSection = ({ data, title }: Props) => {
         <Button
           onClick={deleteEl}
           className="table_section-deleteButton"
-          btnText={
-            <FormattedMessage id='Delete' />
-          }
+          btnText={<FormattedMessage id='Delete' />}
         />
       </div>
       {isAdditionalData && <AdditionalData

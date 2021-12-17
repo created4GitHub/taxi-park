@@ -32,7 +32,6 @@ const FilterInputs = ({ filter, title, filterValues }: Props) => {
     }
 
     const mappedItems = inputInfo.map(mapItems);
-    // console.log(filterValues);
     return (
         <>
             <div className='filter_element-inputs'>

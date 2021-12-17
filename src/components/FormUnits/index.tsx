@@ -1,9 +1,9 @@
 import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import Loader from "../loader";
-import FormSection from "./formSection";
-import UnitsTitles from "./unitsTitles";
+import Loader from "../Loader";
+import FormSection from "./FormSection";
+import UnitsTitles from "./UnitsTitles";
 import { getData } from "../../redux/actions/actions";
 import { Data } from "../../interfaces";
 import {
@@ -43,6 +43,7 @@ const FormUnits = ({ title }: Props) => {
         key={uuid()}
         title={title}
         data={item}
+
       />
     );
   }
@@ -63,7 +64,7 @@ const FormUnits = ({ title }: Props) => {
     isDataFetchError ?
       <div>Error</div>
       : element
-  );  
+  );
 };
 
 export default FormUnits;

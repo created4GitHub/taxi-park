@@ -9,6 +9,7 @@ import AddNewCar from "../AddNewUnit/AddNewCar";
 import AddNewDriver from "../AddNewUnit/AddNewDriver";
 import { Data, Status } from "../../interfaces";
 import { addNewUnit } from "../../redux/actions/actions";
+import { Car, Driver } from "../AddNewUnit/initialValues";
 
 interface RouteProp {
     path: string;
@@ -24,12 +25,11 @@ const UnitsRoute = () => {
     const dispatch = useDispatch();
 
     const mapItems = ({ path, title }: RouteProp) => {
-        const onSubmit = (values: any) => {
-            
+        const onSubmit = (values: Car | Driver) => {
             const status = statuses.find((status: Status) => status.title === values.status)!;
             values.status = status;
-            if (values.date_birth) {
-                values.date_birth = new Date(values.date_birth).getTime();
+            if (values.hasOwnProperty("date_birth")) {
+                (values as Driver).date_birth = new Date((values as Driver).date_birth).getTime();
             }
             dispatch(addNewUnit(title, true, (values as Data)));
         }
