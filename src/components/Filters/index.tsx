@@ -5,7 +5,7 @@ import FilterInputs from "./FilterInputs";
 import ResetButton from "./ResetButton";
 import { YEARS } from "../../constants/years";
 import { filterData, resetFilter } from "../../redux/actions";
-import { filterValuesSelector, isFilterValuesUpdatedSelector, stateSelector } from "../../redux/selectors";
+import { stateSelector } from "../../redux/selectors";
 
 import "./filters.style.scss";
 
@@ -16,7 +16,6 @@ interface Props {
 
 const Filters = ({ pageName }: Props) => {
   const { filterValues, isFilterValuesUpdated, isPageCar } = useSelector(stateSelector);
-  // const isFilterValuesUpdated = useSelector(isFilterValuesUpdatedSelector);
   const dispatch = useDispatch();
   const reset = () => {
     dispatch(resetFilter());
@@ -47,7 +46,6 @@ const Filters = ({ pageName }: Props) => {
   return (
     <form className="content__options-filter">
       <FilterInputs filter={filter}
-        pageName={pageName}
         filterValues={filterValues}
       />
       {optionalElement}
