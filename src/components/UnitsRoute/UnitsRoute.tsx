@@ -25,6 +25,7 @@ const UnitsRoute = () => {
 
     const mapItems = ({ path, title }: RouteProp) => {
         const onSubmit = (values: any) => {
+            
             const status = statuses.find((status: Status) => status.title === values.status)!;
             values.status = status;
             if (values.date_birth) {

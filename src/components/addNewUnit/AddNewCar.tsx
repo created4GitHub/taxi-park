@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { SyntheticEvent, useMemo } from 'react';
 import { Formik, Form } from 'formik';
 
 import { CAR_INFO, Info } from "../../constants/addNewSection";
@@ -13,14 +13,17 @@ import { CAR_VALUES } from './initialValues';
 import { CAR_VALIDATION_SCHEMA } from './validationSchema';
 
 import "./addNewUnit.style.scss";
+import { TypeOf } from 'yup';
 
 interface Props {
-    submit: any;
+    submit: SyntheticEvent<Element, Event>
 }
 
 const uuid = require("react-uuid");
 
-const AddNewCar = ({ submit }: Props) => {
+const AddNewCar = ({ submit }: any) => {
+    // console.log(submit);
+    
     const initialValues = CAR_VALUES;
     const validationSchema = CAR_VALIDATION_SCHEMA;
 
